@@ -7,7 +7,7 @@ public class Coupon {
 	private String Title;
 	private Date Start_date;
 	private Date End_date;
-	private Integer Amount;
+	private long Amount;
 	private String Message;
 	private Double Price;
 	private String Image;
@@ -16,8 +16,8 @@ public class Coupon {
 	public Coupon() {
 	}
 
-	public Coupon(long id, String title, Date start_date, Date end_date, Integer amount, String message, Double price,
-			String image, CouponType type) {
+	public Coupon(long id, String title, Date start_date, Date end_date, long amount, String message, Double price,
+			String image, CouponType couponType) {
 		this.Id = id;
 		this.Title = title;
 		this.Start_date = start_date;
@@ -26,8 +26,7 @@ public class Coupon {
 		this.Message = message;
 		this.Price = price;
 		this.Image = image;
-		this.type=type;
-		
+		this.type = couponType;
 	}
 
 	public long getId() {
@@ -62,11 +61,11 @@ public class Coupon {
 		End_date = end_date;
 	}
 
-	public Integer getAmount() {
+	public long getAmount() {
 		return Amount;
 	}
 
-	public void setAmount(Integer amount) {
+	public void setAmount(long amount) {
 		Amount = amount;
 	}
 

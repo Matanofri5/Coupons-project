@@ -36,7 +36,7 @@ package Company;
 		@Override
 		public void removeCompany(Company company) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
-			String pre1 = "DELETE FROM Company WHERE id=?";
+			String pre1 = "DELETE FROM Company WHERE id= ?";
 
 			try (PreparedStatement pstm1 = con.prepareStatement(pre1);) {
 				con.setAutoCommit(false);

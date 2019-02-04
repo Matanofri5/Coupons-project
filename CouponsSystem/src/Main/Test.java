@@ -1,16 +1,19 @@
 package Main;
 
 import java.awt.Window.Type;
+import java.io.ObjectInputStream.GetField;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 
 import org.apache.derby.client.am.DateTime;
 
 import Company.Company;
 import Company.CompanyFacade;
 import Coupon.Coupon;
+import Coupon.CouponFacade;
 import Coupon.CouponType;
 import Customer.Customer;
 import Customer.CustomerFacade;
@@ -50,25 +53,27 @@ public class Test {
 	    
 	    /***************************************Customer****************************/
 	    
-	   Customer c1 = new Customer(4, "Matan", "3784628");
-	   Customer c2 = new Customer(5, "Bar", "1325266");
-	   Customer c3 = new Customer(6, "Dvir", "9879886");
-	   
-
-	   CustomerFacade customerFacade = new CustomerFacade();
-//	   customerFacade.insertCustomer(c1);
-//	   customerFacade.insertCustomer(c2);
-//	   customerFacade.insertCustomer(c3);
-	   
-	   customerFacade.updateCustomer(c1, 6, "levi", "nnnn");
+//	   Customer c1 = new Customer(4, "Matan", "3784628");
+//	   Customer c2 = new Customer(5, "Bar", "1325266");
+//	   Customer c3 = new Customer(6, "Dvir", "9879886");
+//	   
+//
+//	   CustomerFacade customerFacade = new CustomerFacade();
+////	   customerFacade.insertCustomer(c1);
+////	   customerFacade.insertCustomer(c2);
+////	   customerFacade.insertCustomer(c3);
+//	   
+//	   customerFacade.updateCustomer(c1, 6, "levi", "nnnn");
 	    
 	    /***************************************Coupon****************************/
 
-//	   Date date = new Date();
-//	   SimpleDateFormat Date = new SimpleDateFormat("dd-mm-yyyy");
+	   Date Start_date = new Date();
+	   SimpleDateFormat Date = new SimpleDateFormat("dd-mm-yyyy");
 	  
 	   
-//	   Coupon e1 = new Coupon(7, "medical", "03-06-2020", "03-07-2020", 73, "medisen", 51.6, "it",CouponType.HEALTH);
-	   
+       Coupon u1 = new Coupon();
+       CouponFacade couponFacade = new CouponFacade();
+		
+//		Coupon u2 = new Coupon(10, "fds", "44-55-8800", "77-88-9999", 22, "fff", 33, "fef", CouponType.ELECTRICITY);
 		}
 }
