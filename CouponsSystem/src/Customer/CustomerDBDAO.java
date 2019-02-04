@@ -1,0 +1,135 @@
+package Customer;
+
+    import java.sql.Connection;
+	import java.sql.DriverManager;
+	import java.sql.PreparedStatement;
+	import java.sql.ResultSet;
+	import java.sql.SQLException;
+	import java.sql.Statement;
+	import java.util.HashSet;
+	import java.util.Set;
+	import Main.*;
+	import Main.Database;
+
+	public class CustomerDBDAO implements CustomerDAO {
+		Connection con;
+
+		@Override
+		public void insertCustomer(Customer customer) throws Exception {
+			con = DriverManager.getConnection(Database.getDBUrl());
+			String sql = "INSERT INTO Customer (Cust_name,Password)  VALUES(?,?)";
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+				pstmt.setString(1, customer.getCust_name());
+				pstmt.setString(2, customer.getPassword());
+                
+				pstmt.executeUpdate();
+				System.out.println("Customer insert" +" " + customer.toString());
+			} catch (SQLException e) {
+				throw new Exception("Customer insert failed");
+			} finally {
+				con.close();
+			}
+		}
+
+		@Override
+		public void removeCustomer(Customer customer) throws Exception {
+			con = DriverManager.getConnection(Database.getDBUrl());
+			String pre1 = "DELETE FROM Customer WHERE id=?";
+
+			try (PreparedStatement pstm1 = con.prepareStatement(pre1);) {
+				con.setAutoCommit(false);
+				pstm1.setLong(1, customer.getId());
+				pstm1.executeUpdate();
+				con.commit();
+			} catch (SQLException e) {
+				try {
+					con.rollback();
+				} catch (SQLException e1) {
+					throw new Exception("Database error");
+				}
+				throw new Exception("failed to remove customer");
+			} finally {
+				con.close();
+			}
+		}
+
+		@Override
+		public void updateCustomer(Customer customer) throws Exception {
+			con = DriverManager.getConnection(Database.getDBUrl());
+			try (Statement stm = con.createStatement()) {
+				String sql = "UPDATE Customer " + " SET Cust_name='" + customer.getCust_name() + "', Password='" + customer.getPassword()
+						+ "' WHERE ID=" + customer.getId();
+				stm.executeUpdate(sql);
+			} catch (SQLException e) {
+				throw new Exception("update Customer failed");
+			}
+		}
+
+		@Override
+		public Customer getCustomer(long id) throws Exception {
+			con = DriverManager.getConnection(Database.getDBUrl());
+			Customer customer = new Customer();
+			try (Statement stm = con.createStatement()) {
+				String sql = "SELECT * FROM Customer WHERE ID=" + id;
+				ResultSet rs = stm.executeQuery(sql);
+				rs.next();
+				customer.setId(rs.getLong(1));
+				customer.setCust_name(rs.getString(2));
+				customer.setPassword(rs.getString(3));
+                
+			} catch (SQLException e) {
+				throw new Exception("unable to get customer data");
+			} finally {
+				con.close();
+			}
+			return customer;
+		}
+
+		@Override
+		public synchronized Set<Customer> getAllCustomer() throws Exception {
+			con = DriverManager.getConnection(Database.getDBUrl());
+			Set<Customer> set = new HashSet<>();
+			String sql = "SELECT id FROM Customer";
+			try (Statement stm = con.createStatement(); ResultSet rs = stm.executeQuery(sql)) {
+				while (rs.next()) {
+					long Id = rs.getLong(1);
+					String Cust_name = rs.getString(1);
+					String Password = rs.getString(1);
+					set.add(new Customer(Id, Cust_name, Password));
+				}
+			} catch (SQLException e) {
+				System.out.println(e);
+				throw new Exception("cannot get Customer data");
+			} finally {
+				con.close();
+			}
+			return set;
+		}
+
+		@Override
+		public void dropTable() throws Exception {
+			con = DriverManager.getConnection(Database.getDBUrl());
+			try {
+				String sql =  "DROP TABLE Customer";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.executeUpdate();
+				System.out.println("drop Table success!! :D ");
+
+			}
+			catch (SQLException ex) {
+				System.err.println("MMMMMMM....dropTableEXCEPTION");
+				throw new Exception(ex.getMessage());
+			}
+			finally {
+				try {
+					con.close();
+				} catch (SQLException ex) {
+					System.err.println("the connection cannot closed :( "+ ex.getMessage());
+				}
+			}
+			
+		
+		}
+	}
+
