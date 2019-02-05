@@ -18,7 +18,7 @@ public class CouponFacade {
 	}
 
 	public void removeCoupon(Coupon coupon) throws Exception {
-		coupDAO.insertCoupon(coupon);
+		coupDAO.removeCoupon(coupon);
 	}
 
 	public void updateCoupon(Coupon coupon, String newTitle, Date newStart_date, Date newEnd_date, Integer newAmount, 

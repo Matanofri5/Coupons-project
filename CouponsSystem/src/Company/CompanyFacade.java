@@ -17,7 +17,7 @@ public class CompanyFacade {
 	}
 
 	public void removeCompany(Company company) throws Exception {
-		compDAO.insertCompany(company);
+		compDAO.removeCompany(company);
 	}
 
 	public void updateCompany(Company company, long newId, String newComp_name, String newPassword, String newEmail) throws Exception {
