@@ -18,25 +18,20 @@ import java.sql.DriverManager;
 		@Override
 		public void insertCoupon(Coupon coupon) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
-			System.out.println("aaaa");
-			String sql = "INSERT INTO Coupon (Title,Start_date,End_date,Amount,Messege,Price,Image,Type)  VALUES(?,?,?,?,?,?,?,?)";
-			System.out.println("fafa");
+			String sql = "INSERT INTO Coupon (Title,Start_date,End_date,Amount,Message,Price,Image,Type)  VALUES(?,?,?,?,?,?,?,?)";
 			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-            System.out.println("bbb");
 				pstmt.setString(1, coupon.getTitle());
 				pstmt.setDate(2, (Date) coupon.getStart_date());
                 pstmt.setDate(3, (Date) coupon.getEnd_date());
-				pstmt.setLong(4, coupon.getAmount());
+				pstmt.setInt(4, coupon.getAmount());
 				pstmt.setString(5, coupon.getMessage());
 				pstmt.setDouble(6, coupon.getPrice());
 				pstmt.setString(7, coupon.getImage());
-				System.out.println("fdaf");
                 pstmt.setString(8, coupon.getType().name());
-                System.out.println("fadf");
 				pstmt.executeUpdate();
+				
 				System.out.println("Coupon insert" +" " + coupon.toString());
 			} catch (SQLException e) {
-				System.out.println(e.getMessage());
 				throw new Exception("Coupon insert failed");
 			} finally {
 				con.close();
@@ -90,7 +85,7 @@ import java.sql.DriverManager;
 				coupon.setTitle(rs.getString(2));
 				coupon.setStart_date(rs.getDate(3));
 				coupon.setEnd_date(rs.getDate(4));
-				coupon.setAmount(rs.getLong(5));
+				coupon.setAmount(rs.getInt(5));
 				coupon.setPrice(rs.getDouble(6));
 				coupon.setImage(rs.getString(7));
 				CouponType type = null ;
@@ -138,7 +133,7 @@ import java.sql.DriverManager;
 					String Title = rs.getString(2);
 					Date Start_date = rs.getDate(3);
 					Date End_date = rs.getDate(4);
-//					Integer Amount = rs.getLong(5);
+				    int Amount = rs.getInt(5);
 					String Message = rs.getString(6);
 					Double Price = rs.getDouble(7);
 					String Image = rs.getString(8);

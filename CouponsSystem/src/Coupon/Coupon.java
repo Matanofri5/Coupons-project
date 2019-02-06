@@ -7,7 +7,7 @@ public class Coupon {
 	private String Title;
 	private Date Start_date;
 	private Date End_date;
-	private long Amount;
+	private int Amount;
 	private String Message;
 	private Double Price;
 	private String Image;
@@ -15,7 +15,7 @@ public class Coupon {
 	public Coupon() {
 	}
 
-	public Coupon(long id, String title, Date start_date, Date end_date, long amount, String message, Double price,
+	public Coupon(long id, String title, Date start_date, Date end_date, int amount, String message, Double price,
 			String image, CouponType couponType) {
 		this.Id = id;
 		this.Title = title;
@@ -60,11 +60,11 @@ public class Coupon {
 		End_date = end_date;
 	}
 
-	public long getAmount() {
+	public int getAmount() {
 		return Amount;
 	}
 
-	public void setAmount(long amount) {
+	public void setAmount(int amount) {
 		Amount = amount;
 	}
 

@@ -64,9 +64,9 @@ public class Database {
 
 		sql = "create table Coupon ("
 				+ "Id bigint not null primary key generated always as identity(start with 1, increment by 1), "
-				+ " Title varchar(50) not null, " + "Start_date date not null, "  + "End_date date not null, " + "Amount bigint not null, "  
-				+ "Message varchar(50) not null , " + "Price double not null , " + "Image varchar(50) not null, " +
-				"type varchar(20) not null)";
+				+ "Title varchar(50) not null, " + "Start_date Date not null, "  + "End_date Date not null, " + "Amount int not null, "  
+				+ "Message varchar(50) not null, " + "Price Double not null, " + "Image varchar(50) not null, " 
+				+ "Type varchar(20) not null)";
 		stmt.executeUpdate(sql);
 		System.out.println("success:" + sql);
         }catch (SQLException e) {
