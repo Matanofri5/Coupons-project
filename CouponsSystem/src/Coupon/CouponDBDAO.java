@@ -36,6 +36,7 @@ import java.sql.DriverManager;
 				pstmt.executeUpdate();
 				System.out.println("Coupon insert" +" " + coupon.toString());
 			} catch (SQLException e) {
+				System.out.println(e.getMessage());
 				throw new Exception("Coupon insert failed");
 			} finally {
 				con.close();

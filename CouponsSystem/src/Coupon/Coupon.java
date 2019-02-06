@@ -11,7 +11,7 @@ public class Coupon {
 	private String Message;
 	private Double Price;
 	private String Image;
-    private CouponType type;	
+    private CouponType Type;	
 	public Coupon() {
 	}
 
@@ -25,7 +25,7 @@ public class Coupon {
 		this.Message = message;
 		this.Price = price;
 		this.Image = image;
-		this.type = couponType;
+		this.Type = couponType;
 	}
 
 	public long getId() {
@@ -93,11 +93,11 @@ public class Coupon {
 	}
 
 	public CouponType getType() {
-		return type;
+		return Type;
 	}
 
 	public void setType(CouponType type) {
-		this.type = type;
+		this.Type = Type;
 	}
 	
 	
@@ -105,8 +105,8 @@ public class Coupon {
 	@Override
 	public String toString() {
 		return "Coupon [Id=" + Id + ", Title=" + Title + ", Start_date=" + Start_date + ", End_date=" + End_date
-				+ ", Amount=" + Amount + ", Message=" + Message + ", Price=" + Price + ", Image=" + Image + ", type="
-				+ type + "]";
+				+ ", Amount=" + Amount + ", Message=" + Message + ", Price=" + Price + ", Image=" + Image + ", Type="
+				+ Type + "]";
 	}
 
 	

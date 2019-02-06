@@ -22,7 +22,7 @@ public class CouponFacade {
 	}
 
 	public void updateCoupon(Coupon coupon, String newTitle, Date newStart_date, Date newEnd_date, Integer newAmount, 
-			String newMessage, Double newPrice, String newImage) throws Exception {
+			String newMessage, Double newPrice, String newImage, CouponType newcouponType) throws Exception {
 		
 		coupon.setTitle(newTitle);
 		coupon.setStart_date(newStart_date);
@@ -31,6 +31,8 @@ public class CouponFacade {
 		coupon.setMessage(newMessage);
 		coupon.setPrice(newPrice);
 		coupon.setImage(newImage);
+		coupon.setType(newcouponType);
+		
 		
 		coupDAO.updateCoupon(coupon);
 	}
