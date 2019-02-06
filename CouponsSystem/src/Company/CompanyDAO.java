@@ -4,7 +4,7 @@ import java.util.Set;
 public interface CompanyDAO {
 	void insertCompany(Company company) throws Exception;
 
-	void removeCompany(Company company) throws Exception;
+	void removeCompany(long id) throws Exception;
 
     void updateCompany(Company company) throws Exception;
 

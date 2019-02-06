@@ -25,6 +25,7 @@ package Company;
                 pstmt.setString(3, company.getEmail());
                 
 				pstmt.executeUpdate();
+				System.out.println("Company " + company.getComp_name() + " successfully :) !!!");
 				System.out.println("Company insert" +" " + company.toString());
 			} catch (SQLException e) {
 				throw new Exception("Company insert failed");
@@ -34,13 +35,13 @@ package Company;
 		}
 
 		@Override
-		public void removeCompany(Company company) throws Exception {
+		public void removeCompany(long id) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
 			String pre1 = "DELETE FROM Company WHERE id= ?";
 
 			try (PreparedStatement pstm1 = con.prepareStatement(pre1);) {
 				con.setAutoCommit(false);
-				pstm1.setLong(1, company.getId());
+				pstm1.setLong(1, id);
 				pstm1.executeUpdate();
 				con.commit();
 			} catch (SQLException e) {

@@ -35,7 +35,7 @@ package Customer;
 		@Override
 		public void removeCustomer(Customer customer) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
-			String pre1 = "DELETE FROM Customer WHERE id=?";
+			String pre1 = "DELETE FROM Customer WHERE id= ?";
 
 			try (PreparedStatement pstm1 = con.prepareStatement(pre1);) {
 				con.setAutoCommit(false);

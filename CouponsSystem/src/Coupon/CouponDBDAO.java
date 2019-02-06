@@ -1,6 +1,5 @@
 package Coupon;
 
-    import java.awt.Window.Type;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -19,9 +18,11 @@ import java.sql.DriverManager;
 		@Override
 		public void insertCoupon(Coupon coupon) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
-			String sql = "INSERT INTO Coupon (Title,Start_date,End_date,Amount,Messege,Price,Image,type)  VALUES(?,?,?,?,?,?,?,?)";
+			System.out.println("aaaa");
+			String sql = "INSERT INTO Coupon (Title,Start_date,End_date,Amount,Messege,Price,Image,Type)  VALUES(?,?,?,?,?,?,?,?)";
+			System.out.println("fafa");
 			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-
+            System.out.println("bbb");
 				pstmt.setString(1, coupon.getTitle());
 				pstmt.setDate(2, (Date) coupon.getStart_date());
                 pstmt.setDate(3, (Date) coupon.getEnd_date());
@@ -29,7 +30,9 @@ import java.sql.DriverManager;
 				pstmt.setString(5, coupon.getMessage());
 				pstmt.setDouble(6, coupon.getPrice());
 				pstmt.setString(7, coupon.getImage());
-                pstmt.setString(8, coupon.getType().name());                
+				System.out.println("fdaf");
+                pstmt.setString(8, coupon.getType().name());
+                System.out.println("fadf");
 				pstmt.executeUpdate();
 				System.out.println("Coupon insert" +" " + coupon.toString());
 			} catch (SQLException e) {

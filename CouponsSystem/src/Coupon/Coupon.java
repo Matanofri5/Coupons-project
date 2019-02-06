@@ -11,8 +11,7 @@ public class Coupon {
 	private String Message;
 	private Double Price;
 	private String Image;
-	private CouponType type;
-	
+    private CouponType type;	
 	public Coupon() {
 	}
 
