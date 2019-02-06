@@ -17,6 +17,7 @@ import Coupon.CouponFacade;
 import Coupon.CouponType;
 import Customer.Customer;
 import Customer.CustomerFacade;
+import Coupon.DateUtils;
 
 public class Test {
 
@@ -65,13 +66,12 @@ public class Test {
 //	   customerFacade.updateCustomer(c1, 6, "levi", "nnnn");
 	    
 	    /***************************************Coupon****************************/
-
-//	   SimpleDateFormat Date = new SimpleDateFormat("dd-mm-yyyy");
-//	  
-//	   
+       
+       Coupon u1 = new Coupon(7, "test", DateUtils.getcurrentdate(), DateUtils.getExpiredDate(), 55, "sick", 33.5, "image", CouponType.CAMPING);
+	   
        CouponFacade couponFacade = new CouponFacade();
+       
 //       couponFacade.dropTable();
-//	Coupon u2 = new Coupon(10, "fds", Date., "77-88-9999", 22, "fff", 33, "fef", CouponType.ELECTRICITY);
 	    
 	    
 	    
