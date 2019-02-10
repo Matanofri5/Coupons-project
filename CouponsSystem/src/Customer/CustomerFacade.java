@@ -16,8 +16,8 @@ public class CustomerFacade {
 		custDAO.insertCustomer(customer);
 	}
 
-	public void removeCustomer(Customer customer) throws Exception {
-		custDAO.removeCustomer(customer);
+	public void removeCustomer(long id) throws Exception {
+		custDAO.removeCustomer(id);
 	}
 
 	public void updateCustomer(Customer customer, long newId, String newCust_name, String newPassword) throws Exception {

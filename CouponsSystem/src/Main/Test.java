@@ -1,15 +1,15 @@
 package Main;
 
-import java.awt.Window.Type;
 import java.io.ObjectInputStream.GetField;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import org.apache.derby.client.am.DateTime;
+import org.apache.derby.impl.sql.execute.GenericExecutionFactory;
+
 import Company.Company;
 import Company.CompanyFacade;
 import Coupon.Coupon;
@@ -63,8 +63,8 @@ public class Test {
 //	   customerFacade.insertCustomer(c2);
 //	   customerFacade.insertCustomer(c3);
 	   
-//	   customerFacade.updateCustomer(c2, 3, "Ehud", "4455566");
-	   
+//	   customerFacade.updateCustomer(c2, 3, "Ehud", "445577566");
+//	   customerFacade.updateCustomer(2, "Matan", "3322554");
 //	   customerFacade.removeCustomer(c2);
 //	   customerFacade.removeCustomer(c1);
 //	   customerFacade.removeCustomer(c3);
@@ -84,7 +84,7 @@ public class Test {
 //       couponFacade.insertCoupon(u2);
 //       couponFacade.insertCoupon(u3);
        
-       couponFacade.updateCoupon(u1, 2, "test4", DateUtils.getcurrentdate(), DateUtils.getExpiredDate(), 88, "lamp", 73.6, "light", CouponType.ELECTRICITY);
+//       couponFacade.updateCoupon(u1, "test4", DateUtils.getcurrentdate(), DateUtils.getExpiredDate(), 88, "lamp", 73.6, "light", CouponType.ELECTRICITY);
 //         couponFacade.removeCoupon(1);
 //         couponFacade.removeCoupon(2);
 //         couponFacade.removeCoupon(4);

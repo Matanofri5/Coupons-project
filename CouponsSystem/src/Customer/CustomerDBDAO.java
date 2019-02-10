@@ -24,7 +24,7 @@ package Customer;
 				pstmt.setString(2, customer.getPassword());
                 
 				pstmt.executeUpdate();
-				System.out.println("Customer insert" +" " + customer.toString());
+				System.out.println("Customer " + customer.getCust_name() + " successfully inserted !!! :)");
 			} catch (SQLException e) {
 				throw new Exception("Customer insert failed");
 			} finally {
@@ -33,15 +33,17 @@ package Customer;
 		}
 
 		@Override
-		public void removeCustomer(Customer customer) throws Exception {
+		public void removeCustomer(long id) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
 			String pre1 = "DELETE FROM Customer WHERE id= ?";
 
 			try (PreparedStatement pstm1 = con.prepareStatement(pre1);) {
 				con.setAutoCommit(false);
-				pstm1.setLong(1, customer.getId());
+				pstm1.setLong(1, id);
 				pstm1.executeUpdate();
 				con.commit();
+				System.out.println("Customer Id " + id + " removed seccessfully  :) !!!");
+
 			} catch (SQLException e) {
 				try {
 					con.rollback();
@@ -58,8 +60,12 @@ package Customer;
 		public void updateCustomer(Customer customer) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
 			try (Statement stm = con.createStatement()) {
-				String sql = "UPDATE Customer " + " SET Cust_name='" + customer.getCust_name() + "', Password='" + customer.getPassword()
-						+ "' WHERE ID=" + customer.getId();
+				String sql = "UPDATE Customer "
+			+ " SET Cust_name='" + customer.getCust_name() +
+			"', Password='" + customer.getPassword()
+			+ "' WHERE ID=" + customer.getId();
+				
+				System.out.println("Customer id " + customer.getId() + " updated successfully !!! :)");
 				stm.executeUpdate(sql);
 			} catch (SQLException e) {
 				throw new Exception("update Customer failed");

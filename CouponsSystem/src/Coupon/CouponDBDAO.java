@@ -48,7 +48,7 @@ import java.sql.DriverManager;
 				pstm1.setLong(1, id);
 				pstm1.executeUpdate();
 				con.commit();
-				System.out.println("Id " + id + " removed seccessfully  :) !!!");
+				System.out.println("Coupon Id " + id + " removed seccessfully  :) !!!");
 
 			} catch (SQLException e) {
 				try {
@@ -65,18 +65,21 @@ import java.sql.DriverManager;
 		@Override
 		public void updateCoupon(Coupon coupon) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
-			try (Statement stm = con.createStatement()) {
-				String sql = "UPDATE Coupon "
+			PreparedStatement stm = null;
+			try {
+			
+			String sql = "UPDATE Coupon "
 			+ " SET Title='" + coupon.getTitle()
 			+ "', Start_date='" + (Date) coupon.getStart_date()
-			+"', End_date='" + (Date) coupon.getEnd_date()
-			+ ", Amount=" + coupon.getAmount()
-			+"', Message='" + coupon.getMessage()
-			+ ", Price=" + coupon.getPrice()
+			+ "', End_date='" + (Date) coupon.getEnd_date()
+			+ "', Amount='" + coupon.getAmount()
+			+ "', Type='" + coupon.getType()
+			+ "', Message='" + coupon.getMessage()
+			+ "', Price='" + coupon.getPrice()
 			+ "', Image='" + coupon.getImage()
-			+ "', Type='" + coupon.getType().name()
 			+ "' WHERE ID=" + coupon.getId();
-				
+			
+			stm = con.prepareStatement(sql);
 				stm.executeUpdate(sql);
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());

@@ -25,8 +25,7 @@ package Company;
                 pstmt.setString(3, company.getEmail());
                 
 				pstmt.executeUpdate();
-				System.out.println("Company " + company.getComp_name() + " inserted successfully :) !!!");
-				System.out.println("Company insert" +" " + company.toString());
+				System.out.println("Company " + company.getComp_name() + " successefully inserted :) !!!");
 			} catch (SQLException e) {
 				throw new Exception("Company insert failed");
 			} finally {
@@ -44,7 +43,7 @@ package Company;
 				pstm1.setLong(1, id);
 				pstm1.executeUpdate();
 				con.commit();
-				System.out.println("Id " + id + " removed seccessfully  :) !!!");
+				System.out.println("Company Id " + id + " removed seccessfully  :) !!!");
 			} catch (SQLException e) {
 				try {
 					con.rollback();
@@ -67,7 +66,7 @@ package Company;
 			+"', Email='" + company.getEmail()
 			+ "' WHERE ID=" + company.getId();
 				
-				System.out.println("You successfully updated id " + company.getId());
+			System.out.println("Company id " + company.getId() + " updated successfully !!! :)");
 				stm.executeUpdate(sql);
 			} catch (SQLException e) {
 				throw new Exception("update Company failed");
