@@ -84,7 +84,7 @@ public class Test {
 //       couponFacade.insertCoupon(u2);
 //       couponFacade.insertCoupon(u3);
        
-//       couponFacade.updateCoupon(u1, "test4", DateUtils.getcurrentdate(), DateUtils.getExpiredDate(), 88, "lamp", 73.6, "light", CouponType.ELECTRICITY);
+       couponFacade.updateCoupon(u1, "test4", DateUtils.getcurrentdate(), DateUtils.getExpiredDate(), 88, "lamp", 73.6, "light", CouponType.ELECTRICITY);
 //         couponFacade.removeCoupon(1);
 //         couponFacade.removeCoupon(2);
 //         couponFacade.removeCoupon(4);

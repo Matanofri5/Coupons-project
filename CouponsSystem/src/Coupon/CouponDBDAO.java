@@ -65,22 +65,23 @@ import java.sql.DriverManager;
 		@Override
 		public void updateCoupon(Coupon coupon) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
-			PreparedStatement stm = null;
+			java.sql.Statement stm = null;
 			try {
+			stm = con.createStatement();
 			
 			String sql = "UPDATE Coupon "
 			+ " SET Title='" + coupon.getTitle()
 			+ "', Start_date='" + (Date) coupon.getStart_date()
 			+ "', End_date='" + (Date) coupon.getEnd_date()
-			+ "', Amount='" + coupon.getAmount()
+			+ "', Amount=" + coupon.getAmount()
+			+ ", Message='" + coupon.getMessage()
+			+ "', Price=" + coupon.getPrice()
+			+ ", Image='" + coupon.getImage()
 			+ "', Type='" + coupon.getType()
-			+ "', Message='" + coupon.getMessage()
-			+ "', Price='" + coupon.getPrice()
-			+ "', Image='" + coupon.getImage()
 			+ "' WHERE ID=" + coupon.getId();
 			
-			stm = con.prepareStatement(sql);
 				stm.executeUpdate(sql);
+				System.out.println("Coupon updated successefully");
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 				throw new Exception("update Coupon failed");
