@@ -4,7 +4,7 @@ import java.util.Set;
 public interface CouponDAO {
 	void insertCoupon(Coupon coupon) throws Exception;
 
-	void removeCoupon(Coupon coupon) throws Exception;
+	void removeCoupon(long id) throws Exception;
 
 	void updateCoupon(Coupon coupon) throws Exception;
 

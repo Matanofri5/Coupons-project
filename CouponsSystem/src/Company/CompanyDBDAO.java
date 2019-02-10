@@ -61,8 +61,12 @@ package Company;
 		public void updateCompany(Company company) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
 			try (Statement stm = con.createStatement()) {
-				String sql = "UPDATE Company " + " SET Comp_name='" + company.getComp_name() + "', Password='" + company.getPassword() +"', Email='" + company.getEmail()
-						+ "' WHERE ID=" + company.getId();
+			String sql = "UPDATE Company "
+			+ " SET Comp_name='" + company.getComp_name()
+			+ "', Password='" + company.getPassword()
+			+"', Email='" + company.getEmail()
+			+ "' WHERE ID=" + company.getId();
+				
 				System.out.println("You successfully updated id " + company.getId());
 				stm.executeUpdate(sql);
 			} catch (SQLException e) {

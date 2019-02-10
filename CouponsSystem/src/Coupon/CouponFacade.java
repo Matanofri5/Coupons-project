@@ -17,13 +17,14 @@ public class CouponFacade {
 		coupDAO.insertCoupon(coupon);
 	}
 
-	public void removeCoupon(Coupon coupon) throws Exception {
-		coupDAO.removeCoupon(coupon);
+	public void removeCoupon(long id) throws Exception {
+		coupDAO.removeCoupon(id);
 	}
 
-	public void updateCoupon(Coupon coupon, String newTitle, Date newStart_date, Date newEnd_date, Integer newAmount, 
+	public void updateCoupon(Coupon coupon, long newId, String newTitle, Date newStart_date, Date newEnd_date, int newAmount, 
 			String newMessage, Double newPrice, String newImage, CouponType newcouponType) throws Exception {
-		
+	
+		coupon.setId(newId);
 		coupon.setTitle(newTitle);
 		coupon.setStart_date(newStart_date);
 		coupon.setEnd_date(newEnd_date);

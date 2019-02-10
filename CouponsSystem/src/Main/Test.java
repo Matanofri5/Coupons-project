@@ -74,11 +74,22 @@ public class Test {
 	    
 	    /***************************************Coupon****************************/
        
-       Coupon u1 = new Coupon(7, "test", DateUtils.getcurrentdate(), DateUtils.getExpiredDate(), 55, "sick", 33.5, "image", CouponType.CAMPING);
-	   
-       CouponFacade couponFacade = new CouponFacade();
-       couponFacade.insertCoupon(u1);
-       //       couponFacade.dropTable();
+       Coupon u1 = new Coupon(7, "test", DateUtils.getcurrentdate(), DateUtils.getExpiredDate(), 55, "sick", 33.5, "image", CouponType.HEALTH);
+	   Coupon u2 = new Coupon(8, "test2", DateUtils.getcurrentdate(), DateUtils.getExpiredDate(), 66, "camp", 36.7, "picture", CouponType.CAMPING);
+	   Coupon u3 = new Coupon(9, "test3", DateUtils.getcurrentdate(), DateUtils.getExpiredDate(), 77, "food", 41.2, "photo", CouponType.FOOD);
+     
+	   CouponFacade couponFacade = new CouponFacade();
+       
+//       couponFacade.insertCoupon(u1);
+//       couponFacade.insertCoupon(u2);
+//       couponFacade.insertCoupon(u3);
+       
+       couponFacade.updateCoupon(u1, 2, "test4", DateUtils.getcurrentdate(), DateUtils.getExpiredDate(), 88, "lamp", 73.6, "light", CouponType.ELECTRICITY);
+//         couponFacade.removeCoupon(1);
+//         couponFacade.removeCoupon(2);
+//         couponFacade.removeCoupon(4);
+       
+//           couponFacade.dropTable();
 	    
 	    
 	    

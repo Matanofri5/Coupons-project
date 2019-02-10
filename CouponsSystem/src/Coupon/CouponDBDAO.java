@@ -39,22 +39,24 @@ import java.sql.DriverManager;
 		}
 
 		@Override
-		public void removeCoupon(Coupon coupon) throws Exception {
+		public void removeCoupon(long id) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
 			String pre1 = "DELETE FROM Coupon WHERE id=?";
 
 			try (PreparedStatement pstm1 = con.prepareStatement(pre1);) {
 				con.setAutoCommit(false);
-				pstm1.setLong(1, coupon.getId());
+				pstm1.setLong(1, id);
 				pstm1.executeUpdate();
 				con.commit();
+				System.out.println("Id " + id + " removed seccessfully  :) !!!");
+
 			} catch (SQLException e) {
 				try {
 					con.rollback();
 				} catch (SQLException e1) {
 					throw new Exception("Database error");
 				}
-				throw new Exception("failed to remove customer");
+				throw new Exception("failed to remove coupon");
 			} finally {
 				con.close();
 			}
@@ -64,11 +66,20 @@ import java.sql.DriverManager;
 		public void updateCoupon(Coupon coupon) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
 			try (Statement stm = con.createStatement()) {
-				String sql = "UPDATE Coupon " + " SET Title='" + coupon.getTitle() + "', Start_date='" + coupon.getStart_date() +"', End_date='" + coupon.getEnd_date()
-						+ "', Amount='" + coupon.getAmount() +"', Message='" + coupon.getMessage() + "', Price='" + coupon.getPrice()
-						+ "', Image='" + coupon.getImage() + "' WHERE ID=" + coupon.getId();
+				String sql = "UPDATE Coupon "
+			+ " SET Title='" + coupon.getTitle()
+			+ "', Start_date='" + (Date) coupon.getStart_date()
+			+"', End_date='" + (Date) coupon.getEnd_date()
+			+ ", Amount=" + coupon.getAmount()
+			+"', Message='" + coupon.getMessage()
+			+ ", Price=" + coupon.getPrice()
+			+ "', Image='" + coupon.getImage()
+			+ "', Type='" + coupon.getType().name()
+			+ "' WHERE ID=" + coupon.getId();
+				
 				stm.executeUpdate(sql);
 			} catch (SQLException e) {
+				System.out.println(e.getMessage());
 				throw new Exception("update Coupon failed");
 			}
 		}
