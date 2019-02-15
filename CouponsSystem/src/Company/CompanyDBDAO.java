@@ -80,31 +80,36 @@ package Company;
 			try (Statement stm = con.createStatement()) {
 				String sql = "SELECT * FROM Company WHERE ID=" + id;
 				ResultSet rs = stm.executeQuery(sql);
-				rs.next();
+				while (rs.next()) {
 				company.setId(rs.getLong(1));
 				company.setComp_name(rs.getString(2));
 				company.setPassword(rs.getString(3));
                 company.setEmail(rs.getString(4));
-                
+				}
+            
 			} catch (SQLException e) {
 				throw new Exception("unable to get company data");
-			} finally {
-				con.close();
+			} finally {	
+				con.close();	
+				
 			}
 			return company;
 		}
 
 		@Override
-		public synchronized Set<Company> getAllCompany() throws Exception {
+		public Set<Company> getAllCompany() throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
-			Set<Company> set = new HashSet<>();
-			String sql = "SELECT id FROM Company";
-			try (Statement stm = con.createStatement(); ResultSet rs = stm.executeQuery(sql)) {
+			Set<Company> set = new HashSet<>();		
+			try {
+				Statement stm = con.createStatement();
+				String sql = "SELECT * FROM Company";
+				ResultSet rs = stm.executeQuery(sql);
 				while (rs.next()) {
 					long Id = rs.getLong(1);
-					String Comp_name = rs.getString(1);
-					String Password = rs.getString(1);
-                    String Email = rs.getString(1);
+					String Comp_name = rs.getString(2);
+					String Password = rs.getString(3);
+                    String Email = rs.getString(4);
+                    
 					set.add(new Company(Id, Comp_name, Password, Email));
 				}
 			} catch (SQLException e) {

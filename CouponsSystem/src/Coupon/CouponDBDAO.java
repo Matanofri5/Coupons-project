@@ -103,28 +103,28 @@ import java.sql.DriverManager;
 				coupon.setAmount(rs.getInt(5));
 				coupon.setPrice(rs.getDouble(6));
 				coupon.setImage(rs.getString(7));
-				CouponType type = null ;
-				switch (type.getClass().getName()) {
+				CouponType Type = null ;
+				switch (Type.getClass().getName()) {
 				case "food":
-					type=CouponType.FOOD;
+					Type=CouponType.FOOD;
 					break;
 				case "Resturans":
-					type=CouponType.RESTURANTS;
+					Type=CouponType.RESTURANTS;
 					break;
 				case "Electricity":
-					type=CouponType.ELECTRICITY;
+					Type=CouponType.ELECTRICITY;
 					break;
 				case "Health":
-					type=CouponType.HEALTH;
+					Type=CouponType.HEALTH;
 					break;
 				case "Sports":
-					type=CouponType.SPORTS;
+					Type=CouponType.SPORTS;
 					break;
 				case "Camping":
-					type=CouponType.CAMPING;
+					Type=CouponType.CAMPING;
 					break;
 				case "Traveling":
-					type=CouponType.TRAVELING;
+					Type=CouponType.TRAVELING;
 					break;
 				default:
 					System.out.println("Coupon not existent");
@@ -152,7 +152,7 @@ import java.sql.DriverManager;
 					String Message = rs.getString(6);
 					Double Price = rs.getDouble(7);
 					String Image = rs.getString(8);
-					String CouponType = rs.getString(9);
+					String Type = rs.getString(9);
 		
 			}
 			} catch (SQLException e) {

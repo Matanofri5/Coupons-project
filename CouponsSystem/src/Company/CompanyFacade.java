@@ -1,4 +1,5 @@
 package Company;
+
 import java.util.Set;
 
 public class CompanyFacade {
@@ -28,8 +29,8 @@ public class CompanyFacade {
 		compDAO.updateCompany(company);
 	}
 
-	public Company getCompany() {
-		return company;
+	public Company getCompany(long id) throws Exception {
+		return compDAO.getCompany(id);
 	}
 
 	public Set<Company> getAllCompany() throws Exception {

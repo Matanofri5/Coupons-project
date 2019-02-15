@@ -1,12 +1,9 @@
 package Main;
 
-import java.awt.Window.Type;
-import java.io.NotActiveException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.xml.stream.events.NotationDeclaration;
 
 public class Database {
 
@@ -38,7 +35,7 @@ public class Database {
 		stmt.executeUpdate(sql);
 		System.out.println("success:" + sql);
 		}catch (SQLException e) {
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
 		}
 		
 		
@@ -54,7 +51,7 @@ public class Database {
 		stmt.executeUpdate(sql);
 		System.out.println("success:" + sql);
 		}catch(SQLException e) {
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
 		}
 		
 		//****************************************Creating Coupon table*************************************************
@@ -70,7 +67,7 @@ public class Database {
 		stmt.executeUpdate(sql);
 		System.out.println("success:" + sql);
         }catch (SQLException e) {
-        	System.out.println(e.getMessage());
+        	System.err.println(e.getMessage());
         }		
 	
 		}

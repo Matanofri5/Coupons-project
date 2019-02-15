@@ -7,7 +7,7 @@ import Main.*;
 
 public class DateUtils {
 
-	public static Date getcurrentdate() {
+	public static Date getCurrentDate() {
 		LocalDate localDate = LocalDate.now();
 		Date date = java.sql.Date.valueOf(localDate);
 		return date;

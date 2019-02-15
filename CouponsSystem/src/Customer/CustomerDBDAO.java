@@ -79,11 +79,11 @@ package Customer;
 			try (Statement stm = con.createStatement()) {
 				String sql = "SELECT * FROM Customer WHERE ID=" + id;
 				ResultSet rs = stm.executeQuery(sql);
-				rs.next();
+				while (rs.next()) {
 				customer.setId(rs.getLong(1));
 				customer.setCust_name(rs.getString(2));
 				customer.setPassword(rs.getString(3));
-                
+				} 
 			} catch (SQLException e) {
 				throw new Exception("unable to get customer data");
 			} finally {
@@ -96,7 +96,7 @@ package Customer;
 		public synchronized Set<Customer> getAllCustomer() throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
 			Set<Customer> set = new HashSet<>();
-			String sql = "SELECT id FROM Customer";
+			String sql = "SELECT * FROM Customer";
 			try (Statement stm = con.createStatement(); ResultSet rs = stm.executeQuery(sql)) {
 				while (rs.next()) {
 					long Id = rs.getLong(1);
