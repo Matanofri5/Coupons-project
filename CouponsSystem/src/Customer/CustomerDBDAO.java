@@ -93,7 +93,7 @@ package Customer;
 		}
 
 		@Override
-		public synchronized Set<Customer> getAllCustomer() throws Exception {
+		public Set<Customer> getAllCustomer() throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
 			Set<Customer> set = new HashSet<>();
 			String sql = "SELECT * FROM Customer";

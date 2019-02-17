@@ -3,14 +3,14 @@ package Coupon;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
-	import java.sql.PreparedStatement;
-	import java.sql.ResultSet;
-	import java.sql.SQLException;
-	import java.sql.Statement;
-	import java.util.HashSet;
-	import java.util.Set;
-	import Main.*;
-	import Main.Database;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashSet;
+import java.util.Set;
+import Main.*;
+import Main.Database;
 
 	public class CouponDBDAO implements CouponDAO {
 		Connection con;
@@ -103,33 +103,35 @@ import java.sql.DriverManager;
 				coupon.setAmount(rs.getInt(5));
 				coupon.setPrice(rs.getDouble(6));
 				coupon.setImage(rs.getString(7));
-				CouponType Type = null ;
-				switch (Type.getClass().getName()) {
+				coupon.setMessage(rs.getString(8));
+				CouponType type = null ;
+				switch (type.getClass().getName()) {
 				case "food":
-					Type=CouponType.FOOD;
+					type=CouponType.FOOD;
 					break;
 				case "Resturans":
-					Type=CouponType.RESTURANTS;
+					type=CouponType.RESTURANTS;
 					break;
 				case "Electricity":
-					Type=CouponType.ELECTRICITY;
+					type=CouponType.ELECTRICITY;
 					break;
 				case "Health":
-					Type=CouponType.HEALTH;
+					type=CouponType.HEALTH;
 					break;
 				case "Sports":
-					Type=CouponType.SPORTS;
+					type=CouponType.SPORTS;
 					break;
 				case "Camping":
-					Type=CouponType.CAMPING;
+					type=CouponType.CAMPING;
 					break;
 				case "Traveling":
-					Type=CouponType.TRAVELING;
+					type=CouponType.TRAVELING;
 					break;
 				default:
 					System.out.println("Coupon not existent");
 						break;
 		}	} catch (SQLException e) {
+			System.out.println(e.getMessage());
 				throw new Exception("unable to get coupon data");
 			} finally {
 					con.close();
@@ -138,22 +140,26 @@ import java.sql.DriverManager;
 		}
 		
 		@Override
-		public synchronized Set<Coupon> getAllCoupon() throws Exception {
+		public Set<Coupon> getAllCoupon() throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
 			Set<Coupon> set = new HashSet<>();
-			String sql = "SELECT * FROM Coupon";
-			try (Statement stm = con.createStatement(); ResultSet rs = stm.executeQuery(sql)) {
+			try { 
+				Statement stm = con.createStatement();
+				String sql = "SELECT * FROM Coupon";
+				ResultSet rs = stm.executeQuery(sql);
 				while (rs.next()) {
 					long Id = rs.getLong(1);
-					String Title = rs.getString(2);
-					Date Start_date = rs.getDate(3);
-					Date End_date = rs.getDate(4);
-				    int Amount = rs.getInt(5);
-					String Message = rs.getString(6);
-					Double Price = rs.getDouble(7);
-					String Image = rs.getString(8);
-					String Type = rs.getString(9);
-		
+					String Title = rs.getString(1);
+//					Date Start_date = rs.getDate(1);
+//					Date End_date = rs.getDate(1);
+//				    int Amount = rs.getInt(5);
+//					String Message = rs.getString(6);
+//					Double Price = rs.getDouble(7);
+//					String Image = rs.getString(8);
+//                  CouponType type = CouponType.valueOf(rs.getString(9));	
+//                    
+//					Set.add(new Coupon(Id, Title, Start_date, End_date, Amount, Message, Price, Image, type));
+		set.add(new Coupon());
 			}
 			} catch (SQLException e) {
 				System.out.println(e);

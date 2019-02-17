@@ -89,8 +89,8 @@ public class Test {
 //         couponFacade.removeCoupon(1);
 //         couponFacade.removeCoupon(2);
 //         couponFacade.removeCoupon(4);
-//       System.out.println(couponFacade.getAllCoupon());
-//       System.out.println(couponFacade.getCoupon());
+       System.out.println(couponFacade.getAllCoupon());
+//       System.out.println(couponFacade.getCoupon(6));
 //           couponFacade.dropTable();
 	   
 	    

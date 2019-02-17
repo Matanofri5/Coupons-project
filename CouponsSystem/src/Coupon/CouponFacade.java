@@ -1,4 +1,5 @@
 package Coupon;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -34,12 +35,11 @@ public class CouponFacade {
 		coupon.setImage(newImage);
 		coupon.setType(newcouponType);
 		
-		
 		coupDAO.updateCoupon(coupon);
 	}
 
-	public Coupon getCoupon() {
-		return coupon;
+	public Coupon getCoupon(long id) throws Exception {
+		return coupDAO.getCoupon(id);
 	}
 
 	public Set<Coupon> getAllCoupon() throws Exception {
