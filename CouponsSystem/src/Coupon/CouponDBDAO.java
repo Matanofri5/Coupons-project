@@ -99,7 +99,7 @@ import Main.Database;
 				stm = con.createStatement(); 
 				String sql = "SELECT * FROM Coupon WHERE ID=" + id;
 				ResultSet rs = stm.executeQuery(sql);
-				rs.next();
+			    rs.next();
 				coupon.setId(rs.getLong(1));
 				coupon.setTitle(rs.getString(2));
 				coupon.setStartDate((Date)rs.getDate(3));
@@ -110,7 +110,7 @@ import Main.Database;
 				coupon.setMessage(rs.getString(8));
 				CouponType type = CouponType.valueOf(rs.getString(9));
 				coupon.setType(type);
-				
+			
 			
 			} catch (SQLException e) {
 			System.out.println(e.getMessage());

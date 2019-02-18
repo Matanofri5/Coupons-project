@@ -102,6 +102,7 @@ package Customer;
 					long Id = rs.getLong(1);
 					String Cust_name = rs.getString(1);
 					String Password = rs.getString(1);
+					
 					set.add(new Customer(Id, Cust_name, Password));
 				}
 			} catch (SQLException e) {
