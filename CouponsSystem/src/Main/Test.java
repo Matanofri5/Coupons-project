@@ -46,7 +46,7 @@ public class Test {
 //	    companyFacade.removeCompany(5);
 //	    companyFacade.removeCompany(6);
 		
-//      companyFacade.dropTable();
+  //    companyFacade.dropTable();
 //        System.out.println(companyFacade.getAllCompany());	
 //        System.out.println(companyFacade.getCompany(1));
 	    
@@ -89,7 +89,7 @@ public class Test {
 //         couponFacade.removeCoupon(1);
 //         couponFacade.removeCoupon(2);
 //         couponFacade.removeCoupon(4);
-       System.out.println(couponFacade.getAllCoupon());
+  //     System.out.println(couponFacade.getAllCoupon());
 //       System.out.println(couponFacade.getCoupon(8));
 //           couponFacade.dropTable();
 	   
