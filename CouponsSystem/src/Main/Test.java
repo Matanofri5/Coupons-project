@@ -78,19 +78,19 @@ public class Test {
        Coupon u1 = new Coupon(7, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 55, "sick", 33.5, "image", CouponType.HEALTH);
 	   Coupon u2 = new Coupon(8, "test2", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 66, "camp", 36.7, "picture", CouponType.CAMPING);
 	   Coupon u3 = new Coupon(9, "test3", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 77, "food", 41.2, "photo", CouponType.FOOD);
-     
+	   Coupon u4 = new Coupon(10, "test4", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 99, "bla", 32.4, "uy", CouponType.TRAVELING);
+	   
 	   CouponFacade couponFacade = new CouponFacade();
        
 //       couponFacade.insertCoupon(u1);
 //       couponFacade.insertCoupon(u2);
 //       couponFacade.insertCoupon(u3);
-       
-//       couponFacade.updateCoupon(u1, "test4", DateUtils.getcurrentdate(), DateUtils.getExpiredDate(), 88, "lamp", 73.6, "light", CouponType.ELECTRICITY);
+//       couponFacade.updateCoupon(u1, 1, "aaa", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 100, "bbb", 22.2, "ccc", CouponType.SPORTS);
 //         couponFacade.removeCoupon(1);
 //         couponFacade.removeCoupon(2);
 //         couponFacade.removeCoupon(4);
-       System.out.println(couponFacade.getAllCoupon());
-//       System.out.println(couponFacade.getCoupon(6));
+//       System.out.println(couponFacade.getAllCoupon());
+       System.out.println(couponFacade.getCoupon(9));
 //           couponFacade.dropTable();
 	   
 	    

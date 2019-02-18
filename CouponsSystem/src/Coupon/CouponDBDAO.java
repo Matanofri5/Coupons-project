@@ -18,20 +18,21 @@ import Main.Database;
 		@Override
 		public void insertCoupon(Coupon coupon) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
-			String sql = "INSERT INTO Coupon (Title,Start_date,End_date,Amount,Message,Price,Image,Type)  VALUES(?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO Coupon (Title,StartDate,EndDate,Amount,Message,Price,Image,Type)  VALUES(?,?,?,?,?,?,?,?)";
 			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 				pstmt.setString(1, coupon.getTitle());
-				pstmt.setDate(2, (Date) coupon.getStart_date());
-                pstmt.setDate(3, (Date) coupon.getEnd_date());
+				pstmt.setDate(2, (Date) coupon.getStartDate());
+                pstmt.setDate(3, (Date) coupon.getEndDate());
 				pstmt.setInt(4, coupon.getAmount());
 				pstmt.setString(5, coupon.getMessage());
-				pstmt.setDouble(6, coupon.getPrice());
+                pstmt.setDouble(6,  coupon.getPrice());
 				pstmt.setString(7, coupon.getImage());
                 pstmt.setString(8, coupon.getType().name());
 				pstmt.executeUpdate();
 				
 				System.out.println("Coupon insert" +" " + coupon.toString());
 			} catch (SQLException e) {
+				System.out.println(e.getMessage());
 				throw new Exception("Coupon insert failed");
 			} finally {
 				con.close();
@@ -48,7 +49,7 @@ import Main.Database;
 				pstm1.setLong(1, id);
 				pstm1.executeUpdate();
 				con.commit();
-				System.out.println("Coupon Id " + id + " removed seccessfully  :) !!!");
+				System.out.println("Coupon Id " + id + " removed successfully  :) !!!");
 
 			} catch (SQLException e) {
 				try {
@@ -71,8 +72,8 @@ import Main.Database;
 			
 			String sql = "UPDATE Coupon "
 			+ " SET Title='" + coupon.getTitle()
-			+ "', Start_date='" + (Date) coupon.getStart_date()
-			+ "', End_date='" + (Date) coupon.getEnd_date()
+			+ "', StartDate='" + (Date) coupon.getStartDate()
+			+ "', EndDate='" + (Date) coupon.getEndDate()
 			+ "', Amount=" + coupon.getAmount()
 			+ ", Message='" + coupon.getMessage()
 			+ "', Price=" + coupon.getPrice()
@@ -90,47 +91,28 @@ import Main.Database;
 
 		@Override
 		public Coupon getCoupon(long id) throws Exception {
-			con = DriverManager.getConnection(Database.getDBUrl());
 			Coupon coupon = new Coupon();
-			try (Statement stm = con.createStatement()) {
+			con = DriverManager.getConnection(Database.getDBUrl());
+			java.sql.Statement stm = null;
+			
+			try {
+				stm = con.createStatement(); 
 				String sql = "SELECT * FROM Coupon WHERE ID=" + id;
 				ResultSet rs = stm.executeQuery(sql);
 				rs.next();
 				coupon.setId(rs.getLong(1));
 				coupon.setTitle(rs.getString(2));
-				coupon.setStart_date(rs.getDate(3));
-				coupon.setEnd_date(rs.getDate(4));
+				coupon.setStartDate((Date)rs.getDate(3));
+				coupon.setEndDate((Date)rs.getDate(4));
 				coupon.setAmount(rs.getInt(5));
 				coupon.setPrice(rs.getDouble(6));
 				coupon.setImage(rs.getString(7));
 				coupon.setMessage(rs.getString(8));
-				CouponType type = null ;
-				switch (type.getClass().getName()) {
-				case "food":
-					type=CouponType.FOOD;
-					break;
-				case "Resturans":
-					type=CouponType.RESTURANTS;
-					break;
-				case "Electricity":
-					type=CouponType.ELECTRICITY;
-					break;
-				case "Health":
-					type=CouponType.HEALTH;
-					break;
-				case "Sports":
-					type=CouponType.SPORTS;
-					break;
-				case "Camping":
-					type=CouponType.CAMPING;
-					break;
-				case "Traveling":
-					type=CouponType.TRAVELING;
-					break;
-				default:
-					System.out.println("Coupon not existent");
-						break;
-		}	} catch (SQLException e) {
+				CouponType type = CouponType.valueOf(rs.getString(9));
+				coupon.setType(type);
+				
+			
+			} catch (SQLException e) {
 			System.out.println(e.getMessage());
 				throw new Exception("unable to get coupon data");
 			} finally {
@@ -141,33 +123,35 @@ import Main.Database;
 		
 		@Override
 		public Set<Coupon> getAllCoupon() throws Exception {
+			Coupon coupon = new Coupon();
+			Set<Coupon> coupons = new HashSet<Coupon>();
 			con = DriverManager.getConnection(Database.getDBUrl());
-			Set<Coupon> set = new HashSet<>();
+            java.sql.Statement stm = null;
 			try { 
-				Statement stm = con.createStatement();
+				stm = con.createStatement();
 				String sql = "SELECT * FROM Coupon";
 				ResultSet rs = stm.executeQuery(sql);
 				while (rs.next()) {
-					long Id = rs.getLong(1);
-					String Title = rs.getString(1);
-//					Date Start_date = rs.getDate(1);
-//					Date End_date = rs.getDate(1);
-//				    int Amount = rs.getInt(5);
-//					String Message = rs.getString(6);
-//					Double Price = rs.getDouble(7);
-//					String Image = rs.getString(8);
-//                  CouponType type = CouponType.valueOf(rs.getString(9));	
-//                    
-//					Set.add(new Coupon(Id, Title, Start_date, End_date, Amount, Message, Price, Image, type));
-		set.add(new Coupon());
+					
+					coupon.setId(rs.getLong(1));
+					coupon.setTitle(rs.getString(2));
+					coupon.setEndDate((Date)rs.getDate(3));
+					coupon.setStartDate((Date)rs.getDate(4));
+					coupon.setAmount(rs.getInt(5));
+					coupon.setMessage(rs.getString(6));
+					coupon.setPrice(rs.getDouble(7));
+					coupon.setImage(rs.getString(8));
+					CouponType type = CouponType.valueOf(rs.getString(9));
+					coupon.setType(type);
+					
+					coupons.add(coupon);
 			}
 			} catch (SQLException e) {
-				System.out.println(e);
 				throw new Exception("cannot get Coupon data");
 			} finally {
 				con.close();
 			}
-			return set;
+			return coupons;
 		}
 
 		@Override

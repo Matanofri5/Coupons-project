@@ -1,5 +1,4 @@
 package Coupon;
-
 import java.util.Date;
 import java.util.Set;
 
@@ -22,13 +21,12 @@ public class CouponFacade {
 		coupDAO.removeCoupon(id);
 	}
 
-	public void updateCoupon(Coupon coupon, String newTitle, Date newStart_date, Date newEnd_date, int newAmount, 
-			String newMessage, Double newPrice, String newImage, CouponType newcouponType) throws Exception {
-	
-		
+	public void updateCoupon(Coupon coupon, long newid, String newTitle, Date newStartDate, Date newEndDate, int newAmount, 
+			String newMessage, double newPrice, String newImage, CouponType newcouponType) throws Exception {
+		coupon.setId(newid);
 		coupon.setTitle(newTitle);
-		coupon.setStart_date(newStart_date);
-		coupon.setEnd_date(newEnd_date);
+		coupon.setStartDate(newStartDate);
+		coupon.setEndDate(newEndDate);
 		coupon.setAmount(newAmount);
 		coupon.setMessage(newMessage);
 		coupon.setPrice(newPrice);

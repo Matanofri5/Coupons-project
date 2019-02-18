@@ -1,26 +1,30 @@
 package Coupon;
-import java.util.Date;
+
+import java.sql.Date;
 
 public class Coupon {
 
 	private long Id;
 	private String Title;
-	private Date Start_date;
-	private Date End_date;
+	private Date StartDate; 
+	private Date EndDate;
 	private int Amount;
 	private String Message;
-	private Double Price;
+	private double Price;
 	private String Image;
-    private CouponType Type;	
+	private CouponType Type;
+	
 	public Coupon() {
+		super();
 	}
 
-	public Coupon(long id, String title, Date start_date, Date end_date, int amount, String message, Double price,
+	public Coupon(long id, String title, java.util.Date date, java.util.Date date2, int amount, String message, double price,
 			String image, CouponType couponType) {
+		super();
 		this.Id = id;
 		this.Title = title;
-		this.Start_date = start_date;
-		this.End_date = end_date;
+		this.StartDate = (Date) date;
+		this.EndDate = (Date) date2;
 		this.Amount = amount;
 		this.Message = message;
 		this.Price = price;
@@ -44,20 +48,20 @@ public class Coupon {
 		Title = title;
 	}
 
-	public Date getStart_date() {
-		return Start_date;
+	public Date getStartDate() {
+		return StartDate;
 	}
 
-	public void setStart_date(Date start_date) {
-		Start_date = start_date;
+	public void setStartDate(java.util.Date newStartDate) {
+		StartDate = (Date) newStartDate;
 	}
 
-	public Date getEnd_date() {
-		return End_date;
+	public Date getEndDate() {
+		return EndDate;
 	}
 
-	public void setEnd_date(Date end_date) {
-		End_date = end_date;
+	public void setEndDate(java.util.Date newEndDate) {
+		this.EndDate = (Date) newEndDate;
 	}
 
 	public int getAmount() {
@@ -76,11 +80,11 @@ public class Coupon {
 		Message = message;
 	}
 
-	public Double getPrice() {
+	public double getPrice() {
 		return Price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(double price) {
 		Price = price;
 	}
 
@@ -97,20 +101,18 @@ public class Coupon {
 	}
 
 	public void setType(CouponType type) {
-		this.Type = Type;
+		this.Type = type;
 	}
-	
-	
 
 	@Override
 	public String toString() {
-		return "Coupon [Id=" + Id + ", Title=" + Title + ", Start_date=" + Start_date + ", End_date=" + End_date
+		return "Coupon [Id=" + Id + ", Title=" + Title + ", StartDate=" + StartDate + ", EndDate=" + EndDate
 				+ ", Amount=" + Amount + ", Message=" + Message + ", Price=" + Price + ", Image=" + Image + ", Type="
 				+ Type + "]";
 	}
+	
+	
+	
+	
 
-	
-	
-	
-	
 }

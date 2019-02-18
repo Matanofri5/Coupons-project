@@ -19,7 +19,7 @@ public class Database {
 		return "jdbc:derby://localhost:3301/JBDB;create=true";
 	}
 	
-	//********************************מטודה שיוצרת טבלאות********************
+	//********************************Creating tables********************
 	public static void createTables(Connection con) throws SQLException {
 		String sql;
 		
@@ -61,8 +61,8 @@ public class Database {
 
 		sql = "create table Coupon ("
 				+ "Id bigint not null primary key generated always as identity(start with 1, increment by 1), "
-				+ "Title varchar(50) not null, " + "Start_date Date not null, "  + "End_date Date not null, " + "Amount int not null, "  
-				+ "Message varchar(50) not null, " + "Price Double not null, " + "Image varchar(50) not null, " 
+				+ "Title varchar(50) not null, " + "StartDate Date not null, "  + "EndDate Date not null, " + "Amount int not null, "  
+				+ "Message varchar(50) not null, " + "Price double not null, " + "Image varchar(50) not null, " 
 				+ "Type varchar(20) not null)";
 		stmt.executeUpdate(sql);
 		System.out.println("success:" + sql);
