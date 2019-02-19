@@ -3,7 +3,7 @@ package Company;
 public class Company {
 
 	
-	private long Id;
+	private long id;
 	private String Comp_name;
 	private String Password;
 	private String Email;
@@ -12,18 +12,18 @@ public class Company {
 	}
 
 	public Company(long id, String comp_name, String password,String Email) {
-		this.Id = id;
+		this.id = id;
 		this.Comp_name = comp_name;
 		this.Password = password;
 		this.Email = Email;
 	}
 
 	public long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(long id) {
-		Id = id;
+		id = id;
 	}
 
 	public String getComp_name() {
@@ -52,7 +52,7 @@ public class Company {
 
 	@Override
 	public String toString() {
-		return "Company [Id=" + Id + ", Comp_name=" + Comp_name + ", Password=" + Password + ", Email=" + Email + "]";
+		return "Company [Id=" + id + ", Comp_name=" + Comp_name + ", Password=" + Password + ", Email=" + Email + "]";
 	}
 	
 
