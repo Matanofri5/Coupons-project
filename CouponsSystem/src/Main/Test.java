@@ -93,8 +93,7 @@ public class Test {
 //       System.out.println(couponFacade.getCoupon(8));
 //           couponFacade.dropTable();
 	   
-	    
-	    
+       
 	    
 		}
 }
