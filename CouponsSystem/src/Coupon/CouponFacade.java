@@ -21,9 +21,9 @@ public class CouponFacade {
 		coupDAO.removeCoupon(id);
 	}
 
-	public void updateCoupon(Coupon coupon, long newid, String newTitle, Date newStartDate, Date newEndDate, int newAmount, 
+	public void updateCoupon(Coupon coupon, long whatid, String newTitle, Date newStartDate, Date newEndDate, int newAmount, 
 			String newMessage, double newPrice, String newImage, CouponType newcouponType) throws Exception {
-		coupon.setId(newid);
+		coupon.setId(whatid);
 		coupon.setTitle(newTitle);
 		coupon.setStartDate(newStartDate);
 		coupon.setEndDate(newEndDate);
