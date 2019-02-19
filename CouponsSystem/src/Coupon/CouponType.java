@@ -1,8 +1,5 @@
 package Coupon;
 public enum CouponType {
-
-	
-	
 	RESTURANTS,
 	ELECTRICITY,
 	FOOD,

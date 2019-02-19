@@ -4,111 +4,110 @@ import java.sql.Date;
 
 public class Coupon {
 
-	private long Id;
-	private String Title;
-	private Date StartDate; 
-	private Date EndDate;
-	private int Amount;
-	private String Message;
-	private double Price;
-	private String Image;
-	private CouponType Type;
+	private long id;
+	private String title;
+	private Date startDate; 
+	private Date endDate;
+	private int amount;
+	private String message;
+	private double price;
+	private String image;
+	private CouponType type;
 	
 	public Coupon() {
-		super();
 	}
 
-	public Coupon(long id, String title, java.util.Date date, java.util.Date date2, int amount, String message, double price,
+	public Coupon(long id, String title, java.util.Date startDate, java.util.Date endDate, int amount, String message, double price,
 			String image, CouponType couponType) {
 		super();
-		this.Id = id;
-		this.Title = title;
-		this.StartDate = (Date) date;
-		this.EndDate = (Date) date2;
-		this.Amount = amount;
-		this.Message = message;
-		this.Price = price;
-		this.Image = image;
-		this.Type = couponType;
+		this.id = id;
+		this.title = title;
+		this.startDate = (Date) startDate;
+		this.endDate = (Date) endDate;
+		this.amount = amount;
+		this.message = message;
+		this.price = price;
+		this.image = image;
+		this.type = couponType;
 	}
 
 	public long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getTitle() {
-		return Title;
+		return title;
 	}
 
 	public void setTitle(String title) {
-		Title = title;
+		this.title = title;
 	}
 
 	public Date getStartDate() {
-		return StartDate;
+		return startDate;
 	}
 
 	public void setStartDate(java.util.Date newStartDate) {
-		StartDate = (Date) newStartDate;
+		startDate = (Date) newStartDate;
 	}
 
 	public Date getEndDate() {
-		return EndDate;
+		return endDate;
 	}
 
 	public void setEndDate(java.util.Date newEndDate) {
-		this.EndDate = (Date) newEndDate;
+		this.endDate = (Date) newEndDate;
 	}
 
 	public int getAmount() {
-		return Amount;
+		return amount;
 	}
 
 	public void setAmount(int amount) {
-		Amount = amount;
+		this.amount = amount;
 	}
 
 	public String getMessage() {
-		return Message;
+		return message;
 	}
 
 	public void setMessage(String message) {
-		Message = message;
+		this.message = message;
 	}
 
 	public double getPrice() {
-		return Price;
+		return price;
 	}
 
 	public void setPrice(double price) {
-		Price = price;
+		this.price = price;
 	}
 
 	public String getImage() {
-		return Image;
+		return image;
 	}
 
 	public void setImage(String image) {
-		Image = image;
+		this.image = image;
 	}
 
 	public CouponType getType() {
-		return Type;
+		return type;
 	}
 
 	public void setType(CouponType type) {
-		this.Type = type;
+		this.type = type;
 	}
 
 	@Override
 	public String toString() {
-		return "Coupon [Id=" + Id + ", Title=" + Title + ", StartDate=" + StartDate + ", EndDate=" + EndDate
-				+ ", Amount=" + Amount + ", Message=" + Message + ", Price=" + Price + ", Image=" + Image + ", Type="
-				+ Type + "]";
+		return "Coupon--->  Id:" + id + ", Title:" + title + ", StartDate:" + startDate + ", EndDate:" + endDate
+				+ ", Amount:" + amount + ", Message:" + message + ", Price:" + price + ", Image:" + image + ", Type:"
+				+ type;
 	}
 	
 	

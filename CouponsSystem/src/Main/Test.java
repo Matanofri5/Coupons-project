@@ -25,7 +25,7 @@ public class Test {
 		Class.forName("org.apache.derby.jdbc.ClientDriver");
 		Connection con = DriverManager.getConnection(Database.getDBUrl());
 
-		Database.createTables(con);
+		//Database.createTables(con);
 	    /***************************************Company****************************/
 
 		Company p1 = new Company(1,"HP","3443345654","hp@gmail.com");

@@ -3,56 +3,56 @@ package Company;
 public class Company {
 
 	
-	private long Id;
-	private String Comp_name;
-	private String Password;
-	private String Email;
+	private long id;
+	private String companyName;
+	private String password;
+	private String email;
 	
 	public Company() {
 	}
 
-	public Company(long id, String comp_name, String password,String Email) {
-		this.Id = id;
-		this.Comp_name = comp_name;
-		this.Password = password;
-		this.Email = Email;
+	public Company(long id, String companyName, String password,String email) {
+		this.id = id;
+		this.companyName = companyName;
+		this.password = password;
+		this.email = email;
 	}
 
 	public long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 
-	public String getComp_name() {
-		return Comp_name;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setComp_name(String comp_name) {
-		Comp_name = comp_name;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
 	@Override
 	public String toString() {
-		return "Company [Id=" + Id + ", Comp_name=" + Comp_name + ", Password=" + Password + ", Email=" + Email + "]";
+		return "Company---> Id:" + id + ", CompanyName:" + companyName + ", password:" + password + ", email:" + email;
 	}
 	
 

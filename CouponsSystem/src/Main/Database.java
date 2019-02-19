@@ -30,10 +30,10 @@ public class Database {
 		Statement stmt = con.createStatement();
 		
 		sql = "create table Company ("
-				+ "Id bigint not null primary key generated always as identity(start with 1, increment by 1), "
-				+ "Comp_name varchar(50) not null, " + "Password varchar(50) not null, " + "Email varchar(50) not null)";
+				+ "id bigint not null primary key generated always as identity(start with 1, increment by 1), "
+				+ "companyName varchar(50) not null, " + "password varchar(50) not null, " + "email varchar(50) not null)";
 		stmt.executeUpdate(sql);
-		System.out.println("success:" + sql);
+		System.out.println("create company success :D  " + sql);
 		}catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
@@ -46,10 +46,10 @@ public class Database {
 			Statement stmt = con.createStatement();
 
 		sql = "create table Customer ("
-				+ "Id bigint not null primary key generated always as identity(start with 1, increment by 1), "
-				+ "Cust_name varchar(50) not null, " + "Password varchar(50) not null)";
+				+ "id bigint not null primary key generated always as identity(start with 1, increment by 1), "
+				+ "customerName varchar(50) not null, " + "password varchar(50) not null)";
 		stmt.executeUpdate(sql);
-		System.out.println("success:" + sql);
+		System.out.println("create customer success :D  " + sql);
 		}catch(SQLException e) {
 			System.err.println(e.getMessage());
 		}
@@ -60,12 +60,12 @@ public class Database {
     		Statement stmt = con.createStatement();
 
 		sql = "create table Coupon ("
-				+ "Id bigint not null primary key generated always as identity(start with 1, increment by 1), "
-				+ "Title varchar(50) not null, " + "StartDate Date not null, "  + "EndDate Date not null, " + "Amount int not null, "  
-				+ "Message varchar(50) not null, " + "Price double not null, " + "Image varchar(50) not null, " 
-				+ "Type varchar(20) not null)";
+				+ "id bigint not null primary key generated always as identity(start with 1, increment by 1), "
+				+ "title varchar(50) not null, " + "startDate Date not null, "  + "endDate Date not null, " + "amount int not null, "  
+				+ "message varchar(50) not null, " + "price double not null, " + "image varchar(50) not null, " 
+				+ "type varchar(20) not null)";
 		stmt.executeUpdate(sql);
-		System.out.println("success:" + sql);
+		System.out.println("create coupon success :D  " + sql);
         }catch (SQLException e) {
         	System.err.println(e.getMessage());
         }		
