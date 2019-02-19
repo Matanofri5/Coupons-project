@@ -3,42 +3,42 @@ package Company;
 import java.util.Set;
 
 public class CompanyFacade {
-	private CompanyDBDAO compDAO = new CompanyDBDAO();
+	private CompanyDBDAO companyDBDAO = new CompanyDBDAO();
 	private Company company;
 
-	public CompanyFacade(Company C) {
-		this.company = C;
+	public CompanyFacade(Company company) {
+		this.company = company;
 	}
 
 	public CompanyFacade() {
 	}
 
 	public void insertCompany(Company company) throws Exception {
-		compDAO.insertCompany(company);
+		companyDBDAO.insertCompany(company);
 	}
 
 	public void removeCompany(long id) throws Exception {
-		compDAO.removeCompany(id);
+		companyDBDAO.removeCompany(id);
 	}
 
-	public void updateCompany(Company company, long newId, String newComp_name, String newPassword, String newEmail) throws Exception {
+	public void updateCompany(Company company, long newId, String newCompanyName, String newPassword, String newEmail) throws Exception {
 		company.setId(newId);
-		company.setComp_name(newComp_name);
+		company.setCompanyName(newCompanyName);
 		company.setPassword(newPassword);
 		company.setEmail(newEmail);
-		compDAO.updateCompany(company);
+		companyDBDAO.updateCompany(company);
 	}
 
 	public Company getCompany(long id) throws Exception {
-		return compDAO.getCompany(id);
+		return companyDBDAO.getCompany(id);
 	}
 
 	public Set<Company> getAllCompany() throws Exception {
 //		 CompanyDBDAO comDAO=new CompanyDBDAO();
-		return compDAO.getAllCompany();
+		return companyDBDAO.getAllCompany();
 	}
 
 	public void dropTable () throws Exception{
-		compDAO.dropTable();
+		companyDBDAO.dropTable();
 	}
 }

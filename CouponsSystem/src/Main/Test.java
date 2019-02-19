@@ -48,23 +48,22 @@ public class Test {
 	   Customer c1 = new Customer(4, "Matan", "3784628");
 	   Customer c2 = new Customer(5, "Bar", "1325266");
 	   Customer c3 = new Customer(6, "Dvir", "9879886");
-//	   
-//
+
+	   
 	   CustomerFacade customerFacade = new CustomerFacade();
 //	   customerFacade.insertCustomer(c1);
 //	   customerFacade.insertCustomer(c2);
 //	   customerFacade.insertCustomer(c3);
 	   
 //	   customerFacade.updateCustomer(c2, 3, "Ehud", "445577566");
-//	   customerFacade.removeCustomer(c2);
-//	   customerFacade.removeCustomer(c1);
-//	   customerFacade.removeCustomer(c3);
+//       customerFacade.removeCustomer(1);
+//       customerFacade.removeCustomer(3);
+//       customerFacade.removeCustomer(6);
 	   
 //	   customerFacade.dropTable();    
 	   
 //	   System.out.println(customerFacade.getAllCustomer());
-//	   System.out.println(customerFacade.getCustomer(7));
-	    
+//       System.out.println(customerFacade.getCustomer(9));	    
 	    /***************************************Coupon****************************/
        
        Coupon u1 = new Coupon(7, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 55, "sick", 33.5, "image", CouponType.HEALTH);
@@ -77,12 +76,16 @@ public class Test {
 //       couponFacade.insertCoupon(u1);
 //       couponFacade.insertCoupon(u2);
 //       couponFacade.insertCoupon(u3);
-//       couponFacade.updateCoupon(u1, 1, "aaa", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 100, "bbb", 22.2, "ccc", CouponType.SPORTS);
+	   
+       couponFacade.updateCoupon(u1, 5, "Matanofri", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 100, "bbb", 22.2, "ccc", CouponType.SPORTS);
+
 //         couponFacade.removeCoupon(1);
 //         couponFacade.removeCoupon(2);
 //         couponFacade.removeCoupon(4);
-       System.out.println(couponFacade.getAllCoupon());
+	   
+//       System.out.println(couponFacade.getAllCoupon());
 //       System.out.println(couponFacade.getCoupon(8));
+	   
 //           couponFacade.dropTable();
 	   
        

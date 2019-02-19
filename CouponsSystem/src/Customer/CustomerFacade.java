@@ -20,10 +20,10 @@ public class CustomerFacade {
 		custDAO.removeCustomer(id);
 	}
 
-	public void updateCustomer(Customer customer, long newId, String newCust_name, String newPassword) throws Exception {
-		customer.setId(newId);
-		customer.setCust_name(newCust_name);
-		customer.setPassword(newPassword);
+	public void updateCustomer(Customer customer, long newid, String newcustomerName, String newpassword) throws Exception {
+		customer.setId(newid);
+		customer.setCustomerName(newcustomerName);
+		customer.setPassword(newpassword);
 		custDAO.updateCustomer(customer);
 	}
 

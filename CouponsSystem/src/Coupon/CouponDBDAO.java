@@ -17,7 +17,7 @@ import Main.Database;
 		@Override
 		public void insertCoupon(Coupon coupon) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
-			String sql = "INSERT INTO Coupon (Title,StartDate,EndDate,Amount,Message,Price,Image,Type)  VALUES(?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO Coupon (title,startDate,endDate,amount,message,price,image,type)  VALUES(?,?,?,?,?,?,?,?)";
 			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 				pstmt.setString(1, coupon.getTitle());
 				pstmt.setDate(2, (Date) coupon.getStartDate());
@@ -29,7 +29,7 @@ import Main.Database;
                 pstmt.setString(8, coupon.getType().name());
 				pstmt.executeUpdate();
 				
-				System.out.println("Coupon insert" +" " + coupon.toString());
+				System.out.println("Coupon insert success " + coupon.toString());
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 				throw new Exception("Coupon insert failed");
@@ -70,15 +70,15 @@ import Main.Database;
 			stm = con.createStatement();
 			
 			String sql = "UPDATE Coupon "
-			+ " SET Title='" + coupon.getTitle()
-			+ "', StartDate='" + (Date) coupon.getStartDate()
-			+ "', EndDate='" + (Date) coupon.getEndDate()
-			+ "', Amount=" + coupon.getAmount()
-			+ ", Message='" + coupon.getMessage()
-			+ "', Price=" + coupon.getPrice()
-			+ ", Image='" + coupon.getImage()
-			+ "', Type='" + coupon.getType()
-			+ "' WHERE ID=" + coupon.getId();
+			+ " SET title='" + coupon.getTitle()
+			+ "', startDate='" + (Date) coupon.getStartDate()
+			+ "', endDate='" + (Date) coupon.getEndDate()
+			+ "', amount=" + coupon.getAmount()
+			+ ", message='" + coupon.getMessage()
+			+ "', price=" + coupon.getPrice()
+			+ ", image='" + coupon.getImage()
+			+ "', type='" + coupon.getType()
+			+ "' WHERE id=" + coupon.getId();
 			
 				stm.executeUpdate(sql);
 				System.out.println("Coupon updated successefully");
@@ -96,7 +96,7 @@ import Main.Database;
 			
 			try {
 				stm = con.createStatement(); 
-				String sql = "SELECT * FROM Coupon WHERE ID=" + id;
+				String sql = "SELECT * FROM Coupon WHERE id=" + id;
 				ResultSet rs = stm.executeQuery(sql);
 			    rs.next();
 				coupon.setId(rs.getLong(1));

@@ -3,46 +3,46 @@ package Customer;
 public class Customer {
 
 	
-	private long Id;
-	private String Cust_name;
-	private String Password;
+	private long id;
+	private String customerName;
+	private String password;
 	
 	public Customer() {
 	}
 
-	public Customer(long id, String cust_name, String password) {
-		this.Id = id;
-		this.Cust_name = cust_name;
-		this.Password = password;
+	public Customer(long id, String customerName, String password) {
+		this.id = id;
+		this.customerName = customerName;
+		this.password = password;
 	}
 
 	public long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 
-	public String getCust_name() {
-		return Cust_name;
+	public String getCustomerName() {
+		return customerName;
 	}
 
-	public void setCust_name(String cust_name) {
-		Cust_name = cust_name;
+	public void setCustomerName(String cust_name) {
+		customerName = cust_name;
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 
 	@Override
 	public String toString() {
-		return "Customer [Id=" + Id + ", Cust_name=" + Cust_name + ", Password=" + Password + "]";
+		return "Customer [id=" + id + ", customerName=" + customerName + ", password=" + password + "]";
 	}
 
     

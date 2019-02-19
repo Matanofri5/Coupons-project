@@ -8,7 +8,6 @@ package Company;
 	import java.sql.Statement;
 	import java.util.HashSet;
 	import java.util.Set;
-	import Main.*;
 	import Main.Database;
 
 	public class CompanyDBDAO implements CompanyDAO {
@@ -17,16 +16,17 @@ package Company;
 		@Override
 		public void insertCompany(Company company) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
-			String sql = "INSERT INTO Company (Comp_name,Password,Email)  VALUES(?,?,?)";
+			String sql = "INSERT INTO Company (companyName,password,email)  VALUES(?,?,?)";
 			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-				pstmt.setString(1, company.getComp_name());
+				pstmt.setString(1, company.getCompanyName());
 				pstmt.setString(2, company.getPassword());
                 pstmt.setString(3, company.getEmail());
                 
 				pstmt.executeUpdate();
-				System.out.println("Company " + company.getComp_name() + " successefully inserted :) !!!");
+				System.out.println("Company " + company.getCompanyName() + " successefully inserted :) !!!");
 			} catch (SQLException e) {
+				System.out.println(e.getMessage());
 				throw new Exception("Company insert failed");
 			} finally {
 				con.close();
@@ -43,7 +43,7 @@ package Company;
 				pstm1.setLong(1, id);
 				pstm1.executeUpdate();
 				con.commit();
-				System.out.println("Company Id " + id + " removed seccessfully  :) !!!");
+				System.out.println("Company id " + id + " removed seccessfully  :) !!!");
 			} catch (SQLException e) {
 				try {
 					con.rollback();
@@ -61,14 +61,15 @@ package Company;
 			con = DriverManager.getConnection(Database.getDBUrl());
 			try (Statement stm = con.createStatement()) {
 			String sql = "UPDATE Company "
-			+ " SET Comp_name='" + company.getComp_name()
-			+ "', Password='" + company.getPassword()
-			+"', Email='" + company.getEmail()
-			+ "' WHERE ID=" + company.getId();
+			+ " SET companyName='" +company.getCompanyName()
+			+ "', password='" + company.getPassword()
+			+"', email='" + company.getEmail()
+			+ "' WHERE id=" + company.getId();
 				
 			System.out.println("Company id " + company.getId() + " updated successfully !!! :)");
 				stm.executeUpdate(sql);
 			} catch (SQLException e) {
+				System.out.println(e.getMessage());
 				throw new Exception("update Company failed");
 			}
 		}
@@ -82,7 +83,7 @@ package Company;
 				ResultSet rs = stm.executeQuery(sql);
 				while (rs.next()) {
 				company.setId(rs.getLong(1));
-				company.setComp_name(rs.getString(2));
+				company.setCompanyName(rs.getString(2));
 				company.setPassword(rs.getString(3));
                 company.setEmail(rs.getString(4));
 				}
@@ -105,12 +106,12 @@ package Company;
 				String sql = "SELECT * FROM Company";
 				ResultSet rs = stm.executeQuery(sql);
 				while (rs.next()) {
-					long Id = rs.getLong(1);
-					String Comp_name = rs.getString(2);
-					String Password = rs.getString(3);
-                    String Email = rs.getString(4);
+					long id = rs.getLong(1);
+					String companyName = rs.getString(2);
+					String password = rs.getString(3);
+                    String email = rs.getString(4);
                     
-					set.add(new Company(Id, Comp_name, Password, Email));
+					set.add(new Company(id, companyName, password, email));
 				}
 			} catch (SQLException e) {
 				System.out.println(e);

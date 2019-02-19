@@ -8,7 +8,6 @@ package Customer;
 	import java.sql.Statement;
 	import java.util.HashSet;
 	import java.util.Set;
-	import Main.*;
 	import Main.Database;
 
 	public class CustomerDBDAO implements CustomerDAO {
@@ -17,14 +16,14 @@ package Customer;
 		@Override
 		public void insertCustomer(Customer customer) throws Exception {
 			con = DriverManager.getConnection(Database.getDBUrl());
-			String sql = "INSERT INTO Customer (Cust_name,Password)  VALUES(?,?)";
+			String sql = "INSERT INTO Customer (customerName,password)  VALUES(?,?)";
 			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-
-				pstmt.setString(1, customer.getCust_name());
+				
+				pstmt.setString(1, customer.getCustomerName());
 				pstmt.setString(2, customer.getPassword());
                 
 				pstmt.executeUpdate();
-				System.out.println("Customer " + customer.getCust_name() + " successfully inserted !!! :)");
+				System.out.println("Customer " + customer.getCustomerName() + " successfully inserted !!! :)");
 			} catch (SQLException e) {
 				throw new Exception("Customer insert failed");
 			} finally {
@@ -61,8 +60,8 @@ package Customer;
 			con = DriverManager.getConnection(Database.getDBUrl());
 			try (Statement stm = con.createStatement()) {
 				String sql = "UPDATE Customer "
-			+ " SET Cust_name='" + customer.getCust_name() +
-			"', Password='" + customer.getPassword()
+			+ " SET customerName='" + customer.getCustomerName() +
+			"', password='" + customer.getPassword()
 			+ "' WHERE ID=" + customer.getId();
 				
 				System.out.println("Customer id " + customer.getId() + " updated successfully !!! :)");
@@ -81,7 +80,7 @@ package Customer;
 				ResultSet rs = stm.executeQuery(sql);
 				while (rs.next()) {
 				customer.setId(rs.getLong(1));
-				customer.setCust_name(rs.getString(2));
+				customer.setCustomerName(rs.getString(2));
 				customer.setPassword(rs.getString(3));
 				} 
 			} catch (SQLException e) {
@@ -99,11 +98,11 @@ package Customer;
 			String sql = "SELECT * FROM Customer";
 			try (Statement stm = con.createStatement(); ResultSet rs = stm.executeQuery(sql)) {
 				while (rs.next()) {
-					long Id = rs.getLong(1);
-					String Cust_name = rs.getString(1);
-					String Password = rs.getString(1);
+					long id = rs.getLong(1);
+					String customerName = rs.getString(2);
+					String password = rs.getString(3);
 					
-					set.add(new Customer(Id, Cust_name, Password));
+					set.add(new Customer(id, customerName, password));
 				}
 			} catch (SQLException e) {
 				System.out.println(e);
