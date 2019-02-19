@@ -42,8 +42,8 @@ public class Test {
 //      companyFacade.dropTable();
 //        System.out.println(companyFacade.getAllCompany());	
 //        System.out.println(companyFacade.getCompany(1));
-	   System.out.println(p1.getComp_name());
 	    
+		System.out.println("jggg");
 	    /***************************************Customer****************************/
 	    
 	   Customer c1 = new Customer(4, "Matan", "3784628");
