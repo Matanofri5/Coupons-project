@@ -2,20 +2,20 @@ package Company;
 
 public class Company {
 
-	
 	private long id;
 	private String companyName;
 	private String password;
 	private String email;
-	
+
 	public Company() {
 	}
 
-	public Company(long id, String companyName, String password,String email) {
+	public Company(long id, String companyName, String password, String email) {
 		this.id = id;
 		this.companyName = companyName;
 		this.password = password;
 		this.email = email;
+
 	}
 
 	public long getId() {
@@ -24,6 +24,7 @@ public class Company {
 
 	public void setId(long id) {
 		this.id = id;
+
 	}
 
 	public String getCompanyName() {
@@ -54,14 +55,5 @@ public class Company {
 	public String toString() {
 		return "Company---> Id:" + id + ", CompanyName:" + companyName + ", password:" + password + ", email:" + email;
 	}
-	
 
-
-
-
-	
-	
-
-	
-	
 }
