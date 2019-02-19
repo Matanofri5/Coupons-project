@@ -34,7 +34,7 @@ public class Test {
 //		companyFacade.updateCompany(p1, 7, "llll", "ffff", "54554");
 //		companyFacade.updateCompany(p3, 8, "tttt", "uuu", "scas");
 
-		
+//		companyFacade.updateCompany(p3, 12, "TOM", "FWW", "EE");
 //	    companyFacade.removeCompany(7);
 //	    companyFacade.removeCompany(5);
 //	    companyFacade.removeCompany(6);
@@ -43,7 +43,6 @@ public class Test {
 //        System.out.println(companyFacade.getAllCompany());	
 //        System.out.println(companyFacade.getCompany(1));
 	    
-		System.out.println("jggg");
 	    /***************************************Customer****************************/
 	    
 	   Customer c1 = new Customer(4, "Matan", "3784628");

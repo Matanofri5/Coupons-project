@@ -84,7 +84,7 @@ public class Coupon {
 		return Price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		Price = price;
 	}
 

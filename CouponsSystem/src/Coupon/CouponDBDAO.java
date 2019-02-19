@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 import Main.*;
@@ -105,12 +104,11 @@ import Main.Database;
 				coupon.setStartDate((Date)rs.getDate(3));
 				coupon.setEndDate((Date)rs.getDate(4));
 				coupon.setAmount(rs.getInt(5));
-				coupon.setPrice(rs.getDouble(6));
-				coupon.setImage(rs.getString(7));
+				coupon.setImage(rs.getString(6));
+				coupon.setPrice(rs.getDouble(7));
 				coupon.setMessage(rs.getString(8));
 				CouponType type = CouponType.valueOf(rs.getString(9));
 				coupon.setType(type);
-			
 			
 			} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -123,7 +121,7 @@ import Main.Database;
 		
 		@Override
 		public Set<Coupon> getAllCoupon() throws Exception {
-			Coupon coupon = new Coupon();
+			Coupon coupon;
 			Set<Coupon> coupons = new HashSet<Coupon>();
 			con = DriverManager.getConnection(Database.getDBUrl());
             java.sql.Statement stm = null;
@@ -132,7 +130,7 @@ import Main.Database;
 				String sql = "SELECT * FROM Coupon";
 				ResultSet rs = stm.executeQuery(sql);
 				while (rs.next()) {
-					
+					coupon = new Coupon();
 					coupon.setId(rs.getLong(1));
 					coupon.setTitle(rs.getString(2));
 					coupon.setEndDate((Date)rs.getDate(3));
@@ -143,7 +141,6 @@ import Main.Database;
 					coupon.setImage(rs.getString(8));
 					CouponType type = CouponType.valueOf(rs.getString(9));
 					coupon.setType(type);
-					
 					coupons.add(coupon);
 			}
 			} catch (SQLException e) {
