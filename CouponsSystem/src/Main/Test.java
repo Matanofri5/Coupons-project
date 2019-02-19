@@ -1,14 +1,7 @@
 package Main;
 
-import java.io.ObjectInputStream.GetField;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Date;
-import java.util.Set;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import org.apache.derby.client.am.DateTime;
-
 import Company.Company;
 import Company.CompanyFacade;
 import Coupon.Coupon;
@@ -49,7 +42,7 @@ public class Test {
 //      companyFacade.dropTable();
 //        System.out.println(companyFacade.getAllCompany());	
 //        System.out.println(companyFacade.getCompany(1));
-	    
+	   System.out.println(p1.getComp_name());
 	    
 	    /***************************************Customer****************************/
 	    
