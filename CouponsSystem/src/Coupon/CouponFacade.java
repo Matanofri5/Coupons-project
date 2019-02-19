@@ -21,15 +21,15 @@ public class CouponFacade {
 		couponDBDAO.removeCoupon(id);
 	}
 
-<<<<<<< HEAD
-	public void updateCoupon(Coupon coupon, long newId, String newTitle, Date newStartDate, Date newEndDate, int newAmount, 
-			String newMessage, double newPrice, String newImage, CouponType newcouponType) throws Exception {
-		coupon.setId(newId);
-=======
+////<<<<<<< HEAD
+//	public void updateCoupon(Coupon coupon, long newId, String newTitle, Date newStartDate, Date newEndDate, int newAmount, 
+//			String newMessage, double newPrice, String newImage, CouponType newcouponType) throws Exception {
+//		coupon.setId(newId);
+//=======
 	public void updateCoupon(Coupon coupon, long whatid, String newTitle, Date newStartDate, Date newEndDate, int newAmount, 
 			String newMessage, double newPrice, String newImage, CouponType newcouponType) throws Exception {
 		coupon.setId(whatid);
->>>>>>> 02e87805fa802739312164aa300547aecce1d34f
+//>>>>>>> 02e87805fa802739312164aa300547aecce1d34f
 		coupon.setTitle(newTitle);
 		coupon.setStartDate(newStartDate);
 		coupon.setEndDate(newEndDate);
