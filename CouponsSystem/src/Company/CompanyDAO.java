@@ -1,4 +1,5 @@
 package Company;
+
 import java.util.Set;
 
 public interface CompanyDAO {
