@@ -102,6 +102,6 @@ public class Test {
 
 //	   customerCouponFacade.dropTable();
        
-	    
+	    System.out.println("ss");
 		}
 }
