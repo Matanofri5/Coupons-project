@@ -1,15 +1,8 @@
 package CustomerCoupon;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashSet;
-import java.util.Set;
-import Main.Database;
+public class CustomerCouponDBDAO {
 
+<<<<<<< HEAD
 public class CustomerCouponDBDAO implements CustomerCouponDAO{
 	Connection con;
 
@@ -146,4 +139,6 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO{
 		
 	
 	}
+=======
+>>>>>>> parent of 7c38477... customer coupon table finished !
 }

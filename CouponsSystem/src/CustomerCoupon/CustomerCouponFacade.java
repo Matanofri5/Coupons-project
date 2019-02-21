@@ -1,9 +1,8 @@
 package CustomerCoupon;
 
-import java.util.Set;
-
 public class CustomerCouponFacade {
 
+<<<<<<< HEAD
 		private CustomerCouponDBDAO customerCouponDBDAO = new CustomerCouponDBDAO();
 //		private long customerId;
 //		private long couponId;
@@ -45,3 +44,6 @@ public class CustomerCouponFacade {
 		}
 	}
 
+=======
+}
+>>>>>>> parent of 7c38477... customer coupon table finished !
