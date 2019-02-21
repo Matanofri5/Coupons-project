@@ -2,8 +2,8 @@ package CustomerCoupon;
 
 public class CustomerCoupon {
 
-	private long customerId;
-	private long couponId;
+	private long CustomerId;
+	private long CouponId;
 	
 	public CustomerCoupon() {
 		super();
@@ -11,29 +11,29 @@ public class CustomerCoupon {
 
 	public CustomerCoupon(long customerId, long couponId) {
 		super();
-		this.customerId = customerId;
-		this.couponId = couponId;
+		CustomerId = customerId;
+		CouponId = couponId;
 	}
 
 	public long getCustomerId() {
-		return customerId;
+		return CustomerId;
 	}
 
 	public void setCustomerId(long customerId) {
-		this.customerId = customerId;
+		CustomerId = customerId;
 	}
 
 	public long getCouponId() {
-		return couponId;
+		return CouponId;
 	}
 
 	public void setCouponId(long couponId) {
-		this.couponId = couponId;
+		CouponId = couponId;
 	}
 
 	@Override
 	public String toString() {
-		return "CustomerCoupon [customerId=" + customerId + ", couponId=" + couponId + "]";
+		return "CustomerCoupon [CustomerId=" + CustomerId + ", CouponId=" + CouponId + "]";
 	}
 	
 	
