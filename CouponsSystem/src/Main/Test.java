@@ -94,14 +94,6 @@ public class Test {
        
 	    /***************************************CustomerCoupon****************************/
        
-       CustomerCoupon a1 = new CustomerCoupon(2, 6);
-       
-       CustomerCouponFacade customerCouponFacade = new CustomerCouponFacade();
-       
-       customerCouponFacade.insertCustomerCoupon(a1);
 
-//	   customerCouponFacade.dropTable();
-       
-	    System.out.println("ss");
 		}
 }
