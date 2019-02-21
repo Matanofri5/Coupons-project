@@ -9,7 +9,11 @@ import Coupon.CouponFacade;
 import Coupon.CouponType;
 import Customer.Customer;
 import Customer.CustomerFacade;
+import CustomerCoupon.CustomerCoupon;
 import Coupon.DateUtils;
+import CustomerCoupon.CustomerCoupon;
+import CustomerCoupon.CustomerCouponDAO;
+import CustomerCoupon.CustomerCouponFacade;
 
 public class Test {
 
@@ -77,7 +81,7 @@ public class Test {
 //       couponFacade.insertCoupon(u2);
 //       couponFacade.insertCoupon(u3);
 	   
-       couponFacade.updateCoupon(u1, 5, "Matanofri", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 100, "bbb", 22.2, "ccc", CouponType.SPORTS);
+//       couponFacade.updateCoupon(u1, 5, "Matanofri", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 100, "bbb", 22.2, "ccc", CouponType.SPORTS);
 
 //         couponFacade.removeCoupon(1);
 //         couponFacade.removeCoupon(2);
@@ -87,7 +91,16 @@ public class Test {
 //       System.out.println(couponFacade.getCoupon(8));
 	   
 //           couponFacade.dropTable();
-	   
+       
+	    /***************************************CustomerCoupon****************************/
+       
+       CustomerCoupon a1 = new CustomerCoupon(2, 6);
+       
+       CustomerCouponFacade customerCouponFacade = new CustomerCouponFacade();
+       
+       customerCouponFacade.insertCustomerCoupon(a1);
+
+//	   customerCouponFacade.dropTable();
        
 	    
 		}

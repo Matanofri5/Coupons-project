@@ -16,13 +16,16 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO{
 	@Override
 	public void insertCustomerCoupon(CustomerCoupon customerCoupon) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
-		String sql = "INSERT INTO CustomerCoupon (customerCoupon,couponId)  VALUES(?,?)";
+		String sql = "INSERT INTO CustomerCoupon (customerId,couponId)  VALUES(?,?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             
+			
 			pstmt.setLong(1, customerCoupon.getCustomerId());
 			pstmt.setLong(2, customerCoupon.getCouponId());
-            
+
 			pstmt.executeUpdate();
+			
+			
 			System.out.println("CustomerCoupon " + "successefully inserted :) !!!");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -35,7 +38,7 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO{
 	@Override
 	public void removeCustomerCoupon(long id) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
-		String pre1 = "DELETE FROM CustomerCoupon WHERE id= ?";
+		String pre1 = "DELETE FROM CustomerCoupon WHERE customerId=? and couponId=?";
 
 		try (PreparedStatement pstm1 = con.prepareStatement(pre1);) {
 			con.setAutoCommit(false);
