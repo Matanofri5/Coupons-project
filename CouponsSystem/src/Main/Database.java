@@ -7,13 +7,13 @@ import java.sql.Statement;
 
 public class Database {
 
-	//********************************גישה לדרייבר***********************************
+	//********************************Access to driver***********************************
 	
 	public static String getDriverData() {
 		return "org.apache.derby.jdbc.ClientDriver";
 	}
 	
-    //********************************גישה לכתובת,כרגע מקומי במחשב********************
+    //********************************Access to URL, now local on CMD********************
 	
 	public static String getDBUrl() {
 		return "jdbc:derby://localhost:3301/JBDB;create=true";
@@ -27,13 +27,13 @@ public class Database {
 		//****************************************Creating Company table*************************************************
 
 		try {
-		Statement stmt = con.createStatement();
+		    Statement stmt = con.createStatement();
 		
 		sql = "create table Company ("
 				+ "id bigint not null primary key generated always as identity(start with 1, increment by 1), "
 				+ "companyName varchar(50) not null, " + "password varchar(50) not null, " + "email varchar(50) not null)";
 		stmt.executeUpdate(sql);
-		System.out.println("create company success :D  " + sql);
+		System.out.println("create company table success :D  " + sql);
 		}catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
@@ -49,7 +49,7 @@ public class Database {
 				+ "id bigint not null primary key generated always as identity(start with 1, increment by 1), "
 				+ "customerName varchar(50) not null, " + "password varchar(50) not null)";
 		stmt.executeUpdate(sql);
-		System.out.println("create customer success :D  " + sql);
+		System.out.println("create customer table success :D  " + sql);
 		}catch(SQLException e) {
 			System.err.println(e.getMessage());
 		}
@@ -65,10 +65,29 @@ public class Database {
 				+ "message varchar(50) not null, " + "price double not null, " + "image varchar(50) not null, " 
 				+ "type varchar(20) not null)";
 		stmt.executeUpdate(sql);
-		System.out.println("create coupon success :D  " + sql);
+		System.out.println("create coupon table success :D  " + sql);
         }catch (SQLException e) {
         	System.err.println(e.getMessage());
         }		
 	
+		//****************************************Creating join CustomerCoupon table*************************************************
+
+		try {
+			java.sql.Statement stmt = con.createStatement();
+			
+		sql = "create table CustomerCoupon ("
+				+ "customerId bigint not null references Customer(id), "
+				+ "couponId bigint not null references Coupon(id), "
+				+ "primary key(customerId, couponId))";
+		stmt.executeUpdate(sql);
+		System.out.println("create customercoupon table success :D " + sql);
+		}catch (SQLException e) {
+			System.err.println(e.getMessage());
 		}
-	}
+				
+				
+				
+				
+		}
+		}
+	
