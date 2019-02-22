@@ -101,6 +101,7 @@ public class Test {
        customerCouponFacade.insertCustomerCoupon(a1);
 
 //	   customerCouponFacade.dropTable();
+       System.out.println("aaaaaaa");
        
 		}
 }
