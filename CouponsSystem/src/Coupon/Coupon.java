@@ -19,7 +19,6 @@ public class Coupon {
 
 	public Coupon(long id, String title, java.util.Date startDate, java.util.Date endDate, int amount, String message, double price,
 			String image, CouponType couponType) {
-		super();
 		this.id = id;
 		this.title = title;
 		this.startDate = (Date) startDate;
@@ -109,9 +108,4 @@ public class Coupon {
 				+ ", Amount:" + amount + ", Message:" + message + ", Price:" + price + ", Image:" + image + ", Type:"
 				+ type;
 	}
-	
-	
-	
-	
-
 }

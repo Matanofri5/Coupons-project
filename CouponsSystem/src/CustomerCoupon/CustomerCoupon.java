@@ -6,11 +6,9 @@ public class CustomerCoupon {
 	private long couponId;
 	
 	public CustomerCoupon() {
-		super();
 	}
 
 	public CustomerCoupon(long customerId, long couponId) {
-		super();
 		this.customerId = customerId;
 		this.couponId = couponId;
 	}
@@ -33,7 +31,7 @@ public class CustomerCoupon {
 
 	@Override
 	public String toString() {
-		return "CustomerCoupon [customerId=" + customerId + ", couponId=" + couponId + "]";
+		return "CustomerCoupon---> customerId:" + customerId + ", couponId:" + couponId ;
 	}
 	
 	

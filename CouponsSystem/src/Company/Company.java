@@ -30,8 +30,8 @@ public class Company {
 		return companyName;
 	}
 
-	public void setCompanyName(String comp_name) {
-		this.companyName = comp_name;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 	public String getPassword() {
@@ -52,16 +52,6 @@ public class Company {
 
 	@Override
 	public String toString() {
-		return "Company [id=" + id + ", companyName=" + companyName + ", password=" + password + ", email=" + email + "]";
+		return "Company---> id:" + id + ", companyName:" + companyName + ", password:" + password + ", email:" + email ;
 	}
-	
-
-
-
-
-	
-	
-
-	
-	
 }
