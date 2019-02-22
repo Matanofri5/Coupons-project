@@ -1,3 +1,4 @@
+
 package Main;
 
 import java.util.Date;
@@ -24,7 +25,6 @@ public class Threads implements Runnable {
 
 	@Override
 	public synchronized void run() {
-		// TODO Auto-generated method stub
 		while (!exit)
 			try {
 				this.couponExpired();

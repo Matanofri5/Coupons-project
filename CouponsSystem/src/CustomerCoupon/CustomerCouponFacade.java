@@ -1,8 +1,9 @@
 package CustomerCoupon;
 
+import java.util.Set;
+
 public class CustomerCouponFacade {
 
-<<<<<<< HEAD
 		private CustomerCouponDBDAO customerCouponDBDAO = new CustomerCouponDBDAO();
 //		private long customerId;
 //		private long couponId;
@@ -19,8 +20,8 @@ public class CustomerCouponFacade {
 			customerCouponDBDAO.insertCustomerCoupon(customerCoupon);
 		}
 
-		public void removeCustomerCoupon(long id) throws Exception {
-			customerCouponDBDAO.removeCustomerCoupon(id);
+		public void removeCustomerCoupon(CustomerCoupon customerCoupon) throws Exception {
+			customerCouponDBDAO.removeCustomerCoupon(customerCoupon);
 		}
 
 		public void updateCustomerCoupon(CustomerCoupon customerCoupon, long newcustomerId, long newcouponId ) throws Exception {
@@ -30,8 +31,8 @@ public class CustomerCouponFacade {
 			customerCouponDBDAO.updateCustomerCoupon(customerCoupon);
 		}
 
-		public CustomerCoupon getCustomerCoupon(long id) throws Exception {
-			return customerCouponDBDAO.getCustomerCoupon(id);
+		public CustomerCoupon getCustomerCoupon() throws Exception {
+			return customerCoupon;
 		}
 
 		public Set<CustomerCoupon> getAllCustomerCoupon() throws Exception {
@@ -44,6 +45,4 @@ public class CustomerCouponFacade {
 		}
 	}
 
-=======
-}
->>>>>>> parent of 7c38477... customer coupon table finished !
+

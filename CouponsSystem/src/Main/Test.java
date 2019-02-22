@@ -95,13 +95,20 @@ public class Test {
 	    /***************************************CustomerCoupon****************************/
        
        CustomerCoupon a1 = new CustomerCoupon(2, 6);
+       CustomerCoupon a2 = new CustomerCoupon(9, 11);
        
        CustomerCouponFacade customerCouponFacade = new CustomerCouponFacade();
        
-       customerCouponFacade.insertCustomerCoupon(a1);
-
-//	   customerCouponFacade.dropTable();
-       System.out.println("aaaaaaa");
+//       customerCouponFacade.insertCustomerCoupon(a1);
+//       customerCouponFacade.insertCustomerCoupon(a2);
+         
+//     customerCouponFacade.removeCustomerCoupon(a1);
+       
+//     customerCouponFacade.updateCustomerCoupon(a1, 9, 10);
+       System.out.println(customerCouponFacade.getCustomerCoupon());
+//     System.out.println(customerCouponFacade.getAllCustomerCoupon());
+       
+//     customerCouponFacade.dropTable();
        
 		}
 }

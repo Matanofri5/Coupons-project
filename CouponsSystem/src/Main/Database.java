@@ -1,4 +1,4 @@
-package Main;
+ package Main;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -84,6 +84,22 @@ public class Database {
 		}catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
+		
+		//****************************************Creating join CompanyCoupon table*************************************************
+
+		
+//		try {
+//			java.sql.Statement stmt = con.createStatement();
+//			
+//		sql = "create table CompanyCoupon ("
+//				+ "companyId bigint not null references Company(id), "
+//				+ "couponId bigint not null references Coupon(id), "
+//				+ "primary key(companyId, couponId))";
+//		stmt.executeUpdate(sql);
+//		System.out.println("create companycoupon table success :D " + sql);
+//		}catch (SQLException e) {
+//			System.err.println(e.getMessage());
+//		}
 				
 				
 				

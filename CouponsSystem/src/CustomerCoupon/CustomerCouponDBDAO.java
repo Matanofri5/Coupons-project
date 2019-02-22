@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.sun.org.apache.xpath.internal.operations.And;
+
 import Main.Database;
 
 
@@ -38,13 +40,14 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO{
 	}
 
 	@Override
-	public void removeCustomerCoupon(long id) throws Exception {
+	public void removeCustomerCoupon(CustomerCoupon customerCoupon) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
 		String pre1 = "DELETE FROM CustomerCoupon WHERE customerId=? and couponId=?";
 
 		try (PreparedStatement pstm1 = con.prepareStatement(pre1);) {
 			con.setAutoCommit(false);
-			pstm1.setLong(1, id);
+            pstm1.setLong(1, customerCoupon.getCustomerId());
+            pstm1.setLong(2, customerCoupon.getCouponId());
 			pstm1.executeUpdate();
 			con.commit();
 			System.out.println("CustomerCoupon " + "removed seccessfully  :) !!!");
@@ -65,9 +68,13 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO{
 		con = DriverManager.getConnection(Database.getDBUrl());
 		try (Statement stm = con.createStatement()) {
 		String sql = "UPDATE CustomerCoupon "
-		+ " SET companyId='" +customerCoupon.getCustomerId()
+		+ " SET customerId='" +customerCoupon.getCustomerId()
 		+ "', couponId='" + customerCoupon.getCouponId()
-		+ "' WHERE id=" ;            //by what id ?????????
+		+ "' WHERE Id=" 
+		+ customerCoupon.getCustomerId() + "AND"
+		+ "' WHERE Id="
+		+ customerCoupon.getCouponId();
+		
 			
 		System.out.println("CustomerCoupon " + "updated successfully !!! :)");
 			stm.executeUpdate(sql);
