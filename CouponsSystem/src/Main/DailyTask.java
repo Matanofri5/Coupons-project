@@ -5,12 +5,16 @@ import java.util.Set;
 import Coupon.Coupon;
 import Coupon.CouponDBDAO;
 
-public class Threads implements Runnable {
+public class DailyTask implements Runnable {
 
 	private boolean exit = false;
 	private Date localDate;
 	private CouponDBDAO couponDBDAO = new CouponDBDAO();
 	private long id;
+	
+	public DailyTask() {
+		
+	}
 	
 
 	public void couponExpired() throws Exception {

@@ -102,6 +102,10 @@ public class Test {
 
 //	   customerCouponFacade.dropTable();
        
+       
+       DailyTask d = new DailyTask();
+       
+       d.startThread();
 	    
 		}
 }
