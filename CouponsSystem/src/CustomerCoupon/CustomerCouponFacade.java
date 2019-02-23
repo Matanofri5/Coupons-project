@@ -5,8 +5,6 @@ import java.util.Set;
 public class CustomerCouponFacade {
 
 		private CustomerCouponDBDAO customerCouponDBDAO = new CustomerCouponDBDAO();
-//		private long customerId;
-//		private long couponId;
 		private CustomerCoupon customerCoupon;
 
 		public CustomerCouponFacade(CustomerCoupon customerCoupon) {
