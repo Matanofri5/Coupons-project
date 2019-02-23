@@ -9,6 +9,7 @@ public class CompanyCreationFailedException extends Exception{
 	public CompanyCreationFailedException (Company company) {
 		this.company = company;
 	}
+	@Override
 		public String getMessage() {
 			return "Faild to create " + company.getCompanyName() + " company";    
 		}
