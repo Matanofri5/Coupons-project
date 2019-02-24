@@ -1,4 +1,5 @@
 package Coupon;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -7,7 +8,7 @@ public class CouponFacade {
 	private Coupon coupon;
 
 	public CouponFacade(Coupon coupon) {
-		this.coupon= coupon;
+		this.coupon = coupon;
 	}
 
 	public CouponFacade() {
@@ -21,10 +22,10 @@ public class CouponFacade {
 		couponDBDAO.removeCoupon(id);
 	}
 
-
-	public void updateCoupon(Coupon coupon, long whatid, String newTitle, Date newStartDate, Date newEndDate, int newAmount, 
-			String newMessage, double newPrice, String newImage, CouponType newcouponType) throws Exception {
-        coupon.setId(whatid);
+	public void updateCoupon(Coupon coupon, long whatid, String newTitle, Date newStartDate, Date newEndDate,
+			int newAmount, String newMessage, double newPrice, String newImage, CouponType newcouponType)
+			throws Exception {
+		coupon.setId(whatid);
 		coupon.setTitle(newTitle);
 		coupon.setStartDate(newStartDate);
 		coupon.setEndDate(newEndDate);
@@ -33,7 +34,7 @@ public class CouponFacade {
 		coupon.setPrice(newPrice);
 		coupon.setImage(newImage);
 		coupon.setType(newcouponType);
-		
+
 		couponDBDAO.updateCoupon(coupon);
 	}
 
@@ -42,11 +43,11 @@ public class CouponFacade {
 	}
 
 	public Set<Coupon> getAllCoupon() throws Exception {
-//		 CouponDBDAO copDAO=new CouponDBDAO();
+		// CouponDBDAO copDAO=new CouponDBDAO();
 		return couponDBDAO.getAllCoupon();
 	}
 
-	public void dropTable () throws Exception{
+	public void dropTable() throws Exception {
 		couponDBDAO.dropTable();
 	}
 }

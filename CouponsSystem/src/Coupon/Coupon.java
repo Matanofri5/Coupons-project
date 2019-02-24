@@ -6,19 +6,19 @@ public class Coupon {
 
 	private long id;
 	private String title;
-	private Date startDate; 
+	private Date startDate;
 	private Date endDate;
 	private int amount;
 	private String message;
 	private double price;
 	private String image;
 	private CouponType type;
-	
+
 	public Coupon() {
 	}
 
-	public Coupon(long id, String title, java.util.Date startDate, java.util.Date endDate, int amount, String message, double price,
-			String image, CouponType couponType) {
+	public Coupon(long id, String title, java.util.Date startDate, java.util.Date endDate, int amount, String message,
+			double price, String image, CouponType couponType) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -105,13 +105,8 @@ public class Coupon {
 
 	@Override
 	public String toString() {
-		return "Coupon--->  Id:" + id + ", Title:" + title + ", StartDate:" + startDate + ", EndDate:" + endDate
+		return "Coupon--->  Id:" + id + ", Title:" + title + ", Start Date:" + startDate + ", End Date:" + endDate
 				+ ", Amount:" + amount + ", Message:" + message + ", Price:" + price + ", Image:" + image + ", Type:"
 				+ type;
 	}
-	
-	
-	
-	
-
 }

@@ -3,6 +3,7 @@ package CompanyCoupon;
 import java.util.Set;
 
 public class CompanyCouponFacade {
+	
 	private CompanyCouponDBDAO companyCouponDBDAO = new CompanyCouponDBDAO();
 	private CompanyCoupon companyCoupon;
 
@@ -21,11 +22,11 @@ public class CompanyCouponFacade {
 		companyCouponDBDAO.removeCompanyCoupon(companyCoupon);
 	}
 
-	public void updateCompanyCoupon(CompanyCoupon companyCoupon, long newcompanyId, long newcouponId ) throws Exception {
-		CompanyCoupon.setCompanyId(newcompanyId);
-		CompanyCoupon.setCouponId(newcouponId);
-		
-		CompanyCouponDBDAO.updateCompanyCoupon(companyCoupon);
+	public void updateCompanyCoupon(CompanyCoupon companyCoupon, long newcompanyId, long newcouponId) throws Exception {
+		companyCoupon.setCompanyId(newcompanyId);
+		companyCoupon.setCouponId(newcouponId);
+
+		companyCouponDBDAO.updateCompanyCoupon(companyCoupon);
 	}
 
 	public CompanyCoupon getCompanyCoupon() throws Exception {
@@ -33,11 +34,11 @@ public class CompanyCouponFacade {
 	}
 
 	public Set<CompanyCoupon> getAllCompanyCoupon() throws Exception {
-//		 CompanyCouponDBDAO companyCouponDAO=new CompanyCouponDBDAO();
+		// CompanyCouponDBDAO companyCouponDAO=new CompanyCouponDBDAO();
 		return companyCouponDBDAO.getAllCompanyCoupon();
 	}
 
-	public void dropTable () throws Exception{
+	public void dropTable() throws Exception {
 		companyCouponDBDAO.dropTable();
 	}
 }

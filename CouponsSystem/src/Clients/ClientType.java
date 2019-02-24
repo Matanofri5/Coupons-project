@@ -2,7 +2,5 @@ package Clients;
 
 public enum ClientType {
 
-	Admin,
-	Company,
-	Customer;
+	ADMIN, COMPANY, CUSTOMER;
 }

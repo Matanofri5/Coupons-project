@@ -1,8 +1,9 @@
 package Company;
+
 import java.util.Set;
 
 public interface CompanyDAO {
-	
+
 	public void insertCompany(Company company) throws Exception;
 
 	public void removeCompany(long id) throws Exception;
@@ -14,5 +15,4 @@ public interface CompanyDAO {
 	public Set<Company> getAllCompany() throws Exception;
 
 	public void dropTable() throws Exception;
-
 }

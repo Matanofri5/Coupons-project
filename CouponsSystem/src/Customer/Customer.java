@@ -2,11 +2,10 @@ package Customer;
 
 public class Customer {
 
-	
 	private long id;
 	private String customerName;
 	private String password;
-	
+
 	public Customer() {
 	}
 
@@ -28,8 +27,8 @@ public class Customer {
 		return customerName;
 	}
 
-	public void setCustomerName(String cust_name) {
-		customerName = cust_name;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	public String getPassword() {
@@ -42,12 +41,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", customerName=" + customerName + ", password=" + password + "]";
+		return "Customer---> id:" + id + ", customer Name:" + customerName + ", password:" + password;
 	}
 
-    
-	
-
-	
-    
 }

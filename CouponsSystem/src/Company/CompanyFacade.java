@@ -21,7 +21,8 @@ public class CompanyFacade {
 		companyDBDAO.removeCompany(id);
 	}
 
-	public void updateCompany(Company company, long newId, String newCompanyName, String newPassword, String newEmail) throws Exception {
+	public void updateCompany(Company company, long newId, String newCompanyName, String newPassword, String newEmail)
+			throws Exception {
 		company.setId(newId);
 		company.setCompanyName(newCompanyName);
 		company.setPassword(newPassword);
@@ -34,11 +35,11 @@ public class CompanyFacade {
 	}
 
 	public Set<Company> getAllCompany() throws Exception {
-//		 CompanyDBDAO comDAO=new CompanyDBDAO();
+		// CompanyDBDAO comDAO=new CompanyDBDAO();
 		return companyDBDAO.getAllCompany();
 	}
 
-	public void dropTable () throws Exception{
+	public void dropTable() throws Exception {
 		companyDBDAO.dropTable();
 	}
 }

@@ -2,39 +2,36 @@ package CompanyCoupon;
 
 public class CompanyCoupon {
 
-	private long CompanyId;
-	private long CouponId;
-	
+	private long companyId;
+	private long couponId;
+
 	public CompanyCoupon() {
-		super();
 	}
 
 	public CompanyCoupon(long companyId, long couponId) {
-		super();
-		CompanyId = companyId;
-		CouponId = couponId;
+		this.companyId = companyId;
+		this.couponId = couponId;
 	}
 
 	public long getCompanyId() {
-		return CompanyId;
+		return companyId;
 	}
 
 	public void setCompanyId(long companyId) {
-		CompanyId = companyId;
+		this.companyId = companyId;
 	}
 
 	public long getCouponId() {
-		return CouponId;
+		return couponId;
 	}
 
 	public void setCouponId(long couponId) {
-		CouponId = couponId;
+		this.couponId = couponId;
 	}
 
 	@Override
 	public String toString() {
-		return "CompanyCoupon [CompanyId=" + CompanyId + ", CouponId=" + CouponId + "]";
+		return "CompanyCoupon---> Company Id:" + companyId + ", Coupon Id:" + couponId;
 	}
-	
-	
+
 }

@@ -5,8 +5,8 @@ public class CustomerFacade {
 	private CustomerDBDAO custDAO = new CustomerDBDAO();
 	private Customer customer;
 
-	public CustomerFacade(Customer C) {
-		this.customer = C;
+	public CustomerFacade(Customer customer) {
+		this.customer = customer;
 	}
 
 	public CustomerFacade() {

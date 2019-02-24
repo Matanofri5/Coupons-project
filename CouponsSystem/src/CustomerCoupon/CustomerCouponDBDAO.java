@@ -8,13 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.sun.org.apache.xpath.internal.operations.And;
-
 import Main.Database;
 
-
-public class CustomerCouponDBDAO implements CustomerCouponDAO{
+public class CustomerCouponDBDAO implements CustomerCouponDAO {
 	Connection con;
 
 	@Override
@@ -22,18 +18,16 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO{
 		con = DriverManager.getConnection(Database.getDBUrl());
 		String sql = "INSERT INTO CustomerCoupon (customerId,couponId)  VALUES(?,?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-            
-			
+
 			pstmt.setLong(1, customerCoupon.getCustomerId());
 			pstmt.setLong(2, customerCoupon.getCouponId());
 
 			pstmt.executeUpdate();
-			
-			
-			System.out.println("CustomerCoupon " + "successefully inserted :) !!!");
+
+			System.out.println("CustomerCoupon insert success :D  " + customerCoupon.toString());
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new Exception("CustomerCoupon insert failed");
+			System.err.println("CustomerCoupon insert failed :( ");
+			System.err.println(e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -42,22 +36,22 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO{
 	@Override
 	public void removeCustomerCoupon(CustomerCoupon customerCoupon) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
-		String pre1 = "DELETE FROM CustomerCoupon WHERE customerId=? and couponId=?";
+		String sql = "DELETE FROM CustomerCoupon WHERE customerId=? and couponId=?";
 
-		try (PreparedStatement pstm1 = con.prepareStatement(pre1);) {
+		try (PreparedStatement pstm1 = con.prepareStatement(sql);) {
 			con.setAutoCommit(false);
-            pstm1.setLong(1, customerCoupon.getCustomerId());
-            pstm1.setLong(2, customerCoupon.getCouponId());
+			pstm1.setLong(1, customerCoupon.getCustomerId());
+			pstm1.setLong(2, customerCoupon.getCouponId());
 			pstm1.executeUpdate();
 			con.commit();
-			System.out.println("CustomerCoupon " + "removed seccessfully  :) !!!");
+			System.out.println("remove CustomerCoupon success :D ");
 		} catch (SQLException e) {
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
 				throw new Exception("Database error");
 			}
-			throw new Exception("failed to remove CustomerCoupon");
+			System.err.println("remove CustomerCoupon failed :( ");
 		} finally {
 			con.close();
 		}
@@ -67,20 +61,14 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO{
 	public void updateCustomerCoupon(CustomerCoupon customerCoupon) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
 		try (Statement stm = con.createStatement()) {
-		String sql = "UPDATE CustomerCoupon "
-		+ " SET customerId='" +customerCoupon.getCustomerId()
-		+ "', couponId='" + customerCoupon.getCouponId()
-		+ "' WHERE Id=" 
-		+ customerCoupon.getCustomerId() + "AND"
-		+ "' WHERE Id="
-		+ customerCoupon.getCouponId();
-		
-			
-		System.out.println("CustomerCoupon " + "updated successfully !!! :)");
+			String sql = "UPDATE CustomerCoupon " + " SET customerId='" + customerCoupon.getCustomerId()
+					+ "', couponId='" + customerCoupon.getCouponId() + "' WHERE Id=" + customerCoupon.getCustomerId()
+					+ "AND" + "' WHERE Id=" + customerCoupon.getCouponId();
 			stm.executeUpdate(sql);
+			System.out.println("updated CustomerCoupon successe :D");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-			throw new Exception("update CustomerCoupon failed");
+			throw new Exception("update CustomerCoupon failed :( ");
 		}
 	}
 
@@ -92,16 +80,16 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO{
 			String sql = "SELECT * FROM CustomerCoupon WHERE ID=" + id;
 			ResultSet rs = stm.executeQuery(sql);
 			while (rs.next()) {
-			customerCoupon.setCustomerId(1);
-			customerCoupon.setCouponId(2);
-			
+				customerCoupon.setCustomerId(1);
+				customerCoupon.setCouponId(2);
+				System.out.println("Get CustomerCoupon success :D ");
 			}
-        
+
 		} catch (SQLException e) {
-			throw new Exception("unable to get CustomerCoupon data");
-		} finally {	
-			con.close();	
-			
+			System.err.println("Get CustomerCoupon failed :(");
+		} finally {
+			con.close();
+
 		}
 		return customerCoupon;
 	}
@@ -109,22 +97,22 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO{
 	@Override
 	public Set<CustomerCoupon> getAllCustomerCoupon() throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
-		Set<CustomerCoupon> set = new HashSet<>();		
+		Set<CustomerCoupon> set = new HashSet<>();
 		try {
 			Statement stm = con.createStatement();
 			String sql = "SELECT * FROM CustomerCoupon";
 			ResultSet rs = stm.executeQuery(sql);
 			while (rs.next()) {
-				
+
 				long customerId = rs.getLong(1);
 				long couponId = rs.getLong(2);
-				
-                
+
 				set.add(new CustomerCoupon(customerId, couponId));
+				System.out.println("Get all CustomerCoupon success :D ");
 			}
 		} catch (SQLException e) {
 			System.out.println(e);
-			throw new Exception("cannot get CustomerCoupon data");
+			System.err.println("Get all CustomerCoupon failed :( ");
 		} finally {
 			con.close();
 		}
@@ -135,24 +123,20 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO{
 	public void dropTable() throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
 		try {
-			String sql =  "DROP TABLE CustomerCoupon";
+			String sql = "DROP TABLE CustomerCoupon";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("drop Table success!! :D ");
+			System.out.println("drop Table CustomerCoupon success!! :D ");
 
-		}
-		catch (SQLException ex) {
-			System.err.println("MMMMMMM....dropTableEXCEPTION");
+		} catch (SQLException ex) {
+			System.err.println("MMMMMMM....dropCustomerCouponTableEXCEPTION");
 			throw new Exception(ex.getMessage());
-		}
-		finally {
+		} finally {
 			try {
 				con.close();
 			} catch (SQLException ex) {
-				System.err.println("the connection cannot closed :( "+ ex.getMessage());
+				System.err.println("the connection cannot closed :( " + ex.getMessage());
 			}
 		}
-		
-	
 	}
 }
