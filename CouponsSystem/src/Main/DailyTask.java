@@ -7,7 +7,7 @@ import Coupon.CouponDBDAO;
 
 public class DailyTask implements Runnable {
 
-	private boolean exit = false;
+	public boolean exit = false;
 	private Date localDate;
 	private CouponDBDAO couponDBDAO = new CouponDBDAO();
 	private long id;
@@ -56,5 +56,9 @@ public class DailyTask implements Runnable {
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
+	}
+
+	public void stopTask() {
+		this.exit = true;
 	}
 }
