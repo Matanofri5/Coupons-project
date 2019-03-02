@@ -96,9 +96,7 @@ public class Test {
 
 		// couponFacade.dropTable();
 
-		/***************************************
-		 * CustomerCoupon
-		 ****************************/
+		/**************************************** CustomerCoupon****************************/
 
 		CustomerCoupon a1 = new CustomerCoupon(2, 6);
 		CustomerCoupon a2 = new CustomerCoupon(9, 11);
@@ -116,7 +114,7 @@ public class Test {
 
 		// customerCouponFacade.dropTable();
 
-		// ****************Threads*****************************
+		/*****************************************Threads******************************/
 		DailyTask d = new DailyTask();
 
 		d.startThread();
