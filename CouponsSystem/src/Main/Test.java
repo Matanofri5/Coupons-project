@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import Company.Company;
 import Company.CompanyFacade;
+import CompanyCoupon.CompanyCoupon;
+import CompanyCoupon.CompanyCouponFacade;
 import Coupon.Coupon;
 import Coupon.CouponFacade;
 import Coupon.CouponType;
@@ -30,9 +32,9 @@ public class Test {
 		Company p3 = new Company(3, "Sony", "4314134143", "sony@gmail.com");
 
 		CompanyFacade companyFacade = new CompanyFacade();
-		 companyFacade.insertCompany(p1);
-		 companyFacade.insertCompany(p2);
-		 companyFacade.insertCompany(p3);
+//		 companyFacade.insertCompany(p1);
+//		 companyFacade.insertCompany(p2);
+//		 companyFacade.insertCompany(p3);
 
 		// companyFacade.updateCompany(p3, 3, "fdsg", "fsdg", "dgzdg");
 		// companyFacade.updateCompany(p1, 7, "llll", "ffff", "54554");
@@ -54,9 +56,9 @@ public class Test {
 		Customer c3 = new Customer(6, "Dvir", "9879886");
 
 		CustomerFacade customerFacade = new CustomerFacade();
-		 customerFacade.insertCustomer(c1);
-		 customerFacade.insertCustomer(c2);
-		 customerFacade.insertCustomer(c3);
+//		 customerFacade.insertCustomer(c1);
+//		 customerFacade.insertCustomer(c2);
+//		 customerFacade.insertCustomer(c3);
 
 		// customerFacade.updateCustomer(c2, 3, "Ehud", "445577566");
 		// customerFacade.removeCustomer(1);
@@ -80,9 +82,9 @@ public class Test {
 
 		CouponFacade couponFacade = new CouponFacade();
 
-		 couponFacade.insertCoupon(u1);
-		 couponFacade.insertCoupon(u2);
-		 couponFacade.insertCoupon(u3);
+//		 couponFacade.insertCoupon(u1);
+//		 couponFacade.insertCoupon(u2);
+//		 couponFacade.insertCoupon(u3);
 
 		// couponFacade.updateCoupon(u1, 5, "Matanofri", DateUtils.getCurrentDate(),
 		// DateUtils.getExpiredDate(), 100, "bbb", 22.2, "ccc", CouponType.SPORTS);
@@ -109,15 +111,22 @@ public class Test {
 		// customerCouponFacade.removeCustomerCoupon(a1);
 
 		// customerCouponFacade.updateCustomerCoupon(a1, 9, 10);
-		System.out.println(customerCouponFacade.getCustomerCoupon());
+//		System.out.println(customerCouponFacade.getCustomerCoupon());
 		// System.out.println(customerCouponFacade.getAllCustomerCoupon());
 
 		// customerCouponFacade.dropTable();
 
 		/*****************************************Threads******************************/
+		
 		DailyTask d = new DailyTask();
 
 		d.startThread();
+		
+		CompanyCoupon b1 = new CompanyCoupon(1, 3);
+		
+		CompanyCouponFacade companyCouponFacade = new CompanyCouponFacade();
+		
+//		companyCouponFacade.insertCompanyCoupon(b1);
 
 	}
 }

@@ -22,7 +22,6 @@ public class DailyTask implements Runnable {
 			if (coupon.getEndDate().before(localDate))
 				id = coupon.getId();
 			couponDBDAO.removeCoupon(id);
-			// long id= coupon.getId();
 			System.out.println("this coupon has been delete: " + couponDBDAO.getCoupon(id));
 		}
 

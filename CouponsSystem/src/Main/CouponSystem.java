@@ -2,6 +2,7 @@ package Main;
 
 import java.sql.Connection;
 
+import Clients.AdminFacade;
 import Clients.ClientType;
 import Clients.CouponClientFacade;
 
@@ -31,13 +32,13 @@ public class CouponSystem {
 
 		switch (clientType) {
 		case ADMIN:
-			couponClientFacade = new AdminFacad();
+			couponClientFacade = new AdminFacade();
 			break;
 		case COMPANY:
 			couponClientFacade = new projectCoupon.Clients.CompanyFacade();
 			break;
 		case CUSTOMER:
-			couponClientFacade = new CustomerFacad();
+			couponClientFacade = new CustomerFacade();
 			break;
 		default:
 			couponClientFacade = null;
