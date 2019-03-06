@@ -46,7 +46,7 @@ public class Test {
 		// companyFacade.removeCompany(6);
 
 		// companyFacade.dropTable();
-		// System.out.println(companyFacade.getAllCompany());
+		 System.out.println(companyFacade.getAllCompany());
 		// System.out.println(companyFacade.getCompany(1));
 
 		/*************************************** Customer ****************************/
@@ -93,8 +93,8 @@ public class Test {
 		// couponFacade.removeCoupon(2);
 		// couponFacade.removeCoupon(4);
 
-		// System.out.println(couponFacade.getAllCoupon());
-		// System.out.println(couponFacade.getCoupon(8));
+//		 System.out.println(couponFacade.getAllCoupon());
+//		 System.out.println(couponFacade.getCoupon(8));
 
 		// couponFacade.dropTable();
 
@@ -118,10 +118,10 @@ public class Test {
 
 		/*****************************************Threads******************************/
 		
-		DailyTask d = new DailyTask();
-
-		d.startThread();
-		
+//		DailyTask d = new DailyTask();
+//
+//		d.startThread();
+//		d.stopTask();
 		CompanyCoupon b1 = new CompanyCoupon(1, 3);
 		
 		CompanyCouponFacade companyCouponFacade = new CompanyCouponFacade();
