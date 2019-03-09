@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 import Coupon.Coupon;
 import Coupon.CouponDBDAO;
+import Coupon.DateUtils;
 
 public class DailyTask implements Runnable {
 
@@ -19,7 +20,7 @@ public class DailyTask implements Runnable {
 
 		Set<Coupon> coupons = couponDBDAO.getAllCoupon();
 		for (Coupon coupon : coupons) {
-			if (coupon.getEndDate().before(localDate))
+			if (coupon.getEndDate().before(DateUtils.getCurrentDate()))
 				id = coupon.getId();
 			couponDBDAO.removeCoupon(id);
 			System.out.println("this coupon has been delete: " + couponDBDAO.getCoupon(id));

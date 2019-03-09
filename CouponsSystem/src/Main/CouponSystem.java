@@ -5,6 +5,8 @@ import java.sql.Connection;
 import Clients.AdminFacade;
 import Clients.ClientType;
 import Clients.CouponClientFacade;
+import Customer.CustomerFacade;
+import Company.CompanyFacade;
 
 public class CouponSystem {
 
@@ -35,10 +37,10 @@ public class CouponSystem {
 			couponClientFacade = new AdminFacade();
 			break;
 		case COMPANY:
-			couponClientFacade = new projectCoupon.Clients.CompanyFacade();
+			couponClientFacade = (CouponClientFacade) new CompanyFacade();
 			break;
 		case CUSTOMER:
-			couponClientFacade = new CustomerFacade();
+			couponClientFacade = (CouponClientFacade) new CustomerFacade();
 			break;
 		default:
 			couponClientFacade = null;
