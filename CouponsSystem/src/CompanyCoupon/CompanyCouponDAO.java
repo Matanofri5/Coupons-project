@@ -6,7 +6,7 @@ public interface CompanyCouponDAO {
 
 	public void insertCompanyCoupon(CompanyCoupon companyCoupon) throws Exception;
 
-	public void removeCompanyCoupon(CompanyCoupon companyCoupon) throws Exception;
+	public void removeCompanyCoupon(long companyId, long couponId) throws Exception;
 
 	public void updateCompanyCoupon(CompanyCoupon companyCoupon) throws Exception;
 

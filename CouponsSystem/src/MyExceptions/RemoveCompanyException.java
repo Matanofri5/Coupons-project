@@ -2,7 +2,7 @@ package MyExceptions;
 
 import Company.Company;
 
-public class RemoveCompanyException {
+public class RemoveCompanyException extends Exception {
 
 	private Company company;
 

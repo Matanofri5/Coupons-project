@@ -1,7 +1,12 @@
 package Customer;
+import java.awt.Window.Type;
 import java.util.Set;
 
-public class CustomerFacade {
+import Clients.ClientType;
+import Clients.CouponClientFacade;
+import Coupon.Coupon;
+
+public class CustomerFacade implements CouponClientFacade {
 	private CustomerDBDAO custDAO = new CustomerDBDAO();
 	private Customer customer;
 
@@ -12,31 +17,54 @@ public class CustomerFacade {
 	public CustomerFacade() {
 	}
 
-	public void insertCustomer(Customer customer) throws Exception {
-		custDAO.insertCustomer(customer);
+//	public void insertCustomer(Customer customer) throws Exception {
+//		custDAO.insertCustomer(customer);
+//	}
+//
+//	public void removeCustomer(long id) throws Exception {
+//		custDAO.removeCustomer(id);
+//	}
+//
+//	public void updateCustomer(Customer customer, long newid, String newcustomerName, String newpassword) throws Exception {
+//		customer.setId(newid);
+//		customer.setCustomerName(newcustomerName);
+//		customer.setPassword(newpassword);
+//		custDAO.updateCustomer(customer);
+//	}
+//
+//	public Customer getCustomer(long id) throws Exception {
+//		return custDAO.getCustomer(id);
+//	}
+//
+//	public Set<Customer> getAllCustomer() throws Exception {
+////		 CustomerCompanyDBDAO cusDAO=new CustomerDBDAO();
+//		return custDAO.getAllCustomer();
+//	}
+//
+//	public void dropTable () throws Exception{
+//		custDAO.dropTable();
+//	}
+//
+	@Override
+	public CouponClientFacade login(String name, String password, ClientType clientType) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
-
-	public void removeCustomer(long id) throws Exception {
-		custDAO.removeCustomer(id);
+	
+	public void purchaseCoupon(Coupon coupon) {
+		
 	}
-
-	public void updateCustomer(Customer customer, long newid, String newcustomerName, String newpassword) throws Exception {
-		customer.setId(newid);
-		customer.setCustomerName(newcustomerName);
-		customer.setPassword(newpassword);
-		custDAO.updateCustomer(customer);
+	public void getAllpurchasedCoupons() {
+		
 	}
-
-	public Customer getCustomer(long id) throws Exception {
-		return custDAO.getCustomer(id);
+	
+	public void getAllpurchasedCouponsByType(Type type) {
+		
 	}
-
-	public Set<Customer> getAllCustomer() throws Exception {
-//		 CustomerCompanyDBDAO cusDAO=new CustomerDBDAO();
-		return custDAO.getAllCustomer();
+	
+	public void getAllpurchasedCouponsByPrice(Price price) {
+		
 	}
-
-	public void dropTable () throws Exception{
-		custDAO.dropTable();
-	}
+	
+	
 }

@@ -34,14 +34,14 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO {
 	}
 
 	@Override
-	public void removeCustomerCoupon(CustomerCoupon customerCoupon) throws Exception {
+	public void removeCustomerCoupon(long customerId, long couponId) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
 		String sql = "DELETE FROM CustomerCoupon WHERE customerId=? and couponId=?";
 
 		try (PreparedStatement pstm1 = con.prepareStatement(sql);) {
 			con.setAutoCommit(false);
-			pstm1.setLong(1, customerCoupon.getCustomerId());
-			pstm1.setLong(2, customerCoupon.getCouponId());
+			pstm1.setLong(1, customerId);
+			pstm1.setLong(2, couponId);
 			pstm1.executeUpdate();
 			con.commit();
 			System.out.println("remove CustomerCoupon success :D ");

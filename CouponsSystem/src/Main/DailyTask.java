@@ -20,12 +20,13 @@ public class DailyTask implements Runnable {
 
 		Set<Coupon> coupons = couponDBDAO.getAllCoupon();
 		for (Coupon coupon : coupons) {
-			if (coupon.getEndDate().before(DateUtils.getCurrentDate()))
+			if (coupon.getEndDate().before(DateUtils.getCurrentDate())) {
 				id = coupon.getId();
 			couponDBDAO.removeCoupon(id);
 			System.out.println("this coupon has been delete: " + couponDBDAO.getCoupon(id));
-		}
-
+			}
+			}
+		
 	}
 
 	public void startThread() throws Exception {

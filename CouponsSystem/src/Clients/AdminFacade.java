@@ -1,16 +1,21 @@
 package Clients;
 
+import java.util.Iterator;
 import java.util.Set;
-
 import Company.Company;
 import Company.CompanyDAO;
 import Company.CompanyDBDAO;
 import Customer.Customer;
 import Customer.CustomerDAO;
 import Customer.CustomerDBDAO;
+import MyExceptions.CompanyAlreadyExists;
 import Coupon.Coupon;
 import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
+import CustomerCoupon.CustomerCoupon;
+import CustomerCoupon.CustomerCouponDAO;
+import CustomerCoupon.CustomerCouponDBDAO;
+
 
 public class AdminFacade implements CouponClientFacade {
 
@@ -19,6 +24,7 @@ public class AdminFacade implements CouponClientFacade {
 	private CompanyDAO companyDAO;
 	private CustomerDAO customerDAO;
 	private CouponDAO couponDAO;
+	private CustomerCouponDAO customerCouponDAO;
 
 	public AdminFacade() throws Exception {
 		this.companyDAO = new CompanyDBDAO();
@@ -27,7 +33,7 @@ public class AdminFacade implements CouponClientFacade {
 	}
 
 	@Override
-	public CouponClientFacade login(String name, String password) throws Exception {
+	public CouponClientFacade login(String name, String password, ClientType clientType) throws Exception {
 		if (name.equals(adminName) && password.equals(adminPassword)) {
 			return this;
 		} else {
@@ -36,24 +42,34 @@ public class AdminFacade implements CouponClientFacade {
 	}
 
 	public void addCompany(Company company) throws Exception {
-		String companyName = company.getCompanyName();
-		//for (company.getCompanyName()!= (companyDAO.getAllCompany().getClass())
-		//if ((companyDAO.getAllCompany()) != company) {
-		if(company.getCompanyName()!= companyDAO.getAllCompany().getClass().getName()){
-			try {
-				companyDAO.insertCompany(company);
-			} catch (Exception e) {
-				System.out.println("insert company failed");
+		try {
+			Set<Company> companies = companyDAO.getAllCompany();
+			Iterator<Company> i = companies.iterator();
+			
+			while (i.hasNext()) {
+				Company current = i.next();
+				if (company.getCompanyName().equals(current.getCompanyName())) {
+					throw new CompanyAlreadyExists(company);	
+				}
 			}
-		} else {
-			System.out.println("this company name exist " + companyName);
+			if (!i.hasNext()) {
+				companyDAO.insertCompany(company);
+				System.out.println("Admin added new company: " + company.getId());
+			} 
 		}
+			catch (CompanyAlreadyExists e) {
+				System.out.println(e.getMessage());
+			}
+			catch (Exception e) {
+				throw new Exception("Admin failed to add company");
+			}
 	}
 	
-	public void removeCompany (long companyId) throws Exception {
+	public void removeCompany (long companyId, long couponId, long customerId) throws Exception {
 		
 		companyDAO.removeCompany(companyId);
-		couponDAO.removeCoupon(companyId);
+		couponDAO.removeCoupon(couponId);
+		customerCouponDAO.removeCustomerCoupon(customerId, couponId);
 		
 	}
 	
@@ -72,13 +88,30 @@ public class AdminFacade implements CouponClientFacade {
 		return companyDAO.getAllCompany();
 	}
 
-	public void addCustomer (Customer customer) {
-		
+	public void addCustomer (Customer customer) throws Exception {
+		try {
+			Set<Customer> customers = customerDAO.getAllCustomer();
+			Iterator<Customer> i = customers.iterator();
+			
+			while (i.hasNext()) {
+				Customer current = i.next();
+				if (customer.getCustomerName().equals(current.getCustomerName())) {
+					throw new Exception("this customer already exists");	
+				}
+			}
+			if (!i.hasNext()) {
+				customerDAO.insertCustomer(customer);
+				System.out.println("Admin added new customer: " + customer.getId());
+			} 
+		}
+			catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 	}
 	
-	public void removeCustomer (long customerId) {
-		customerDAO.removeCustomer(id);
-		couponDAO.removeCoupon(id);
+	public void removeCustomer (long customerId, long couponId) throws Exception {
+		customerDAO.removeCustomer(customerId);
+		couponDAO.removeCoupon(couponId);
 	}
 	
 	public void updateCustomer (Customer customer, String newPassword) throws Exception {

@@ -18,8 +18,8 @@ public class CompanyCouponFacade {
 		companyCouponDBDAO.insertCompanyCoupon(companyCoupon);
 	}
 
-	public void removeCompanyCoupon(CompanyCoupon companyCoupon) throws Exception {
-		companyCouponDBDAO.removeCompanyCoupon(companyCoupon);
+	public void removeCompanyCoupon(long companyId, long couponId) throws Exception {
+		companyCouponDBDAO.removeCompanyCoupon(companyId, couponId);
 	}
 
 	public void updateCompanyCoupon(CompanyCoupon companyCoupon, long newcompanyId, long newcouponId) throws Exception {
