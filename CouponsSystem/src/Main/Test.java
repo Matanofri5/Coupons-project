@@ -127,6 +127,5 @@ public class Test {
 		CompanyCouponFacade companyCouponFacade = new CompanyCouponFacade();
 		
 //		companyCouponFacade.insertCompanyCoupon(b1);
-//matan
 	}
 }
