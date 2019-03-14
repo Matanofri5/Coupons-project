@@ -5,17 +5,19 @@ import java.util.Set;
 import Company.Company;
 import Company.CompanyDAO;
 import Company.CompanyDBDAO;
+import CompanyCoupon.CompanyCoupon;
+import CompanyCoupon.CompanyCouponDAO;
+import CompanyCoupon.CompanyCouponDBDAO;
 import Customer.Customer;
 import Customer.CustomerDAO;
 import Customer.CustomerDBDAO;
-import MyExceptions.CompanyAlreadyExists;
 import Coupon.Coupon;
 import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import CustomerCoupon.CustomerCoupon;
 import CustomerCoupon.CustomerCouponDAO;
 import CustomerCoupon.CustomerCouponDBDAO;
-
+import MyExceptions.CompanyAlreadyExists;
 
 public class AdminFacade implements CouponClientFacade {
 
@@ -26,12 +28,14 @@ public class AdminFacade implements CouponClientFacade {
 	private CouponDAO couponDAO;
 	private CustomerCouponDAO customerCouponDAO;
 	private CustomerCouponDBDAO customerCouponDBDAO;
+	private CompanyCouponDBDAO companyCouponDBDAO;
 
 	public AdminFacade() throws Exception {
 		this.companyDAO = new CompanyDBDAO();
 		this.customerDAO = new CustomerDBDAO();
 		this.couponDAO = new CouponDBDAO();
 		this.customerCouponDBDAO = new CustomerCouponDBDAO();
+		this.companyCouponDBDAO = new CompanyCouponDBDAO();
 	}
 
 	@Override
@@ -68,10 +72,11 @@ public class AdminFacade implements CouponClientFacade {
 	}
 	
 	public void removeCompany (long companyId, long couponId, long customerId) throws Exception {
-		
+		companyCouponDBDAO.removeCompanyCoupon(companyId, couponId);
 		companyDAO.removeCompany(companyId);
-		couponDAO.removeCoupon(couponId);
-		customerCouponDAO.removeCustomerCoupon(customerId, couponId);
+//		customerDAO.removeCustomer(customerId);   it"s also need to be removed ?
+//		couponDAO.removeCoupon(couponId);   it's also need to be removed ?
+//		customerCouponDAO.removeCustomerCoupon(customerId, couponId);
 		
 	}
 	
@@ -114,6 +119,8 @@ public class AdminFacade implements CouponClientFacade {
 	public void removeCustomer (long customerId,long couponId) throws Exception {
 		customerCouponDBDAO.removeCustomerCoupon(customerId, couponId);
 		customerDAO.removeCustomer(customerId);
+//		couponDAO.removeCoupon(couponId);   it's also need to be removed ?
+
 	}
 	
 	public void updateCustomer (Customer customer,long whatId, String newPassword) throws Exception {

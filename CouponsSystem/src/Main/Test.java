@@ -102,7 +102,7 @@ public class Test {
 
 		/**************************************** CustomerCoupon****************************/
 
-		CustomerCoupon a1 = new CustomerCoupon(2, 6);
+		CustomerCoupon a1 = new CustomerCoupon(26, 3);
 		CustomerCoupon a2 = new CustomerCoupon(9, 11);
 		CustomerCoupon a3 = new CustomerCoupon(15,40);
 		CustomerCoupon a4 = new CustomerCoupon(16, 41);
@@ -110,7 +110,7 @@ public class Test {
 
 		CustomerCouponFacade customerCouponFacade = new CustomerCouponFacade();
 
-//		 customerCouponFacade.insertCustomerCoupon(a3);
+//		 customerCouponFacade.insertCustomerCoupon(a1);
 //		 customerCouponFacade.insertCustomerCoupon(a4);
 //		 customerCouponFacade.insertCustomerCoupon(a5);
 
@@ -136,6 +136,7 @@ public class Test {
 		
 		AdminFacade adminFacade = new AdminFacade();
 //		adminFacade.updateCustomer(c2, 10, "5655");
-		adminFacade.removeCustomer(15, 40);
+//		adminFacade.removeCustomer(15, 40);
+		adminFacade.removeCompany(1, 3, 26);
 	}
 }
