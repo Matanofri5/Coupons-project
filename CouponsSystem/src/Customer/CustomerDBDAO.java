@@ -64,7 +64,7 @@ public class CustomerDBDAO implements CustomerDAO {
 					+ customer.getPassword() + "' WHERE ID=" + customer.getId();
 
 			stm.executeUpdate(sql);
-			System.out.println("updated customer successe :D" + customer.getId());
+			System.out.println("updated customer id " + customer.getId() + " successfully");
 
 		} catch (SQLException e) {
 			System.err.println("update Customer failed :( ");

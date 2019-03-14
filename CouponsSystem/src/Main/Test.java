@@ -61,8 +61,9 @@ public class Test {
 //		 customerFacade.insertCustomer(c1);
 //		 customerFacade.insertCustomer(c2);
 //		 customerFacade.insertCustomer(c3);
-
-		// customerFacade.updateCustomer(c2, 3, "Ehud", "445577566");
+		AdminFacade adminFacade = new AdminFacade();
+		adminFacade.updateCustomer(c2, 10, "5655");
+//		customerFacade.updateCustomer(c2, 3, "Ehud", "445577566");
 		// customerFacade.removeCustomer(1);
 		// customerFacade.removeCustomer(3);
 		// customerFacade.removeCustomer(6);
@@ -120,10 +121,10 @@ public class Test {
 
 		/*****************************************Threads******************************/
 		
-		DailyTask d = new DailyTask();
-
-		d.startThread();
-		d.stopTask();
+//		DailyTask d = new DailyTask();
+//
+//		d.startThread();
+//		d.stopTask();
 		CompanyCoupon b1 = new CompanyCoupon(1, 3);
 		
 		CompanyCouponFacade companyCouponFacade = new CompanyCouponFacade();

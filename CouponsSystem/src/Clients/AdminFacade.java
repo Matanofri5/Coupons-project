@@ -114,7 +114,8 @@ public class AdminFacade implements CouponClientFacade {
 		couponDAO.removeCoupon(couponId);
 	}
 	
-	public void updateCustomer (Customer customer, String newPassword) throws Exception {
+	public void updateCustomer (Customer customer,long whatId, String newPassword) throws Exception {
+		customer.setId(whatId);
 		customer.setPassword(newPassword);
 		customerDAO.updateCustomer(customer);
 	}
