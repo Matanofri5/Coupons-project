@@ -25,11 +25,13 @@ public class AdminFacade implements CouponClientFacade {
 	private CustomerDAO customerDAO;
 	private CouponDAO couponDAO;
 	private CustomerCouponDAO customerCouponDAO;
+	private CustomerCouponDBDAO customerCouponDBDAO;
 
 	public AdminFacade() throws Exception {
 		this.companyDAO = new CompanyDBDAO();
 		this.customerDAO = new CustomerDBDAO();
 		this.couponDAO = new CouponDBDAO();
+		this.customerCouponDBDAO = new CustomerCouponDBDAO();
 	}
 
 	@Override
@@ -109,9 +111,9 @@ public class AdminFacade implements CouponClientFacade {
 			}
 	}
 	
-	public void removeCustomer (long customerId, long couponId) throws Exception {
+	public void removeCustomer (long customerId,long couponId) throws Exception {
+		customerCouponDBDAO.removeCustomerCoupon(customerId, couponId);
 		customerDAO.removeCustomer(customerId);
-		couponDAO.removeCoupon(couponId);
 	}
 	
 	public void updateCustomer (Customer customer,long whatId, String newPassword) throws Exception {

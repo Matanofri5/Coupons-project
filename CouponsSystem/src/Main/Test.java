@@ -61,8 +61,7 @@ public class Test {
 //		 customerFacade.insertCustomer(c1);
 //		 customerFacade.insertCustomer(c2);
 //		 customerFacade.insertCustomer(c3);
-		AdminFacade adminFacade = new AdminFacade();
-		adminFacade.updateCustomer(c2, 10, "5655");
+
 //		customerFacade.updateCustomer(c2, 3, "Ehud", "445577566");
 		// customerFacade.removeCustomer(1);
 		// customerFacade.removeCustomer(3);
@@ -94,7 +93,7 @@ public class Test {
 
 		// couponFacade.removeCoupon(1);
 		// couponFacade.removeCoupon(2);
-		// couponFacade.removeCoupon(4);
+//		 couponFacade.removeCoupon(48);
 
 //		 System.out.println(couponFacade.getAllCoupon());
 //		 System.out.println(couponFacade.getCoupon(8));
@@ -105,13 +104,17 @@ public class Test {
 
 		CustomerCoupon a1 = new CustomerCoupon(2, 6);
 		CustomerCoupon a2 = new CustomerCoupon(9, 11);
+		CustomerCoupon a3 = new CustomerCoupon(15,40);
+		CustomerCoupon a4 = new CustomerCoupon(16, 41);
+		CustomerCoupon a5 = new CustomerCoupon(17, 42);
 
 		CustomerCouponFacade customerCouponFacade = new CustomerCouponFacade();
 
-		// customerCouponFacade.insertCustomerCoupon(a1);
-		// customerCouponFacade.insertCustomerCoupon(a2);
+//		 customerCouponFacade.insertCustomerCoupon(a3);
+//		 customerCouponFacade.insertCustomerCoupon(a4);
+//		 customerCouponFacade.insertCustomerCoupon(a5);
 
-		// customerCouponFacade.removeCustomerCoupon(a1);
+//		 customerCouponFacade.removeCustomerCoupon(2, 6);
 
 		// customerCouponFacade.updateCustomerCoupon(a1, 9, 10);
 //		System.out.println(customerCouponFacade.getCustomerCoupon());
@@ -131,6 +134,8 @@ public class Test {
 		
 //		companyCouponFacade.insertCompanyCoupon(b1);
 		
-		
+		AdminFacade adminFacade = new AdminFacade();
+//		adminFacade.updateCustomer(c2, 10, "5655");
+		adminFacade.removeCustomer(15, 40);
 	}
 }

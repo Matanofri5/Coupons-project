@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
+
+import Customer.Customer;
 import Main.Database;
 
 public class CustomerCouponDBDAO implements CustomerCouponDAO {
@@ -57,6 +59,29 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO {
 		}
 	}
 
+//	@Override
+//	public void removeCustomerCoupon(Customer customer) throws Exception {
+//		con = DriverManager.getConnection(Database.getDBUrl());
+//		String sql = "DELETE FROM CustomerCoupon WHERE customerId=?";
+//
+//		try (PreparedStatement pstm1 = con.prepareStatement(sql);) {
+//			con.setAutoCommit(false);
+//			pstm1.setLong(1, customer.getId());
+//			pstm1.executeUpdate();
+//			con.commit();
+//			System.out.println("remove CustomerCoupon success :D ");
+//		} catch (SQLException e) {
+//			try {
+//				con.rollback();
+//			} catch (SQLException e1) {
+//				throw new Exception("Database error");
+//			}
+//			System.err.println("remove CustomerCoupon failed :( ");
+//		} finally {
+//			con.close();
+//		}
+//	}
+	
 	@Override
 	public void updateCustomerCoupon(CustomerCoupon customerCoupon) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
