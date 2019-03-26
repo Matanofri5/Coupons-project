@@ -108,14 +108,14 @@ public class CompanyFacade implements CouponClientFacade{
 	public Set<Coupon> getCouponsByType(CouponType couponType){
 		return null;// couponDAO.get
 	}
-	public Set<Coupon> moshe() {
-		java.sql.Date inputDate = new java.sql.Date(1000);
-		
-		java.sql.Date mydate = java.sql.Date.valueOf(LocalDate.now());
-		if(inputDate.after(mydate)) {
-			System.out.println("Good");
-		}else {
-			System.out.println("bad");
-		}
-	}
+//	public Set<Coupon> moshe() {
+//		java.sql.Date inputDate = new java.sql.Date(1000);
+//		
+//		java.sql.Date mydate = java.sql.Date.valueOf(LocalDate.now());
+//		if(inputDate.after(mydate)) {
+//			System.out.println("Good");
+//		}else {
+//			System.out.println("bad");
+//		}
+//	}
 }
