@@ -55,7 +55,7 @@ public class AdminFacade implements CouponClientFacade {
 			while (i.hasNext()) {
 				Company current = i.next();
 				if (company.getCompanyName().equals(current.getCompanyName())) {
-					throw new CompanyAlreadyExists(company);	
+					throw new CompanyAlreadyExists("This Company already exsist !");	
 				}
 			}
 			if (!i.hasNext()) {

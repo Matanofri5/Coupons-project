@@ -1,5 +1,6 @@
 package Company;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
@@ -96,15 +97,25 @@ public class CompanyFacade implements CouponClientFacade{
 		coupon.setPrice(newPrice);
 	}
 	
-	public void getCouponById(long couponId) throws Exception {
-		couponDAO.getCoupon(couponId);
+	public Company getCouponById(long couponId) throws Exception {
+		return companyDBDAO.getCompany(couponId);
 	}
 	
 	public Set<Coupon> getAllCoupon() throws Exception {
 		return couponDAO.getAllCoupon();
 	}
 	
-//	public Set<Coupon> getCouponByType(CouponType couponType){
-//		return cou
-//	}
+	public Set<Coupon> getCouponsByType(CouponType couponType){
+		return null;// couponDAO.get
+	}
+	public Set<Coupon> moshe() {
+		java.sql.Date inputDate = new java.sql.Date(1000);
+		
+		java.sql.Date mydate = java.sql.Date.valueOf(LocalDate.now());
+		if(inputDate.after(mydate)) {
+			System.out.println("Good");
+		}else {
+			System.out.println("bad");
+		}
+	}
 }

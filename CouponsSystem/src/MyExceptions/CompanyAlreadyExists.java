@@ -6,8 +6,8 @@ public class CompanyAlreadyExists extends Exception {
 
 	private Company company;
 	
-	public CompanyAlreadyExists (Company company) {
-		this.company = company;
+	public CompanyAlreadyExists (String msg) {
+		super(msg);
 	}
 	
 	public String getMessage() {

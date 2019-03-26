@@ -37,10 +37,10 @@ public class CouponSystem {
 			couponClientFacade = new AdminFacade();
 			break;
 		case COMPANY:
-			couponClientFacade = (CouponClientFacade) new CompanyFacade();
+			couponClientFacade = new CompanyFacade();
 			break;
 		case CUSTOMER:
-			couponClientFacade = (CouponClientFacade) new CustomerFacade();
+			couponClientFacade = new CustomerFacade();
 			break;
 		default:
 			couponClientFacade = null;
