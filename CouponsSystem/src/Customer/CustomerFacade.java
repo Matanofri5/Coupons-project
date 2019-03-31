@@ -44,7 +44,7 @@ public class CustomerFacade implements CouponClientFacade {
 //	public void dropTable () throws Exception{
 //		custDAO.dropTable();
 //	}
-//
+// 
 	@Override
 	public CouponClientFacade login(String name, String password, ClientType clientType) throws Exception {
 		// TODO Auto-generated method stub
