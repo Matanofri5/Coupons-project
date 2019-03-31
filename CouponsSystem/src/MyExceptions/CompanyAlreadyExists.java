@@ -9,8 +9,4 @@ public class CompanyAlreadyExists extends Exception {
 	public CompanyAlreadyExists (String msg) {
 		super(msg);
 	}
-	
-	public String getMessage() {
-		return "this company name is already exist";
-	}
 }
