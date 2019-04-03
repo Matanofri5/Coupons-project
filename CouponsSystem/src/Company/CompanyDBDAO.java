@@ -10,9 +10,19 @@ import java.util.HashSet;
 import java.util.Set;
 import Main.Database;
 
+/**
+ * In this class we have to implement all the method in CompanyDao
+ * every method getting connection to DB and close when finished 
+ */
+
 public class CompanyDBDAO implements CompanyDAO {
 	Connection con;
-
+	
+	/**
+	 * @insert
+	 * This method create new company by getting connection to DB
+	 *  and sending query with values
+	 */
 	@Override
 	public void insertCompany(Company company) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
