@@ -18,7 +18,7 @@ public class DailyTask implements Runnable {
 
 	public void couponExpired() throws Exception {
 
-		Set<Coupon> coupons = couponDBDAO.getAllCoupon();
+		Set<Coupon> coupons = couponDBDAO.getAllCoupons();
 		for (Coupon coupon : coupons) {
 			if (coupon.getEndDate().before(DateUtils.getCurrentDate())) {
 				id = coupon.getId();

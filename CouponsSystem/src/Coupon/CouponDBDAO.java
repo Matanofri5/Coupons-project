@@ -114,7 +114,7 @@ public class CouponDBDAO implements CouponDAO {
 	}
 
 	@Override
-	public Set<Coupon> getAllCoupon() throws Exception {
+	public Set<Coupon> getAllCoupons() throws Exception {
 		Coupon coupon;
 		Set<Coupon> coupons = new HashSet<Coupon>();
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -146,6 +146,7 @@ public class CouponDBDAO implements CouponDAO {
 		}
 		return coupons;
 	}
+
 
 	@Override
 	public void dropTable() throws Exception {

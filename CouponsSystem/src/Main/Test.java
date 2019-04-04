@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 
 import Clients.AdminFacade;
 import Company.Company;
+import Company.CompanyDBDAO;
 import Company.CompanyFacade;
 import CompanyCoupon.CompanyCoupon;
 import CompanyCoupon.CompanyCouponFacade;
@@ -47,6 +48,7 @@ public class Test {
 		// companyFacade.removeCompany(5);
 		// companyFacade.removeCompany(6);
 
+//		System.out.println(companyFacade.getAllCoupon());
 		// companyFacade.dropTable();
 //		 System.out.println(companyFacade.getAllCompany());
 		// System.out.println(companyFacade.getCompany(1));
@@ -95,7 +97,7 @@ public class Test {
 		// couponFacade.removeCoupon(2);
 //		 couponFacade.removeCoupon(48);
 
-//		 System.out.println(couponFacade.getAllCoupon());
+		 System.out.println(couponFacade.getAllCoupon());
 //		 System.out.println(couponFacade.getCoupon(8));
 
 		// couponFacade.dropTable();
@@ -137,6 +139,6 @@ public class Test {
 		AdminFacade adminFacade = new AdminFacade();
 //		adminFacade.updateCustomer(c2, 10, "5655");
 //		adminFacade.removeCustomer(15, 40);
-		adminFacade.removeCompany(1, 3, 26);
+//		adminFacade.removeCompany(1, 3, 26);
 	}
 }

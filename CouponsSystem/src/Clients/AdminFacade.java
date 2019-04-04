@@ -49,7 +49,7 @@ public class AdminFacade implements CouponClientFacade {
 
 	public void addCompany(Company company) throws Exception {
 		try {
-			Set<Company> companies = companyDAO.getAllCompany();
+			Set<Company> companies = companyDAO.getAllCompanys();
 			Iterator<Company> i = companies.iterator();
 			
 			while (i.hasNext()) {
@@ -91,8 +91,8 @@ public class AdminFacade implements CouponClientFacade {
 		return companyDAO.getCompany(id);
 	}
 	
-	public Set<Company> getAllCompany () throws Exception{
-		return companyDAO.getAllCompany();
+	public Set<Company> getAllCompanys () throws Exception{
+		return companyDAO.getAllCompanys();
 	}
 
 	public void addCustomer (Customer customer) throws Exception {

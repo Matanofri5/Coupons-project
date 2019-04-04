@@ -7,6 +7,7 @@ import java.util.Set;
 import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import Coupon.CouponType;
+import Company.CompanyDAO;
 import Clients.ClientType;
 import Clients.CouponClientFacade;
 import Coupon.Coupon;
@@ -21,6 +22,7 @@ public class CompanyFacade implements CouponClientFacade{
 	private CouponDAO couponDAO;
 	private CustomerCouponDAO customerCouponDAO;
 	private Coupon coupon;
+	private CompanyDAO companyDAO;
 	
 	public CompanyFacade(Company company) {
 		this.company = company;
@@ -62,13 +64,12 @@ public class CompanyFacade implements CouponClientFacade{
 
 	@Override
 	public CouponClientFacade login(String name, String password, ClientType clientType) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	public void addCoupon(Coupon coupon) throws Exception {
 		try {
-			Set<Coupon> coupons = couponDAO.getAllCoupon();
+			Set<Coupon> coupons = couponDAO.getAllCoupons();
 			Iterator<Coupon> i = coupons.iterator();
 			
 			while (i.hasNext()) {
@@ -102,7 +103,7 @@ public class CompanyFacade implements CouponClientFacade{
 	}
 	
 	public Set<Coupon> getAllCoupon() throws Exception {
-		return couponDAO.getAllCoupon();
+		return companyDAO.getCoupons(companyId);
 	}
 	
 	public Set<Coupon> getCouponsByType(CouponType couponType){

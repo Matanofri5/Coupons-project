@@ -12,7 +12,7 @@ public interface CouponDAO {
 
 	public Coupon getCoupon(long id) throws Exception;
 
-	public Set<Coupon> getAllCoupon() throws Exception;
+	public Set<Coupon> getAllCoupons() throws Exception;
 
 	public void dropTable() throws Exception;
 }
