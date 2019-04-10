@@ -151,6 +151,6 @@ public class Test {
 //		companyCouponFacade.dropTable();
 		AdminFacade adminFacade = new AdminFacade();
 //		companyFacade.removeCouponById(10, 47);
-		System.out.println("hii");
+		System.out.println("hiiii");
 	}
 }
