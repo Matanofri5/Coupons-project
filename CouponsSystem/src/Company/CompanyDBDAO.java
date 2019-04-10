@@ -52,10 +52,8 @@ public class CompanyDBDAO implements CompanyDAO {
 	@Override
 	public void removeCompany(long id) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
-		try {		String sql = "DELETE FROM Company WHERE id= ?";
-
-			PreparedStatement pstm1 = con.prepareStatement(sql);
-		
+		String sql = "DELETE FROM Company WHERE id= ?";
+		try (PreparedStatement pstm1 = con.prepareStatement(sql);) {
 			con.setAutoCommit(false);
 			pstm1.setLong(1, id);
 			pstm1.executeUpdate();
