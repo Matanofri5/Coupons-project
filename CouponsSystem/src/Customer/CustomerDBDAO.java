@@ -83,7 +83,7 @@ public class CustomerDBDAO implements CustomerDAO {
 				customer.setId(rs.getLong(1));
 				customer.setCustomerName(rs.getString(2));
 				customer.setPassword(rs.getString(3));
-				System.out.println("Get customer success :D ");
+//				System.out.println("Get customer success :D ");
 			}
 		} catch (SQLException e) {
 			System.err.println("Get customer failed :(");
@@ -105,7 +105,7 @@ public class CustomerDBDAO implements CustomerDAO {
 				String customerName = rs.getString(2);
 				String password = rs.getString(3);
 				set.add(new Customer(id, customerName, password));
-				System.out.println("Get all customer success :D ");
+//				System.out.println("Get all customer success :D ");
 			}
 		} catch (SQLException e) {
 			System.err.println("Get all customer failed :( ");

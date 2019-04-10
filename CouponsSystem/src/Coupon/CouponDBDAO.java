@@ -41,14 +41,12 @@ public class CouponDBDAO implements CouponDAO {
 	public void removeCoupon(long id) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
 		String sql = "DELETE FROM Coupon WHERE id=?";
-
 		try (PreparedStatement pstm1 = con.prepareStatement(sql);) {
 			con.setAutoCommit(false);
 			pstm1.setLong(1, id);
 			pstm1.executeUpdate();
 			con.commit();
 			System.out.println("remove Coupon success :D ");
-
 		} catch (SQLException e) {
 			try {
 				con.rollback();
@@ -68,11 +66,8 @@ public class CouponDBDAO implements CouponDAO {
 		try {
 			stm = con.createStatement();
 
-			String sql = "UPDATE Coupon " + " SET title='" + coupon.getTitle() + "', startDate='"
-					+ (Date) coupon.getStartDate() + "', endDate='" + (Date) coupon.getEndDate() + "', amount="
-					+ coupon.getAmount() + ", message='" + coupon.getMessage() + "', price=" + coupon.getPrice()
-					+ ", image='" + coupon.getImage() + "', type='" + coupon.getType() + "' WHERE id=" + coupon.getId();
-
+			String sql = "UPDATE Coupon " + " SET endDate='" + "', price=" + coupon.getPrice() + "' WHERE id=" + coupon.getId();
+			
 			stm.executeUpdate(sql);
 			System.out.println("updated Coupon successe :D" + coupon.getId());
 		} catch (SQLException e) {

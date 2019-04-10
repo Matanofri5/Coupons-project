@@ -16,7 +16,7 @@ public interface CompanyDAO {
 
 	public Set<Company> getAllCompanys() throws Exception;
 	
-	public Set<Coupon> getCoupons(long companyId) throws Exception;
+	public Set<Coupon> getAllCompanyCoupons(long companyId) throws Exception;
 	
 	public void dropTable() throws Exception;
 

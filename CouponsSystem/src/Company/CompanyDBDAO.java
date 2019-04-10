@@ -10,7 +10,9 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
+import CompanyCoupon.CompanyCoupon;
 import Coupon.Coupon;
+import Coupon.CouponDBDAO;
 import Coupon.CouponType;
 import Main.Database;
 
@@ -50,9 +52,10 @@ public class CompanyDBDAO implements CompanyDAO {
 	@Override
 	public void removeCompany(long id) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
-		String sql = "DELETE FROM Company WHERE id= ?";
+		try {		String sql = "DELETE FROM Company WHERE id= ?";
 
-		try (PreparedStatement pstm1 = con.prepareStatement(sql);) {
+			PreparedStatement pstm1 = con.prepareStatement(sql);
+		
 			con.setAutoCommit(false);
 			pstm1.setLong(1, id);
 			pstm1.executeUpdate();
@@ -64,7 +67,7 @@ public class CompanyDBDAO implements CompanyDAO {
 			} catch (SQLException e1) {
 				throw new Exception("Database error");
 			}
-			System.err.println("Company remove faied :( ");
+			System.err.println("Company remove failed :( ");
 		} finally {
 			con.close();
 		}
@@ -73,12 +76,16 @@ public class CompanyDBDAO implements CompanyDAO {
 	@Override
 	public void updateCompany(Company company) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
-		try (Statement stm = con.createStatement()) {
-			String sql = "UPDATE Company " + " SET companyName='" + company.getCompanyName() + "', password='"
-					+ company.getPassword() + "', email='" + company.getEmail() + "' WHERE id=" + company.getId();
-
-			System.out.println("Company update success :D " + company.getId());
-			stm.executeUpdate(sql);
+		try {
+			String sql = "UPDATE Company SET password=?, email=? WHERE comapnyName=?";
+			PreparedStatement pstm = con.prepareStatement(sql);
+			
+			pstm.setString(1, company.getPassword());
+			pstm.setString(2, company.getEmail());
+			pstm.setString(3, company.getCompanyName());
+			pstm.executeUpdate();
+			pstm.close();
+			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 			throw new Exception("Company update failed :( ");
@@ -97,7 +104,7 @@ public class CompanyDBDAO implements CompanyDAO {
 				company.setCompanyName(rs.getString(2));
 				company.setPassword(rs.getString(3));
 				company.setEmail(rs.getString(4));
-				System.out.println("Get company success :D ");
+//				System.out.println("Get company success :D ");
 			}
 
 		} catch (SQLException e) {
@@ -122,9 +129,8 @@ public class CompanyDBDAO implements CompanyDAO {
 				String companyName = rs.getString(2);
 				String password = rs.getString(3);
 				String email = rs.getString(4);
-
 				set.add(new Company(id, companyName, password, email));
-				System.out.println("Get all company success :D ");
+//				System.out.println("Get all company success :D ");
 			}
 		} catch (SQLException e) {
 			System.err.println(e);
@@ -136,28 +142,21 @@ public class CompanyDBDAO implements CompanyDAO {
 	}
 
 	@Override
-	public Set<Coupon> getCoupons(long companyId) throws Exception {
-		Coupon coupon;
+	public Set<Coupon> getAllCompanyCoupons(long companyId) throws Exception {
 		Set<Coupon> coupons = new HashSet<Coupon>();
 		con = DriverManager.getConnection(Database.getDBUrl());
 		java.sql.Statement stm = null;
+		CouponDBDAO coupon = new CouponDBDAO();
+
 		try {
-			stm = con.createStatement();
-			String sql = "SELECT * FROM Coupon WHERE companyId=?";
-			ResultSet rs = stm.executeQuery(sql);
+			String sql = "SELECT COUPONID FROM CompanyCoupon WHERE COMPANYID=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1,companyId) ;
+			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				coupon = new Coupon();
-				coupon.setId(rs.getLong(1));
-				coupon.setTitle(rs.getString(2));
-				coupon.setEndDate((Date) rs.getDate(3));
-				coupon.setStartDate((Date) rs.getDate(4));
-				coupon.setAmount(rs.getInt(5));
-				coupon.setMessage(rs.getString(6));
-				coupon.setPrice(rs.getDouble(7));
-				coupon.setImage(rs.getString(8));
-				CouponType type = CouponType.valueOf(rs.getString(9));
-				coupon.setType(type);
-				coupons.add(coupon);
+				
+				coupons.add(coupon.getCoupon(rs.getLong("COUPON_ID")));
+
 				System.out.println("Get coupons by company success :D ");
 			}
 		} catch (SQLException e) {

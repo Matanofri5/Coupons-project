@@ -23,6 +23,9 @@ public class CompanyFacade implements CouponClientFacade{
 	private CustomerCouponDAO customerCouponDAO;
 	private Coupon coupon;
 	private CompanyDAO companyDAO;
+	private CustomerCouponDBDAO customerCouponDBDAO;
+
+	
 	
 	public CompanyFacade(Company company) {
 		this.company = company;
@@ -71,7 +74,6 @@ public class CompanyFacade implements CouponClientFacade{
 		try {
 			Set<Coupon> coupons = couponDAO.getAllCoupons();
 			Iterator<Coupon> i = coupons.iterator();
-			
 			while (i.hasNext()) {
 				Coupon current = i.next();
 				if (coupon.getTitle().equals(current.getTitle())) {
@@ -90,13 +92,19 @@ public class CompanyFacade implements CouponClientFacade{
 	
 	public void removeCouponById(long customerId, long couponId) throws Exception {
 		couponDAO.removeCoupon(couponId);
-		customerCouponDAO.removeCustomerCoupon(customerId, couponId);
+		customerCouponDBDAO.removeCustomerCoupon(customerId, couponId);
 	}	
 	
-	public void updateCoupon(Date newEndDate, double newPrice) {
+	public void updateCoupon(Coupon coupon, long whatid, Date newEndDate, double newPrice)
+			throws Exception {
+		coupon.setId(whatid);
 		coupon.setEndDate(newEndDate);
 		coupon.setPrice(newPrice);
+		
+
+		couponDAO.updateCoupon(coupon);
 	}
+	
 	
 	public Company getCouponById(long couponId) throws Exception {
 		return companyDBDAO.getCompany(couponId);

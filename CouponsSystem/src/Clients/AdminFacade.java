@@ -29,6 +29,7 @@ public class AdminFacade implements CouponClientFacade {
 	private CustomerCouponDAO customerCouponDAO;
 	private CustomerCouponDBDAO customerCouponDBDAO;
 	private CompanyCouponDBDAO companyCouponDBDAO;
+	private Company company;
 
 	public AdminFacade() throws Exception {
 		this.companyDAO = new CompanyDBDAO();
@@ -74,9 +75,9 @@ public class AdminFacade implements CouponClientFacade {
 	public void removeCompany (long companyId, long couponId, long customerId) throws Exception {
 		companyCouponDBDAO.removeCompanyCoupon(companyId, couponId);
 		companyDAO.removeCompany(companyId);
-//		customerDAO.removeCustomer(customerId);   it"s also need to be removed ?
-//		couponDAO.removeCoupon(couponId);   it's also need to be removed ?
-//		customerCouponDAO.removeCustomerCoupon(customerId, couponId);
+		customerDAO.removeCustomer(customerId);
+		couponDAO.removeCoupon(couponId);   
+		customerCouponDBDAO.removeCustomerCoupon(customerId, couponId);
 		
 	}
 	
@@ -88,10 +89,12 @@ public class AdminFacade implements CouponClientFacade {
 	}
 	
 	public Company getCompany (long id) throws Exception {
+		System.out.println(companyDAO.getCompany(id));
 		return companyDAO.getCompany(id);
 	}
 	
 	public Set<Company> getAllCompanys () throws Exception{
+		System.out.println(companyDAO.getAllCompanys());
 		return companyDAO.getAllCompanys();
 	}
 
@@ -119,7 +122,6 @@ public class AdminFacade implements CouponClientFacade {
 	public void removeCustomer (long customerId,long couponId) throws Exception {
 		customerCouponDBDAO.removeCustomerCoupon(customerId, couponId);
 		customerDAO.removeCustomer(customerId);
-//		couponDAO.removeCoupon(couponId);   it's also need to be removed ?
 
 	}
 	
@@ -130,10 +132,12 @@ public class AdminFacade implements CouponClientFacade {
 	}
 	
 	public Set<Customer>getAllCustomer () throws Exception{
+		System.out.println(customerDAO.getAllCustomer());
 		return customerDAO.getAllCustomer();
 	}
 	
 	public Customer getCustomer (long id) throws Exception {
+		System.out.println(customerDAO.getCustomer(id));
 		return customerDAO.getCustomer(id);
 	}
 }

@@ -18,9 +18,9 @@ public class CustomerCouponFacade {
 		customerCouponDBDAO.insertCustomerCoupon(customerCoupon);
 	}
 
-//	public void removeCustomerCoupon(long customerId, long couponId) throws Exception {
-//		customerCouponDBDAO.removeCustomerCoupon(customerId, couponId);
-//	}
+	public void removeCustomerCoupon(long customerId, long couponId) throws Exception {
+		customerCouponDBDAO.removeCustomerCoupon(customerId, couponId);
+	}
 
 	public void updateCustomerCoupon(CustomerCoupon customerCoupon, long newcustomerId, long newcouponId)
 			throws Exception {
@@ -35,7 +35,6 @@ public class CustomerCouponFacade {
 	}
 
 	public Set<CustomerCoupon> getAllCustomerCoupon() throws Exception {
-		// CustomerCouponDBDAO customerCouponDAO=new CustomerCouponDBDAO();
 		return customerCouponDBDAO.getAllCustomerCoupon();
 	}
 
