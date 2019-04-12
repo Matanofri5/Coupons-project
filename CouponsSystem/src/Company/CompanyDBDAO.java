@@ -75,7 +75,7 @@ public class CompanyDBDAO implements CompanyDAO {
 	public void updateCompany(Company company) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
 		try {
-			String sql = "UPDATE Company SET password=?, email=? WHERE comapnyName=?";
+			String sql = "UPDATE Company SET password=?, email=? WHERE companyName=?";
 			PreparedStatement pstm = con.prepareStatement(sql);
 			
 			pstm.setString(1, company.getPassword());
