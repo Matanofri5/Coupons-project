@@ -27,6 +27,7 @@ public class Coupon {
 	 */
 	public Coupon() {
 	}
+	
 
 	/**
 	 * @Full CTOR
