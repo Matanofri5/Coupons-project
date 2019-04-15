@@ -84,7 +84,7 @@ public class AdminFacade implements CouponClientFacade {
 	public void updateCompany (Company company) throws Exception {
 //		company.setPassword(newPassword);
 //		company.setEmail(newEmail);
-//		
+//	
 		companyDAO.updateCompany(company);
 	}
 	

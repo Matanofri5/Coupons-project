@@ -101,10 +101,14 @@ public class CompanyFacade implements CouponClientFacade{
 		coupon.setEndDate(newEndDate);
 		coupon.setPrice(newPrice);
 		
-
 		couponDAO.updateCoupon(coupon);
 	}
 	
+	public Company getCompany(long id) throws Exception {
+		System.out.println(companyDBDAO.getCompany(id));
+		return companyDBDAO.getCompany(id);
+	
+	}
 	
 	public Company getCouponById(long couponId) throws Exception {
 		return companyDBDAO.getCompany(couponId);

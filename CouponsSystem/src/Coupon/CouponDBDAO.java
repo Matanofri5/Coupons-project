@@ -62,13 +62,14 @@ public class CouponDBDAO implements CouponDAO {
 	@Override
 	public void updateCoupon(Coupon coupon) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
-		java.sql.Statement stm = null;
 		try {
-			stm = con.createStatement();
-
 			String sql = "UPDATE Coupon " + " SET endDate='" + "', price=" + coupon.getPrice() + "' WHERE id=" + coupon.getId();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setDate(1,(Date) coupon.getEndDate());
+			pstmt.setDouble(2, coupon.getPrice());
 			
-			stm.executeUpdate(sql);
+			pstmt.executeUpdate();
+			pstmt.close();
 			System.out.println("updated Coupon successe :D" + coupon.getId());
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

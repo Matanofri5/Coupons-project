@@ -149,11 +149,10 @@ public class Test {
 //		System.out.println(companyCouponFacade.getAllCompanyCoupon());
 		
 //		companyCouponFacade.dropTable();
-		AdminFacade adminFacade = new AdminFacade();
-		Company tmpCompany = adminFacade.getCompany(123);
-		tmpCompany.setEmail("kobi@gmail.com");
-		adminFacade.updateCompany(tmpCompany);
+	
 //		companyFacade.removeCouponById(10, 47);
+		AdminFacade adminFacade = new AdminFacade();
 		
+		companyFacade.getCompany(14);
 	}
 }
