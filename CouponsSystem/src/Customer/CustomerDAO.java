@@ -2,6 +2,8 @@ package Customer;
 
 import java.util.Set;
 
+import Coupon.Coupon;
+
 public interface CustomerDAO {
 	public void insertCustomer(Customer Customer) throws Exception;
 
@@ -12,6 +14,8 @@ public interface CustomerDAO {
 	public Customer getCustomer(long id) throws Exception;
 
 	public Set<Customer> getAllCustomer() throws Exception;
+	
+	public void customerPurchaseCoupon (Coupon coupon, Customer customer) throws Exception;
 
 	public void dropTable() throws Exception;
 

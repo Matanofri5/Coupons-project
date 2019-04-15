@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
+
+import Coupon.Coupon;
+import CustomerCoupon.CustomerCoupon;
 import Main.Database;
 
 public class CustomerDBDAO implements CustomerDAO {
@@ -114,6 +117,26 @@ public class CustomerDBDAO implements CustomerDAO {
 			con.close();
 		}
 		return set;
+	}
+	
+	@Override
+	public void customerPurchaseCoupon (Coupon coupon, Customer customer) throws Exception {
+		con = DriverManager.getConnection(Database.getDBUrl());
+		String sql = "INSERT INTO CustomerCoupon (customerId,couponId)  VALUES(?,?)";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+			pstmt.setLong(1, coupon.getId());
+			pstmt.setLong(2, customer.getId());
+
+			pstmt.executeUpdate();
+
+			System.out.println("Customer purchase coupon :D  ");
+		} catch (SQLException e) {
+			System.err.println("customer failed to purchase coupon :( ");
+			System.err.println(e.getMessage());
+		} finally {
+			con.close();
+		}
 	}
 
 	@Override

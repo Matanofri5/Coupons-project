@@ -5,15 +5,21 @@ import java.util.Set;
 import Clients.ClientType;
 import Clients.CouponClientFacade;
 import Coupon.Coupon;
+import Coupon.CouponDAO;
+import Coupon.CouponDBDAO;
+import MyExceptions.CouponNotAvailableException;
 
 public class CustomerFacade implements CouponClientFacade {
 	private CustomerDBDAO custDAO = new CustomerDBDAO();
 	private Customer customer;
+	private CouponDAO couponDAO;
+	private Coupon coupon;
 
 	public CustomerFacade(Customer customer) {
 		this.customer = customer;
 	}
-
+	
+	  
 	public CustomerFacade() {
 	}
 
@@ -51,10 +57,18 @@ public class CustomerFacade implements CouponClientFacade {
 		return null;
 	}
 	
-	public void purchaseCoupon(Coupon coupon) {
+	public void purchaseCoupon(Coupon coupon) throws Exception {
+		Coupon custcoupon = couponDAO.getCoupon(coupon.getId());
+		
+		if (custcoupon == null) {
+			throw new CouponNotAvailableException("customer failed purchase coupon");
+			
+		}
+
 		
 	}
 	public void getAllpurchasedCoupons() {
+		
 		
 	}
 	
@@ -62,7 +76,7 @@ public class CustomerFacade implements CouponClientFacade {
 		
 	}
 	
-	public void getAllpurchasedCouponsByPrice(Price price) {
+	public void getAllpurchasedCouponsByPrice(Double price) {
 		
 	}
 	
