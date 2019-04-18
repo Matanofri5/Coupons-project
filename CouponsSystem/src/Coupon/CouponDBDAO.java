@@ -10,9 +10,31 @@ import java.util.HashSet;
 import java.util.Set;
 import Main.Database;
 
+/**
+ * @Author - Linoy & Matan
+ * @Description: In this class we have to implement all the method in CouponDAO
+ * every method getting connection to DB and close when finished, and run an SQL
+ * Query by prepareStatement
+ */
 public class CouponDBDAO implements CouponDAO {
+	
+	/**
+	 * Data Members
+	 */
 	Connection con;
 
+	/**
+	 * @Empty CTOR
+	 */
+	public CouponDBDAO() {
+	}
+	
+	/**
+	 * @insert
+	 * this method Receives data about a new Coupon, And creates it in a table of Coupons.
+	 *  @param Coupon object
+	 *  @throws Exception
+	 */
 	@Override
 	public void insertCoupon(Coupon coupon) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -37,6 +59,12 @@ public class CouponDBDAO implements CouponDAO {
 		}
 	}
 
+	/**
+	 * @remove
+	 * this method delete 1 object of Coupon by Coupon id, from Coupons table.
+	 *  @param long id
+	 *  @throws Exception
+	 */
 	@Override
 	public void removeCoupon(long id) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -59,6 +87,12 @@ public class CouponDBDAO implements CouponDAO {
 		}
 	}
 
+	/**
+	 * @update
+	 * this method update 1 object of Coupon, from Coupons table.
+	 *  @param Coupon object
+	 *  @throws Exception
+	 */
 	@Override
 	public void updateCoupon(Coupon coupon) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -77,6 +111,13 @@ public class CouponDBDAO implements CouponDAO {
 		}
 	}
 
+	/**
+	 * @get1
+	 * this method get and print 1 object of Coupon by Coupon id, from Coupons table.
+	 *  @param long id
+	 *  @return Coupon object
+	 *  @throws Exception
+	 */
 	@Override
 	public Coupon getCoupon(long id) throws Exception {
 		Coupon coupon = new Coupon();

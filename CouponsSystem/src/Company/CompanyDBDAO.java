@@ -17,17 +17,30 @@ import Coupon.CouponType;
 import Main.Database;
 
 /**
- * In this class we have to implement all the method in CompanyDao
- * every method getting connection to DB and close when finished 
+ * @Author - Linoy & Matan
+ * @Description: In this class we have to implement all the method in CompanyDao
+ * every method getting connection to DB and close when finished, and run an SQL
+ * Query by prepareStatement
  */
 
 public class CompanyDBDAO implements CompanyDAO {
+	
+	/**
+	 * Data Members
+	 */
 	Connection con;
 	
 	/**
+	 * @Empty CTOR
+	 */
+	public CompanyDBDAO() {
+	}
+	
+	/**
 	 * @insert
-	 * This method create new company by getting connection to DB
-	 *  and sending query with values
+	 * this method Receives data about a new company, And creates it in a table of companies.
+	 *  @param company object
+	 *  @throws Exception
 	 */
 	@Override
 	public void insertCompany(Company company) throws Exception {
@@ -49,6 +62,12 @@ public class CompanyDBDAO implements CompanyDAO {
 		}
 	}
 
+	/**
+	 * @remove
+	 * this method delete 1 object of company by company id, from companies table.
+	 *  @param long id
+	 *  @throws Exception
+	 */
 	@Override
 	public void removeCompany(long id) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -71,6 +90,12 @@ public class CompanyDBDAO implements CompanyDAO {
 		}
 	}
 
+	/**
+	 * @update
+	 * this method update 1 object of company, from companies table.
+	 *  @param company object
+	 *  @throws Exception
+	 */
 	@Override
 	public void updateCompany(Company company) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -90,6 +115,13 @@ public class CompanyDBDAO implements CompanyDAO {
 		}
 	}
 
+	/**
+	 * @get1
+	 * this method get and print 1 object of company by company id, from companies table.
+	 *  @param long id
+	 *  @return company object
+	 *  @throws Exception
+	 */
 	@Override
 	public Company getCompany(long id) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -114,6 +146,13 @@ public class CompanyDBDAO implements CompanyDAO {
 		return company;
 	}
 
+	/**
+	 * @get1
+	 * this method get and print 1 object of company by company id, from companies table.
+	 *  @param long id
+	 *  @return company object
+	 *  @throws Exception
+	 */
 	@Override
 	public Set<Company> getAllCompanys() throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());

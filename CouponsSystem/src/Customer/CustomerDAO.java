@@ -4,7 +4,13 @@ import java.util.Set;
 
 import Coupon.Coupon;
 
+/**
+ * @Author - Linoy & Matan
+ * @Description:
+ * interface class, has all the functions that Customer use in: Customer table
+ */
 public interface CustomerDAO {
+	
 	public void insertCustomer(Customer Customer) throws Exception;
 
 	public void removeCustomer(long id) throws Exception;

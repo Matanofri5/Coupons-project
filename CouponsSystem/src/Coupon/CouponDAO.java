@@ -2,6 +2,11 @@ package Coupon;
 
 import java.util.Set;
 
+/**
+ * @Author - Linoy & Matan
+ * @Description:
+ * interface class, has all the functions that Coupon use in: Coupon table
+ */
 public interface CouponDAO {
 	
 	public void insertCoupon(Coupon coupon) throws Exception;

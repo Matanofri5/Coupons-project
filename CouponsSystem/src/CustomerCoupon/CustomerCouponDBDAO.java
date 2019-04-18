@@ -12,9 +12,31 @@ import java.util.Set;
 import Customer.Customer;
 import Main.Database;
 
+/**
+ * @Author - Linoy & Matan
+ * @Description: In this class we have to implement all the method in CustomerCouponDAO
+ * every method getting connection to DB and close when finished, and run an SQL
+ * Query by prepareStatement
+ */
 public class CustomerCouponDBDAO implements CustomerCouponDAO {
+	
+	/**
+	 * Data Members
+	 */
 	Connection con;
+	
+	/**
+	 * @Empty CTOR
+	 */
+	public CustomerCouponDBDAO() {
+	}
 
+	/**
+	 * @insert
+	 * this method Receives data about a new CustomerCoupon, And creates it in a table of CustomerCoupon.
+	 *  @param CustomerCoupon object
+	 *  @throws Exception
+	 */
 //	@Override
 //	public void insertCustomerCoupon(CustomerCoupon customerCoupon) throws Exception {
 //		con = DriverManager.getConnection(Database.getDBUrl());
@@ -35,6 +57,12 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO {
 //		}
 //	}
 
+	/**
+	 * @remove
+	 * this method delete 1 object of CustomerCoupon by Customer & Coupon id, from CustomerCoupon table.
+	 *  @param long Customer & Coupon id
+	 *  @throws Exception
+	 */
 	@Override
 	public void removeCustomerCoupon(long customerId, long couponId) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());

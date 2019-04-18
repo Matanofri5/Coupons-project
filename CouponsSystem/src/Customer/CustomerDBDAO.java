@@ -13,9 +13,31 @@ import Coupon.Coupon;
 import CustomerCoupon.CustomerCoupon;
 import Main.Database;
 
+/**
+ * @Author - Linoy & Matan
+ * @Description: In this class we have to implement all the method in CustomerDAO
+ * every method getting connection to DB and close when finished, and run an SQL
+ * Query by prepareStatement
+ */
 public class CustomerDBDAO implements CustomerDAO {
+	
+	/**
+	 * Data Members
+	 */
 	Connection con;
 
+	/**
+	 * @Empty CTOR
+	 */
+	public CustomerDBDAO() {
+	}
+	
+	/**
+	 * @insert
+	 * this method Receives data about a new Customer, And creates it in a table of Customers.
+	 *  @param Customer object
+	 *  @throws Exception
+	 */
 	@Override
 	public void insertCustomer(Customer customer) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -35,6 +57,12 @@ public class CustomerDBDAO implements CustomerDAO {
 		}
 	}
 
+	/**
+	 * @remove
+	 * this method delete 1 object of Customer by Customer id, from Customers table.
+	 *  @param long id
+	 *  @throws Exception
+	 */
 	@Override
 	public void removeCustomer(long id) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -59,6 +87,12 @@ public class CustomerDBDAO implements CustomerDAO {
 		}
 	}
 
+	/**
+	 * @update
+	 * this method update 1 object of Customer, from Customers table.
+	 *  @param Customer object
+	 *  @throws Exception
+	 */
 	@Override
 	public void updateCustomer(Customer customer) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -75,6 +109,13 @@ public class CustomerDBDAO implements CustomerDAO {
 		}
 	}
 
+	/**
+	 * @get1
+	 * this method get and print 1 object of Customer by Customer id, from Customers table.
+	 *  @param long id
+	 *  @return Customer object
+	 *  @throws Exception
+	 */
 	@Override
 	public Customer getCustomer(long id) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());

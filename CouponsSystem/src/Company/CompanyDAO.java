@@ -4,6 +4,11 @@ import java.util.Set;
 
 import Coupon.Coupon;
 
+/**
+ * @Author - Linoy & Matan
+ * @Description:
+ * interface class, has all the functions that Company use in: company table
+ */
 public interface CompanyDAO {
 
 	public void insertCompany(Company company) throws Exception;

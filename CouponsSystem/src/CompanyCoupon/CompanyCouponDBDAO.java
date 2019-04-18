@@ -13,9 +13,31 @@ import Main.Database;
 import CustomerCoupon.CustomerCoupon;
 import Main.Database;
 
+/**
+ * @Author - Linoy & Matan
+ * @Description: In this class we have to implement all the method in CompanyCouponDAO
+ * every method getting connection to DB and close when finished, and run an SQL
+ * Query by prepareStatement
+ */
 public class CompanyCouponDBDAO implements CompanyCouponDAO {
+	
+	/**
+	 * Data Members
+	 */
 	Connection con;
 
+	/**
+	 * @Empty CTOR
+	 */
+	public CompanyCouponDBDAO() {
+	}
+	
+	/**
+	 * @insert
+	 * this method Receives data about a new CompanyCoupon, And creates it in a table of CompanyCoupon.
+	 *  @param CompanyCoupon object
+	 *  @throws Exception
+	 */
 	@Override
 	public void insertCompanyCoupon(CompanyCoupon companyCoupon) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -35,6 +57,12 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 		}
 	}
 
+	/**
+	 * @remove
+	 * this method delete 1 object of CompanyCoupon by Company & Coupon id, from CompanyCoupon table.
+	 *  @param long Company & Coupon id 
+	 *  @throws Exception
+	 */
 	@Override
 	public void removeCompanyCoupon(long companyId, long couponId) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());

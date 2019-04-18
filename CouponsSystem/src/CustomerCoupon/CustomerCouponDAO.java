@@ -2,6 +2,11 @@ package CustomerCoupon;
 
 import java.util.Set;
 
+/**
+ * @Author - Linoy & Matan
+ * @Description:
+ * interface class, has all the functions that CustomerCoupon use in: CustomerCoupon table
+ */
 public interface CustomerCouponDAO {
 
 //	public void insertCustomerCoupon(CustomerCoupon customerCoupon) throws Exception;
