@@ -56,8 +56,8 @@ public class CompanyFacade implements CouponClientFacade{
 //	}
 //
 //	public Set<Company> getAllCompany() throws Exception {
-//		// CompanyDBDAO comDAO=new CompanyDBDAO();
-//		return companyDBDAO.getAllCompany();
+//		System.out.println(companyDBDAO.getAllCompanys());
+//		return companyDBDAO.getAllCompanys();
 //	}
 //
 //	public void dropTable() throws Exception {

@@ -153,6 +153,7 @@ public class Test {
 //		companyFacade.removeCouponById(10, 47);
 		AdminFacade adminFacade = new AdminFacade();
 		
-		companyFacade.getCompany(14);
+//		companyFacade.getCompany(14);
+		adminFacade.getAllCompanys();
 	}
 }

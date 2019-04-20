@@ -32,6 +32,7 @@ public class AdminFacade implements CouponClientFacade {
 	private static final String adminName = "admin";
 	private static final String adminPassword = "1234";
 	private CompanyDAO companyDAO;
+	private CompanyDBDAO companyDBDAO = new CompanyDBDAO();
 	private CustomerDAO customerDAO;
 	private CouponDAO couponDAO;
 	private CustomerCouponDBDAO customerCouponDBDAO;
@@ -152,8 +153,8 @@ public class AdminFacade implements CouponClientFacade {
 	 * @throws Exception
 	 */
 	public Set<Company> getAllCompanys() throws Exception {
-		System.out.println(companyDAO.getAllCompanys());
-		return companyDAO.getAllCompanys();
+		System.out.println(companyDBDAO.getAllCompanys());
+		return companyDBDAO.getAllCompanys();
 	}
 	
 	/**

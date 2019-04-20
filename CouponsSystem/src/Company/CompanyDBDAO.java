@@ -157,10 +157,11 @@ public class CompanyDBDAO implements CompanyDAO {
 	@Override
 	public Set<Company> getAllCompanys() throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
-		Set<Company> set = new HashSet<>();
+		Set<Company> set = new HashSet<Company>();
+		String sql = "SELECT * FROM Company";
+
 		try {
 			Statement stm = con.createStatement();
-			String sql = "SELECT * FROM Company";
 			ResultSet rs = stm.executeQuery(sql);
 			while (rs.next()) {
 				long id = rs.getLong(1);
