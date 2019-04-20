@@ -15,6 +15,7 @@ import Coupon.Coupon;
 import Coupon.CouponDBDAO;
 import Coupon.CouponType;
 import Main.Database;
+import MyExceptions.LoginException;
 
 /**
  * @Author - Linoy & Matan
@@ -206,6 +207,30 @@ public class CompanyDBDAO implements CompanyDAO {
 	}
 	
 	@Override
+	public boolean login(String companyName, String password) throws Exception, LoginException {
+		con = DriverManager.getConnection(Database.getDBUrl());
+		
+		boolean logicSuccess = false;
+		
+		try {
+			String sql = "SELECT * FROM company WHERE COMPANYNAME=? AND PASSWORD=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, companyName);
+			pstmt.setString(2, password);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				logicSuccess = true;
+			}
+			
+		}catch (Exception e) {
+			throw new LoginException("comapny failed to login");
+		}finally {
+			con.close();
+		}
+		return logicSuccess;
+	}
+	
+	@Override
 	public void dropTable() throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
 		try {
@@ -224,6 +249,5 @@ public class CompanyDBDAO implements CompanyDAO {
 				System.err.println("the connection cannot closed :( " + ex.getMessage());
 			}
 		}
-
 	}
 }
