@@ -64,6 +64,10 @@ public class CompanyFacade implements CouponClientFacade{
 //		companyDBDAO.dropTable();
 //	}
 	
+//	public Set <Coupon> getAllCompanyCoupons(long companyId) throws Exception{
+//		return companyDAO.getAllCompanyCoupons(companyId);
+//	}
+	
 
 	@Override
 	public CouponClientFacade login(String name, String password, ClientType clientType) throws Exception {

@@ -42,10 +42,10 @@ public class CustomerFacade implements CouponClientFacade {
 //		return custDAO.getCustomer(id);
 //	}
 //
-//	public Set<Customer> getAllCustomer() throws Exception {
-////		 CustomerCompanyDBDAO cusDAO=new CustomerDBDAO();
-//		return custDAO.getAllCustomer();
-//	}
+	public Set<Customer> getAllCustomer() throws Exception {
+		System.out.println(custDAO.getAllCustomer());
+		return custDAO.getAllCustomer();
+	}
 //
 //	public void dropTable () throws Exception{
 //		custDAO.dropTable();

@@ -182,9 +182,8 @@ public class CompanyDBDAO implements CompanyDAO {
 
 	@Override
 	public Set<Coupon> getAllCompanyCoupons(long companyId) throws Exception {
-		Set<Coupon> coupons = new HashSet<Coupon>();
 		con = DriverManager.getConnection(Database.getDBUrl());
-		java.sql.Statement stm = null;
+		Set<Coupon> coupons = new HashSet<Coupon>();
 		CouponDBDAO coupon = new CouponDBDAO();
 
 		try {
@@ -194,7 +193,7 @@ public class CompanyDBDAO implements CompanyDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				
-				coupons.add(coupon.getCoupon(rs.getLong("COUPON_ID")));
+				coupons.add(coupon.getCoupon(rs.getLong("COUPONID")));
 
 				System.out.println("Get coupons by company success :D ");
 			}

@@ -173,7 +173,7 @@ public class CouponDBDAO implements CouponDAO {
 				CouponType type = CouponType.valueOf(rs.getString(9));
 				coupon.setType(type);
 				coupons.add(coupon);
-				System.out.println("Get all coupon success :D ");
+//				System.out.println("Get all coupon success :D ");
 			}
 		} catch (SQLException e) {
 			System.err.println("Get all coupon failed :( ");
@@ -183,7 +183,13 @@ public class CouponDBDAO implements CouponDAO {
 		}
 		return coupons;
 	}
-
+	
+	@Override
+	public Set<Coupon> getAllCouponsByType(CouponType couponType) throws Exception {
+		
+		return null;
+	}
+	
 
 	@Override
 	public void dropTable() throws Exception {
@@ -204,6 +210,5 @@ public class CouponDBDAO implements CouponDAO {
 				System.err.println("the connection cannot closed :( " + ex.getMessage());
 			}
 		}
-
 	}
 }

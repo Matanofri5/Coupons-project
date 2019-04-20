@@ -12,6 +12,7 @@ import java.util.Set;
 import Coupon.Coupon;
 import CustomerCoupon.CustomerCoupon;
 import Main.Database;
+import MyExceptions.LoginException;
 
 /**
  * @Author - Linoy & Matan
@@ -149,7 +150,6 @@ public class CustomerDBDAO implements CustomerDAO {
 				String customerName = rs.getString(2);
 				String password = rs.getString(3);
 				set.add(new Customer(id, customerName, password));
-//				System.out.println("Get all customer success :D ");
 			}
 		} catch (SQLException e) {
 			System.err.println("Get all customer failed :( ");
@@ -178,6 +178,35 @@ public class CustomerDBDAO implements CustomerDAO {
 		} finally {
 			con.close();
 		}
+	}
+	
+	@Override
+	public Set<Coupon> getAllCustomerCoupons(long customerId) throws Exception {
+		return null;
+	}
+	
+	@Override
+	public boolean login(String customerName, String password) throws Exception, LoginException {
+		con = DriverManager.getConnection(Database.getDBUrl());
+		
+		boolean logicSuccess = false;
+		
+		try {
+			String sql = "SELECT * FROM customer WHERE CUSTOMERNAME=? AND PASSWORD=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, customerName);
+			pstmt.setString(2, password);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				logicSuccess = true;
+			}
+			
+		}catch (Exception e) {
+			throw new LoginException("customer failed to login");
+		}finally {
+			con.close();
+		}
+		return logicSuccess;
 	}
 
 	@Override

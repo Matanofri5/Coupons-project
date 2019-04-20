@@ -154,6 +154,8 @@ public class Test {
 		AdminFacade adminFacade = new AdminFacade();
 		
 //		companyFacade.getCompany(14);
-		adminFacade.getAllCompanys();
+//		adminFacade.getAllCompanys();
+
+//		System.out.println(couponFacade.getAllCoupon());
 	}
 }

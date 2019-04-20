@@ -21,7 +21,11 @@ public interface CustomerDAO {
 
 	public Set<Customer> getAllCustomer() throws Exception;
 	
+	public Set<Coupon> getAllCustomerCoupons(long customerId) throws Exception;
+	
 	public void customerPurchaseCoupon (Coupon coupon, Customer customer) throws Exception;
+	
+	public boolean login (String customerName, String password) throws Exception;
 
 	public void dropTable() throws Exception;
 
