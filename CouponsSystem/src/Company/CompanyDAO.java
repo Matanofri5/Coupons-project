@@ -23,6 +23,8 @@ public interface CompanyDAO {
 	
 	public Set<Coupon> getAllCompanyCoupons(long companyId) throws Exception;
 	
+	public boolean login (String companyName, String email) throws Exception;
+	
 	public void dropTable() throws Exception;
 
 }
