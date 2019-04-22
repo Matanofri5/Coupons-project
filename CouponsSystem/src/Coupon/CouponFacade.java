@@ -22,28 +22,21 @@ public class CouponFacade {
 		couponDBDAO.removeCoupon(id);
 	}
 
-	public void updateCoupon(Coupon coupon, long whatid, String newTitle, Date newStartDate, Date newEndDate,
-			int newAmount, String newMessage, double newPrice, String newImage, CouponType newcouponType)
+	public void updateCoupon(Coupon coupon, long whatid, Date newEndDate, double newPrice)
 			throws Exception {
 		coupon.setId(whatid);
-		coupon.setTitle(newTitle);
-		coupon.setStartDate(newStartDate);
 		coupon.setEndDate(newEndDate);
-		coupon.setAmount(newAmount);
-		coupon.setMessage(newMessage);
 		coupon.setPrice(newPrice);
-		coupon.setImage(newImage);
-		coupon.setType(newcouponType);
 
 		couponDBDAO.updateCoupon(coupon);
 	}
 
+	
 	public Coupon getCoupon(long id) throws Exception {
 		return couponDBDAO.getCoupon(id);
 	}
 
 	public Set<Coupon> getAllCoupon() throws Exception {
-		// CouponDBDAO copDAO=new CouponDBDAO();
 		return couponDBDAO.getAllCoupons();
 	}
 

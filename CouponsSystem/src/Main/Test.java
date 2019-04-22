@@ -157,5 +157,7 @@ public class Test {
 //		adminFacade.getAllCompanys();
 
 //		System.out.println(couponFacade.getAllCoupon());
+		couponFacade.updateCoupon(u5, 3, DateUtils.getExpiredDate(), 22.4);
+		
 	}
 }

@@ -8,6 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.apache.derby.iapi.db.Factory;
+
 import Main.Database;
 
 /**
@@ -97,10 +100,18 @@ public class CouponDBDAO implements CouponDAO {
 	public void updateCoupon(Coupon coupon) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
 		try {
-			String sql = "UPDATE Coupon " + " SET endDate='" + "', price=" + coupon.getPrice() + "' WHERE id=" + coupon.getId();
+			String sql ="UPDATE Coupon SET TITLE=?, STARTDATE=?, ENDDATE=?, AMOUNT=?, MESSAGE=?, PRICE=?, IMAGE=?, TYPE=? WHERE ID=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setDate(1,(Date) coupon.getEndDate());
-			pstmt.setDouble(2, coupon.getPrice());
+			pstmt.setLong(1, coupon.getId());
+			pstmt.setString(2, coupon.getTitle());
+			pstmt.setDate(3,(Date) coupon.getStartDate());
+			pstmt.setDate(4,(Date) coupon.getEndDate());
+			pstmt.setInt(5, coupon.getAmount());
+			pstmt.setString(6, coupon.getMessage());
+			pstmt.setDouble(7, coupon.getPrice());
+			pstmt.setString(8, coupon.getImage());
+			pstmt.setString(9, coupon.getType().toString());
+			
 			
 			pstmt.executeUpdate();
 			pstmt.close();
