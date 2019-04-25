@@ -18,6 +18,7 @@ import CustomerCoupon.CustomerCouponDBDAO;
 
 public class CompanyFacade implements CouponClientFacade{
 	private CompanyDBDAO companyDBDAO = new CompanyDBDAO();
+	private CouponDBDAO couponDBDAO = new CouponDBDAO();
 	private Company company;
 	private CouponDAO couponDAO;
 	private CustomerCouponDAO customerCouponDAO;
@@ -105,7 +106,7 @@ public class CompanyFacade implements CouponClientFacade{
 		coupon.setEndDate(newEndDate);
 		coupon.setPrice(newPrice);
 		
-		couponDAO.updateCoupon(coupon);
+		couponDBDAO.updateCoupon(coupon);
 	}
 	
 	public Company getCompany(long id) throws Exception {

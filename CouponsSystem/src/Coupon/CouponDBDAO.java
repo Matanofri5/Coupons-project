@@ -102,20 +102,20 @@ public class CouponDBDAO implements CouponDAO {
 		try {
 			String sql ="UPDATE Coupon SET TITLE=?, STARTDATE=?, ENDDATE=?, AMOUNT=?, MESSAGE=?, PRICE=?, IMAGE=?, TYPE=? WHERE ID=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setLong(1, coupon.getId());
-			pstmt.setString(2, coupon.getTitle());
-			pstmt.setDate(3,(Date) coupon.getStartDate());
-			pstmt.setDate(4,(Date) coupon.getEndDate());
-			pstmt.setInt(5, coupon.getAmount());
-			pstmt.setString(6, coupon.getMessage());
-			pstmt.setDouble(7, coupon.getPrice());
-			pstmt.setString(8, coupon.getImage());
-			pstmt.setString(9, coupon.getType().toString());
-			
+			pstmt.setString(1, coupon.getTitle());
+			pstmt.setDate(2,(Date) coupon.getStartDate());
+			pstmt.setDate(3,(Date) coupon.getEndDate());
+			pstmt.setInt(4, coupon.getAmount());
+			pstmt.setString(5, coupon.getMessage());
+			pstmt.setDouble(6, coupon.getPrice());
+			pstmt.setString(7, coupon.getImage());
+			pstmt.setString(8, coupon.getType().toString());
+			pstmt.setLong(9, coupon.getId());
+
 			
 			pstmt.executeUpdate();
 			pstmt.close();
-			System.out.println("updated Coupon successe :D" + coupon.getId());
+			System.out.println("Coupon " + coupon.getId()+ " updated succesfully");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new Exception("update Coupon failed :( ");
