@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public interface CustomerCouponDAO {
 
-//	public void insertCustomerCoupon(CustomerCoupon customerCoupon) throws Exception;
+	public void insertCustomerCoupon(CustomerCoupon customerCoupon) throws Exception;
 
 	public void removeCustomerCoupon(long customerId, long couponId) throws Exception;
 	

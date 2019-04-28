@@ -37,25 +37,25 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO {
 	 *  @param CustomerCoupon object
 	 *  @throws Exception
 	 */
-//	@Override
-//	public void insertCustomerCoupon(CustomerCoupon customerCoupon) throws Exception {
-//		con = DriverManager.getConnection(Database.getDBUrl());
-//		String sql = "INSERT INTO CustomerCoupon (customerId,couponId)  VALUES(?,?)";
-//		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-//
-//			pstmt.setLong(1, customerCoupon.getCustomerId());
-//			pstmt.setLong(2, customerCoupon.getCouponId());
-//
-//			pstmt.executeUpdate();
-//
-//			System.out.println("CustomerCoupon insert success :D  " + customerCoupon.toString());
-//		} catch (SQLException e) {
-//			System.err.println("CustomerCoupon insert failed :( ");
-//			System.err.println(e.getMessage());
-//		} finally {
-//			con.close();
-//		}
-//	}
+	@Override
+	public void insertCustomerCoupon(CustomerCoupon customerCoupon) throws Exception {
+		con = DriverManager.getConnection(Database.getDBUrl());
+		String sql = "INSERT INTO CustomerCoupon (customerId,couponId)  VALUES(?,?)";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+			pstmt.setLong(1, customerCoupon.getCustomerId());
+			pstmt.setLong(2, customerCoupon.getCouponId());
+
+			pstmt.executeUpdate();
+
+			System.out.println("CustomerCoupon insert success :D  " + customerCoupon.toString());
+		} catch (SQLException e) {
+			System.err.println("CustomerCoupon insert failed :( ");
+			System.err.println(e.getMessage());
+		} finally {
+			con.close();
+		}
+	}
 
 	/**
 	 * @remove

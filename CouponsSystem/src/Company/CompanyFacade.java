@@ -95,9 +95,11 @@ public class CompanyFacade implements CouponClientFacade{
 			}
 	}
 	
-	public void removeCouponById(long customerId, long couponId) throws Exception {
-		couponDAO.removeCoupon(couponId);
-		customerCouponDBDAO.removeCustomerCoupon(customerId, couponId);
+	public void removeCouponById(long couponId) throws Exception {
+//		couponDAO.removeCoupon(couponId);
+//		customerCouponDBDAO.removeCustomerCoupon(customerId, couponId);
+		companyDBDAO.removeCouponFromCompany(couponId, couponId);
+		
 	}	
 	
 	public void updateCoupon(Coupon coupon, long whatid, Date newEndDate, double newPrice)

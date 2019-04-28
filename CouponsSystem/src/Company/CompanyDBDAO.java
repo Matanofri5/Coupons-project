@@ -9,13 +9,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.LongToDoubleFunction;
 
 import CompanyCoupon.CompanyCoupon;
 import Coupon.Coupon;
+import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import Coupon.CouponType;
 import Main.Database;
 import MyExceptions.LoginException;
+import MyExceptions.RemoveCouponException;
 
 /**
  * @Author - Linoy & Matan
@@ -30,6 +33,7 @@ public class CompanyDBDAO implements CompanyDAO {
 	 * Data Members
 	 */
 	Connection con;
+	private CouponDBDAO couponDBDAO;
 	
 	/**
 	 * @Empty CTOR
@@ -250,4 +254,41 @@ public class CompanyDBDAO implements CompanyDAO {
 			}
 		}
 	}
+
+	@Override
+	public void removeCouponFromCompany(long couponId, long id) throws Exception {
+		con = DriverManager.getConnection(Database.getDBUrl());
+//		Coupon coupon = couponDBDAO.getCoupon(couponId);
+
+		try {
+		
+			String sql1 = "DELETE FROM CompanyCoupon WHERE couponId=?";
+			PreparedStatement pstmt = con.prepareStatement(sql1);
+			pstmt.setLong(1, couponId);
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+				String sql2 = "DELETE FROM CustomerCoupon WHERE couponId=?";
+				PreparedStatement pstmt2 = con.prepareStatement(sql2);
+				pstmt2.setLong(1, couponId);
+				pstmt2.executeUpdate();
+				pstmt2.close();
+				
+					String sql3 = "DELETE FROM Coupon WHERE id=?";
+					PreparedStatement pstmt3 = con.prepareStatement(sql3);
+					pstmt3.setLong(1, id);
+					pstmt3.executeUpdate();
+					pstmt3.close();
+					
+					System.out.println("you deleted coupon from company successfully");
+		}
+		catch (Exception e) {
+			throw new RemoveCouponException("failed to remove coupon from company");
+		}
+		finally {
+			con.close();
+		}
+	}
+	
+	
 }

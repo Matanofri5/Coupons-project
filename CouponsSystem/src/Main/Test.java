@@ -100,7 +100,7 @@ public class Test {
 		// couponFacade.updateCoupon(u1, 5, "Matanofri", DateUtils.getCurrentDate(),
 		// DateUtils.getExpiredDate(), 100, "bbb", 22.2, "ccc", CouponType.SPORTS);
 
-		 couponFacade.removeCoupon(3);
+//		 couponFacade.removeCoupon(3);
 		// couponFacade.removeCoupon(2);
 //		 couponFacade.removeCoupon(48);
 //		companyFacade.updateCoupon(u1, 40, DateUtils.getCurrentDate(), 45);
@@ -117,7 +117,7 @@ public class Test {
 		CustomerCoupon a4 = new CustomerCoupon(16, 41);
 		CustomerCoupon a5 = new CustomerCoupon(17, 42);
 		CustomerCoupon a6 = new CustomerCoupon(26, 43);
-		CustomerCoupon a7 = new CustomerCoupon(10, 47);
+		CustomerCoupon a7 = new CustomerCoupon(20, 46);
 
 		CustomerCouponFacade customerCouponFacade = new CustomerCouponFacade();
 
@@ -140,12 +140,19 @@ public class Test {
 //		d.startThread();
 //		d.stopTask();
 		
-		CompanyCoupon b1 = new CompanyCoupon(1, 3);
-		CompanyCoupon b2 = new CompanyCoupon(46, 47);
-		CompanyCoupon b3 = new CompanyCoupon(33, 11);
+		CompanyCoupon b1 = new CompanyCoupon(2, 3);
+		CompanyCoupon b2 = new CompanyCoupon(3, 6);
+		CompanyCoupon b3 = new CompanyCoupon(4, 11);
+		CompanyCoupon b4 = new CompanyCoupon(8, 38);
+		CompanyCoupon b5 = new CompanyCoupon(9, 46);
 		
 		CompanyCouponFacade companyCouponFacade = new CompanyCouponFacade();
+//		companyCouponFacade.insertCompanyCoupon(b1);
+//		companyCouponFacade.insertCompanyCoupon(b2);
 //		companyCouponFacade.insertCompanyCoupon(b3);
+//		companyCouponFacade.insertCompanyCoupon(b5);
+
+
 //		System.out.println(companyCouponFacade.getAllCompanyCoupon());
 		
 //		companyCouponFacade.dropTable();
@@ -157,6 +164,6 @@ public class Test {
 //		adminFacade.getAllCompanys();
 
 //		System.out.println(couponFacade.getAllCoupon());
-		companyFacade.updateCoupon(u3, 43, DateUtils.getExpiredDate(), 542.1);
+		companyFacade.addCoupon(u5);
 	}
 }

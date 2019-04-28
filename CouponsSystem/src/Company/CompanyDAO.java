@@ -25,6 +25,8 @@ public interface CompanyDAO {
 	
 	public boolean login (String companyName, String password) throws Exception;
 	
+	public void removeCouponFromCompany(long couponId, long id) throws Exception;
+	
 	public void dropTable() throws Exception;
 
 }
