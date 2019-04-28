@@ -27,6 +27,8 @@ public interface CompanyDAO {
 	
 	public void removeCouponFromCompany(long couponId, long id) throws Exception;
 	
+	public void addCoupon(Coupon coupon) throws Exception;
+	
 	public void dropTable() throws Exception;
 
 }

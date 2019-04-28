@@ -6,11 +6,14 @@ import java.util.Date;
 
 import Clients.AdminFacade;
 import Company.Company;
+import Company.CompanyDAO;
 import Company.CompanyDBDAO;
 import Company.CompanyFacade;
 import CompanyCoupon.CompanyCoupon;
 import CompanyCoupon.CompanyCouponFacade;
 import Coupon.Coupon;
+import Coupon.CouponDAO;
+import Coupon.CouponDBDAO;
 import Coupon.CouponFacade;
 import Coupon.CouponType;
 import Customer.Customer;
@@ -164,6 +167,9 @@ public class Test {
 //		adminFacade.getAllCompanys();
 
 //		System.out.println(couponFacade.getAllCoupon());
-		companyFacade.addCoupon(u5);
+	
+//		Company p5 = new Company(72, "Audi", "fadf", "cadc");
+//		adminFacade.addCompany(p5);
+
 	}
 }

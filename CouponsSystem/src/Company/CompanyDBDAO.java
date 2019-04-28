@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.function.LongToDoubleFunction;
 
@@ -34,6 +35,8 @@ public class CompanyDBDAO implements CompanyDAO {
 	 */
 	Connection con;
 	private CouponDBDAO couponDBDAO;
+	private CouponDAO couponDAO;
+
 	
 	/**
 	 * @Empty CTOR
@@ -139,7 +142,6 @@ public class CompanyDBDAO implements CompanyDAO {
 				company.setCompanyName(rs.getString(2));
 				company.setPassword(rs.getString(3));
 				company.setEmail(rs.getString(4));
-//				System.out.println("Get company success :D ");
 			}
 
 		} catch (SQLException e) {
@@ -289,6 +291,34 @@ public class CompanyDBDAO implements CompanyDAO {
 			con.close();
 		}
 	}
+
+	@Override
+	public void addCoupon(Coupon coupon) throws Exception {
+		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+
+			Set<Coupon> coupons = couponDAO.getAllCoupons();
+			Iterator<Coupon> i = coupons.iterator();
+			while (i.hasNext()) {
+				Coupon current = i.next();
+				if (coupon.getTitle().equals(current.getTitle())) {
+					throw new Exception("this coupon already exists");	
+				}
+			}
+			if (!i.hasNext()) {
+				couponDAO.insertCoupon(coupon);
+				System.out.println("company added new coupon: " + coupon.getId());
+			} 
+		}
+			catch (Exception e) {
+				System.out.println(e.getMessage());
+			}finally {
+				con.close();
+			}
+		
+	}
+	
+	
 	
 	
 }

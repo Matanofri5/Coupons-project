@@ -184,7 +184,6 @@ public class CouponDBDAO implements CouponDAO {
 				CouponType type = CouponType.valueOf(rs.getString(9));
 				coupon.setType(type);
 				coupons.add(coupon);
-//				System.out.println("Get all coupon success :D ");
 			}
 		} catch (SQLException e) {
 			System.err.println("Get all coupon failed :( ");

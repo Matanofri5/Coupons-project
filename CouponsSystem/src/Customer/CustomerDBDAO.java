@@ -97,11 +97,14 @@ public class CustomerDBDAO implements CustomerDAO {
 	@Override
 	public void updateCustomer(Customer customer) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
-		try (Statement stm = con.createStatement()) {
-			String sql = "UPDATE Customer " + " SET customerName='" + customer.getCustomerName() + "', password='"
-					+ customer.getPassword() + "' WHERE ID=" + customer.getId();
-
-			stm.executeUpdate(sql);
+		try {
+			String sql = "UPDATE Customer SET password=? WHERE customerName=?";
+			PreparedStatement pstm = con.prepareStatement(sql);
+			
+			pstm.setString(1, customer.getPassword());
+			pstm.setString(2, customer.getCustomerName());
+			pstm.executeUpdate();
+			pstm.close();
 			System.out.println("updated customer id " + customer.getId() + " successfully");
 
 		} catch (SQLException e) {

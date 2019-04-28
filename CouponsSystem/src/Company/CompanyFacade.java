@@ -1,5 +1,6 @@
 package Company;
 
+import java.sql.DriverManager;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Iterator;
@@ -15,6 +16,7 @@ import MyExceptions.CompanyAlreadyExists;
 import CustomerCoupon.CustomerCoupon;
 import CustomerCoupon.CustomerCouponDAO;
 import CustomerCoupon.CustomerCouponDBDAO;
+import Main.Database;
 
 public class CompanyFacade implements CouponClientFacade{
 	private CompanyDBDAO companyDBDAO = new CompanyDBDAO();
@@ -65,9 +67,9 @@ public class CompanyFacade implements CouponClientFacade{
 //		companyDBDAO.dropTable();
 //	}
 	
-//	public Set <Coupon> getAllCompanyCoupons(long companyId) throws Exception{
-//		return companyDAO.getAllCompanyCoupons(companyId);
-//	}
+	public Set <Coupon> getAllCompanyCoupons(long companyId) throws Exception{
+		return companyDAO.getAllCompanyCoupons(companyId);
+	}
 	
 
 	@Override
@@ -76,23 +78,25 @@ public class CompanyFacade implements CouponClientFacade{
 	}
 	
 	public void addCoupon(Coupon coupon) throws Exception {
-		try {
-			Set<Coupon> coupons = couponDAO.getAllCoupons();
-			Iterator<Coupon> i = coupons.iterator();
-			while (i.hasNext()) {
-				Coupon current = i.next();
-				if (coupon.getTitle().equals(current.getTitle())) {
-					throw new Exception("this coupon already exists");	
-				}
-			}
-			if (!i.hasNext()) {
-				couponDAO.insertCoupon(coupon);
-				System.out.println("company added new coupon: " + coupon.getId());
-			} 
-		}
-			catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
+//		con = DriverManager.getConnection(Database.getDBUrl());
+//		try {
+//			Set<Coupon> coupons = couponDAO.getAllCoupons();
+//			Iterator<Coupon> i = coupons.iterator();
+//			while (i.hasNext()) {
+//				Coupon current = i.next();
+//				if (coupon.getTitle().equals(current.getTitle())) {
+//					throw new Exception("this coupon already exists");	
+//				}
+//			}
+//			if (!i.hasNext()) {
+//				couponDAO.insertCoupon(coupon);
+//				System.out.println("company added new coupon: " + coupon.getId());
+//			} 
+//		}
+//			catch (Exception e) {
+//				System.out.println(e.getMessage());
+//			}
+		companyDBDAO.addCoupon(coupon);
 	}
 	
 	public void removeCouponById(long couponId) throws Exception {
@@ -112,10 +116,10 @@ public class CompanyFacade implements CouponClientFacade{
 	}
 	
 	public Company getCompany(long id) throws Exception {
-		System.out.println(companyDBDAO.getCompany(id));
+//		System.out.println(companyDBDAO.getCompany(id));
 		return companyDBDAO.getCompany(id);
-	
 	}
+	
 	
 	public Company getCouponById(long couponId) throws Exception {
 		return companyDBDAO.getCompany(couponId);
