@@ -169,8 +169,8 @@ public class CustomerDBDAO implements CustomerDAO {
 		String sql = "INSERT INTO CustomerCoupon (customerId,couponId)  VALUES(?,?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-			pstmt.setLong(1, coupon.getId());
-			pstmt.setLong(2, customer.getId());
+			pstmt.setLong(1, customer.getId());
+			pstmt.setLong(2, coupon.getId());
 
 			pstmt.executeUpdate();
 

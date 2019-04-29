@@ -263,19 +263,22 @@ public class CompanyDBDAO implements CompanyDAO {
 //		Coupon coupon = couponDBDAO.getCoupon(couponId);
 
 		try {
-		
+			
+		//query to delete coupon from companyCoupon table
 			String sql1 = "DELETE FROM CompanyCoupon WHERE couponId=?";
 			PreparedStatement pstmt = con.prepareStatement(sql1);
 			pstmt.setLong(1, couponId);
 			pstmt.executeUpdate();
 			pstmt.close();
 			
+			//query to delete coupon from customerCoupon table
 				String sql2 = "DELETE FROM CustomerCoupon WHERE couponId=?";
 				PreparedStatement pstmt2 = con.prepareStatement(sql2);
 				pstmt2.setLong(1, couponId);
 				pstmt2.executeUpdate();
 				pstmt2.close();
 				
+				//query to delete coupon from coupon table
 					String sql3 = "DELETE FROM Coupon WHERE id=?";
 					PreparedStatement pstmt3 = con.prepareStatement(sql3);
 					pstmt3.setLong(1, id);

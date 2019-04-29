@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -133,25 +134,24 @@ public class CouponDBDAO implements CouponDAO {
 	public Coupon getCoupon(long id) throws Exception {
 		Coupon coupon = new Coupon();
 		con = DriverManager.getConnection(Database.getDBUrl());
-		java.sql.Statement stm = null;
+//		java.sql.Statement stm = null;
 
-		try {
-			stm = con.createStatement();
-			String sql = "SELECT * FROM Coupon WHERE id=" + id;
+		try (Statement stm = con.createStatement()){
+			String sql = "SELECT * FROM Coupon WHERE ID=" + id;
 			ResultSet rs = stm.executeQuery(sql);
-			rs.next();
+			while(rs.next()) {
 			coupon.setId(rs.getLong(1));
 			coupon.setTitle(rs.getString(2));
 			coupon.setStartDate((Date) rs.getDate(3));
 			coupon.setEndDate((Date) rs.getDate(4));
 			coupon.setAmount(rs.getInt(5));
-			coupon.setImage(rs.getString(6));
+			coupon.setMessage(rs.getString(6));
 			coupon.setPrice(rs.getDouble(7));
-			coupon.setMessage(rs.getString(8));
+			coupon.setImage(rs.getString(8));
 			CouponType type = CouponType.valueOf(rs.getString(9));
 			coupon.setType(type);
 			System.out.println("Get coupon success :D ");
-
+			}
 		} catch (SQLException e) {
 			System.err.println("Get coupon failed :(");
 			throw new Exception(e.getMessage());

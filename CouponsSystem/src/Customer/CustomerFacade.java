@@ -13,6 +13,7 @@ public class CustomerFacade implements CouponClientFacade {
 	private CustomerDBDAO custDAO = new CustomerDBDAO();
 	private Customer customer;
 	private CouponDAO couponDAO;
+	private CouponDBDAO couponDBDAO = new CouponDBDAO();
 	private Coupon coupon;
 
 	public CustomerFacade(Customer customer) {
@@ -42,10 +43,10 @@ public class CustomerFacade implements CouponClientFacade {
 //		return custDAO.getCustomer(id);
 //	}
 //
-	public Set<Customer> getAllCustomer() throws Exception {
-		System.out.println(custDAO.getAllCustomer());
-		return custDAO.getAllCustomer();
-	}
+//	public Set<Customer> getAllCustomer() throws Exception {
+//		System.out.println(custDAO.getAllCustomer());
+//		return custDAO.getAllCustomer();
+//	}
 //
 //	public void dropTable () throws Exception{
 //		custDAO.dropTable();
@@ -58,13 +59,17 @@ public class CustomerFacade implements CouponClientFacade {
 	}
 	
 	public void purchaseCoupon(Coupon coupon) throws Exception {
-		Coupon custcoupon = couponDAO.getCoupon(coupon.getId());
+		Coupon custcoupon = couponDBDAO.getCoupon(coupon.getId());
 		
 		if (custcoupon == null) {
 			throw new CouponNotAvailableException("customer failed purchase coupon");
-			
 		}
-
+		if (custcoupon.getAmount() <= 0) {
+			throw new CouponNotAvailableException("customer failed purchase coupon");
+		}
+		custDAO.customerPurchaseCoupon(custcoupon, customer);
+		custcoupon.setAmount(custcoupon.getAmount()-1);
+		couponDBDAO.updateCoupon(custcoupon);
 		
 	}
 	public void getAllpurchasedCoupons() {

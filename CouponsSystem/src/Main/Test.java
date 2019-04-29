@@ -93,7 +93,9 @@ public class Test {
 		Coupon u4 = new Coupon(10, "test4", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 99, "bla", 32.4,
 				"uy", CouponType.TRAVELING);
 		Coupon u5 = new Coupon(70, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 44, "ff", 4444.7, "gg", CouponType.ELECTRICITY);
-
+		
+		Coupon u6 = new Coupon(46, "titles", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 52, "bbb", 2.1, "dd", CouponType.HEALTH);
+		
 		CouponFacade couponFacade = new CouponFacade();
 
 //		 couponFacade.insertCoupon(u1);
@@ -169,7 +171,7 @@ public class Test {
 //		System.out.println(couponFacade.getAllCoupon());
 	
 //		Company p5 = new Company(72, "Audi", "fadf", "cadc");
-//		adminFacade.addCompany(p5);
-
+//		adminFacade.getCompany(4);
+		customerFacade.purchaseCoupon(u6);
 	}
 }
