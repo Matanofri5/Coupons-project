@@ -142,6 +142,12 @@ public class CustomerDBDAO implements CustomerDAO {
 		return customer;
 	}
 
+	/**
+	 * @getAll
+	 * this method get all and print objects of Customers, from Customer table.
+	 *  @return Customer list object
+	 *  @throws Exception
+	 */
 	@Override
 	public Set<Customer> getAllCustomer() throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());

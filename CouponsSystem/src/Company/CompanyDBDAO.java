@@ -154,9 +154,8 @@ public class CompanyDBDAO implements CompanyDAO {
 	}
 
 	/**
-	 * @get1
-	 * this method get and print 1 object of company by company id, from companies table.
-	 *  @param long id
+	 * @getAll
+	 * this method get all and print objects of company, from companies table.
 	 *  @return company object
 	 *  @throws Exception
 	 */
@@ -186,6 +185,13 @@ public class CompanyDBDAO implements CompanyDAO {
 		return set;
 	}
 
+	/**
+	 * @getAll coupons by company id
+	 * this method get and print objects of coupons by company id, from CompanyCoupon table.
+	 *  @param long id
+	 *  @return coupon object
+	 *  @throws Exception
+	 */
 	@Override
 	public Set<Coupon> getAllCompanyCoupons(long companyId) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -212,6 +218,11 @@ public class CompanyDBDAO implements CompanyDAO {
 		return coupons;
 	}
 	
+	/**
+	 * this method login by companyUser check companyName and password
+	 * @throws Exception
+	 * @return boolean
+	 */
 	@Override
 	public boolean login(String companyName, String password) throws Exception, LoginException {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -236,6 +247,11 @@ public class CompanyDBDAO implements CompanyDAO {
 		return logicSuccess;
 	}
 	
+	/**
+	 * @dropTable
+	 * this method delete all the table of companies.
+	 *  @throws Exception
+	 */
 	@Override
 	public void dropTable() throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -257,6 +273,12 @@ public class CompanyDBDAO implements CompanyDAO {
 		}
 	}
 
+	/**
+	 * @removeCouponFromCompany
+	 * this method delete 1 object of CompanyCoupon by couponId, from CompanyCoupon table.
+	 *  @param long couponId
+	 *  @throws Exception
+	 */
 	@Override
 	public void removeCouponFromCompany(long couponId, long id) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -295,6 +317,12 @@ public class CompanyDBDAO implements CompanyDAO {
 		}
 	}
 
+	/**
+	 * @addCoupon
+	 * this method insert new coupon And check if the title already exists.
+	 *  @param Coupon object
+	 *  @throws Exception
+	 */
 	@Override
 	public void addCoupon(Coupon coupon) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -318,10 +346,5 @@ public class CompanyDBDAO implements CompanyDAO {
 			}finally {
 				con.close();
 			}
-		
 	}
-	
-	
-	
-	
 }

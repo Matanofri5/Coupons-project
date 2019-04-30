@@ -161,6 +161,12 @@ public class CouponDBDAO implements CouponDAO {
 		return coupon;
 	}
 
+	/**
+	 * @getAll
+	 * this method get all and print objects of coupons, from coupon table.
+	 *  @return coupon list object
+	 *  @throws Exception
+	 */
 	@Override
 	public Set<Coupon> getAllCoupons() throws Exception {
 		Coupon coupon;
@@ -194,13 +200,23 @@ public class CouponDBDAO implements CouponDAO {
 		return coupons;
 	}
 	
+	/**
+	 * @getAll
+	 * this method get all and print objects of coupons, from coupon table, only by Type
+	 *  @return coupon list object
+	 *  @throws Exception
+	 */
 	@Override
 	public Set<Coupon> getAllCouponsByType(CouponType couponType) throws Exception {
 		
 		return null;
 	}
 	
-
+	/**
+	 * @dropTable
+	 * this method delete all the table of coupons.
+	 *  @throws Exception
+	 */
 	@Override
 	public void dropTable() throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
