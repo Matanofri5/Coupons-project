@@ -172,9 +172,9 @@ public class CustomerDBDAO implements CustomerDAO {
 	@Override
 	public void customerPurchaseCoupon (Coupon coupon, Customer customer) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
-		String sql = "INSERT INTO CustomerCoupon (customerId,couponId)  VALUES(?,?)";
-		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-
+		try  {
+			String sql = "INSERT INTO CustomerCoupon (customerId,couponId)  VALUES(?,?)";
+			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, customer.getId());
 			pstmt.setLong(2, coupon.getId());
 

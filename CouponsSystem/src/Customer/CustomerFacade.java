@@ -64,10 +64,10 @@ public class CustomerFacade implements CouponClientFacade {
 		if (custcoupon == null) {
 			throw new CouponNotAvailableException("customer failed purchase coupon");
 		}
-		if (custcoupon.getAmount() <= 0) {
+		if (custcoupon.getAmount() > 0) {
 			throw new CouponNotAvailableException("customer failed purchase coupon");
 		}
-		custDAO.customerPurchaseCoupon(custcoupon, customer);
+		custDAO.customerPurchaseCoupon(custcoupon, this.customer);
 		custcoupon.setAmount(custcoupon.getAmount()-1);
 		couponDBDAO.updateCoupon(custcoupon);
 		

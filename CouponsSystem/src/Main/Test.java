@@ -94,7 +94,7 @@ public class Test {
 				"uy", CouponType.TRAVELING);
 		Coupon u5 = new Coupon(70, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 44, "ff", 4444.7, "gg", CouponType.ELECTRICITY);
 		
-		Coupon u6 = new Coupon(46, "titles", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 52, "bbb", 2.1, "dd", CouponType.HEALTH);
+		Coupon u6 = new Coupon(46, "titles", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 52, "bbb", 66.1, "dd", CouponType.HEALTH);
 		
 		CouponFacade couponFacade = new CouponFacade();
 
