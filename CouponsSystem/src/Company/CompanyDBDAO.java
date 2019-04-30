@@ -275,8 +275,9 @@ public class CompanyDBDAO implements CompanyDAO {
 
 	/**
 	 * @removeCouponFromCompany
-	 * this method delete 1 object of CompanyCoupon by couponId, from CompanyCoupon table.
+	 * this method delete 1 coupon of Company by DELETE query from three tables.
 	 *  @param long couponId
+	 *  @param long  id
 	 *  @throws Exception
 	 */
 	@Override
