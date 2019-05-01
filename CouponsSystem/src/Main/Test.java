@@ -26,128 +26,77 @@ import CustomerCoupon.CustomerCouponFacade;
 
 public class Test {
 
+	
 	public static void main(String[] args) throws Exception {
 
 		Class.forName("org.apache.derby.jdbc.ClientDriver");
 		Connection con = DriverManager.getConnection(Database.getDBUrl());
 
+		/**
+		 * initialization objects.
+		 * @param admin
+		 * @param coupon
+		 * @param company
+		 * @param customer
+		 * @param companycoupon
+		 * @param customercoupon
+		 */
+		
+		AdminFacade adminFacade = new AdminFacade();
+		CouponFacade couponFacade = new CouponFacade();
+		CompanyFacade companyFacade = new CompanyFacade();
+		CustomerFacade customerFacade = new CustomerFacade();
+		CompanyCouponFacade companyCouponFacade = new CompanyCouponFacade();
+		CustomerCouponFacade customerCouponFacade = new CustomerCouponFacade();
+		
+		/*********************************** dropping tables **************************/
+		customerCouponFacade.dropTable();
+		companyCouponFacade.dropTable();
+		companyFacade.dropTable();
+		customerFacade.dropTable();
+		couponFacade.dropTable();
+		
+		/*********************************** creating tables *************************/
+		
 		Database.createTables(con);
+		
 		/*************************************** Company ****************************/
 
 		Company p1 = new Company(1, "HP", "3443345654", "hp@gmail.com");
 		Company p2 = new Company(2, "Lg", "987869977", "lg@gmail.com");
 		Company p3 = new Company(3, "Sony", "4314134143", "sony@gmail.com");
-		Company p4 = new Company(46, "CocaCola", "vsdv", "vsdvsdv");
-		Company p5 = new Company(6, "HP", "333", "ff");
-
-		CompanyFacade companyFacade = new CompanyFacade();
-		CompanyDBDAO companyDBDAO = new CompanyDBDAO();
-//		companyDBDAO.getAllCompanyCoupons();
+		Company p4 = new Company(4, "CocaCola", "vsdv", "vsdvsdv");
+		Company p5 = new Company(5, "HP", "333", "ff");
 		
-//		 companyFacade.insertCompany(p1);
-//		 companyFacade.insertCompany(p2);
-//		 companyFacade.insertCompany(p3);
-//		 companyFacade.insertCompany(p4);
-
-		// companyFacade.updateCompany(p3, 3, "fdsg", "fsdg", "dgzdg");
-		// companyFacade.updateCompany(p1, 7, "llll", "ffff", "54554");
-		// companyFacade.updateCompany(p3, 8, "tttt", "uuu", "scas");
-
-		// companyFacade.updateCompany(p3, 12, "TOM", "FWW", "EE");
-//		 companyFacade.removeCompany(4);
-		// companyFacade.removeCompany(5);
-		// companyFacade.removeCompany(6);
-		
-//				System.out.println(companyFacade.getAllCoupon());
-//		 companyFacade.dropTable();
-//		 System.out.println(companyFacade.getAllCompany());
-		// System.out.println(companyFacade.getCompany(1));
-
 		/*************************************** Customer ****************************/
 
-		Customer c1 = new Customer(4, "Matan", "3784628");
-		Customer c2 = new Customer(5, "Bar", "1325266");
-		Customer c3 = new Customer(6, "Dvir", "9879886");
-		Customer c4 = new Customer(8, "Dvir", "fdfdasadf");
-		Customer c5 = new Customer(9, "Matan", "ddd");
-
-		CustomerFacade customerFacade = new CustomerFacade();
-//		 customerFacade.insertCustomer(c1);
-//		 customerFacade.insertCustomer(c2);
-//		 customerFacade.insertCustomer(c3);
-
-//		customerFacade.updateCustomer(c2, 3, "Ehud", "445577566");
-		// customerFacade.removeCustomer(1);
-		// customerFacade.removeCustomer(3);
-		// customerFacade.removeCustomer(6);
-
-		// customerFacade.dropTable();
-
-		// System.out.println(customerFacade.getAllCustomer());
-		// System.out.println(customerFacade.getCustomer(9));
+		Customer c1 = new Customer(1, "Matan", "3784628");
+		Customer c2 = new Customer(2, "Bar", "1325266");
+		Customer c3 = new Customer(3, "Dvir", "9879886");
+		Customer c4 = new Customer(4, "Dvir", "fdfdasadf");
+		Customer c5 = new Customer(5, "Matan", "ddd");
+		
 		/*************************************** Coupon ****************************/
 
-		Coupon u1 = new Coupon(7, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 55, "sick", 33.5,
-				"image", CouponType.HEALTH);
-		Coupon u2 = new Coupon(8, "test2", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 66, "camp", 36.7,
-				"picture", CouponType.CAMPING);
-		Coupon u3 = new Coupon(9, "test3", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 77, "food", 41.2,
-				"photo", CouponType.FOOD);
-		Coupon u4 = new Coupon(10, "test4", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 99, "bla", 32.4,
-				"uy", CouponType.TRAVELING);
-		Coupon u5 = new Coupon(70, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 44, "ff", 4444.7, "gg", CouponType.ELECTRICITY);
+		Coupon u1 = new Coupon(1, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 55, "sick", 33.5, "image", CouponType.HEALTH);
+		Coupon u2 = new Coupon(2, "test2", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 66, "camp", 36.7, "picture", CouponType.CAMPING);
+		Coupon u3 = new Coupon(3, "test3", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 77, "food", 41.2, "photo", CouponType.FOOD);
+		Coupon u4 = new Coupon(4, "test4", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 99, "bla", 32.4, "uy", CouponType.TRAVELING);
+		Coupon u5 = new Coupon(5, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 44, "ff", 4444.7, "gg", CouponType.ELECTRICITY);
+		Coupon u6 = new Coupon(6, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 52, "bbb", 66.1, "dd", CouponType.HEALTH);
+		Coupon u7 = new Coupon(7, "testi", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 22, "fd", 11.2, "fd", CouponType.HEALTH);
 		
-		Coupon u6 = new Coupon(46, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 52, "bbb", 66.1, "dd", CouponType.HEALTH);
-		
-		Coupon u7 = new Coupon(47, "testi", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 22, "fd", 11.2, "fd", CouponType.HEALTH);
-		CouponFacade couponFacade = new CouponFacade();
-
-//		 couponFacade.insertCoupon(u1);
-//		 couponFacade.insertCoupon(u2);
-//		 couponFacade.insertCoupon(u3);
-
-		// couponFacade.updateCoupon(u1, 5, "Matanofri", DateUtils.getCurrentDate(),
-		// DateUtils.getExpiredDate(), 100, "bbb", 22.2, "ccc", CouponType.SPORTS);
-
-//		 couponFacade.removeCoupon(3);
-		// couponFacade.removeCoupon(2);
-//		 couponFacade.removeCoupon(48);
-//		companyFacade.updateCoupon(u1, 40, DateUtils.getCurrentDate(), 45);
-//		 System.out.println(couponFacade.getAllCoupon());
-//		 System.out.println(couponFacade.getCoupon(8));
-
-//		 couponFacade.dropTable();
-
 		/**************************************** CustomerCoupon****************************/
 
-		CustomerCoupon a1 = new CustomerCoupon(26, 3);
+		CustomerCoupon a1 = new CustomerCoupon(1, 2);
 		CustomerCoupon a2 = new CustomerCoupon(9, 11);
 		CustomerCoupon a3 = new CustomerCoupon(15,40);
 		CustomerCoupon a4 = new CustomerCoupon(16, 41);
 		CustomerCoupon a5 = new CustomerCoupon(17, 42);
 		CustomerCoupon a6 = new CustomerCoupon(26, 43);
 		CustomerCoupon a7 = new CustomerCoupon(20, 46);
-
-		CustomerCouponFacade customerCouponFacade = new CustomerCouponFacade();
-
-//		 customerCouponFacade.insertCustomerCoupon(a1);
-//		 customerCouponFacade.insertCustomerCoupon(a4);
-//		 customerCouponFacade.insertCustomerCoupon(a7);
-
-//		 customerCouponFacade.removeCustomerCoupon(26, 43);
-
-		// customerCouponFacade.updateCustomerCoupon(a1, 9, 10);
-//		System.out.println(customerCouponFacade.getCustomerCoupon());
-		// System.out.println(customerCouponFacade.getAllCustomerCoupon());
-
-		// customerCouponFacade.dropTable();
-
-		/*****************************************Threads******************************/
 		
-//		DailyTask d = new DailyTask();
-//
-//		d.startThread();
-//		d.stopTask();
+		/*****************************************CompanyCoupon******************************/
 		
 		CompanyCoupon b1 = new CompanyCoupon(1, 6);
 		CompanyCoupon b2 = new CompanyCoupon(1, 11);
@@ -155,30 +104,45 @@ public class Test {
 		CompanyCoupon b4 = new CompanyCoupon(8, 38);
 		CompanyCoupon b5 = new CompanyCoupon(9, 46);
 		
-		CompanyCouponFacade companyCouponFacade = new CompanyCouponFacade();
+		
+		
+		
+//		 companyFacade.insertCompany(p1);
+//		 companyFacade.insertCompany(p2);
+//		 companyFacade.insertCompany(p3);
+//		 companyFacade.insertCompany(p4);
+//		 companyFacade.insertCompany(p5);
+
+
+//		 customerFacade.insertCustomer(c1);
+//		 customerFacade.insertCustomer(c2);
+//		 customerFacade.insertCustomer(c3);
+//		 customerFacade.insertCustomer(c4);
+//		 customerFacade.insertCustomer(c5);
+
+		
+//		 couponFacade.insertCoupon(u1);
+//		 couponFacade.insertCoupon(u2);
+//		 couponFacade.insertCoupon(u3);
+//		 couponFacade.insertCoupon(u4);
+//		 couponFacade.insertCoupon(u5);
+//		 couponFacade.insertCoupon(u6);
+//		 couponFacade.insertCoupon(u7);
+
+
+//		 customerCouponFacade.insertCustomerCoupon(a1);
+//		 customerCouponFacade.insertCustomerCoupon(a2);
+//		 customerCouponFacade.insertCustomerCoupon(a3);
+
 //		companyCouponFacade.insertCompanyCoupon(b1);
 //		companyCouponFacade.insertCompanyCoupon(b2);
 //		companyCouponFacade.insertCompanyCoupon(b3);
-//		companyCouponFacade.insertCompanyCoupon(b5);
-
-
-//		System.out.println(companyCouponFacade.getAllCompanyCoupon());
-		
-//		companyCouponFacade.dropTable();
-	
-//		companyFacade.removeCouponById(10, 47);
-		AdminFacade adminFacade = new AdminFacade();
-		
-//		companyFacade.getCompany(14);
-//		adminFacade.getAllCompanys();
-
-//		System.out.println(couponFacade.getAllCoupon());
-	
-
-//		customerFacade.purchaseCoupon(u6);
-//		adminFacade.updateCompany(p1, "1111111111", "22222222222");
+//		companyCouponFacade.insertCompanyCoupon(b4);
 
 		
-		companyFacade.getAllCompanyCoupons(1);
+		
+
+
+
 	}
 }

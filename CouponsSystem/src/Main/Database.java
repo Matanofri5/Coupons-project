@@ -34,9 +34,8 @@ public class Database {
 					+ "companyName varchar(50) not null, " + "password varchar(50) not null, "
 					+ "email varchar(50) not null)";
 			stmt.executeUpdate(sql);
-			System.out.println("create Company table success :D  " + sql);
+			System.out.println("create Company table success :D  ");
 		} catch (SQLException e) {
-			System.err.println(e.getMessage());
 		}
 
 		// *****************Creating Customer table******************
@@ -48,9 +47,8 @@ public class Database {
 					+ "id bigint not null primary key generated always as identity(start with 1, increment by 1), "
 					+ "customerName varchar(50) not null, " + "password varchar(50) not null)";
 			stmt.executeUpdate(sql);
-			System.out.println("create Customer table success :D  " + sql);
+			System.out.println("create Customer table success :D  ");
 		} catch (SQLException e) {
-			System.err.println(e.getMessage());
 		}
 
 		// *****************Creating Coupon table*********************
@@ -64,9 +62,8 @@ public class Database {
 					+ "amount int not null, " + "message varchar(50) not null, " + "price double not null, "
 					+ "image varchar(50) not null, " + "type varchar(20) not null)";
 			stmt.executeUpdate(sql);
-			System.out.println("create Coupon table success :D  " + sql);
+			System.out.println("create Coupon table success :D  ");
 		} catch (SQLException e) {
-			System.err.println(e.getMessage());
 		}
 
 		// ***************Creating join CustomerCoupon table**********
@@ -77,9 +74,8 @@ public class Database {
 			sql = "create table CustomerCoupon (" + "customerId bigint not null references Customer(id), "
 					+ "couponId bigint not null references Coupon(id), " + "primary key(customerId, couponId))";
 			stmt.executeUpdate(sql);
-			System.out.println("create CustomerCoupon table success :D " + sql);
+			System.out.println("create CustomerCoupon table success :D ");
 		} catch (SQLException e) {
-			System.err.println(e.getMessage());
 		}
 
 		// ****************Creating join CompanyCoupon table**********
@@ -90,9 +86,8 @@ public class Database {
 			sql = "create table CompanyCoupon (" + "companyId bigint not null references Company(id), "
 					+ "couponId bigint not null references Coupon(id), " + "primary key(companyId, couponId))";
 			stmt.executeUpdate(sql);
-			System.out.println("create CompanyCoupon table success :D " + sql);
+			System.out.println("create CompanyCoupon table success :D ");
 		} catch (SQLException e) {
-			System.err.println(e.getMessage());
 		}
 
 	}
