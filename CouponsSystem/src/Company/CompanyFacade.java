@@ -24,9 +24,8 @@ import Main.Database;
  */
 public class CompanyFacade implements CouponClientFacade{
 	private CompanyDBDAO companyDBDAO = new CompanyDBDAO();
-	private CouponDBDAO couponDBDAO = new CouponDBDAO();
+	private CouponDAO couponDAO = new CouponDBDAO();
 	private Company company;
-	private CouponDAO couponDAO;
 	private CustomerCouponDAO customerCouponDAO;
 	private Coupon coupon;
 	private CompanyDAO companyDAO;
@@ -38,6 +37,7 @@ public class CompanyFacade implements CouponClientFacade{
 	 */
 	public CompanyFacade(Company company) {
 		this.company = company;
+		this.couponDAO = new CouponDBDAO();
 	}
 
 	/**
@@ -46,13 +46,13 @@ public class CompanyFacade implements CouponClientFacade{
 	public CompanyFacade() {
 	}
 
-//	public void insertCompany(Company company) throws Exception {
-//		companyDBDAO.insertCompany(company);
-//	}
+	public void insertCompany(Company company) throws Exception {
+		companyDBDAO.insertCompany(company);
+	}
 //
-//	public void removeCompany(long id) throws Exception {
-//		companyDBDAO.removeCompany(id);
-//	}
+	public void removeCompany(long id) throws Exception {
+		companyDBDAO.removeCompany(id);
+	}
 //
 //	public void updateCompany(Company company, long newId, String newCompanyName, String newPassword, String newEmail)
 //			throws Exception {
@@ -67,17 +67,17 @@ public class CompanyFacade implements CouponClientFacade{
 //		return companyDBDAO.getCompany(id);
 //	}
 //
-//	public Set<Company> getAllCompany() throws Exception {
-//		System.out.println(companyDBDAO.getAllCompanys());
-//		return companyDBDAO.getAllCompanys();
-//	}
-//
-//	public void dropTable() throws Exception {
-//		companyDBDAO.dropTable();
-//	}
+	public Set<Company> getAllCompany() throws Exception {
+		System.out.println(companyDBDAO.getAllCompanys());
+		return companyDBDAO.getAllCompanys();
+	}
+
+	public void dropTable() throws Exception {
+		companyDBDAO.dropTable();
+	}
 	
 	public Set <Coupon> getAllCompanyCoupons(long companyId) throws Exception{
-		return companyDAO.getAllCompanyCoupons(companyId);
+		return companyDBDAO.getAllCompanyCoupons(companyId);
 	}
 	
 
@@ -87,25 +87,22 @@ public class CompanyFacade implements CouponClientFacade{
 	}
 	
 	public void addCoupon(Coupon coupon) throws Exception {
-//		con = DriverManager.getConnection(Database.getDBUrl());
-//		try {
-//			Set<Coupon> coupons = couponDAO.getAllCoupons();
-//			Iterator<Coupon> i = coupons.iterator();
-//			while (i.hasNext()) {
-//				Coupon current = i.next();
-//				if (coupon.getTitle().equals(current.getTitle())) {
-//					throw new Exception("this coupon already exists");	
-//				}
-//			}
-//			if (!i.hasNext()) {
-//				couponDAO.insertCoupon(coupon);
-//				System.out.println("company added new coupon: " + coupon.getId());
-//			} 
-//		}
-//			catch (Exception e) {
-//				System.out.println(e.getMessage());
-//			}
-		companyDBDAO.addCoupon(coupon);
+		try {
+			Set<Coupon> coupons = couponDAO.getAllCoupons();
+			Iterator<Coupon> i = coupons.iterator();
+			while (i.hasNext()) {
+				Coupon current = i.next();
+				if (coupon.getTitle().equals(current.getTitle())) {
+					throw new Exception("this coupon already exists");	
+				}
+			}
+			if (!i.hasNext()) {
+				couponDAO.insertCoupon(coupon);
+				System.out.println("company added new coupon: " + coupon.getId());
+			} 
+		} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 	}
 	
 	public void removeCouponById(long couponId) throws Exception {
@@ -121,7 +118,7 @@ public class CompanyFacade implements CouponClientFacade{
 		coupon.setEndDate(newEndDate);
 		coupon.setPrice(newPrice);
 		
-		couponDBDAO.updateCoupon(coupon);
+		couponDAO.updateCoupon(coupon);
 	}
 	
 	public Company getCompany(long id) throws Exception {

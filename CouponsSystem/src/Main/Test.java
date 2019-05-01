@@ -37,7 +37,8 @@ public class Test {
 		Company p1 = new Company(1, "HP", "3443345654", "hp@gmail.com");
 		Company p2 = new Company(2, "Lg", "987869977", "lg@gmail.com");
 		Company p3 = new Company(3, "Sony", "4314134143", "sony@gmail.com");
-		Company p4 = new Company(46, "HP", "vsdv", "vsdvsdv");
+		Company p4 = new Company(46, "CocaCola", "vsdv", "vsdvsdv");
+		Company p5 = new Company(6, "HP", "333", "ff");
 
 		CompanyFacade companyFacade = new CompanyFacade();
 		CompanyDBDAO companyDBDAO = new CompanyDBDAO();
@@ -46,18 +47,19 @@ public class Test {
 //		 companyFacade.insertCompany(p1);
 //		 companyFacade.insertCompany(p2);
 //		 companyFacade.insertCompany(p3);
+//		 companyFacade.insertCompany(p4);
 
 		// companyFacade.updateCompany(p3, 3, "fdsg", "fsdg", "dgzdg");
 		// companyFacade.updateCompany(p1, 7, "llll", "ffff", "54554");
 		// companyFacade.updateCompany(p3, 8, "tttt", "uuu", "scas");
 
 		// companyFacade.updateCompany(p3, 12, "TOM", "FWW", "EE");
-		// companyFacade.removeCompany(7);
+//		 companyFacade.removeCompany(4);
 		// companyFacade.removeCompany(5);
 		// companyFacade.removeCompany(6);
 		
 //				System.out.println(companyFacade.getAllCoupon());
-		// companyFacade.dropTable();
+//		 companyFacade.dropTable();
 //		 System.out.println(companyFacade.getAllCompany());
 		// System.out.println(companyFacade.getCompany(1));
 
@@ -67,6 +69,7 @@ public class Test {
 		Customer c2 = new Customer(5, "Bar", "1325266");
 		Customer c3 = new Customer(6, "Dvir", "9879886");
 		Customer c4 = new Customer(8, "Dvir", "fdfdasadf");
+		Customer c5 = new Customer(9, "Matan", "ddd");
 
 		CustomerFacade customerFacade = new CustomerFacade();
 //		 customerFacade.insertCustomer(c1);
@@ -94,8 +97,9 @@ public class Test {
 				"uy", CouponType.TRAVELING);
 		Coupon u5 = new Coupon(70, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 44, "ff", 4444.7, "gg", CouponType.ELECTRICITY);
 		
-		Coupon u6 = new Coupon(46, "titles", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 52, "bbb", 66.1, "dd", CouponType.HEALTH);
+		Coupon u6 = new Coupon(46, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 52, "bbb", 66.1, "dd", CouponType.HEALTH);
 		
+		Coupon u7 = new Coupon(47, "testi", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 22, "fd", 11.2, "fd", CouponType.HEALTH);
 		CouponFacade couponFacade = new CouponFacade();
 
 //		 couponFacade.insertCoupon(u1);
@@ -112,7 +116,7 @@ public class Test {
 //		 System.out.println(couponFacade.getAllCoupon());
 //		 System.out.println(couponFacade.getCoupon(8));
 
-		// couponFacade.dropTable();
+//		 couponFacade.dropTable();
 
 		/**************************************** CustomerCoupon****************************/
 
@@ -145,8 +149,8 @@ public class Test {
 //		d.startThread();
 //		d.stopTask();
 		
-		CompanyCoupon b1 = new CompanyCoupon(2, 3);
-		CompanyCoupon b2 = new CompanyCoupon(3, 6);
+		CompanyCoupon b1 = new CompanyCoupon(1, 6);
+		CompanyCoupon b2 = new CompanyCoupon(1, 11);
 		CompanyCoupon b3 = new CompanyCoupon(4, 11);
 		CompanyCoupon b4 = new CompanyCoupon(8, 38);
 		CompanyCoupon b5 = new CompanyCoupon(9, 46);
@@ -170,8 +174,9 @@ public class Test {
 
 //		System.out.println(couponFacade.getAllCoupon());
 	
-//		Company p5 = new Company(72, "Audi", "fadf", "cadc");
-//		adminFacade.getCompany(4);
-		customerFacade.purchaseCoupon(u6);
+
+//		customerFacade.purchaseCoupon(u6);
+//		adminFacade.updateCompany(p1, "1111111111", "22222222222");
+
 	}
 }

@@ -59,9 +59,9 @@ public class CustomerFacade implements CouponClientFacade {
 //		return custDAO.getAllCustomer();
 //	}
 //
-//	public void dropTable () throws Exception{
-//		custDAO.dropTable();
-//	}
+	public void dropTable () throws Exception{
+		custDBDAO.dropTable();
+	}
 // 
 	
 	/**

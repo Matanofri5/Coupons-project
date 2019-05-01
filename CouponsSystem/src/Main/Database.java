@@ -8,7 +8,7 @@ import java.sql.Statement;
  * @author Matan and liony
  * In this Database class we create method "getDriverData" that gives as access to apache driver.
  * also, "getDBURL" is our server, now it local on command line by port 3301.
- * in "createTable" method, we insert values to every sql table. 
+ * in "createTable" method, we creating the table and columns to every sql table. 
  *
  */
 public class Database {
@@ -23,6 +23,9 @@ public class Database {
 
 	public static void createTables(Connection con) throws SQLException {
 		String sql;
+		
+		// *****************Creating Company table******************
+		
 		try {
 			Statement stmt = con.createStatement();
 

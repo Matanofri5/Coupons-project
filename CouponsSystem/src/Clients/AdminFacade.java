@@ -25,10 +25,8 @@ public class AdminFacade implements CouponClientFacade {
 	 */
 	private static final String adminName = "admin";
 	private static final String adminPassword = "1234";
-	private CompanyDAO companyDAO;
-	private CompanyDBDAO companyDBDAO = new CompanyDBDAO();
-	private CustomerDBDAO customerDBDAO = new CustomerDBDAO();
-	private CustomerDAO customerDAO;
+	private CompanyDAO companyDAO = new CompanyDBDAO();
+	private CustomerDAO customerDAO = new CustomerDBDAO();
 	private CouponDAO couponDAO;
 	private CustomerCouponDBDAO customerCouponDBDAO;
 	private CompanyCouponDBDAO companyCouponDBDAO;
@@ -75,7 +73,6 @@ public class AdminFacade implements CouponClientFacade {
 		try {
 			Set<Company> companies = companyDAO.getAllCompanys();
 			Iterator<Company> i = companies.iterator();
-
 			while (i.hasNext()) {
 				Company current = i.next();
 				if (company.getCompanyName().equals(current.getCompanyName())) {
@@ -87,11 +84,10 @@ public class AdminFacade implements CouponClientFacade {
 				System.out.println("Admin added new company: " + company.getId());
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
-//		} catch (compa e) {
-//			throw new Exception("Admin failed to add company");
-//		}
+
 	}
 
 	/**
@@ -130,7 +126,7 @@ public class AdminFacade implements CouponClientFacade {
 		company.setPassword(newPassword);
 		company.setEmail(newEmail);
 		
-		companyDBDAO.updateCompany(company);
+		companyDAO.updateCompany(company);
 	}
 
 	/**
@@ -140,8 +136,8 @@ public class AdminFacade implements CouponClientFacade {
 	 * @throws Exception
 	 */
 	public Company getCompany(long id) throws Exception {
-		System.out.println(companyDBDAO.getCompany(id));
-		return companyDBDAO.getCompany(id);
+		System.out.println(companyDAO.getCompany(id));
+		return companyDAO.getCompany(id);
 	}
 	
 	/**
@@ -150,8 +146,8 @@ public class AdminFacade implements CouponClientFacade {
 	 * @throws Exception
 	 */
 	public Set<Company> getAllCompanys() throws Exception {
-		System.out.println(companyDBDAO.getAllCompanys());
-		return companyDBDAO.getAllCompanys();
+		System.out.println(companyDAO.getAllCompanys());
+		return companyDAO.getAllCompanys();
 	}
 	
 	/**
@@ -201,7 +197,7 @@ public class AdminFacade implements CouponClientFacade {
 //	}
 	public void updateCustomer(Customer customer, String newPassword) throws Exception {
 		customer.setPassword(newPassword);
-		customerDBDAO.updateCustomer(customer);
+		customerDAO.updateCustomer(customer);
 	}
 
 	/**
@@ -211,8 +207,8 @@ public class AdminFacade implements CouponClientFacade {
 	 * @throws Exception
 	 */
 	public Customer getCustomer(long id) throws Exception {
-		System.out.println(customerDBDAO.getCustomer(id));
-		return customerDBDAO.getCustomer(id);
+		System.out.println(customerDAO.getCustomer(id));
+		return customerDAO.getCustomer(id);
 	}
 	
 	/**
@@ -221,7 +217,7 @@ public class AdminFacade implements CouponClientFacade {
 	 * @throws Exception
 	 */
 	public Set<Customer> getAllCustomers() throws Exception {
-		System.out.println(customerDBDAO.getAllCustomer());
-		return customerDBDAO.getAllCustomer();
+		System.out.println(customerDAO.getAllCustomer());
+		return customerDAO.getAllCustomer();
 	}
 }

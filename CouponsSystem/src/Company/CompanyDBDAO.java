@@ -324,28 +324,29 @@ public class CompanyDBDAO implements CompanyDAO {
 	 *  @param Coupon object
 	 *  @throws Exception
 	 */
-	@Override
-	public void addCoupon(Coupon coupon) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
-		try {
-
-			Set<Coupon> coupons = couponDAO.getAllCoupons();
-			Iterator<Coupon> i = coupons.iterator();
-			while (i.hasNext()) {
-				Coupon current = i.next();
-				if (coupon.getTitle().equals(current.getTitle())) {
-					throw new Exception("this coupon already exists");	
-				}
-			}
-			if (!i.hasNext()) {
-				couponDAO.insertCoupon(coupon);
-				System.out.println("company added new coupon: " + coupon.getId());
-			} 
-		}
-			catch (Exception e) {
-				System.out.println(e.getMessage());
-			}finally {
-				con.close();
-			}
-	}
+//	@Override
+//	public void addCoupon(Coupon coupon) throws Exception {
+//		con = DriverManager.getConnection(Database.getDBUrl());
+//		try {
+//
+//			Set<Coupon> coupons = couponDAO.getAllCoupons();
+//			Iterator<Coupon> i = coupons.iterator();
+//			while (i.hasNext()) {
+//				Coupon current = i.next();
+//				if (coupon.getTitle().equals(current.getTitle())) {
+//					throw new Exception("this coupon already exists");	
+//				}
+//			}
+//			if (!i.hasNext()) {
+//				couponDAO.insertCoupon(coupon);
+//				System.out.println("company added new coupon: " + coupon.getId());
+//			} 
+//	}
+//			catch (Exception e) {
+//				e.printStackTrace();
+//				System.out.println(e.getMessage());
+//			}finally {
+//				con.close();
+//			}
+//	}
 }
