@@ -5,22 +5,16 @@ import java.util.Set;
 import Company.Company;
 import Company.CompanyDAO;
 import Company.CompanyDBDAO;
-import CompanyCoupon.CompanyCoupon;
-import CompanyCoupon.CompanyCouponDAO;
 import CompanyCoupon.CompanyCouponDBDAO;
 import Customer.Customer;
 import Customer.CustomerDAO;
 import Customer.CustomerDBDAO;
-import Coupon.Coupon;
 import Coupon.CouponDAO;
-import Coupon.CouponDBDAO;
-import CustomerCoupon.CustomerCoupon;
-import CustomerCoupon.CustomerCouponDAO;
 import CustomerCoupon.CustomerCouponDBDAO;
 import MyExceptions.CompanyAlreadyExists;
 
 /**
- * @author Linoy and Matan
+ * @author Linoy & Matan
  * @Description: Admin Facade- Administrator permissions when Login.
  */
 
@@ -58,9 +52,10 @@ public class AdminFacade implements CouponClientFacade {
 	}
 
 	/**
-	 * this method check password of admin, if true return admin.
+	 * this method check password and name of admin, if true return admin login.
 	 * @param name
 	 * @param password
+	 * @param Type
 	 */
 	@Override
 	public CouponClientFacade login(String name, String password, ClientType clientType) throws Exception {

@@ -18,6 +18,10 @@ import CustomerCoupon.CustomerCouponDAO;
 import CustomerCoupon.CustomerCouponDBDAO;
 import Main.Database;
 
+/**
+ * @author Linoy & Matan
+ * @Description: Company Facade- login for Company
+ */
 public class CompanyFacade implements CouponClientFacade{
 	private CompanyDBDAO companyDBDAO = new CompanyDBDAO();
 	private CouponDBDAO couponDBDAO = new CouponDBDAO();
@@ -29,11 +33,16 @@ public class CompanyFacade implements CouponClientFacade{
 	private CustomerCouponDBDAO customerCouponDBDAO;
 
 	
-	
+	/**
+	 * @partial CTOR 
+	 */
 	public CompanyFacade(Company company) {
 		this.company = company;
 	}
 
+	/**
+	 * @Empty CTOR
+	 */
 	public CompanyFacade() {
 	}
 
