@@ -23,12 +23,12 @@ import Main.Database;
  * @Description: Company Facade- login for Company
  */
 public class CompanyFacade implements CouponClientFacade{
-	private CompanyDBDAO companyDBDAO = new CompanyDBDAO();
+	private CompanyDAO companyDAO = new CompanyDBDAO();
 	private CouponDAO couponDAO = new CouponDBDAO();
 	private Company company;
 	private CustomerCouponDAO customerCouponDAO;
 	private Coupon coupon;
-	private CompanyDAO companyDAO;
+	
 	private CustomerCouponDBDAO customerCouponDBDAO;
 
 	
@@ -47,11 +47,11 @@ public class CompanyFacade implements CouponClientFacade{
 	}
 
 	public void insertCompany(Company company) throws Exception {
-		companyDBDAO.insertCompany(company);
+		companyDAO.insertCompany(company);
 	}
 //
 	public void removeCompany(long id) throws Exception {
-		companyDBDAO.removeCompany(id);
+		companyDAO.removeCompany(id);
 	}
 //
 //	public void updateCompany(Company company, long newId, String newCompanyName, String newPassword, String newEmail)
@@ -68,16 +68,16 @@ public class CompanyFacade implements CouponClientFacade{
 //	}
 //
 	public Set<Company> getAllCompany() throws Exception {
-		System.out.println(companyDBDAO.getAllCompanys());
-		return companyDBDAO.getAllCompanys();
+		System.out.println(companyDAO.getAllCompanys());
+		return companyDAO.getAllCompanys();
 	}
 
 	public void dropTable() throws Exception {
-		companyDBDAO.dropTable();
+		companyDAO.dropTable();
 	}
 	
 	public Set <Coupon> getAllCompanyCoupons(long companyId) throws Exception{
-		return companyDBDAO.getAllCompanyCoupons(companyId);
+		return companyDAO.getAllCompanyCoupons(companyId);
 	}
 	
 
@@ -108,7 +108,7 @@ public class CompanyFacade implements CouponClientFacade{
 	public void removeCouponById(long couponId) throws Exception {
 //		couponDAO.removeCoupon(couponId);
 //		customerCouponDBDAO.removeCustomerCoupon(customerId, couponId);
-		companyDBDAO.removeCouponFromCompany(couponId, couponId);
+		companyDAO.removeCouponFromCompany(couponId, couponId);
 		
 	}	
 	
@@ -122,17 +122,17 @@ public class CompanyFacade implements CouponClientFacade{
 	}
 	
 	public Company getCompany(long id) throws Exception {
-//		System.out.println(companyDBDAO.getCompany(id));
-		return companyDBDAO.getCompany(id);
+		System.out.println(companyDAO.getCompany(id));
+		return companyDAO.getCompany(id);
 	}
 	
 	
 	public Company getCouponById(long couponId) throws Exception {
-		return companyDBDAO.getCompany(couponId);
+		return companyDAO.getCompany(couponId);
 	}
 	
-	public Set<Coupon> getAllCoupon() throws Exception {
-		return companyDAO.getCoupons(companyId);
+	public Set<Coupon> getAllCompanyCoupons() throws Exception {
+		return companyDAO.getAllCompanyCoupons(company.getId());
 	}
 	
 	public Set<Coupon> getCouponsByType(CouponType couponType){

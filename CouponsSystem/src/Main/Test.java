@@ -178,5 +178,7 @@ public class Test {
 //		customerFacade.purchaseCoupon(u6);
 //		adminFacade.updateCompany(p1, "1111111111", "22222222222");
 
+		
+		companyFacade.getAllCompanyCoupons(1);
 	}
 }
