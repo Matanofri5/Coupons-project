@@ -46,13 +46,13 @@ public class CompanyFacade implements CouponClientFacade{
 	public CompanyFacade() {
 	}
 
-	public void insertCompany(Company company) throws Exception {
-		companyDAO.insertCompany(company);
-	}
+//	public void insertCompany(Company company) throws Exception {
+//		companyDAO.insertCompany(company);
+//	}
 //
-	public void removeCompany(long id) throws Exception {
-		companyDAO.removeCompany(id);
-	}
+//	public void removeCompany(Company company) throws Exception {
+//		companyDAO.removeCompany(company);
+//	}
 //
 //	public void updateCompany(Company company, long newId, String newCompanyName, String newPassword, String newEmail)
 //			throws Exception {
@@ -106,8 +106,6 @@ public class CompanyFacade implements CouponClientFacade{
 	}
 	
 	public void removeCouponById(long couponId) throws Exception {
-//		couponDAO.removeCoupon(couponId);
-//		customerCouponDBDAO.removeCustomerCoupon(customerId, couponId);
 		companyDAO.removeCouponFromCompany(couponId, couponId);
 		
 	}	

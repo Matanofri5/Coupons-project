@@ -17,6 +17,8 @@ import Coupon.CouponDBDAO;
 import Coupon.CouponFacade;
 import Coupon.CouponType;
 import Customer.Customer;
+import Customer.CustomerDAO;
+import Customer.CustomerDBDAO;
 import Customer.CustomerFacade;
 import CustomerCoupon.CustomerCoupon;
 import Coupon.DateUtils;
@@ -33,7 +35,7 @@ public class Test {
 		Connection con = DriverManager.getConnection(Database.getDBUrl());
 
 		/**
-		 * initialization objects.
+		 * initialization facade objects.
 		 * @param admin
 		 * @param coupon
 		 * @param company
@@ -49,6 +51,15 @@ public class Test {
 		CompanyCouponFacade companyCouponFacade = new CompanyCouponFacade();
 		CustomerCouponFacade customerCouponFacade = new CustomerCouponFacade();
 		
+		/**
+		 * initialization dao objects to dbdao.
+		 * @param companydao
+		 * @param customerdao
+		 */
+		CompanyDAO companyDAO = new CompanyDBDAO();
+		CustomerDAO customerDAO = new CustomerDBDAO();
+		CouponDAO couponDAO = new CouponDBDAO();
+		
 		/*********************************** dropping tables **************************/
 		customerCouponFacade.dropTable();
 		companyCouponFacade.dropTable();
@@ -62,19 +73,19 @@ public class Test {
 		
 		/*************************************** Company ****************************/
 
-		Company p1 = new Company(1, "HP", "3443345654", "hp@gmail.com");
+		Company p1 = new Company(1, "Hp", "3443345654", "hp@gmail.com");
 		Company p2 = new Company(2, "Lg", "987869977", "lg@gmail.com");
 		Company p3 = new Company(3, "Sony", "4314134143", "sony@gmail.com");
 		Company p4 = new Company(4, "CocaCola", "vsdv", "vsdvsdv");
-		Company p5 = new Company(5, "HP", "333", "ff");
+		Company p5 = new Company(5, "Samsung", "333", "ff");
 		
 		/*************************************** Customer ****************************/
 
 		Customer c1 = new Customer(1, "Matan", "3784628");
 		Customer c2 = new Customer(2, "Bar", "1325266");
 		Customer c3 = new Customer(3, "Dvir", "9879886");
-		Customer c4 = new Customer(4, "Dvir", "fdfdasadf");
-		Customer c5 = new Customer(5, "Matan", "ddd");
+		Customer c4 = new Customer(4, "Ehud", "fdfdasadf");
+		Customer c5 = new Customer(5, "Or", "ddd");
 		
 		/*************************************** Coupon ****************************/
 
@@ -88,9 +99,9 @@ public class Test {
 		
 		/**************************************** CustomerCoupon****************************/
 
-		CustomerCoupon a1 = new CustomerCoupon(1, 2);
-		CustomerCoupon a2 = new CustomerCoupon(9, 11);
-		CustomerCoupon a3 = new CustomerCoupon(15,40);
+		CustomerCoupon a1 = new CustomerCoupon(1, 1);
+		CustomerCoupon a2 = new CustomerCoupon(1, 2);
+		CustomerCoupon a3 = new CustomerCoupon(1, 3);
 		CustomerCoupon a4 = new CustomerCoupon(16, 41);
 		CustomerCoupon a5 = new CustomerCoupon(17, 42);
 		CustomerCoupon a6 = new CustomerCoupon(26, 43);
@@ -98,51 +109,49 @@ public class Test {
 		
 		/*****************************************CompanyCoupon******************************/
 		
-		CompanyCoupon b1 = new CompanyCoupon(1, 6);
-		CompanyCoupon b2 = new CompanyCoupon(1, 11);
-		CompanyCoupon b3 = new CompanyCoupon(4, 11);
-		CompanyCoupon b4 = new CompanyCoupon(8, 38);
+		CompanyCoupon b1 = new CompanyCoupon(1, 1);
+		CompanyCoupon b2 = new CompanyCoupon(1, 2);
+		CompanyCoupon b3 = new CompanyCoupon(1, 3);
+		CompanyCoupon b4 = new CompanyCoupon(2, 4);
 		CompanyCoupon b5 = new CompanyCoupon(9, 46);
 		
 		
 		
 		
-//		 companyFacade.insertCompany(p1);
-//		 companyFacade.insertCompany(p2);
-//		 companyFacade.insertCompany(p3);
-//		 companyFacade.insertCompany(p4);
-//		 companyFacade.insertCompany(p5);
-
-
-//		 customerFacade.insertCustomer(c1);
-//		 customerFacade.insertCustomer(c2);
-//		 customerFacade.insertCustomer(c3);
-//		 customerFacade.insertCustomer(c4);
-//		 customerFacade.insertCustomer(c5);
+		adminFacade.addCompany(p1);
+		adminFacade.addCompany(p2);
+		adminFacade.addCompany(p3);
+		adminFacade.addCompany(p4);
+		adminFacade.addCompany(p5);
 
 		
-//		 couponFacade.insertCoupon(u1);
-//		 couponFacade.insertCoupon(u2);
-//		 couponFacade.insertCoupon(u3);
-//		 couponFacade.insertCoupon(u4);
-//		 couponFacade.insertCoupon(u5);
-//		 couponFacade.insertCoupon(u6);
-//		 couponFacade.insertCoupon(u7);
-
-
-//		 customerCouponFacade.insertCustomerCoupon(a1);
-//		 customerCouponFacade.insertCustomerCoupon(a2);
-//		 customerCouponFacade.insertCustomerCoupon(a3);
-
-//		companyCouponFacade.insertCompanyCoupon(b1);
-//		companyCouponFacade.insertCompanyCoupon(b2);
-//		companyCouponFacade.insertCompanyCoupon(b3);
-//		companyCouponFacade.insertCompanyCoupon(b4);
+		adminFacade.addCustomer(c1);
+		adminFacade.addCustomer(c2);
+		adminFacade.addCustomer(c3);
+		adminFacade.addCustomer(c4);
+		adminFacade.addCustomer(c5);
 
 		
+		 couponFacade.insertCoupon(u1);
+		 couponFacade.insertCoupon(u2);
+		 couponFacade.insertCoupon(u3);
+		 couponFacade.insertCoupon(u4);
+		 couponFacade.insertCoupon(u5);
+		 couponFacade.insertCoupon(u6);
+		 couponFacade.insertCoupon(u7);
+
+
+		 customerCouponFacade.insertCustomerCoupon(a1);
+		 customerCouponFacade.insertCustomerCoupon(a2);
+		 customerCouponFacade.insertCustomerCoupon(a3);
+
 		
+		companyCouponFacade.insertCompanyCoupon(b1);
+		companyCouponFacade.insertCompanyCoupon(b2);
+		companyCouponFacade.insertCompanyCoupon(b3);
+		companyCouponFacade.insertCompanyCoupon(b4);
 
 
-
+		adminFacade.removeCompany(p1);
 	}
 }

@@ -13,7 +13,7 @@ public interface CompanyDAO {
 
 	public void insertCompany(Company company) throws Exception;
 
-	public void removeCompany(long id) throws Exception;
+	public void removeCompany(Company company) throws Exception;
 
 	public void updateCompany(Company company) throws Exception;
 

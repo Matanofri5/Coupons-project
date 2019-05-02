@@ -1,5 +1,6 @@
 package Clients;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import Company.Company;
@@ -9,7 +10,9 @@ import CompanyCoupon.CompanyCouponDBDAO;
 import Customer.Customer;
 import Customer.CustomerDAO;
 import Customer.CustomerDBDAO;
+import Coupon.Coupon;
 import Coupon.CouponDAO;
+import Coupon.CouponDBDAO;
 import CustomerCoupon.CustomerCouponDBDAO;
 import MyExceptions.CompanyAlreadyExists;
 
@@ -25,9 +28,10 @@ public class AdminFacade implements CouponClientFacade {
 	 */
 	private static final String adminName = "admin";
 	private static final String adminPassword = "1234";
+	
+	private CouponDAO couponDAO = new CouponDBDAO();;
 	private CompanyDAO companyDAO = new CompanyDBDAO();
 	private CustomerDAO customerDAO = new CustomerDBDAO();
-	private CouponDAO couponDAO;
 	private CustomerCouponDBDAO customerCouponDBDAO;
 	private CompanyCouponDBDAO companyCouponDBDAO;
 
@@ -98,34 +102,28 @@ public class AdminFacade implements CouponClientFacade {
 	 * @param customerId
 	 * @throws Exception
 	 */
-	public void removeCompany(long companyId, long couponId, long customerId) throws Exception {
-		companyCouponDBDAO.removeCompanyCoupon(companyId, couponId);
-		companyDAO.removeCompany(companyId);
-		customerDAO.removeCustomer(customerId);
-		couponDAO.removeCoupon(couponId);
-		customerCouponDBDAO.removeCustomerCoupon(customerId, couponId);
+	public void removeCompany(Company company) throws Exception {
+//		Set<Coupon> coupons = new HashSet<Coupon>();
+//		coupons = companyDAO.getAllCompanyCoupons(company.getId());
+//		Iterator<Coupon> itreator = coupons.iterator();
+//		
+//		while (itreator.hasNext()) {
+//				Coupon coupon = new Coupon();
+//				coupon = itreator.next();
+//				couponDAO.removeCoupon(coupon);
+//		}
+		companyDAO.removeCompany(company);
+		
 	}
 
 	/**
 	 * This method update Company exist in company table, without the company Name.
 	 * @param Company
 	 * @throws Exception
-	 */
-//	public void updateCompany(Company company) throws Exception {
-//		companyDAO.updateCompany(company);
-//	
-////	public void updateCompany(Company company, String newPassword, String newEmail) throws Exception {
-////		company.setPassword(newPassword);
-////		company.setEmail(newEmail);
-////	
-//		companyDAO.updateCompany(company);
-//
-//	}
-	
+	 */	
 	public void updateCompany (Company company, String newPassword, String newEmail) throws Exception {
 		company.setPassword(newPassword);
 		company.setEmail(newEmail);
-		
 		companyDAO.updateCompany(company);
 	}
 

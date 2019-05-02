@@ -70,12 +70,12 @@ public class CouponDBDAO implements CouponDAO {
 	 *  @throws Exception
 	 */
 	@Override
-	public void removeCoupon(long id) throws Exception {
+	public void removeCoupon(Coupon coupon) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
 		String sql = "DELETE FROM Coupon WHERE id=?";
 		try (PreparedStatement pstm1 = con.prepareStatement(sql);) {
 			con.setAutoCommit(false);
-			pstm1.setLong(1, id);
+			pstm1.setLong(1, coupon.getId());
 			pstm1.executeUpdate();
 			con.commit();
 			System.out.println("remove Coupon success :D ");
@@ -208,8 +208,36 @@ public class CouponDBDAO implements CouponDAO {
 	 */
 	@Override
 	public Set<Coupon> getAllCouponsByType(CouponType couponType) throws Exception {
+		con = DriverManager.getConnection(Database.getDBUrl());
+		Set<Coupon> CouponByType = new HashSet<Coupon>();
 		
-		return null;
+			try {
+				String sql = "SELECT * FROM coupon WHERE type=?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, couponType.toString());
+				ResultSet rs = pstmt.executeQuery();
+				Coupon coupon = null;
+				while (rs.next()) {
+					coupon = new Coupon();
+					coupon.setId(rs.getLong(1));
+					coupon.setTitle(rs.getString(2));
+					coupon.setStartDate(rs.getDate(3));
+					coupon.setEndDate(rs.getDate(4));
+					coupon.setAmount(rs.getInt(5));
+					coupon.setMessage(rs.getString(6));
+					coupon.setPrice(rs.getDouble(7));
+					coupon.setImage(rs.getString(8));
+					coupon.setType(CouponType.valueOf(rs.getString(9)));
+					
+					CouponByType.add(coupon);
+				}
+				pstmt.close();
+				}catch (Exception e) {
+					System.out.println(e.getMessage());
+				}finally {
+					con.close();
+			}
+		return CouponByType;
 	}
 	
 	/**

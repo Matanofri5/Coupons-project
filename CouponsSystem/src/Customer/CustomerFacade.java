@@ -16,10 +16,9 @@ import MyExceptions.CouponNotAvailableException;
  * @Description: Customer Facade- login for customers
  */
 public class CustomerFacade implements CouponClientFacade {
-	private CustomerDBDAO custDBDAO = new CustomerDBDAO();
+	private CustomerDAO customerDAO = new CustomerDBDAO();
 	private Customer customer;
-	private CouponDAO couponDAO;
-	private CouponDBDAO couponDBDAO = new CouponDBDAO();
+	private CouponDAO couponDAO = new CouponDBDAO();
 	private Coupon coupon;
 
 	/**
@@ -39,9 +38,9 @@ public class CustomerFacade implements CouponClientFacade {
 //		custDAO.insertCustomer(customer);
 //	}
 //
-//	public void removeCustomer(long id) throws Exception {
-//		custDAO.removeCustomer(id);
-//	}
+	public void removeCustomer(Customer customer) throws Exception {
+		customerDAO.removeCustomer(customer);
+	}
 //
 //	public void updateCustomer(Customer customer, long newid, String newcustomerName, String newpassword) throws Exception {
 //		customer.setId(newid);
@@ -60,7 +59,7 @@ public class CustomerFacade implements CouponClientFacade {
 //	}
 //
 	public void dropTable () throws Exception{
-		custDBDAO.dropTable();
+		customerDAO.dropTable();
 	}
 // 
 	
@@ -77,7 +76,7 @@ public class CustomerFacade implements CouponClientFacade {
 	}
 	
 	public void purchaseCoupon(Coupon coupon) throws Exception {
-		Coupon custcoupon = couponDBDAO.getCoupon(coupon.getId());
+		Coupon custcoupon = couponDAO.getCoupon(coupon.getId());
 		
 		if (custcoupon == null) {
 			throw new CouponNotAvailableException("customer failed purchase coupon");
@@ -85,17 +84,17 @@ public class CustomerFacade implements CouponClientFacade {
 		if (custcoupon.getAmount() > 0) {
 			throw new CouponNotAvailableException("customer failed purchase coupon");
 		}
-		custDBDAO.customerPurchaseCoupon(custcoupon, this.customer);
+		customerDAO.customerPurchaseCoupon(custcoupon, this.customer);
 		custcoupon.setAmount(custcoupon.getAmount()-1);
-		couponDBDAO.updateCoupon(custcoupon);
+		couponDAO.updateCoupon(custcoupon);
 		
 	}
-	public Collection<Coupon> getAllpurchasedCoupons() throws Exception{
-		return custDBDAO.getAllCustomerCoupons(customerId);
+	public Collection<Coupon> getAllpurchasedCoupons(long customerId) throws Exception{
+		return customerDAO.getAllCustomerCoupons(customerId);
 	}
 	
 	public Collection<Coupon> getAllpurchasedCouponsByType(Type type) throws Exception{
-		Collection<Coupon> allCouponsByType = custDBDAO.getAllCustomerCoupons(customerId);
+		Collection<Coupon> allCouponsByType = customerDAO.getAllCustomerCoupons(customerId);
 		for(Iterator<Coupon> iterator = allCouponsByType.iterator(); iterator.hasNext();) {
 			Coupon coupon = iterator.next();
 			if(coupon.getType() != CouponType) {

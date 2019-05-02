@@ -34,10 +34,8 @@ public class CompanyDBDAO implements CompanyDAO {
 	 * Data Members
 	 */
 	Connection con;
-	private CouponDBDAO couponDBDAO;
-	private CouponDAO couponDAO;
-
 	
+
 	/**
 	 * @Empty CTOR
 	 */
@@ -77,21 +75,35 @@ public class CompanyDBDAO implements CompanyDAO {
 	 *  @throws Exception
 	 */
 	@Override
-	public void removeCompany(long id) throws Exception {
+	public void removeCompany(Company company) throws Exception {		
+//		CouponDAO couponDAO = new CouponDBDAO();
 		con = DriverManager.getConnection(Database.getDBUrl());
-		String sql = "DELETE FROM Company WHERE id= ?";
-		try (PreparedStatement pstm1 = con.prepareStatement(sql);) {
-			con.setAutoCommit(false);
-			pstm1.setLong(1, id);
-			pstm1.executeUpdate();
-			con.commit();
-			System.out.println("Company remove success :D ");
+		
+//		Set<Coupon> coupons = new HashSet<Coupon>();
+//		coupons = getAllCompanyCoupons(company.getId());
+//		Iterator<Coupon> itreator = coupons.iterator();
+//		
+//		while (itreator.hasNext()) {
+//				Coupon coupon = new Coupon();
+//				coupon = itreator.next();
+//				couponDAO.removeCoupon(coupon);
+//		}
+		try {
+			String sql = "DELETE FROM Company WHERE id= ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, company.getId());
+			pstmt.executeUpdate();
+			pstmt.close();
+			System.out.println("Company " + company.getId() + " remove success :D ");
 		} catch (SQLException e) {
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
+				e.printStackTrace();
+				System.out.println(e1.getMessage());
 				throw new Exception("Database error");
 			}
+			e.printStackTrace();
 			System.err.println("Company remove failed :( ");
 		} finally {
 			con.close();

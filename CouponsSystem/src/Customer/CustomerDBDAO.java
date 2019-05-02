@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import Coupon.Coupon;
+import Coupon.CouponDBDAO;
 import CustomerCoupon.CustomerCoupon;
 import Main.Database;
 import MyExceptions.LoginException;
@@ -65,13 +66,13 @@ public class CustomerDBDAO implements CustomerDAO {
 	 *  @throws Exception
 	 */
 	@Override
-	public void removeCustomer(long id) throws Exception {
+	public void removeCustomer(Customer customer) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
 		String sql = "DELETE FROM Customer WHERE id= ?";
 
 		try (PreparedStatement pstm1 = con.prepareStatement(sql);) {
 			con.setAutoCommit(false);
-			pstm1.setLong(1, id);
+			pstm1.setLong(1, customer.getId());
 			pstm1.executeUpdate();
 			con.commit();
 			System.out.println("remove customer success :D ");
@@ -191,7 +192,28 @@ public class CustomerDBDAO implements CustomerDAO {
 	
 	@Override
 	public Set<Coupon> getAllCustomerCoupons(long customerId) throws Exception {
-		return null;
+		con = DriverManager.getConnection(Database.getDBUrl());
+		Set<Coupon> coupons = new HashSet<Coupon>();
+		CouponDBDAO coupon = new CouponDBDAO();
+
+		try {
+			String sql = "SELECT COUPONID FROM CustomerCoupon WHERE CUSTOMERID=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1,customerId) ;
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				
+				coupons.add(coupon.getCoupon(rs.getLong("COUPONID")));
+
+				System.out.println("Get coupons by customer success :D ");
+			}
+		} catch (SQLException e) {
+			System.err.println("Get coupons by customer failed :( ");
+			throw new Exception(e.getMessage());
+		} finally {
+			con.close();
+		}
+		return coupons;
 	}
 	
 	@Override

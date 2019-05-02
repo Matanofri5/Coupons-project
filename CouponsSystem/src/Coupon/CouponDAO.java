@@ -11,7 +11,7 @@ public interface CouponDAO {
 	
 	public void insertCoupon(Coupon coupon) throws Exception;
 
-	public void removeCoupon(long id) throws Exception;
+	public void removeCoupon(Coupon coupon) throws Exception;
 
 	public void updateCoupon(Coupon coupon) throws Exception;
 
