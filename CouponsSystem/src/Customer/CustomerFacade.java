@@ -118,6 +118,10 @@ public class CustomerFacade implements CouponClientFacade {
 		return customerDAO.getAllCustomerCoupons(customerId);
 	}
 	
+	public Set<Coupon> getAllCouponsByType (CouponType couponType) throws Exception{
+		return couponDAO.getAllCouponsByType(couponType);
+	}
+	
 	public Collection<Coupon> getAllpurchasedCouponsByType(Type type) throws Exception{
 		Collection<Coupon> allCouponsByType = customerDAO.getAllCustomerCoupons(customerId);
 		for(Iterator<Coupon> iterator = allCouponsByType.iterator(); iterator.hasNext();) {
@@ -140,7 +144,5 @@ public class CustomerFacade implements CouponClientFacade {
 		return allCouponsByPrice;
 	}
 	
-	public Set<Coupon> getAllCouponsByType (CouponType couponType) throws Exception{
-		return couponDAO.getAllCouponsByType(couponType);
-	}
+
 }

@@ -153,7 +153,5 @@ public class Test {
 
 
 		
-		customerFacade.purchaseCoupon(7);
-		
 	}
 }
