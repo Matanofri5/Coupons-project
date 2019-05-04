@@ -6,10 +6,13 @@ import java.util.Set;
 
 import Clients.ClientType;
 import Clients.CouponClientFacade;
+import Company.Company;
 import Coupon.Coupon;
 import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import Coupon.CouponType;
+import Coupon.DateUtils;
+import MyExceptions.CompanyAlreadyExists;
 import MyExceptions.CouponNotAvailableException;
 
 /**
@@ -76,18 +79,39 @@ public class CustomerFacade implements CouponClientFacade {
 		return null;
 	}
 	
-	public void purchaseCoupon(Coupon coupon) throws Exception {
-		Coupon custcoupon = couponDAO.getCoupon(coupon.getId());
+	public void purchaseCoupon(long couponId) throws Exception {
+//		Coupon custcoupon = couponDAO.getCoupon(coupon.getId());
+//		
+//		if (custcoupon == null) {
+//			throw new CouponNotAvailableException("customer failed purchase coupon");
+//		}
+//		if (custcoupon.getAmount() > 0) {
+//			throw new CouponNotAvailableException("customer failed purchase coupon");
+//		}
+//		customerDAO.customerPurchaseCoupon(custcoupon, customer);
+//		custcoupon.setAmount(custcoupon.getAmount()-1);
+//		couponDAO.updateCoupon(custcoupon);
 		
-		if (custcoupon == null) {
-			throw new CouponNotAvailableException("customer failed purchase coupon");
-		}
-		if (custcoupon.getAmount() > 0) {
-			throw new CouponNotAvailableException("customer failed purchase coupon");
-		}
-		customerDAO.customerPurchaseCoupon(custcoupon, customer);
-		custcoupon.setAmount(custcoupon.getAmount()-1);
-		couponDAO.updateCoupon(custcoupon);
+//		Coupon coupon2 = new Coupon();
+//		
+//		try {
+//			coupon2=couponDAO.getCoupon(couponId);
+//		}catch (Exception e){
+//			System.out.println("failed to purchase coupon");
+//		}
+//		if (coupon2 != null) {
+//			if (coupon2.getAmount() > 0) {
+//				if(coupon2.getEndDate().getTime() >= DateUtils.getCurrentDate().getTime()) {
+//				coupon2.setAmount(coupon2.getAmount()-1);
+//				try {
+//					couponDAO.updateCoupon(coupon2);
+//				}catch(Exception e) {
+//					System.out.println("update coupon faild");
+//				}
+//				}
+//				
+//			}
+//		}
 		
 	}
 	public Collection<Coupon> getAllpurchasedCoupons(long customerId) throws Exception{
