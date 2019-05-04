@@ -68,16 +68,29 @@ public class CustomerDBDAO implements CustomerDAO {
 	@Override
 	public void removeCustomer(Customer customer) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
-		String sql = "DELETE FROM Customer WHERE id= ?";
+		
 
-		try (PreparedStatement pstm1 = con.prepareStatement(sql);) {
+		try {
+			String sql = "DELETE FROM Customercoupon WHERE couponId=?";
+			PreparedStatement pstm1 = con.prepareStatement(sql);
 			con.setAutoCommit(false);
 			pstm1.setLong(1, customer.getId());
 			pstm1.executeUpdate();
+			pstm1.close();
 			con.commit();
+				
+			String sql2 = "DELETE FROM Coupon WHERE id=?";
+			PreparedStatement pstm2 = con.prepareStatement(sql2);
+			con.setAutoCommit(false);
+			pstm2.setLong(1, customer.getId());
+			pstm2.executeUpdate();
+			pstm2.close();
+			con.commit();
+
 			System.out.println("remove customer success :D ");
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
@@ -180,6 +193,7 @@ public class CustomerDBDAO implements CustomerDAO {
 			pstmt.setLong(2, coupon.getId());
 
 			pstmt.executeUpdate();
+			pstmt.close();
 
 			System.out.println("Customer purchase coupon :D  ");
 		} catch (SQLException e) {

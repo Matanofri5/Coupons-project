@@ -180,9 +180,8 @@ public class AdminFacade implements CouponClientFacade {
 	 * @param couponId
 	 * @throws Exception
 	 */
-	public void removeCustomer(long customerId, long couponId) throws Exception {
-		customerCouponDBDAO.removeCustomerCoupon(customerId, couponId);
-		customerDAO.removeCustomer(customerId);
+	public void removeCustomer(Customer customer) throws Exception {
+		customerDAO.removeCustomer(customer);
 	}
 
 	/**

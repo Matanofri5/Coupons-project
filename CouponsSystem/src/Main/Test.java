@@ -138,7 +138,7 @@ public class Test {
 		 couponFacade.insertCoupon(u4);
 		 couponFacade.insertCoupon(u5);
 		 couponFacade.insertCoupon(u6);
-		 couponFacade.insertCoupon(u7);
+//		 couponFacade.insertCoupon(u7);
 
 
 		 customerCouponFacade.insertCustomerCoupon(a1);
@@ -152,6 +152,9 @@ public class Test {
 		companyCouponFacade.insertCompanyCoupon(b4);
 
 
-		adminFacade.removeCompany(p1);
+		
+		System.out.println(companyFacade.getAllCouponsByType(CouponType.ELECTRICITY));
+		
+		
 	}
 }

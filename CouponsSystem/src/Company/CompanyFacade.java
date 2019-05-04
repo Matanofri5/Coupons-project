@@ -2,7 +2,9 @@ package Company;
 
 import java.sql.DriverManager;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import Coupon.CouponDAO;
@@ -26,10 +28,7 @@ public class CompanyFacade implements CouponClientFacade{
 	private CompanyDAO companyDAO = new CompanyDBDAO();
 	private CouponDAO couponDAO = new CouponDBDAO();
 	private Company company;
-	private CustomerCouponDAO customerCouponDAO;
-	private Coupon coupon;
-	
-	private CustomerCouponDBDAO customerCouponDBDAO;
+	private long companyId;
 
 	
 	/**
@@ -37,7 +36,7 @@ public class CompanyFacade implements CouponClientFacade{
 	 */
 	public CompanyFacade(Company company) {
 		this.company = company;
-		this.couponDAO = new CouponDBDAO();
+//		this.companyId = company.getId();
 	}
 
 	/**
@@ -129,21 +128,22 @@ public class CompanyFacade implements CouponClientFacade{
 		return companyDAO.getCompany(couponId);
 	}
 	
-	public Set<Coupon> getAllCompanyCoupons() throws Exception {
-		return companyDAO.getAllCompanyCoupons(company.getId());
-	}
+	public Set<Coupon> getAllCouponsByType (CouponType couponType) throws Exception{
+		return couponDAO.getAllCouponsByType(couponType);
 	
-	public Set<Coupon> getCouponsByType(CouponType couponType){
-		return null;// couponDAO.get
-	}
-//	public Set<Coupon> moshe() {
-//		java.sql.Date inputDate = new java.sql.Date(1000);
-//		
-//		java.sql.Date mydate = java.sql.Date.valueOf(LocalDate.now());
-//		if(inputDate.after(mydate)) {
-//			System.out.println("Good");
-//		}else {
-//			System.out.println("bad");
-//		}
+	
+//	public Set<Coupon> getCouponsByType(CouponType couponType){
+//		return null;// couponDAO.get
 //	}
+////	public Set<Coupon> moshe() {
+////		java.sql.Date inputDate = new java.sql.Date(1000);
+////		
+////		java.sql.Date mydate = java.sql.Date.valueOf(LocalDate.now());
+////		if(inputDate.after(mydate)) {
+////			System.out.println("Good");
+////		}else {
+////			System.out.println("bad");
+////		}
+////	}
+	}
 }

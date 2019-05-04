@@ -2,6 +2,7 @@ package Customer;
 import java.awt.Window.Type;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Set;
 
 import Clients.ClientType;
 import Clients.CouponClientFacade;
@@ -84,7 +85,7 @@ public class CustomerFacade implements CouponClientFacade {
 		if (custcoupon.getAmount() > 0) {
 			throw new CouponNotAvailableException("customer failed purchase coupon");
 		}
-		customerDAO.customerPurchaseCoupon(custcoupon, this.customer);
+		customerDAO.customerPurchaseCoupon(custcoupon, customer);
 		custcoupon.setAmount(custcoupon.getAmount()-1);
 		couponDAO.updateCoupon(custcoupon);
 		
@@ -113,5 +114,9 @@ public class CustomerFacade implements CouponClientFacade {
 		    }
 		}
 		return allCouponsByPrice;
+	}
+	
+	public Set<Coupon> getAllCouponsByType (CouponType couponType) throws Exception{
+		return couponDAO.getAllCouponsByType(couponType);
 	}
 }

@@ -234,7 +234,8 @@ public class CouponDBDAO implements CouponDAO {
 				pstmt.close();
 				}catch (Exception e) {
 					System.out.println(e.getMessage());
-				}finally {
+				}
+			finally {
 					con.close();
 			}
 		return CouponByType;
@@ -265,4 +266,7 @@ public class CouponDBDAO implements CouponDAO {
 			}
 		}
 	}
+	
+	
+	
 }
