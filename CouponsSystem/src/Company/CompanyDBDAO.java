@@ -76,18 +76,8 @@ public class CompanyDBDAO implements CompanyDAO {
 	 */
 	@Override
 	public void removeCompany(Company company) throws Exception {		
-//		CouponDAO couponDAO = new CouponDBDAO();
 		con = DriverManager.getConnection(Database.getDBUrl());
-		
-//		Set<Coupon> coupons = new HashSet<Coupon>();
-//		coupons = getAllCompanyCoupons(company.getId());
-//		Iterator<Coupon> itreator = coupons.iterator();
-//		
-//		while (itreator.hasNext()) {
-//				Coupon coupon = new Coupon();
-//				coupon = itreator.next();
-//				couponDAO.removeCoupon(coupon);
-//		}
+
 		try {
 			String sql = "DELETE FROM Company WHERE id= ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
