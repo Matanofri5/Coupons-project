@@ -144,5 +144,4 @@ public class CustomerFacade implements CouponClientFacade {
 		return allCouponsByPrice;
 	}
 	
-
 }

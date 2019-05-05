@@ -10,6 +10,7 @@ import java.util.Set;
 import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import Coupon.CouponType;
+import Customer.CustomerDAO;
 import Company.CompanyDAO;
 import Clients.ClientType;
 import Clients.CouponClientFacade;

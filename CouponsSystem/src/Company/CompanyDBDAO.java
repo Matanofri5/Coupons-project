@@ -99,6 +99,50 @@ public class CompanyDBDAO implements CompanyDAO {
 			con.close();
 		}
 	}
+	
+	/**
+	 * @removeCouponFromCompany
+	 * this method delete 1 coupon of Company by DELETE query from three tables.
+	 *  @param long couponId
+	 *  @param long  id
+	 *  @throws Exception
+	 */
+	@Override
+	public void removeCouponFromCompany(long couponId, long id) throws Exception {
+		con = DriverManager.getConnection(Database.getDBUrl());
+
+		try {
+			
+		//query to delete coupon from companyCoupon table
+			String sql1 = "DELETE FROM CompanyCoupon WHERE couponId=?";
+			PreparedStatement pstmt = con.prepareStatement(sql1);
+			pstmt.setLong(1, couponId);
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			//query to delete coupon from customerCoupon table
+				String sql2 = "DELETE FROM CustomerCoupon WHERE couponId=?";
+				PreparedStatement pstmt2 = con.prepareStatement(sql2);
+				pstmt2.setLong(1, couponId);
+				pstmt2.executeUpdate();
+				pstmt2.close();
+				
+				//query to delete coupon from coupon table
+					String sql3 = "DELETE FROM Coupon WHERE id=?";
+					PreparedStatement pstmt3 = con.prepareStatement(sql3);
+					pstmt3.setLong(1, id);
+					pstmt3.executeUpdate();
+					pstmt3.close();
+					
+					System.out.println("you deleted coupon from company successfully");
+		}
+		catch (Exception e) {
+			throw new RemoveCouponException("failed to remove coupon from company");
+		}
+		finally {
+			con.close();
+		}
+	}
 
 	/**
 	 * @update
@@ -272,51 +316,6 @@ public class CompanyDBDAO implements CompanyDAO {
 			} catch (SQLException ex) {
 				System.err.println("the connection cannot closed :( " + ex.getMessage());
 			}
-		}
-	}
-
-	/**
-	 * @removeCouponFromCompany
-	 * this method delete 1 coupon of Company by DELETE query from three tables.
-	 *  @param long couponId
-	 *  @param long  id
-	 *  @throws Exception
-	 */
-	@Override
-	public void removeCouponFromCompany(long couponId, long id) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
-//		Coupon coupon = couponDBDAO.getCoupon(couponId);
-
-		try {
-			
-		//query to delete coupon from companyCoupon table
-			String sql1 = "DELETE FROM CompanyCoupon WHERE couponId=?";
-			PreparedStatement pstmt = con.prepareStatement(sql1);
-			pstmt.setLong(1, couponId);
-			pstmt.executeUpdate();
-			pstmt.close();
-			
-			//query to delete coupon from customerCoupon table
-				String sql2 = "DELETE FROM CustomerCoupon WHERE couponId=?";
-				PreparedStatement pstmt2 = con.prepareStatement(sql2);
-				pstmt2.setLong(1, couponId);
-				pstmt2.executeUpdate();
-				pstmt2.close();
-				
-				//query to delete coupon from coupon table
-					String sql3 = "DELETE FROM Coupon WHERE id=?";
-					PreparedStatement pstmt3 = con.prepareStatement(sql3);
-					pstmt3.setLong(1, id);
-					pstmt3.executeUpdate();
-					pstmt3.close();
-					
-					System.out.println("you deleted coupon from company successfully");
-		}
-		catch (Exception e) {
-			throw new RemoveCouponException("failed to remove coupon from company");
-		}
-		finally {
-			con.close();
 		}
 	}
 

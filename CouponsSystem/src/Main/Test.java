@@ -163,8 +163,7 @@ public class Test {
 
 
 
-		adminFacade.removeCompany(p2);
-		
+
 		
 		
 	}

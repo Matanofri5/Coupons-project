@@ -14,6 +14,7 @@ import Coupon.CouponDBDAO;
 import CustomerCoupon.CustomerCoupon;
 import Main.Database;
 import MyExceptions.LoginException;
+import MyExceptions.RemoveCouponException;
 
 /**
  * @Author - Linoy & Matan
@@ -68,36 +69,48 @@ public class CustomerDBDAO implements CustomerDAO {
 	@Override
 	public void removeCustomer(Customer customer) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
-		
 
 		try {
-			String sql = "DELETE FROM Customercoupon WHERE couponId=?";
-			PreparedStatement pstm1 = con.prepareStatement(sql);
-			con.setAutoCommit(false);
-			pstm1.setLong(1, customer.getId());
-			pstm1.executeUpdate();
-			pstm1.close();
-			con.commit();
-				
-			String sql2 = "DELETE FROM Coupon WHERE id=?";
-			PreparedStatement pstm2 = con.prepareStatement(sql2);
-			con.setAutoCommit(false);
-			pstm2.setLong(1, customer.getId());
-			pstm2.executeUpdate();
-			pstm2.close();
-			con.commit();
-
-			System.out.println("remove customer success :D ");
-
+			String sql = "DELETE FROM Customer WHERE id= ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, customer.getId());
+			pstmt.executeUpdate();
+			pstmt.close();
+			System.out.println("Customer " + customer.getId() + " remove success :D ");
 		} catch (SQLException e) {
-			e.printStackTrace();
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				System.err.println("remove customer failed :( ");
+				e.printStackTrace();
+				System.out.println(e1.getMessage());
 				throw new Exception("Database error");
 			}
+			e.printStackTrace();
+			System.err.println("Customer remove failed :( ");
 		} finally {
+			con.close();
+		}
+	}
+	
+	public void removeCouponFromCustomer(long couponId) throws Exception{
+		con = DriverManager.getConnection(Database.getDBUrl());
+
+		try {
+			
+			//query to delete coupon from customerCoupon table
+				String sql2 = "DELETE FROM CustomerCoupon WHERE couponId=?";
+				PreparedStatement pstmt2 = con.prepareStatement(sql2);
+				pstmt2.setLong(1, couponId);
+				pstmt2.executeUpdate();
+				pstmt2.close();
+					
+					System.out.println("you deleted coupon from customer successfully");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new RemoveCouponException("failed to remove coupon from customer");
+		}
+		finally {
 			con.close();
 		}
 	}

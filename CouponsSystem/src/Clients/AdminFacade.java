@@ -181,6 +181,15 @@ public class AdminFacade implements CouponClientFacade {
 	 * @throws Exception
 	 */
 	public void removeCustomer(Customer customer) throws Exception {
+		Set<Coupon> coupons2 = new HashSet<Coupon>();
+		coupons2 = customerDAO.getAllCustomerCoupons(customer.getId());
+		Iterator<Coupon> itreator = coupons2.iterator();
+		
+		while (itreator.hasNext()) {
+				Coupon coupon2 = new Coupon();
+				coupon2 = itreator.next();
+				customerDAO.removeCouponFromCustomer(coupon2.getId());
+		}
 		customerDAO.removeCustomer(customer);
 	}
 

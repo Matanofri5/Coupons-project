@@ -14,6 +14,8 @@ public interface CustomerDAO {
 	public void insertCustomer(Customer Customer) throws Exception;
 
 	public void removeCustomer(Customer customer) throws Exception;
+	
+	public void removeCouponFromCustomer(long couponId) throws Exception;
 
 	public void updateCustomer(Customer Customer) throws Exception;
 
