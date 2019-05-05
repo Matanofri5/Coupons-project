@@ -103,15 +103,15 @@ public class AdminFacade implements CouponClientFacade {
 	 * @throws Exception
 	 */
 	public void removeCompany(Company company) throws Exception {
-//		Set<Coupon> coupons = new HashSet<Coupon>();
-//		coupons = companyDAO.getAllCompanyCoupons(company.getId());
-//		Iterator<Coupon> itreator = coupons.iterator();
-//		
-//		while (itreator.hasNext()) {
-//				Coupon coupon = new Coupon();
-//				coupon = itreator.next();
-//				couponDAO.removeCoupon(coupon);
-//		}
+		Set<Coupon> coupons = new HashSet<Coupon>();
+		coupons = companyDAO.getAllCompanyCoupons(company.getId());
+		Iterator<Coupon> itreator = coupons.iterator();
+		
+		while (itreator.hasNext()) {
+				Coupon coupon = new Coupon();
+				coupon = itreator.next();
+				companyDAO.removeCouponFromCompany(coupon.getId(), coupon.getId());
+		}
 		companyDAO.removeCompany(company);
 		
 	}

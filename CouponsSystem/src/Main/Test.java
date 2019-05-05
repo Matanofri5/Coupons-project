@@ -102,10 +102,10 @@ public class Test {
 		CustomerCoupon a1 = new CustomerCoupon(1, 1);
 		CustomerCoupon a2 = new CustomerCoupon(1, 2);
 		CustomerCoupon a3 = new CustomerCoupon(1, 3);
-		CustomerCoupon a4 = new CustomerCoupon(16, 41);
-		CustomerCoupon a5 = new CustomerCoupon(17, 42);
-		CustomerCoupon a6 = new CustomerCoupon(26, 43);
-		CustomerCoupon a7 = new CustomerCoupon(20, 46);
+		CustomerCoupon a4 = new CustomerCoupon(2, 2);
+		CustomerCoupon a5 = new CustomerCoupon(2, 4);
+		CustomerCoupon a6 = new CustomerCoupon(4, 1);
+		CustomerCoupon a7 = new CustomerCoupon(4, 2);
 		
 		/*****************************************CompanyCoupon******************************/
 		
@@ -113,7 +113,9 @@ public class Test {
 		CompanyCoupon b2 = new CompanyCoupon(1, 2);
 		CompanyCoupon b3 = new CompanyCoupon(1, 3);
 		CompanyCoupon b4 = new CompanyCoupon(2, 4);
-		CompanyCoupon b5 = new CompanyCoupon(9, 46);
+		CompanyCoupon b5 = new CompanyCoupon(2, 6);
+		CompanyCoupon b6 = new CompanyCoupon(5, 7);
+		CompanyCoupon b7 = new CompanyCoupon(2, 5);
 		
 		
 		
@@ -144,14 +146,26 @@ public class Test {
 		 customerCouponFacade.insertCustomerCoupon(a1);
 		 customerCouponFacade.insertCustomerCoupon(a2);
 		 customerCouponFacade.insertCustomerCoupon(a3);
+		 customerCouponFacade.insertCustomerCoupon(a4);
+		 customerCouponFacade.insertCustomerCoupon(a5);
+		 customerCouponFacade.insertCustomerCoupon(a6);
+		 customerCouponFacade.insertCustomerCoupon(a7);
 
 		
 		companyCouponFacade.insertCompanyCoupon(b1);
 		companyCouponFacade.insertCompanyCoupon(b2);
 		companyCouponFacade.insertCompanyCoupon(b3);
 		companyCouponFacade.insertCompanyCoupon(b4);
+		companyCouponFacade.insertCompanyCoupon(b5);
+		companyCouponFacade.insertCompanyCoupon(b6);
+		companyCouponFacade.insertCompanyCoupon(b7);
 
 
+
+
+		adminFacade.removeCompany(p2);
+		
+		
 		
 	}
 }
