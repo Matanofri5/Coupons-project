@@ -149,7 +149,7 @@ public class Test {
 		 customerCouponFacade.insertCustomerCoupon(a4);
 		 customerCouponFacade.insertCustomerCoupon(a5);
 		 customerCouponFacade.insertCustomerCoupon(a6);
-		 customerCouponFacade.insertCustomerCoupon(a7);
+//		 customerCouponFacade.insertCustomerCoupon(a7);
 
 		
 		companyCouponFacade.insertCompanyCoupon(b1);
@@ -158,11 +158,10 @@ public class Test {
 		companyCouponFacade.insertCompanyCoupon(b4);
 		companyCouponFacade.insertCompanyCoupon(b5);
 		companyCouponFacade.insertCompanyCoupon(b6);
-		companyCouponFacade.insertCompanyCoupon(b7);
+//		companyCouponFacade.insertCompanyCoupon(b7);
 
 
-//		customerFacade.purchaseCoupon(1);
-		adminFacade.removeCustomer(c5);
+		customerFacade.purchaseCoupon(7);
 		
 
 

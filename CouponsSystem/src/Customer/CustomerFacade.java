@@ -12,6 +12,8 @@ import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import Coupon.CouponType;
 import Coupon.DateUtils;
+import CustomerCoupon.CustomerCouponDAO;
+import CustomerCoupon.CustomerCouponDBDAO;
 import MyExceptions.CompanyAlreadyExists;
 import MyExceptions.CouponNotAvailableException;
 
@@ -24,6 +26,7 @@ public class CustomerFacade implements CouponClientFacade {
 	private Customer customer;
 	private CouponDAO couponDAO = new CouponDBDAO();
 	private Coupon coupon;
+	private CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
 
 	/**
 	 * @partial CTOR 
@@ -37,6 +40,7 @@ public class CustomerFacade implements CouponClientFacade {
 	 */
 	public CustomerFacade() {
 	}
+	
 
 //	public void insertCustomer(Customer customer) throws Exception {
 //		custDAO.insertCustomer(customer);
@@ -80,14 +84,15 @@ public class CustomerFacade implements CouponClientFacade {
 	}
 	
 	public void purchaseCoupon(long couponId) throws Exception {
-		Coupon custcoupon = couponDAO.getCoupon(coupon.getId());
-		
+		Coupon custcoupon = couponDAO.getCoupon(couponId);
+	
 		if (custcoupon == null) {
 			throw new CouponNotAvailableException("customer failed purchase coupon");
 		}
 		if (custcoupon.getAmount() <= 0) {
 			throw new CouponNotAvailableException("customer failed purchase coupon");
-		}
+		}		
+
 		customerDAO.customerPurchaseCoupon(custcoupon, this.customer);
 		custcoupon.setAmount(custcoupon.getAmount()-1);
 		couponDAO.updateCoupon(custcoupon);
@@ -112,7 +117,6 @@ public class CustomerFacade implements CouponClientFacade {
 //				
 //			}
 //		}
-		
 	}
 	public Collection<Coupon> getAllpurchasedCoupons(long customerId) throws Exception{
 		return customerDAO.getAllCustomerCoupons(customerId);
