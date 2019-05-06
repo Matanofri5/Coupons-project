@@ -18,8 +18,8 @@ public class CouponFacade {
 		couponDBDAO.insertCoupon(coupon);
 	}
 
-	public void removeCoupon(long id) throws Exception {
-		couponDBDAO.removeCoupon(id);
+	public void removeCoupon(Coupon coupon) throws Exception {
+		couponDBDAO.removeCoupon(coupon);
 	}
 
 	public void updateCoupon(Coupon coupon, long whatid, Date newEndDate, double newPrice)
