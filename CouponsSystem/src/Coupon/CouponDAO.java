@@ -22,4 +22,5 @@ public interface CouponDAO {
 	public Set<Coupon> getAllCouponsByType (CouponType couponType) throws Exception;
 
 	public void dropTable() throws Exception;
+
 }
