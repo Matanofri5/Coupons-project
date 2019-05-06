@@ -92,7 +92,7 @@ public class CustomerDBDAO implements CustomerDAO {
 		}
 	}
 	
-	public void removeCouponFromCustomer(long couponId) throws Exception{
+	public void removeCouponFromCustomerCoupon(long couponId) throws Exception{
 		con = DriverManager.getConnection(Database.getDBUrl());
 
 		try {

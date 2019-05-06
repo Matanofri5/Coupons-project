@@ -80,17 +80,17 @@ public class CustomerFacade implements CouponClientFacade {
 	}
 	
 	public void purchaseCoupon(long couponId) throws Exception {
-//		Coupon custcoupon = couponDAO.getCoupon(coupon.getId());
-//		
-//		if (custcoupon == null) {
-//			throw new CouponNotAvailableException("customer failed purchase coupon");
-//		}
-//		if (custcoupon.getAmount() > 0) {
-//			throw new CouponNotAvailableException("customer failed purchase coupon");
-//		}
-//		customerDAO.customerPurchaseCoupon(custcoupon, customer);
-//		custcoupon.setAmount(custcoupon.getAmount()-1);
-//		couponDAO.updateCoupon(custcoupon);
+		Coupon custcoupon = couponDAO.getCoupon(coupon.getId());
+		
+		if (custcoupon == null) {
+			throw new CouponNotAvailableException("customer failed purchase coupon");
+		}
+		if (custcoupon.getAmount() <= 0) {
+			throw new CouponNotAvailableException("customer failed purchase coupon");
+		}
+		customerDAO.customerPurchaseCoupon(custcoupon, this.customer);
+		custcoupon.setAmount(custcoupon.getAmount()-1);
+		couponDAO.updateCoupon(custcoupon);
 		
 //		Coupon coupon2 = new Coupon();
 //		

@@ -188,7 +188,7 @@ public class AdminFacade implements CouponClientFacade {
 		while (itreator.hasNext()) {
 				Coupon coupon2 = new Coupon();
 				coupon2 = itreator.next();
-				customerDAO.removeCouponFromCustomer(coupon2.getId());
+				customerDAO.removeCouponFromCustomerCoupon(coupon2.getId());
 		}
 		customerDAO.removeCustomer(customer);
 	}

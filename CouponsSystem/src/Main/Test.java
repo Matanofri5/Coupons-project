@@ -161,7 +161,9 @@ public class Test {
 		companyCouponFacade.insertCompanyCoupon(b7);
 
 
-
+//		customerFacade.purchaseCoupon(1);
+		adminFacade.removeCustomer(c5);
+		
 
 
 		
