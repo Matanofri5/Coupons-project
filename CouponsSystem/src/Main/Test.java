@@ -90,12 +90,12 @@ public class Test {
 		/*************************************** Coupon ****************************/
 
 		Coupon u1 = new Coupon(1, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 55, "sick", 33.5, "image", CouponType.HEALTH);
-		Coupon u2 = new Coupon(2, "test2", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 66, "camp", 36.7, "picture", CouponType.CAMPING);
-		Coupon u3 = new Coupon(3, "test3", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 77, "food", 41.2, "photo", CouponType.FOOD);
-		Coupon u4 = new Coupon(4, "test4", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 99, "bla", 32.4, "uy", CouponType.TRAVELING);
-		Coupon u5 = new Coupon(5, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 44, "ff", 4444.7, "gg", CouponType.ELECTRICITY);
-		Coupon u6 = new Coupon(6, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 52, "bbb", 66.1, "dd", CouponType.HEALTH);
-		Coupon u7 = new Coupon(7, "testi", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 22, "fd", 11.2, "fd", CouponType.HEALTH);
+		Coupon u2 = new Coupon(2, "test1", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 66, "camp", 36.7, "picture", CouponType.CAMPING);
+		Coupon u3 = new Coupon(3, "test2", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 77, "food", 41.2, "photo", CouponType.FOOD);
+		Coupon u4 = new Coupon(4, "test3", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 99, "bla", 32.4, "uy", CouponType.TRAVELING);
+		Coupon u5 = new Coupon(5, "test4", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 44, "ff", 4444.7, "gg", CouponType.ELECTRICITY);
+		Coupon u6 = new Coupon(6, "test5", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 52, "bbb", 66.1, "dd", CouponType.HEALTH);
+		Coupon u7 = new Coupon(7, "test6", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 22, "fd", 11.2, "fd", CouponType.HEALTH);
 		
 		/**************************************** CustomerCoupon****************************/
 
@@ -149,7 +149,7 @@ public class Test {
 		 customerCouponFacade.insertCustomerCoupon(a4);
 		 customerCouponFacade.insertCustomerCoupon(a5);
 		 customerCouponFacade.insertCustomerCoupon(a6);
-//		 customerCouponFacade.insertCustomerCoupon(a7);
+		 customerCouponFacade.insertCustomerCoupon(a7);
 
 		
 		companyCouponFacade.insertCompanyCoupon(b1);
@@ -158,14 +158,11 @@ public class Test {
 		companyCouponFacade.insertCompanyCoupon(b4);
 		companyCouponFacade.insertCompanyCoupon(b5);
 		companyCouponFacade.insertCompanyCoupon(b6);
-//		companyCouponFacade.insertCompanyCoupon(b7);
-
-
-		customerFacade.purchaseCoupon(7);
-		
-
+		companyCouponFacade.insertCompanyCoupon(b7);
 
 		
+		customerFacade.purchaseCoupon(c5, 1);
+
 		
 	}
 }

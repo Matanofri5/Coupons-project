@@ -1,6 +1,7 @@
 package Customer;
 import java.awt.Window.Type;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -23,7 +24,7 @@ import MyExceptions.CouponNotAvailableException;
  */
 public class CustomerFacade implements CouponClientFacade {
 	private CustomerDAO customerDAO = new CustomerDBDAO();
-	private Customer customer;
+	private Customer customer = new Customer();
 	private CouponDAO couponDAO = new CouponDBDAO();
 	private Coupon coupon;
 	private CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
@@ -83,41 +84,37 @@ public class CustomerFacade implements CouponClientFacade {
 		return null;
 	}
 	
-	public void purchaseCoupon(long couponId) throws Exception {
+	public void purchaseCoupon(Customer customer, long couponId) throws Exception {
 		Coupon custcoupon = couponDAO.getCoupon(couponId);
-	
+		customer = customerDAO.getCustomer(customer.getId());
+		
 		if (custcoupon == null) {
-			throw new CouponNotAvailableException("customer failed purchase coupon");
+			throw new CouponNotAvailableException("This coupon doesn't exist, customer failed purchase coupon");
 		}
 		if (custcoupon.getAmount() <= 0) {
-			throw new CouponNotAvailableException("customer failed purchase coupon");
-		}		
-
-		customerDAO.customerPurchaseCoupon(custcoupon, this.customer);
+			throw new CouponNotAvailableException("This coupon doesn't exist, customer failed purchase coupon");
+		}	
+		if (custcoupon.getEndDate().getTime() <= DateUtils.getCurrentDate().getTime()) {
+			throw new CouponNotAvailableException("This coupon is out of stock !");
+		}
+		
+		Set<Coupon> allCoupons = new HashSet<Coupon>();
+		allCoupons = customerDAO.getAllCustomerCoupons(couponId);
+		Iterator<Coupon> iterator = allCoupons.iterator();
+		while (iterator.hasNext()) {
+			Coupon coupon = new Coupon();
+			coupon = iterator.next();
+			if (coupon.getTitle().equals(coupon.getTitle())) {
+				throw new CouponNotAvailableException("g");
+			}
+		}
+		
+		customerDAO.customerPurchaseCoupon(custcoupon, customer);
 		custcoupon.setAmount(custcoupon.getAmount()-1);
 		couponDAO.updateCoupon(custcoupon);
-		
-//		Coupon coupon2 = new Coupon();
-//		
-//		try {
-//			coupon2=couponDAO.getCoupon(couponId);
-//		}catch (Exception e){
-//			System.out.println("failed to purchase coupon");
-//		}
-//		if (coupon2 != null) {
-//			if (coupon2.getAmount() > 0) {
-//				if(coupon2.getEndDate().getTime() >= DateUtils.getCurrentDate().getTime()) {
-//				coupon2.setAmount(coupon2.getAmount()-1);
-//				try {
-//					couponDAO.updateCoupon(coupon2);
-//				}catch(Exception e) {
-//					System.out.println("update coupon faild");
-//				}
-//				}
-//				
-//			}
-//		}
 	}
+	
+	
 	public Collection<Coupon> getAllpurchasedCoupons(long customerId) throws Exception{
 		return customerDAO.getAllCustomerCoupons(customerId);
 	}
