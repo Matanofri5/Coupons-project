@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 public class CouponFacade {
-	private CouponDBDAO couponDBDAO = new CouponDBDAO();
+	private CouponDAO couponDAO = new CouponDBDAO();
 	private Coupon coupon;
 
 	public CouponFacade(Coupon coupon) {
@@ -15,11 +15,11 @@ public class CouponFacade {
 	}
 
 	public void insertCoupon(Coupon coupon) throws Exception {
-		couponDBDAO.insertCoupon(coupon);
+		couponDAO.insertCoupon(coupon);
 	}
 
 	public void removeCoupon(Coupon coupon) throws Exception {
-		couponDBDAO.removeCoupon(coupon);
+		couponDAO.removeCoupon(coupon);
 	}
 
 	public void updateCoupon(Coupon coupon, long whatid, Date newEndDate, double newPrice)
@@ -28,19 +28,19 @@ public class CouponFacade {
 		coupon.setEndDate(newEndDate);
 		coupon.setPrice(newPrice);
 
-		couponDBDAO.updateCoupon(coupon);
+		couponDAO.updateCoupon(coupon);
 	}
 
 	
 	public Coupon getCoupon(long id) throws Exception {
-		return couponDBDAO.getCoupon(id);
+		return couponDAO.getCoupon(id);
 	}
 
 	public Set<Coupon> getAllCoupon() throws Exception {
-		return couponDBDAO.getAllCoupons();
+		return couponDAO.getAllCoupons();
 	}
 
 	public void dropTable() throws Exception {
-		couponDBDAO.dropTable();
+		couponDAO.dropTable();
 	}
 }
