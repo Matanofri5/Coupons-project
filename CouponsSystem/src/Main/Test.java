@@ -160,8 +160,7 @@ public class Test {
 		companyCouponFacade.insertCompanyCoupon(b6);
 		companyCouponFacade.insertCompanyCoupon(b7);
 
-		
-		customerFacade.purchaseCoupon(c5, 1);
+//			System.out.println(companyFacade.getAllCouponsByType(CouponType.HEALTH));
 
 		
 	}

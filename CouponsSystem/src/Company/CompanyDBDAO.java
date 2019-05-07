@@ -245,7 +245,7 @@ public class CompanyDBDAO implements CompanyDAO {
 		CouponDBDAO coupon = new CouponDBDAO();
 
 		try {
-			String sql = "SELECT COUPONID FROM CompanyCoupon WHERE COMPANYID=?";
+			String sql = "SELECT * FROM CompanyCoupon WHERE COUPONID=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1,companyId) ;
 			ResultSet rs = pstmt.executeQuery();
@@ -262,6 +262,31 @@ public class CompanyDBDAO implements CompanyDAO {
 			con.close();
 		}
 		return coupons;
+	}
+	
+	@Override
+	public Set<CompanyCoupon> getAllCompanyCoupon() throws Exception {
+		con = DriverManager.getConnection(Database.getDBUrl());
+		Set<CompanyCoupon> set = new HashSet<>();
+		try {
+			Statement stmt = con.createStatement();
+			String sql = "SELECT * FROM CompanyCoupon";
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+
+				long companyId = rs.getLong(1);
+				long couponId = rs.getLong(2);
+
+				set.add(new CompanyCoupon(companyId, couponId));
+				System.out.println("Get all CompanyCoupon success :D ");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			System.err.println("Get all CompanyCoupon failed :( ");
+		} finally {
+			con.close();
+		}
+		return set;
 	}
 	
 	/**
@@ -318,36 +343,4 @@ public class CompanyDBDAO implements CompanyDAO {
 			}
 		}
 	}
-
-	/**
-	 * @addCoupon
-	 * this method insert new coupon And check if the title already exists.
-	 *  @param Coupon object
-	 *  @throws Exception
-	 */
-//	@Override
-//	public void addCoupon(Coupon coupon) throws Exception {
-//		con = DriverManager.getConnection(Database.getDBUrl());
-//		try {
-//
-//			Set<Coupon> coupons = couponDAO.getAllCoupons();
-//			Iterator<Coupon> i = coupons.iterator();
-//			while (i.hasNext()) {
-//				Coupon current = i.next();
-//				if (coupon.getTitle().equals(current.getTitle())) {
-//					throw new Exception("this coupon already exists");	
-//				}
-//			}
-//			if (!i.hasNext()) {
-//				couponDAO.insertCoupon(coupon);
-//				System.out.println("company added new coupon: " + coupon.getId());
-//			} 
-//	}
-//			catch (Exception e) {
-//				e.printStackTrace();
-//				System.out.println(e.getMessage());
-//			}finally {
-//				con.close();
-//			}
-//	}
 }

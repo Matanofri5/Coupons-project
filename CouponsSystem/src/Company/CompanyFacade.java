@@ -12,6 +12,9 @@ import Coupon.CouponDBDAO;
 import Coupon.CouponType;
 import Customer.CustomerDAO;
 import Company.CompanyDAO;
+import CompanyCoupon.CompanyCoupon;
+import CompanyCoupon.CompanyCouponDAO;
+import CompanyCoupon.CompanyCouponDBDAO;
 import Clients.ClientType;
 import Clients.CouponClientFacade;
 import Coupon.Coupon;
@@ -28,8 +31,10 @@ import Main.Database;
 public class CompanyFacade implements CouponClientFacade{
 	private CompanyDAO companyDAO = new CompanyDBDAO();
 	private CouponDAO couponDAO = new CouponDBDAO();
+	private CompanyCouponDAO companyCouponDAO = new CompanyCouponDBDAO();
 	private Company company;
 	private long companyId;
+	private CompanyCoupon companyCoupon;
 
 	
 	/**
@@ -76,9 +81,6 @@ public class CompanyFacade implements CouponClientFacade{
 		companyDAO.dropTable();
 	}
 	
-	public Set <Coupon> getAllCompanyCoupons(long companyId) throws Exception{
-		return companyDAO.getAllCompanyCoupons(companyId);
-	}
 	
 
 	@Override
@@ -129,13 +131,15 @@ public class CompanyFacade implements CouponClientFacade{
 		return companyDAO.getCompany(couponId);
 	}
 	
+	public Set <CompanyCoupon> getAllCompanyCoupons() throws Exception{
+		return companyCouponDAO.getAllCompanyCoupon();
+	}
+	
 	public Set<Coupon> getAllCouponsByType (CouponType couponType) throws Exception{
-		return couponDAO.getAllCouponsByType(couponType);
-	
-	
-//	public Set<Coupon> getCouponsByType(CouponType couponType){
-//		return null;// couponDAO.get
-//	}
+	return couponDAO.getAllCouponsByType(couponType);
+}
+
+
 ////	public Set<Coupon> moshe() {
 ////		java.sql.Date inputDate = new java.sql.Date(1000);
 ////		
@@ -146,5 +150,5 @@ public class CompanyFacade implements CouponClientFacade{
 ////			System.out.println("bad");
 ////		}
 ////	}
-	}
+	
 }
