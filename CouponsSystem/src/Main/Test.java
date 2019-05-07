@@ -162,6 +162,6 @@ public class Test {
 
 
 		
-		customerFacade.purchaseCoupon(c1, 7);
+		System.out.println(customerFacade.getAllpurchasedCouponsByPrice(15.2));
 	}
 }

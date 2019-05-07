@@ -133,19 +133,19 @@ public class CustomerFacade implements CouponClientFacade {
 		return couponDAO.getAllCouponsByType(couponType);
 	}
 	
-	public Collection<Coupon> getAllpurchasedCouponsByType(Type type) throws Exception{
-		Collection<Coupon> allCouponsByType = customerDAO.getAllCustomerCoupons(customerId);
-		for(Iterator<Coupon> iterator = allCouponsByType.iterator(); iterator.hasNext();) {
-			Coupon coupon = iterator.next();
-			if(coupon.getType() != CouponType) {
-				iterator.remove();
-			}
-		}
-		return allCouponsByType;
-	}
+//	public Collection<Coupon> getAllpurchasedCouponsByType(Type type) throws Exception{
+//		Collection<Coupon> allCouponsByType = customerDAO.getAllCustomerCoupons(customerId);
+//		for(Iterator<Coupon> iterator = allCouponsByType.iterator(); iterator.hasNext();) {
+//			Coupon coupon = iterator.next();
+//			if(coupon.getType() != CouponType) {
+//				iterator.remove();
+//			}
+//		}
+//		return allCouponsByType;
+//	}
 	
 	public Collection<Coupon> getAllpurchasedCouponsByPrice(Double price) throws Exception{
-		Collection<Coupon> allCouponsByPrice = custDBDAO.getAllCustomerCoupons(customerId);
+		Collection<Coupon> allCouponsByPrice = customerDAO.getAllCustomerCoupons(customer.getId());
 		for(Iterator<Coupon> iterator = allCouponsByPrice.iterator(); iterator.hasNext();) {
 		    Coupon coupon = iterator.next();
 		    if (coupon.getPrice() > price){
