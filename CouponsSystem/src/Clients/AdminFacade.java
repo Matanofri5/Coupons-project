@@ -6,6 +6,7 @@ import java.util.Set;
 import Company.Company;
 import Company.CompanyDAO;
 import Company.CompanyDBDAO;
+import CompanyCoupon.CompanyCouponDAO;
 import CompanyCoupon.CompanyCouponDBDAO;
 import Customer.Customer;
 import Customer.CustomerDAO;
@@ -32,8 +33,9 @@ public class AdminFacade implements CouponClientFacade {
 	private CouponDAO couponDAO = new CouponDBDAO();;
 	private CompanyDAO companyDAO = new CompanyDBDAO();
 	private CustomerDAO customerDAO = new CustomerDBDAO();
-	private CustomerCouponDBDAO customerCouponDBDAO;
-	private CompanyCouponDBDAO companyCouponDBDAO;
+	
+
+
 
 	/**
 	 * @Empty CTOR
@@ -44,13 +46,11 @@ public class AdminFacade implements CouponClientFacade {
 	/**
 	 * @Full CTOR
 	 */
-	public AdminFacade(CompanyDAO companyDAO, CustomerDAO customerDAO, CouponDAO couponDAO,
-			CustomerCouponDBDAO customerCouponDBDAO, CompanyCouponDBDAO companyCouponDBDAO) {
+	public AdminFacade(CompanyDAO companyDAO, CustomerDAO customerDAO, CouponDAO couponDAO) {
 		this.companyDAO = companyDAO;
 		this.customerDAO = customerDAO;
 		this.couponDAO = couponDAO;
-		this.customerCouponDBDAO = customerCouponDBDAO;
-		this.companyCouponDBDAO = companyCouponDBDAO;
+
 	}
 
 	/**
@@ -110,10 +110,9 @@ public class AdminFacade implements CouponClientFacade {
 		while (itreator.hasNext()) {
 				Coupon coupon = new Coupon();
 				coupon = itreator.next();
-				companyDAO.removeCouponFromCompany(coupon.getId(), coupon.getId());
+				companyDAO.removeCouponFromCompany(coupon.getId());
 		}
 		companyDAO.removeCompany(company);
-		
 	}
 
 	/**

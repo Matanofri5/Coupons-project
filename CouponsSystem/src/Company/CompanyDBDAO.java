@@ -102,13 +102,12 @@ public class CompanyDBDAO implements CompanyDAO {
 	
 	/**
 	 * @removeCouponFromCompany
-	 * this method delete 1 coupon of Company by DELETE query from three tables.
+	 * this method delete coupon of Company by DELETE query from two tables.
 	 *  @param long couponId
-	 *  @param long  id
 	 *  @throws Exception
 	 */
 	@Override
-	public void removeCouponFromCompany(long couponId, long id) throws Exception {
+	public void removeCouponFromCompany(long couponId) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
 
 		try {
@@ -126,14 +125,7 @@ public class CompanyDBDAO implements CompanyDAO {
 				pstmt2.setLong(1, couponId);
 				pstmt2.executeUpdate();
 				pstmt2.close();
-				
-				//query to delete coupon from coupon table
-					String sql3 = "DELETE FROM Coupon WHERE id=?";
-					PreparedStatement pstmt3 = con.prepareStatement(sql3);
-					pstmt3.setLong(1, id);
-					pstmt3.executeUpdate();
-					pstmt3.close();
-					
+			
 					System.out.println("you deleted coupon from company successfully");
 		}
 		catch (Exception e) {
@@ -245,7 +237,7 @@ public class CompanyDBDAO implements CompanyDAO {
 		CouponDBDAO coupon = new CouponDBDAO();
 
 		try {
-			String sql = "SELECT * FROM CompanyCoupon WHERE COUPONID=?";
+			String sql = "SELECT COUPONID FROM CompanyCoupon WHERE COMPANYID=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1,companyId) ;
 			ResultSet rs = pstmt.executeQuery();
