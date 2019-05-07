@@ -161,5 +161,9 @@ public class Test {
 		companyCouponFacade.insertCompanyCoupon(b7);
 
 		
+		
+		
+		customerFacade.purchaseCoupon(c1, 4);
+		
 	}
 }

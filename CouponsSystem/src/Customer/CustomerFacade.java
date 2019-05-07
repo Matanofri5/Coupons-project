@@ -98,14 +98,12 @@ public class CustomerFacade implements CouponClientFacade {
 			throw new CouponNotAvailableException("This coupon is out of stock !");
 		}
 		
-		Set<Coupon> allCoupons = new HashSet<Coupon>();
-		allCoupons = customerDAO.getAllCustomerCoupons(couponId);
-		Iterator<Coupon> iterator = allCoupons.iterator();
+		Set<Coupon> coupons = customerDAO.getAllCustomerCoupons(customer.getId());
+		Iterator<Coupon> iterator = coupons.iterator();
 		while (iterator.hasNext()) {
-			Coupon coupon = new Coupon();
-			coupon = iterator.next();
-			if (coupon.getTitle().equals(coupon.getTitle())) {
-				throw new CouponNotAvailableException("g");
+			Coupon current = iterator.next();
+			if (current.getId()==couponId) {
+				throw new CouponNotAvailableException("This coupon cannot be purchased again");
 			}
 		}
 		
