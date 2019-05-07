@@ -160,6 +160,6 @@ public class Test {
 		companyCouponFacade.insertCompanyCoupon(b6);
 		companyCouponFacade.insertCompanyCoupon(b7);
 
-
+		
 	}
 }

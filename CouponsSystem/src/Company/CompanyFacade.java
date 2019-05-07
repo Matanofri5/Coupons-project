@@ -108,7 +108,7 @@ public class CompanyFacade implements CouponClientFacade{
 	}
 	
 	public void removeCouponById(long couponId) throws Exception {
-		companyDAO.removeCouponFromCompany(couponId, couponId);
+		companyDAO.removeCouponFromCompany(couponId);
 		
 	}	
 	
