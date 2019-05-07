@@ -160,10 +160,8 @@ public class Test {
 		companyCouponFacade.insertCompanyCoupon(b6);
 		companyCouponFacade.insertCompanyCoupon(b7);
 
+
 		
-		
-		
-		customerFacade.purchaseCoupon(c1, 4);
-		
+		customerFacade.purchaseCoupon(c1, 7);
 	}
 }

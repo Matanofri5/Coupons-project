@@ -84,6 +84,18 @@ public class CustomerFacade implements CouponClientFacade {
 		return null;
 	}
 	
+	/**
+	 * This method purchase purchase coupon. by getting all coupons it checks if,
+	 * 1.if null.
+	 * 2.if coupon amount equal or smaller then 0.
+	 * 3.if the coupon date is expired/out of stock.
+	 * 4.if the new coupon id's same to exists coupon id.
+	 * if all this conditions will happen the customer cannot purchase a new coupon.
+	 * if the coupon not exists it create and update at the table and set amount by -1.
+	 * @param customer
+	 * @param couponId
+	 * @throws Exception
+	 */
 	public void purchaseCoupon(Customer customer, long couponId) throws Exception {
 		Coupon custcoupon = couponDAO.getCoupon(couponId);
 		customer = customerDAO.getCustomer(customer.getId());
