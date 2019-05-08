@@ -161,7 +161,6 @@ public class Test {
 		companyCouponFacade.insertCompanyCoupon(b7);
 
 
-		
-		System.out.println(customerFacade.getAllpurchasedCouponsByPrice(15.2));
+		System.out.println(customerFacade.getAllpurchasedCouponsByPrice(c1, 15.2));
 	}
 }
