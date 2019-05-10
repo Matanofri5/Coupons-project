@@ -48,7 +48,7 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 			pstmt.setLong(2, companyCoupon.getCouponId());
 			pstmt.executeUpdate();
 
-			System.out.println("CompanyCoupon insert success :D  " + companyCoupon.toString());
+//			System.out.println("CompanyCoupon insert success :D  " + companyCoupon.toString());
 		} catch (SQLException e) {
 			System.err.println("CompanyCoupon insert failed :( ");
 			System.err.println(e.getMessage());
@@ -74,7 +74,7 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 			pstmt.setLong(2, couponId);
 			pstmt.executeUpdate();
 			con.commit();
-			System.out.println("remove CompanyCoupon success :D ");
+//			System.out.println("remove CompanyCoupon success :D ");
 		} catch (SQLException e) {
 			try {
 				con.rollback();
@@ -95,7 +95,7 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 					+ companyCoupon.getCouponId() + "' WHERE Id=" + companyCoupon.getCompanyId() + "AND" + "' WHERE Id="
 					+ companyCoupon.getCouponId();
 			stm.executeUpdate(sql);
-			System.out.println("updated CompanyCoupon successe :D");
+//			System.out.println("updated CompanyCoupon successe :D");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new Exception("update CompanyCoupon failed :( ");
@@ -112,7 +112,7 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 			while (rs.next()) {
 				companyCoupon.setCompanyId(1);
 				companyCoupon.setCouponId(2);
-				System.out.println("Get CompanyCoupon success :D ");
+//				System.out.println("Get CompanyCoupon success :D ");
 			}
 
 		} catch (SQLException e) {
@@ -138,7 +138,7 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 				long couponId = rs.getLong(2);
 
 				set.add(new CompanyCoupon(companyId, couponId));
-				System.out.println("Get all CompanyCoupon success :D ");
+//				System.out.println("Get all CompanyCoupon success :D ");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -156,7 +156,7 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 			String sql = "DROP TABLE CompanyCoupon";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("drop Table CompanyCoupon success!! :D ");
+//			System.out.println("drop Table CompanyCoupon success!! :D ");
 
 		} catch (SQLException ex) {
 			System.err.println("MMMMMMM....dropCompanyCouponTableEXCEPTION");

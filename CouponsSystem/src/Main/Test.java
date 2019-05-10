@@ -24,6 +24,7 @@ import CustomerCoupon.CustomerCoupon;
 import Coupon.DateUtils;
 import CustomerCoupon.CustomerCoupon;
 import CustomerCoupon.CustomerCouponDAO;
+import CustomerCoupon.CustomerCouponDBDAO;
 import CustomerCoupon.CustomerCouponFacade;
 
 public class Test {
@@ -95,7 +96,7 @@ public class Test {
 		Coupon u4 = new Coupon(4, "test3", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 99, "bla", 32.4, "uy", CouponType.TRAVELING);
 		Coupon u5 = new Coupon(5, "test4", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 44, "ff", 4444.7, "gg", CouponType.ELECTRICITY);
 		Coupon u6 = new Coupon(6, "test5", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 52, "bbb", 66.1, "dd", CouponType.HEALTH);
-		Coupon u7 = new Coupon(7, "test6", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 22, "fd", 11.2, "fd", CouponType.HEALTH);
+		Coupon u7 = new Coupon(7, "test6", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 34, "fd", 11.2, "fd", CouponType.HEALTH);
 		
 		/**************************************** CustomerCoupon****************************/
 
@@ -160,7 +161,10 @@ public class Test {
 		companyCouponFacade.insertCompanyCoupon(b6);
 		companyCouponFacade.insertCompanyCoupon(b7);
 
-
-		System.out.println(customerFacade.getAllpurchasedCouponsByPrice(c1, 15.2));
+		adminFacade.addCustomer(c5);
+		adminFacade.addCompany(p5);
+//		System.out.println(customerFacade.getAllpurchasedCouponsByPrice(1, 15.2));
+//		CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
+//		System.out.println(customerCouponDAO.getAllCouponsId(1));
 	}
 }

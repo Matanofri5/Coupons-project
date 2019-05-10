@@ -15,7 +15,8 @@ import Coupon.Coupon;
 import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import CustomerCoupon.CustomerCouponDBDAO;
-import MyExceptions.CompanyAlreadyExists;
+import MyExceptions.CompanyAlreadyExistsException;
+import MyExceptions.CustomerAlreadyExistsException;
 
 /**
  * @author Linoy & Matan
@@ -80,15 +81,14 @@ public class AdminFacade implements CouponClientFacade {
 			while (i.hasNext()) {
 				Company current = i.next();
 				if (company.getCompanyName().equals(current.getCompanyName())) {
-					throw new CompanyAlreadyExists("This Company already exsist !");
+					throw new CompanyAlreadyExistsException("This Company already exsist !");
 				}
 			}
 			if (!i.hasNext()) {
 				companyDAO.insertCompany(company);
-				System.out.println("Admin added new company: " + company.getId());
+//				System.out.println("Admin added new company: " + company.getId());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 
@@ -160,12 +160,12 @@ public class AdminFacade implements CouponClientFacade {
 			while (i.hasNext()) {
 				Customer current = i.next();
 				if (customer.getCustomerName().equals(current.getCustomerName())) {
-					throw new Exception("this customer already exists");
+					throw new CustomerAlreadyExistsException("This customer already exists !");
 				}
 			}
 			if (!i.hasNext()) {
 				customerDAO.insertCustomer(customer);
-				System.out.println("Admin added new customer: " + customer.getId());
+//				System.out.println("Admin added new customer: " + customer.getId());
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

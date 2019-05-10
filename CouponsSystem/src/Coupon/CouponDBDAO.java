@@ -54,7 +54,7 @@ public class CouponDBDAO implements CouponDAO {
 			pstmt.setString(8, coupon.getType().name());
 			pstmt.executeUpdate();
 
-			System.out.println("Coupon insert success :D  " + coupon.toString());
+//			System.out.println("Coupon insert success :D  " + coupon.toString());
 		} catch (SQLException e) {
 			System.err.println("Coupon insert failed :( ");
 			throw new Exception(e.getMessage());
@@ -78,7 +78,7 @@ public class CouponDBDAO implements CouponDAO {
 			pstm1.setLong(1, coupon.getId());
 			pstm1.executeUpdate();
 			con.commit();
-			System.out.println("remove Coupon success :D ");
+//			System.out.println("remove Coupon success :D ");
 		} catch (SQLException e) {
 			try {
 				con.rollback();
@@ -116,7 +116,7 @@ public class CouponDBDAO implements CouponDAO {
 			
 			pstmt.executeUpdate();
 			pstmt.close();
-			System.out.println("Coupon " + coupon.getId()+ " updated succesfully");
+//			System.out.println("Coupon " + coupon.getId()+ " updated succesfully");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new Exception("update Coupon failed :( ");
@@ -150,7 +150,7 @@ public class CouponDBDAO implements CouponDAO {
 			coupon.setImage(rs.getString(8));
 			CouponType type = CouponType.valueOf(rs.getString(9));
 			coupon.setType(type);
-			System.out.println("Get coupon success :D ");
+//			System.out.println("Get coupon success :D ");
 			}
 		} catch (SQLException e) {
 			System.err.println("Get coupon failed :(");
@@ -253,7 +253,7 @@ public class CouponDBDAO implements CouponDAO {
 			String sql = "DROP TABLE Coupon";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("drop Coupon Table success!! :D ");
+//			System.out.println("drop Coupon Table success!! :D ");
 
 		} catch (SQLException ex) {
 			System.err.println("MMMMMMM....dropCouponTableEXCEPTION");

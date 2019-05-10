@@ -51,7 +51,7 @@ public class CustomerDBDAO implements CustomerDAO {
 			pstmt.setString(2, customer.getPassword());
 
 			pstmt.executeUpdate();
-			System.out.println("Customer insert success :D  " + customer.toString());
+//			System.out.println("Customer insert success :D  " + customer.toString());
 		} catch (SQLException e) {
 			System.err.println("Customer insert failed :( ");
 			throw new Exception(e.getMessage());
@@ -76,7 +76,7 @@ public class CustomerDBDAO implements CustomerDAO {
 			pstmt.setLong(1, customer.getId());
 			pstmt.executeUpdate();
 			pstmt.close();
-			System.out.println("Customer " + customer.getId() + " remove success :D ");
+//			System.out.println("Customer " + customer.getId() + " remove success :D ");
 		} catch (SQLException e) {
 			try {
 				con.rollback();
@@ -104,7 +104,7 @@ public class CustomerDBDAO implements CustomerDAO {
 				pstmt2.executeUpdate();
 				pstmt2.close();
 					
-					System.out.println("you deleted coupon from customer successfully");
+//					System.out.println("you deleted coupon from customer successfully");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -132,7 +132,7 @@ public class CustomerDBDAO implements CustomerDAO {
 			pstm.setString(2, customer.getCustomerName());
 			pstm.executeUpdate();
 			pstm.close();
-			System.out.println("updated customer id " + customer.getId() + " successfully");
+//			System.out.println("updated customer id " + customer.getId() + " successfully");
 
 		} catch (SQLException e) {
 			System.err.println("update Customer failed :( ");
@@ -208,7 +208,7 @@ public class CustomerDBDAO implements CustomerDAO {
 			pstmt.executeUpdate();
 			pstmt.close();
 
-			System.out.println("Customer purchase coupon :D  ");
+//			System.out.println("Customer purchase coupon :D  ");
 		} catch (SQLException e) {
 			System.err.println("customer failed to purchase coupon :( ");
 			System.err.println(e.getMessage());
@@ -232,7 +232,7 @@ public class CustomerDBDAO implements CustomerDAO {
 				
 				coupons.add(coupon.getCoupon(rs.getLong("COUPONID")));
 
-				System.out.println("Get coupons by customer success :D ");
+//				System.out.println("Get coupons by customer success :D ");
 			}
 		} catch (SQLException e) {
 			System.err.println("Get coupons by customer failed :( ");
@@ -274,7 +274,7 @@ public class CustomerDBDAO implements CustomerDAO {
 			String sql = "DROP TABLE Customer";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("drop Customer Table success!! :D ");
+//			System.out.println("drop Customer Table success!! :D ");
 
 		} catch (SQLException ex) {
 			System.err.println("MMMMMMM....dropCustomerTableEXCEPTION");

@@ -18,7 +18,7 @@ import CompanyCoupon.CompanyCouponDBDAO;
 import Clients.ClientType;
 import Clients.CouponClientFacade;
 import Coupon.Coupon;
-import MyExceptions.CompanyAlreadyExists;
+import MyExceptions.CompanyAlreadyExistsException;
 import CustomerCoupon.CustomerCoupon;
 import CustomerCoupon.CustomerCouponDAO;
 import CustomerCoupon.CustomerCouponDBDAO;

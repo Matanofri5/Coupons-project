@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import Customer.Customer;
@@ -48,7 +51,7 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO {
 
 			pstmt.executeUpdate();
 
-			System.out.println("CustomerCoupon insert success :D  " + customerCoupon.toString());
+//			System.out.println("CustomerCoupon insert success :D  " + customerCoupon.toString());
 		} catch (SQLException e) {
 			System.err.println("CustomerCoupon insert failed :( ");
 			System.err.println(e.getMessage());
@@ -74,7 +77,7 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO {
 			pstm1.setLong(2, couponId);
 			pstm1.executeUpdate();
 			con.commit();
-			System.out.println("remove CustomerCoupon success :D ");
+//			System.out.println("remove CustomerCoupon success :D ");
 		} catch (SQLException e) {
 			try {
 				con.rollback();
@@ -135,7 +138,7 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO {
 			while (rs.next()) {
 				customerCoupon.setCustomerId(1);
 				customerCoupon.setCouponId(2);
-				System.out.println("Get CustomerCoupon success :D ");
+//				System.out.println("Get CustomerCoupon success :D ");
 			}
 
 		} catch (SQLException e) {
@@ -161,7 +164,7 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO {
 				long couponId = rs.getLong(2);
 
 				set.add(new CustomerCoupon(customerId, couponId));
-				System.out.println("Get all CustomerCoupon success :D ");
+//				System.out.println("Get all CustomerCoupon success :D ");
 			}
 		} catch (SQLException e) {
 			System.out.println(e);
@@ -171,7 +174,28 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO {
 		}
 		return set;
 	}
-
+	
+	
+	@Override
+	public Collection<Long> getAllCouponsId(long customerId) throws Exception{
+		con = DriverManager.getConnection(Database.getDBUrl());
+		Collection<Long> couponsId = new ArrayList<>();
+		String sql = "SELECT * from CustomerCoupon WHERE customerId = " + customerId;
+			try (Statement stm = con.createStatement(); ResultSet rs = stm.executeQuery(sql)){
+				while (rs.next()) {
+					long couponId = rs.getLong(2);
+					couponsId.add(couponId);
+				}
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}finally {
+				con.close();
+			}
+			return couponsId;
+	}
+	
+	
+	
 	@Override
 	public void dropTable() throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
@@ -179,7 +203,7 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO {
 			String sql = "DROP TABLE CustomerCoupon";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("drop Table CustomerCoupon success!! :D ");
+//			System.out.println("drop Table CustomerCoupon success!! :D ");
 
 		} catch (SQLException ex) {
 			System.err.println("MMMMMMM....dropCustomerCouponTableEXCEPTION");

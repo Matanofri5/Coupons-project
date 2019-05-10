@@ -59,7 +59,7 @@ public class CompanyDBDAO implements CompanyDAO {
 			pstmt.setString(3, company.getEmail());
 
 			pstmt.executeUpdate();
-			System.out.println("Company insert success :D  " + company.toString());
+//			System.out.println("Company insert success :D  " + company.toString());
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			System.err.println("Company insert failed :(");
@@ -84,7 +84,7 @@ public class CompanyDBDAO implements CompanyDAO {
 			pstmt.setLong(1, company.getId());
 			pstmt.executeUpdate();
 			pstmt.close();
-			System.out.println("Company " + company.getId() + " remove success :D ");
+//			System.out.println("Company " + company.getId() + " remove success :D ");
 		} catch (SQLException e) {
 			try {
 				con.rollback();
@@ -126,7 +126,7 @@ public class CompanyDBDAO implements CompanyDAO {
 				pstmt2.executeUpdate();
 				pstmt2.close();
 			
-					System.out.println("you deleted coupon from company successfully");
+//					System.out.println("you deleted coupon from company successfully");
 		}
 		catch (Exception e) {
 			throw new RemoveCouponException("failed to remove coupon from company");
@@ -245,7 +245,7 @@ public class CompanyDBDAO implements CompanyDAO {
 				
 				coupons.add(coupon.getCoupon(rs.getLong("COUPONID")));
 
-				System.out.println("Get coupons by company success :D ");
+//				System.out.println("Get coupons by company success :D ");
 			}
 		} catch (SQLException e) {
 			System.err.println("Get coupons by company failed :( ");
@@ -270,7 +270,7 @@ public class CompanyDBDAO implements CompanyDAO {
 				long couponId = rs.getLong(2);
 
 				set.add(new CompanyCoupon(companyId, couponId));
-				System.out.println("Get all CompanyCoupon success :D ");
+//				System.out.println("Get all CompanyCoupon success :D ");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -322,7 +322,7 @@ public class CompanyDBDAO implements CompanyDAO {
 			String sql = "DROP TABLE Company";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("drop Company Table success!! :D ");
+//			System.out.println("drop Company Table success!! :D ");
 
 		} catch (SQLException ex) {
 			System.err.println("MMMMMMM....dropCompanyTableEXCEPTION :( ");

@@ -1,6 +1,10 @@
 package CustomerCoupon;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
+
+import Coupon.Coupon;
 
 /**
  * @Author - Linoy & Matan
@@ -20,5 +24,7 @@ public interface CustomerCouponDAO {
 	public Set<CustomerCoupon> getAllCustomerCoupon() throws Exception;
 
 	public void dropTable() throws Exception;
+	
+	public Collection<Long> getAllCouponsId(long customerId) throws Exception;
 
 }

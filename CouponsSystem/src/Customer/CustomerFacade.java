@@ -15,7 +15,7 @@ import Coupon.CouponType;
 import Coupon.DateUtils;
 import CustomerCoupon.CustomerCouponDAO;
 import CustomerCoupon.CustomerCouponDBDAO;
-import MyExceptions.CompanyAlreadyExists;
+import MyExceptions.CompanyAlreadyExistsException;
 import MyExceptions.CouponNotAvailableException;
 
 /**
@@ -104,7 +104,7 @@ public class CustomerFacade implements CouponClientFacade {
 			throw new CouponNotAvailableException("This coupon doesn't exist, customer failed purchase coupon");
 		}
 		if (custcoupon.getAmount() <= 0) {
-			throw new CouponNotAvailableException("This coupon doesn't exist, customer failed purchase coupon");
+			throw new CouponNotAvailableException("cannot buy coupon with 0 amount");
 		}	
 		if (custcoupon.getEndDate().getTime() <= DateUtils.getCurrentDate().getTime()) {
 			throw new CouponNotAvailableException("This coupon is out of stock !");
@@ -144,11 +144,11 @@ public class CustomerFacade implements CouponClientFacade {
 //		return allCouponsByType;
 //	}
 	
-	public Collection<Coupon> getAllpurchasedCouponsByPrice(Customer customer, Double price) throws Exception{
-		Collection<Coupon> allCouponsByPrice = customerDAO.getAllCustomerCoupons(customer.getId());
+	public Collection<Long> getAllpurchasedCouponsByPrice(Customer customer, Double price) throws Exception{
+		Collection<Long> allCouponsByPrice = customerCouponDAO.getAllCouponsId(this.customer.getId());
 		System.out.println(allCouponsByPrice);
-		for(Iterator<Coupon> iterator = allCouponsByPrice.iterator(); iterator.hasNext();) {
-		    Coupon coupon = iterator.next();
+		for(Iterator<Long> iterator = allCouponsByPrice.iterator(); iterator.hasNext();) {
+		    Coupon coupon = new Coupon();
 		    if (coupon.getPrice() > price){
 		        iterator.remove();
 		    }
