@@ -164,17 +164,10 @@ public class Test {
 		companyCouponFacade.insertCompanyCoupon(b6);
 		companyCouponFacade.insertCompanyCoupon(b7);
 
-		adminFacade.addCustomer(c5);
-		adminFacade.addCompany(p5);
+
 //		System.out.println(customerFacade.getAllpurchasedCouponsByPrice(1, 15.2));
 //		CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
 //		System.out.println(customerCouponDAO.getAllCouponsId(1));
-		CouponClientFacade facade;
-		CouponSystem couponSystem = CouponSystem.getInstance();
-		facade = couponSystem.login("an", "124", ClientType.ADMIN);
-		if (facade instanceof AdminFacade) {
-			System.out.println("great");
+
 		}
-		
-	}
 }
