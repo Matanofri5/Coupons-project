@@ -3,8 +3,11 @@ package Main;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Date;
+import java.util.FormatterClosedException;
 
 import Clients.AdminFacade;
+import Clients.ClientType;
+import Clients.CouponClientFacade;
 import Company.Company;
 import Company.CompanyDAO;
 import Company.CompanyDBDAO;
@@ -166,5 +169,12 @@ public class Test {
 //		System.out.println(customerFacade.getAllpurchasedCouponsByPrice(1, 15.2));
 //		CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
 //		System.out.println(customerCouponDAO.getAllCouponsId(1));
+		CouponClientFacade facade;
+		CouponSystem couponSystem = CouponSystem.getInstance();
+		facade = couponSystem.login("an", "124", ClientType.ADMIN);
+		if (facade instanceof AdminFacade) {
+			System.out.println("great");
+		}
+		
 	}
 }

@@ -34,6 +34,7 @@ public class AdminFacade implements CouponClientFacade {
 	private CouponDAO couponDAO = new CouponDBDAO();;
 	private CompanyDAO companyDAO = new CompanyDBDAO();
 	private CustomerDAO customerDAO = new CustomerDBDAO();
+	private boolean successLogin = true;
 	
 
 
@@ -63,6 +64,7 @@ public class AdminFacade implements CouponClientFacade {
 	@Override
 	public CouponClientFacade login(String name, String password, ClientType clientType) throws Exception {
 		if (name.equals(adminName) && password.equals(adminPassword)) {
+			this.successLogin = true;
 			return this;
 		} else {
 			return null;
