@@ -172,7 +172,7 @@ public class Test {
 //		System.out.println(companyFacade.getCouponById(5));
 //		System.out.println(companyFacade.getAllCompanyCoupons());
 
-		customerFacade.getAllpurchasedCouponsByPrice(c2, 22.2);
+		System.out.println(customerFacade.getAllpurchasedCouponsByPrice(c4, 100.5));
 //		System.out.println(customerFacade.getAllCouponsByType(CouponType.HEALTH));
 		
 		

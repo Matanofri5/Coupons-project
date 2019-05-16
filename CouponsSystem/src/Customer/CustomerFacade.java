@@ -147,15 +147,13 @@ public class CustomerFacade implements CouponClientFacade {
 	public Collection<Long> getAllpurchasedCouponsByPrice(Customer customer, Double price) throws Exception{
 		customer = customerDAO.getCustomer(customer.getId());
 		Collection<Long> allCouponsByPrice = customerCouponDAO.getAllCouponsId(customer.getId());
-//		System.out.println(allCouponsByPrice);
-		Set<Coupon> ByPrice = new HashSet<Coupon>();
-		for (c)
-//		for(Iterator<Long> iterator = allCouponsByPrice.iterator(); iterator.hasNext();) {
-//		    Coupon coupon = new Coupon();
-//		    if (coupon.getPrice() > price){
-//		        iterator.remove();
-//		    }
-//		}
+		System.out.println(allCouponsByPrice);
+		for(Iterator<Long> iterator = allCouponsByPrice.iterator(); iterator.hasNext();) {
+		    Coupon coupon = new Coupon();
+		    if (coupon.getPrice() > price){
+		        iterator.remove();
+		    }
+		}
 		return allCouponsByPrice;
 	}
 	
