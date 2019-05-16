@@ -169,5 +169,15 @@ public class Test {
 //		CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
 //		System.out.println(customerCouponDAO.getAllCouponsId(1));
 
+//		System.out.println(companyFacade.getCouponById(5));
+//		System.out.println(companyFacade.getAllCompanyCoupons());
+
+		customerFacade.getAllpurchasedCouponsByPrice(c2, 22.2);
+//		System.out.println(customerFacade.getAllCouponsByType(CouponType.HEALTH));
+		
+		
+		
+		CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
+//		System.out.println(customerCouponDAO.getAllCouponsId(2));		
 		}
 }

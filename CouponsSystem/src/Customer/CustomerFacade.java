@@ -24,11 +24,11 @@ import MyExceptions.CouponNotAvailableException;
  */
 public class CustomerFacade implements CouponClientFacade {
 	private CustomerDAO customerDAO = new CustomerDBDAO();
-	private Customer customer = new Customer();
+//	private Customer customer = new Customer();
 	private CouponDAO couponDAO = new CouponDBDAO();
 	private Coupon coupon;
 	private CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
-
+	private Customer customer;
 	/**
 	 * @partial CTOR 
 	 */
@@ -145,14 +145,17 @@ public class CustomerFacade implements CouponClientFacade {
 //	}
 	
 	public Collection<Long> getAllpurchasedCouponsByPrice(Customer customer, Double price) throws Exception{
-		Collection<Long> allCouponsByPrice = customerCouponDAO.getAllCouponsId(this.customer.getId());
-		System.out.println(allCouponsByPrice);
-		for(Iterator<Long> iterator = allCouponsByPrice.iterator(); iterator.hasNext();) {
-		    Coupon coupon = new Coupon();
-		    if (coupon.getPrice() > price){
-		        iterator.remove();
-		    }
-		}
+		customer = customerDAO.getCustomer(customer.getId());
+		Collection<Long> allCouponsByPrice = customerCouponDAO.getAllCouponsId(customer.getId());
+//		System.out.println(allCouponsByPrice);
+		Set<Coupon> ByPrice = new HashSet<Coupon>();
+		for (c)
+//		for(Iterator<Long> iterator = allCouponsByPrice.iterator(); iterator.hasNext();) {
+//		    Coupon coupon = new Coupon();
+//		    if (coupon.getPrice() > price){
+//		        iterator.remove();
+//		    }
+//		}
 		return allCouponsByPrice;
 	}
 	
