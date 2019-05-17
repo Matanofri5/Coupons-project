@@ -2,10 +2,12 @@ package Company;
 
 import java.sql.DriverManager;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
@@ -136,19 +138,19 @@ public class CompanyFacade implements CouponClientFacade{
 		return companyCouponDAO.getAllCompanyCoupon();
 	}
 	
-	public Set<Coupon> getAllCouponsByType (long companyId, CouponType couponType) throws Exception{
-//		company = companyDAO.getCompany(companyId);
-		Set<Coupon> allCoupons = new HashSet<Coupon>();
-		Set<Coupon> coupons = companyDAO.getAllCompanyCoupons(companyId);
-		for (Coupon coupon : coupons) {
-			if (coupon.getType().equals(couponType)) {
-					allCoupons.add(coupon);
-			}
-		}
-		
-		
-		return allCoupons;
-}
+//	public Set<Coupon> getAllCouponsByType (CouponType couponType) throws Exception{
+////		company = companyDAO.getCompany(company.getId())
+//		Set<Coupon> allCoupons = new HashSet<Coupon>();
+//		Set<Coupon> coupons = companyDAO.getAllCompanyCoupons(companyId);
+//		for (Coupon coupon : coupons) {
+//			if (coupon.getType().equals(couponType)) {
+//					allCoupons.add(coupon);
+//			}
+//		}
+//		
+//		
+//		return allCoupons;
+//}
 
 	
 //	public Set<Coupon> getAllCouponsByType(Company company, CouponType couponType)throws Exception{
@@ -175,6 +177,21 @@ public class CompanyFacade implements CouponClientFacade{
 //	}
 	
 	
-
+	public List<Coupon> getAllCouponsByType (CouponType couponType) throws Exception{
+		List<Long> coupons = companyDAO.getCompanyId(this.company.getId());
+		List<Coupon> allCoupons = new ArrayList<>();
+		for(Long couponsIds : coupons) {
+			allCoupons.addAll(getAllCouponsByType(couponType));
+		}
+		if (allCoupons.isEmpty()) {
+			throw new Exception ("Failed to get all coupons");
+		}
+		List<Coupon> newcoupons = allCoupons;
+		for (Coupon c : newcoupons) {
+			System.out.println(c);
+		}
+		return allCoupons;
+	}
+	
 	
 }

@@ -150,7 +150,6 @@ public class CouponDBDAO implements CouponDAO {
 			coupon.setImage(rs.getString(8));
 			CouponType type = CouponType.valueOf(rs.getString(9));
 			coupon.setType(type);
-//			System.out.println("Get coupon success :D ");
 			}
 		} catch (SQLException e) {
 			System.err.println("Get coupon failed :(");

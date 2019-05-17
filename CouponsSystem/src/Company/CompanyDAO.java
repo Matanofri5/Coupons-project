@@ -1,5 +1,6 @@
 package Company;
 
+import java.util.List;
 import java.util.Set;
 
 import CompanyCoupon.CompanyCoupon;
@@ -29,6 +30,8 @@ public interface CompanyDAO {
 	public void removeCouponFromCompany(long couponId) throws Exception;
 	
 	public Set<CompanyCoupon> getAllCompanyCoupon() throws Exception;
+	
+	public List<Long> getCompanyId (long couponId) throws Exception;
 
 	public void dropTable() throws Exception;
 

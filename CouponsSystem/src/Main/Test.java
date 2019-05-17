@@ -122,8 +122,8 @@ public class Test {
 		CompanyCoupon b3 = new CompanyCoupon(1, 3);
 		CompanyCoupon b4 = new CompanyCoupon(2, 4);
 		CompanyCoupon b5 = new CompanyCoupon(2, 6);
-		CompanyCoupon b6 = new CompanyCoupon(5, 7);
-		CompanyCoupon b7 = new CompanyCoupon(2, 5);
+		CompanyCoupon b6 = new CompanyCoupon(5, 1);
+		CompanyCoupon b7 = new CompanyCoupon(2, 1);
 		
 		
 		
@@ -169,7 +169,13 @@ public class Test {
 		companyCouponFacade.insertCompanyCoupon(b7);
 
 		
-//		System.out.println(companyFacade.getAllCouponsByType(1, CouponType.HEALTH));
+//		System.out.println(companyFacade.getAllCouponsByType(CouponType.HEALTH));
+		
+		System.out.println(companyFacade.getAllCouponsByType(CouponType.HEALTH));
 
+		
+		
+		
+		
 		}
 }

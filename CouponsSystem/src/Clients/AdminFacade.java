@@ -88,7 +88,6 @@ public class AdminFacade implements CouponClientFacade {
 			}
 			if (!i.hasNext()) {
 				companyDAO.insertCompany(company);
-//				System.out.println("Admin added new company: " + company.getId());
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -167,7 +166,6 @@ public class AdminFacade implements CouponClientFacade {
 			}
 			if (!i.hasNext()) {
 				customerDAO.insertCustomer(customer);
-//				System.out.println("Admin added new customer: " + customer.getId());
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -214,7 +212,6 @@ public class AdminFacade implements CouponClientFacade {
 	 * @throws Exception
 	 */
 	public Customer getCustomer(long id) throws Exception {
-		System.out.println(customerDAO.getCustomer(id));
 		return customerDAO.getCustomer(id);
 	}
 	
@@ -224,7 +221,6 @@ public class AdminFacade implements CouponClientFacade {
 	 * @throws Exception
 	 */
 	public Set<Customer> getAllCustomers() throws Exception {
-		System.out.println(customerDAO.getAllCustomer());
 		return customerDAO.getAllCustomer();
 	}
 }
