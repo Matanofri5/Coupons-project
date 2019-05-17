@@ -35,6 +35,7 @@ public class CompanyFacade implements CouponClientFacade{
 	private Company company;
 	private long companyId;
 	private CompanyCoupon companyCoupon;
+	private Coupon coupon;
 
 	
 	/**
@@ -42,7 +43,7 @@ public class CompanyFacade implements CouponClientFacade{
 	 */
 	public CompanyFacade(Company company) {
 		this.company = company;
-//		this.companyId = company.getId();
+//		this.companyId = companyCoupon.getCompanyId();
 	}
 
 	/**
@@ -135,20 +136,45 @@ public class CompanyFacade implements CouponClientFacade{
 		return companyCouponDAO.getAllCompanyCoupon();
 	}
 	
-	public Set<Coupon> getAllCouponsByType (CouponType couponType) throws Exception{
-	return couponDAO.getAllCouponsByType(couponType);
+	public Set<Coupon> getAllCouponsByType (long companyId, CouponType couponType) throws Exception{
+//		company = companyDAO.getCompany(companyId);
+		Set<Coupon> allCoupons = new HashSet<Coupon>();
+		Set<Coupon> coupons = companyDAO.getAllCompanyCoupons(companyId);
+		for (Coupon coupon : coupons) {
+			if (coupon.getType().equals(couponType)) {
+					allCoupons.add(coupon);
+			}
+		}
+		
+		
+		return allCoupons;
 }
 
+	
+//	public Set<Coupon> getAllCouponsByType(Company company, CouponType couponType)throws Exception{
+//		Set<Coupon> allCoupons = couponDAO.getAllCoupons();
+//		for (Iterator<Coupon>iterator = allCoupons.iterator(); iterator.hasNext();) {
+//			Coupon coupon = iterator.next();
+//			if (coupon.getType() != couponType) {
+//				iterator.remove();
+//			}
+//		}
+//		return allCoupons;
+//	}
+	
+	
+//	public Set<Coupon> moshe() {
+//		java.sql.Date inputDate = new java.sql.Date(1000);
+//		
+//		java.sql.Date mydate = java.sql.Date.valueOf(LocalDate.now());
+//		if(inputDate.after(mydate)) {
+//			System.out.println("Good");
+//		}else {
+//			System.out.println("bad");
+//		}
+//	}
+	
+	
 
-////	public Set<Coupon> moshe() {
-////		java.sql.Date inputDate = new java.sql.Date(1000);
-////		
-////		java.sql.Date mydate = java.sql.Date.valueOf(LocalDate.now());
-////		if(inputDate.after(mydate)) {
-////			System.out.println("Good");
-////		}else {
-////			System.out.println("bad");
-////		}
-////	}
 	
 }

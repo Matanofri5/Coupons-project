@@ -13,6 +13,8 @@ import Company.CompanyDAO;
 import Company.CompanyDBDAO;
 import Company.CompanyFacade;
 import CompanyCoupon.CompanyCoupon;
+import CompanyCoupon.CompanyCouponDAO;
+import CompanyCoupon.CompanyCouponDBDAO;
 import CompanyCoupon.CompanyCouponFacade;
 import Coupon.Coupon;
 import Coupon.CouponDAO;
@@ -60,9 +62,11 @@ public class Test {
 		 * @param companydao
 		 * @param customerdao
 		 */
+		CouponDAO couponDAO = new CouponDBDAO();
 		CompanyDAO companyDAO = new CompanyDBDAO();
 		CustomerDAO customerDAO = new CustomerDBDAO();
-		CouponDAO couponDAO = new CouponDBDAO();
+		CompanyCouponDAO companyCouponDAO = new CompanyCouponDBDAO();
+		CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
 		
 		/*********************************** dropping tables **************************/
 		customerCouponFacade.dropTable();
@@ -164,20 +168,8 @@ public class Test {
 		companyCouponFacade.insertCompanyCoupon(b6);
 		companyCouponFacade.insertCompanyCoupon(b7);
 
-
-//		System.out.println(customerFacade.getAllpurchasedCouponsByPrice(1, 15.2));
-//		CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
-//		System.out.println(customerCouponDAO.getAllCouponsId(1));
-
-//		System.out.println(companyFacade.getCouponById(5));
-//		System.out.println(companyFacade.getAllCompanyCoupons());
-
-		System.out.println(customerFacade.getAllpurchasedCouponsByPrice(c4, 100.5));
-//		System.out.println(customerFacade.getAllCouponsByType(CouponType.HEALTH));
 		
-		
-		
-		CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
-//		System.out.println(customerCouponDAO.getAllCouponsId(2));		
+//		System.out.println(companyFacade.getAllCouponsByType(1, CouponType.HEALTH));
+
 		}
 }

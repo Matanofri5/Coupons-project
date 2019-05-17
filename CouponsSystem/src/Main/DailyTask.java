@@ -3,6 +3,7 @@ package Main;
 import java.util.Date;
 import java.util.Set;
 import Coupon.Coupon;
+import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import Coupon.DateUtils;
 
@@ -10,7 +11,7 @@ public class DailyTask implements Runnable {
 
 	public boolean exit = false;
 	private Date localDate;
-	private CouponDBDAO couponDBDAO = new CouponDBDAO();
+	private CouponDAO couponDAO = new CouponDBDAO();
 	private long id;
 
 	public DailyTask() {
@@ -18,12 +19,12 @@ public class DailyTask implements Runnable {
 
 	public void couponExpired() throws Exception {
 
-		Set<Coupon> coupons = couponDBDAO.getAllCoupons();
+		Set<Coupon> coupons = couponDAO.getAllCoupons();
 		for (Coupon coupon : coupons) {
 			if (coupon.getEndDate().before(DateUtils.getCurrentDate())) {
 				id = coupon.getId();
-			couponDBDAO.removeCoupon(id);
-			System.out.println("this coupon has been delete: " + couponDBDAO.getCoupon(id));
+			couponDAO.removeCoupon(coupon);
+			System.out.println("coupon " +couponDAO.getCoupon(id)+ " has been delete");
 			}
 			}
 		
