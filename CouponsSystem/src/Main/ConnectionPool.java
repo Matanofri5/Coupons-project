@@ -7,7 +7,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import Coupon.DateUtils;
-import MyExceptions.ErrorConnectingDataBase;
+import MyExceptions.ErrorConnectingDriverException;
 
 public class ConnectionPool {
 
@@ -17,9 +17,9 @@ public class ConnectionPool {
 
 	private ConnectionPool() throws Exception {
 		try {
-			Class.forName(Database.getDBUrl());
+			Class.forName(Database.getDriverData());
 		} catch (Exception e) {
-			throw new ErrorConnectingDataBase("Something faulty with the connection to DataBase");
+			throw new ErrorConnectingDriverException("Something faulty with the connection to Driver");
 		}
 	}
 
