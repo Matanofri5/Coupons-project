@@ -232,40 +232,40 @@ public class CompanyDBDAO implements CompanyDAO {
 	 *  @return coupon object
 	 *  @throws Exception
 	 */
-//	@Override
-//	public Set<Coupon> getAllCompanyCoupons(long companyId) throws Exception {
-//		con = DriverManager.getConnection(Database.getDBUrl());
-//		Set<Coupon> coupons = new HashSet<Coupon>();
-//		CouponDBDAO coupon = new CouponDBDAO();
-//		
-//		try {
-//			String sql = "SELECT COUPONID FROM CompanyCoupon WHERE COMPANYID=?";
-//			PreparedStatement pstmt = con.prepareStatement(sql);
-//			pstmt.setLong(1,companyId) ;
-//			ResultSet rs = pstmt.executeQuery();
-//			while (rs.next()) {
-//				
-//				coupons.add(coupon.getCoupon(rs.getLong("COUPONID")));
-//
-//			}
-//		} catch (SQLException e) {
-//			System.err.println("Get coupons by company failed :( ");
-//			throw new Exception(e.getMessage());
-//		} finally {
-//			con.close();
-//		}
-//		return coupons;
-//	}
-	
-	
-	public List<Long> getCompanyId (long couponId) throws Exception{
+	@Override
+	public Set<Coupon> getAllCompanyCoupons(long companyId) throws Exception {
 		con = DriverManager.getConnection(Database.getDBUrl());
-		List<Long> companiesId = new ArrayList<>();
-		String sql = "SELECT * FROM CompanyCoupon WHERE CouponId= " + couponId;
+		Set<Coupon> coupons = new HashSet<Coupon>();
+		CouponDBDAO coupon = new CouponDBDAO();
+		
+		try {
+			String sql = "SELECT COUPONID FROM CompanyCoupon WHERE COMPANYID=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1,companyId) ;
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				
+				coupons.add(coupon.getCoupon(rs.getLong("COUPONID")));
+
+			}
+		} catch (SQLException e) {
+			System.err.println("Get coupons by company failed :( ");
+			throw new Exception(e.getMessage());
+		} finally {
+			con.close();
+		}
+		return coupons;
+	}
+	
+	
+	public List<Long> getCouponId (long companyId) throws Exception{
+		con = DriverManager.getConnection(Database.getDBUrl());
+		List<Long> couponsId = new ArrayList<>();
+		String sql = "SELECT * FROM CompanyCoupon WHERE companyId= " + companyId;
 			try (Statement statement= con.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
 				while(resultSet.next()) {
-					long companyId = resultSet.getLong(1);
-					companiesId.add(companyId);
+					long couponId = resultSet.getLong(1);
+					couponsId.add(companyId);
 				}
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
@@ -273,7 +273,7 @@ public class CompanyDBDAO implements CompanyDAO {
 			finally {
 				con.close();
 			}
-			return companiesId;
+			return couponsId;
 	}
 	
 	@Override
@@ -356,9 +356,4 @@ public class CompanyDBDAO implements CompanyDAO {
 		}
 	}
 
-	@Override
-	public Set<Coupon> getAllCompanyCoupons(long companyId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
