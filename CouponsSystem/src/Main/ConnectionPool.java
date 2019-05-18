@@ -16,7 +16,7 @@ public class ConnectionPool {
 
 	private ConnectionPool() throws Exception {
 		try {
-			Class.forName(DateUtils.getDBUrl());
+			Class.forName(Database.getDBUrl());
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
