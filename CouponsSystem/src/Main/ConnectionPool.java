@@ -7,6 +7,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import Coupon.DateUtils;
+import MyExceptions.ErrorConnectingDataBase;
 
 public class ConnectionPool {
 
@@ -18,7 +19,7 @@ public class ConnectionPool {
 		try {
 			Class.forName(Database.getDBUrl());
 		} catch (Exception e) {
-			throw new Exception(e.getMessage());
+			throw new ErrorConnectingDataBase("Something faulty with the connection to DataBase");
 		}
 	}
 
