@@ -31,7 +31,7 @@ public class CouponSystem {
 		try {
 			Database.createTables(connection);
 		} catch (Exception e) {
-			throw new Exception("tables already exists");
+			throw new Exception("tables already exists :(");
 		}
 	}
 
