@@ -74,7 +74,7 @@ public class Database {
 			sql = "create table CustomerCoupon (" + "customerId bigint not null references Customer(id), "
 					+ "couponId bigint not null references Coupon(id), " + "primary key(customerId, couponId))";
 			stmt.executeUpdate(sql);
-			System.out.println("create CustomerCoupon table success :D ");
+			System.out.println("create CustomerCoupon table success :D");
 		} catch (SQLException e) {
 		}
 
