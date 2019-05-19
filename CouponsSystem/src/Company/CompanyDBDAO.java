@@ -19,6 +19,7 @@ import Coupon.Coupon;
 import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import Coupon.CouponType;
+import Main.ConnectionPool;
 import Main.Database;
 import MyExceptions.LoginException;
 import MyExceptions.RemoveCouponException;
@@ -35,13 +36,20 @@ public class CompanyDBDAO implements CompanyDAO {
 	/**
 	 * Data Members
 	 */
-	Connection con;
+	private ConnectionPool connectionPool;
+	private Connection con;
 	
 
 	/**
+	 * @throws Exception 
 	 * @Empty CTOR
 	 */
-	public CompanyDBDAO() {
+	public CompanyDBDAO() throws Exception {
+		try {
+			connectionPool = ConnectionPool.getInstance();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 	}
 	
 	/**
@@ -52,7 +60,11 @@ public class CompanyDBDAO implements CompanyDAO {
 	 */
 	@Override
 	public void insertCompany(Company company) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+		con = ConnectionPool.getInstance().getConnection();
+		}catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		String sql = "INSERT INTO Company (companyName,password,email)  VALUES(?,?,?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 

@@ -37,6 +37,11 @@ public class Test {
 	
 	public static void main(String[] args) throws Exception {
 
+		/**
+		 * getInstance to create the DB tables & start the daily task
+		 */
+		CouponSystem couponSystem = CouponSystem.getInstance();
+		
 		Class.forName("org.apache.derby.jdbc.ClientDriver");
 		Connection con = DriverManager.getConnection(Database.getDBUrl());
 
@@ -171,7 +176,7 @@ public class Test {
 		
 //		System.out.println(companyFacade.getAllCouponsByType(CouponType.HEALTH));
 		
-		System.out.println(companyFacade.getAllCouponsByType(CouponType.HEALTH));
+//		System.out.println(companyFacade.getAllCouponsByType(CouponType.HEALTH));
 
 		
 		
