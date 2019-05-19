@@ -16,14 +16,16 @@ import CustomerCoupon.CustomerCouponDBDAO;
 
 public class DailyTask implements Runnable {
 
+	private Thread thread;
 	public boolean exit = false;
 	private Date localDate;
 	private long id;
-	private boolean running = true;
-	private CouponDAO couponDAO = new CouponDBDAO();
+	private boolean running = true;//
+	private CouponDAO couponDAO = new CouponDBDAO();//
+	private CompanyCouponDAO companyCouponDAO = new CompanyCouponDBDAO();//
+	private CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();//
 	private CompanyDAO companyDAO = new CompanyDBDAO();
-//	private CompanyCouponDAO companyCouponDAO = new CompanyCouponDBDAO();
-//	private CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
+
 	
 	public DailyTask() {
 	}
@@ -39,6 +41,7 @@ public class DailyTask implements Runnable {
 					if (coupon.getEndDate().before(DateUtils.getCurrentDate())) {
 						companyDAO.removeCouponFromCompany(coupon.getId());
 						couponDAO.removeCoupon(coupon);
+				//		companyCouponDAO.removeCompanyCoupon(companyId, couponId);
 					}
 				}
 			} catch (Exception e) {

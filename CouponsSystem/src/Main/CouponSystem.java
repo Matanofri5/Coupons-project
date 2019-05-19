@@ -5,21 +5,34 @@ import java.sql.Connection;
 import Clients.AdminFacade;
 import Clients.ClientType;
 import Clients.CouponClientFacade;
+import Customer.CustomerDAO;
+import Customer.CustomerDBDAO;
 import Customer.CustomerFacade;
+import Company.CompanyDAO;
+import Company.CompanyDBDAO;
 import Company.CompanyFacade;
 
 public class CouponSystem {
 
 	private static CouponSystem instance;
-	public DailyTask dailyTask;
+	private DailyTask dailyTask;
 	public Thread thread;
 	public Connection connection;
+	private CompanyDAO companyDAO = new CompanyDBDAO();
+	private CustomerDAO customerDAO = new CustomerDBDAO();
+	private ConnectionPool connectionPool;
 
-	public CouponSystem() throws Exception {
+	private CouponSystem() throws Exception {
 		// Activate the daily Coupons Deletion Demon (Thread)
 		dailyTask = new DailyTask();
 		thread = new Thread();
 		thread.start();
+		System.out.println("Welcome to CouponSystem");
+		try {
+			Database.createTables(connection);
+		} catch (Exception e) {
+			throw new Exception("tables already exists");
+		}
 	}
 
 	public static CouponSystem getInstance() throws Exception {

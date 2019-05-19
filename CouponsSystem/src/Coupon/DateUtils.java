@@ -4,14 +4,27 @@ import java.time.LocalDate;
 import java.util.Date;
 import Main.*;
 
+/**
+ * @author Linoy & Matan.
+ *
+ */
 public class DateUtils {
 
+	
+	/**
+	 * This method return current date .
+	 * @return date
+	 */
 	public static Date getCurrentDate() {
 		LocalDate localDate = LocalDate.now();
 		Date date = java.sql.Date.valueOf(localDate);
 		return date;
 	}
 
+	/**
+	 * This method get the expiration date and return the end date .
+	 * @return date
+	 */
 	public static Date getExpiredDate() {
 
 		LocalDate localDate = LocalDate.now();
@@ -21,10 +34,18 @@ public class DateUtils {
 		return date;
 	}
 
+	/**
+	 * This method return the driver of the derby JDBC
+	 * 
+	 */
 	public static String getDriverData() {
 		return "org.apache.derby.jdbc.ClientDriver";
 	}
 
+	/**
+	 * This method return the DB local host URL and the port
+	 * 
+	 */
 	public static String getDBUrl() {
 		return "jdbc:derby://localhost:3301/JBDB;create=true";
 	}

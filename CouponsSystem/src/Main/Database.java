@@ -89,6 +89,5 @@ public class Database {
 			System.out.println("create CompanyCoupon table success :D ");
 		} catch (SQLException e) {
 		}
-
 	}
 }
