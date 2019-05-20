@@ -1,6 +1,5 @@
 package Company;
 
-import java.awt.geom.Dimension2D;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -13,8 +12,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.function.LongToDoubleFunction;
-
 import CompanyCoupon.CompanyCoupon;
 import Coupon.Coupon;
 import Coupon.CouponDAO;
