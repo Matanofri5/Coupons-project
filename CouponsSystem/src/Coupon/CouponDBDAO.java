@@ -33,12 +33,14 @@ public class CouponDBDAO implements CouponDAO {
 	 * @throws Exception 
 	 * @Empty CTOR
 	 */
-	public CouponDBDAO() throws Exception {
-		try {
-			this.connectionPool = ConnectionPool.getInstance();
-		} catch (Exception e) {
-			throw new Exception("connection pool faild :(");
-		}
+	public CouponDBDAO() {
+			try {
+				this.connectionPool = ConnectionPool.getInstance();
+			} catch (Exception e) {
+				System.out.println("connection pool faild :(");
+				e.printStackTrace();
+			}
+		
 	}
 	
 	/**
