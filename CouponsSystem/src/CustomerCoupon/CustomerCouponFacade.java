@@ -4,22 +4,23 @@ import java.util.Set;
 
 public class CustomerCouponFacade {
 
-	private CustomerCouponDBDAO customerCouponDBDAO = new CustomerCouponDBDAO();
+	private CustomerCouponDAO customerCouponDAO;
 	private CustomerCoupon customerCoupon;
 
-	public CustomerCouponFacade(CustomerCoupon customerCoupon) {
+	public CustomerCouponFacade(CustomerCoupon customerCoupon, CustomerCouponDAO customerCouponDAO) throws Exception {
 		this.customerCoupon = customerCoupon;
+		this.customerCouponDAO = new CustomerCouponDBDAO();
 	}
 
 	public CustomerCouponFacade() {
 	}
 
 	public void insertCustomerCoupon(CustomerCoupon customerCoupon) throws Exception {
-		customerCouponDBDAO.insertCustomerCoupon(customerCoupon);
+		customerCouponDAO.insertCustomerCoupon(customerCoupon);
 	}
 
 	public void removeCustomerCoupon(long customerId, long couponId) throws Exception {
-		customerCouponDBDAO.removeCustomerCoupon(customerId, couponId);
+		customerCouponDAO.removeCustomerCoupon(customerId, couponId);
 	}
 
 	public void updateCustomerCoupon(CustomerCoupon customerCoupon, long newcustomerId, long newcouponId)
@@ -27,7 +28,7 @@ public class CustomerCouponFacade {
 		customerCoupon.setCustomerId(newcustomerId);
 		customerCoupon.setCouponId(newcouponId);
 
-		customerCouponDBDAO.updateCustomerCoupon(customerCoupon);
+		customerCouponDAO.updateCustomerCoupon(customerCoupon);
 	}
 
 	public CustomerCoupon getCustomerCoupon() throws Exception {
@@ -35,10 +36,10 @@ public class CustomerCouponFacade {
 	}
 
 	public Set<CustomerCoupon> getAllCustomerCoupon() throws Exception {
-		return customerCouponDBDAO.getAllCustomerCoupon();
+		return customerCouponDAO.getAllCustomerCoupon();
 	}
 
 	public void dropTable() throws Exception {
-		customerCouponDBDAO.dropTable();
+		customerCouponDAO.dropTable();
 	}
 }

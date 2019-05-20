@@ -4,11 +4,12 @@ import java.util.Date;
 import java.util.Set;
 
 public class CouponFacade {
-	private CouponDAO couponDAO = new CouponDBDAO();
+	private CouponDAO couponDAO ;
 	private Coupon coupon;
 
-	public CouponFacade(Coupon coupon) {
+	public CouponFacade(Coupon coupon, CouponDAO couponDAO) throws Exception {
 		this.coupon = coupon;
+		this.couponDAO = new CouponDBDAO();
 	}
 
 	public CouponFacade() {
