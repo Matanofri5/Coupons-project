@@ -178,7 +178,7 @@ public class Test {
 		
 //		System.out.println(companyFacade.getAllCouponsByType(CouponType.HEALTH));
 
-		
+		adminFacade.updateCompany(p5, "ddd", "sds");
 		
 		
 		

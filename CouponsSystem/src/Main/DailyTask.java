@@ -21,10 +21,17 @@ public class DailyTask implements Runnable {
 	private Date localDate;
 	private long id;
 	private boolean running = true;
+	private static int SLEEPTIME = 24 * 1000 * 3600;
 	private CouponDAO couponDAO = new CouponDBDAO();
 	private CompanyDAO companyDAO;
 	private CompanyCouponDAO companyCouponDAO;
 	private CustomerCouponDAO customerCouponDAO;
+	private int sleepingTime = DailyTask.SLEEPTIME;
+	
+	public DailyTask (int sleepTime) {
+		DailyTask.SLEEPTIME = sleepTime;
+		this.sleepingTime = sleepTime;
+	}
 	
 
 	

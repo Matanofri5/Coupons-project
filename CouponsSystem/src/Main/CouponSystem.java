@@ -28,7 +28,7 @@ public class CouponSystem {
 
 	private CouponSystem() throws Exception {
 		// Activate the daily Coupons Deletion Demon (Thread)
-		dailyTask = new DailyTask();
+		dailyTask = new DailyTask(SLEEPTIME);
 		thread = new Thread(dailyTask);
 		thread.start();
 		System.out.println("Welcome to CouponSystem");
