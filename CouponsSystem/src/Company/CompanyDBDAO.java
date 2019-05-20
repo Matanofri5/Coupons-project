@@ -27,42 +27,42 @@ import MyExceptions.RemoveCouponException;
 /**
  * @Author - Linoy & Matan
  * @Description: In this class we have to implement all the method in CompanyDao
- * every method getting connection to DB and close when finished, and run an SQL
- * Query by prepareStatement
+ *               every method getting connection to DB and close when finished,
+ *               and run an SQL Query by prepareStatement
  */
 
 public class CompanyDBDAO implements CompanyDAO {
-	
+
 	/**
 	 * Data Members
 	 */
 	private ConnectionPool connectionPool;
 	private Connection con;
-	
 
 	/**
-	 * @throws Exception 
+	 * @throws Exception
 	 * @Empty CTOR
 	 */
 	public CompanyDBDAO() throws Exception {
 		try {
-			connectionPool = ConnectionPool.getInstance();
+			this.connectionPool = ConnectionPool.getInstance();
 		} catch (Exception e) {
 			throw new Exception("connection pool faild :(");
 		}
 	}
-	
+
 	/**
-	 * @insert
-	 * this method Receives data about a new company, And creates it in a table of companies.
-	 *  @param company object
-	 *  @throws Exception
+	 * @insert this method Receives data about a new company, And creates it in a
+	 *         table of companies.
+	 * @param company
+	 *            object
+	 * @throws Exception
 	 */
 	@Override
 	public void insertCompany(Company company) throws Exception {
 		try {
-		con = ConnectionPool.getInstance().getConnection();
-		}catch (Exception e) {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
 			throw new Exception("connection pool faild :(");
 		}
 		String sql = "INSERT INTO Company (companyName,password,email)  VALUES(?,?,?)";
@@ -73,7 +73,7 @@ public class CompanyDBDAO implements CompanyDAO {
 			pstmt.setString(3, company.getEmail());
 
 			pstmt.executeUpdate();
-//			System.out.println("Company insert success :D  " + company.toString());
+			// System.out.println("Company insert success :D " + company.toString());
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			System.err.println("Company insert failed :(");
@@ -83,22 +83,26 @@ public class CompanyDBDAO implements CompanyDAO {
 	}
 
 	/**
-	 * @remove
-	 * this method delete 1 object of company by company id, from companies table.
-	 *  @param long id
-	 *  @throws Exception
+	 * @remove this method delete 1 object of company by company id, from companies
+	 *         table.
+	 * @param long
+	 *            id
+	 * @throws Exception
 	 */
 	@Override
-	public void removeCompany(Company company) throws Exception {		
-		con = DriverManager.getConnection(Database.getDBUrl());
-
+	public void removeCompany(Company company) throws Exception {
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		try {
 			String sql = "DELETE FROM Company WHERE id= ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, company.getId());
 			pstmt.executeUpdate();
 			pstmt.close();
-//			System.out.println("Company " + company.getId() + " remove success :D ");
+			// System.out.println("Company " + company.getId() + " remove success :D ");
 		} catch (SQLException e) {
 			try {
 				con.rollback();
@@ -113,62 +117,68 @@ public class CompanyDBDAO implements CompanyDAO {
 			con.close();
 		}
 	}
-	
+
 	/**
-	 * @removeCouponFromCompany
-	 * this method delete coupon of Company by DELETE query from two tables.
-	 *  @param long couponId
-	 *  @throws Exception
+	 * @removeCouponFromCompany this method delete coupon of Company by DELETE query
+	 *                          from two tables.
+	 * @param long
+	 *            couponId
+	 * @throws Exception
 	 */
 	@Override
 	public void removeCouponFromCompany(long couponId) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
-
 		try {
-			
-		//query to delete coupon from companyCoupon table
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
+		try {
+
+			// query to delete coupon from companyCoupon table
 			String sql1 = "DELETE FROM CompanyCoupon WHERE couponId=?";
 			PreparedStatement pstmt = con.prepareStatement(sql1);
 			pstmt.setLong(1, couponId);
 			pstmt.executeUpdate();
 			pstmt.close();
-			
-			//query to delete coupon from customerCoupon table
-				String sql2 = "DELETE FROM CustomerCoupon WHERE couponId=?";
-				PreparedStatement pstmt2 = con.prepareStatement(sql2);
-				pstmt2.setLong(1, couponId);
-				pstmt2.executeUpdate();
-				pstmt2.close();
-			
-//					System.out.println("you deleted coupon from company successfully");
-		}
-		catch (Exception e) {
+
+			// query to delete coupon from customerCoupon table
+			String sql2 = "DELETE FROM CustomerCoupon WHERE couponId=?";
+			PreparedStatement pstmt2 = con.prepareStatement(sql2);
+			pstmt2.setLong(1, couponId);
+			pstmt2.executeUpdate();
+			pstmt2.close();
+
+			// System.out.println("you deleted coupon from company successfully");
+		} catch (Exception e) {
 			throw new RemoveCouponException("failed to remove coupon from company");
-		}
-		finally {
+		} finally {
 			con.close();
 		}
 	}
 
 	/**
-	 * @update
-	 * this method update 1 object of company, from companies table.
-	 *  @param company object
-	 *  @throws Exception
+	 * @update this method update 1 object of company, from companies table.
+	 * @param company
+	 *            object
+	 * @throws Exception
 	 */
 	@Override
 	public void updateCompany(Company company) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		try {
 			String sql = "UPDATE Company SET password=?, email=? WHERE companyName=?";
 			PreparedStatement pstm = con.prepareStatement(sql);
-			
+
 			pstm.setString(1, company.getPassword());
 			pstm.setString(2, company.getEmail());
 			pstm.setString(3, company.getCompanyName());
 			pstm.executeUpdate();
 			pstm.close();
-			
+
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 			throw new Exception("Company update failed :( ");
@@ -176,15 +186,20 @@ public class CompanyDBDAO implements CompanyDAO {
 	}
 
 	/**
-	 * @get1
-	 * this method get and print 1 object of company by company id, from companies table.
-	 *  @param long id
-	 *  @return company object
-	 *  @throws Exception
+	 * @get1 this method get and print 1 object of company by company id, from
+	 *       companies table.
+	 * @param long
+	 *            id
+	 * @return company object
+	 * @throws Exception
 	 */
 	@Override
 	public Company getCompany(long id) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		Company company = new Company();
 		try (Statement stm = con.createStatement()) {
 			String sql = "SELECT * FROM Company WHERE ID=" + id;
@@ -206,14 +221,18 @@ public class CompanyDBDAO implements CompanyDAO {
 	}
 
 	/**
-	 * @getAll
-	 * this method get all and print objects of company, from companies table.
-	 *  @return company object
-	 *  @throws Exception
+	 * @getAll this method get all and print objects of company, from companies
+	 *         table.
+	 * @return company object
+	 * @throws Exception
 	 */
 	@Override
 	public Set<Company> getAllCompanys() throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		Set<Company> set = new HashSet<Company>();
 		String sql = "SELECT * FROM Company";
 
@@ -226,7 +245,7 @@ public class CompanyDBDAO implements CompanyDAO {
 				String password = rs.getString(3);
 				String email = rs.getString(4);
 				set.add(new Company(id, companyName, password, email));
-//				System.out.println("Get all company success :D ");
+				// System.out.println("Get all company success :D ");
 			}
 		} catch (SQLException e) {
 			System.err.println(e);
@@ -238,25 +257,30 @@ public class CompanyDBDAO implements CompanyDAO {
 	}
 
 	/**
-	 * @getAll coupons by company id
-	 * this method get and print objects of coupons by company id, from CompanyCoupon table.
-	 *  @param long id
-	 *  @return coupon object
-	 *  @throws Exception
+	 * @getAll coupons by company id this method get and print objects of coupons by
+	 *         company id, from CompanyCoupon table.
+	 * @param long
+	 *            id
+	 * @return coupon object
+	 * @throws Exception
 	 */
 	@Override
 	public Set<Coupon> getAllCompanyCoupons(long companyId) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		Set<Coupon> coupons = new HashSet<Coupon>();
 		CouponDBDAO coupon = new CouponDBDAO();
-		
+
 		try {
 			String sql = "SELECT COUPONID FROM CompanyCoupon WHERE COMPANYID=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setLong(1,companyId) ;
+			pstmt.setLong(1, companyId);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				
+
 				coupons.add(coupon.getCoupon(rs.getLong("COUPONID")));
 
 			}
@@ -268,29 +292,35 @@ public class CompanyDBDAO implements CompanyDAO {
 		}
 		return coupons;
 	}
-	
-	
-	public List<Long> getCouponId (long companyId) throws Exception{
-		con = DriverManager.getConnection(Database.getDBUrl());
+
+	public List<Long> getCouponId(long companyId) throws Exception {
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		List<Long> couponsId = new ArrayList<>();
 		String sql = "SELECT * FROM CompanyCoupon WHERE companyId= " + companyId;
-			try (Statement statement= con.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
-				while(resultSet.next()) {
-					long couponId = resultSet.getLong(1);
-					couponsId.add(companyId);
-				}
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
+		try (Statement statement = con.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
+			while (resultSet.next()) {
+				long couponId = resultSet.getLong(1);
+				couponsId.add(companyId);
 			}
-			finally {
-				con.close();
-			}
-			return couponsId;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			con.close();
+		}
+		return couponsId;
 	}
-	
+
 	@Override
 	public Set<CompanyCoupon> getAllCompanyCoupon() throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		Set<CompanyCoupon> set = new HashSet<>();
 		try {
 			Statement stmt = con.createStatement();
@@ -302,7 +332,7 @@ public class CompanyDBDAO implements CompanyDAO {
 				long couponId = rs.getLong(2);
 
 				set.add(new CompanyCoupon(companyId, couponId));
-//				System.out.println("Get all CompanyCoupon success :D ");
+				// System.out.println("Get all CompanyCoupon success :D ");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -312,18 +342,22 @@ public class CompanyDBDAO implements CompanyDAO {
 		}
 		return set;
 	}
-	
+
 	/**
 	 * this method login by companyUser check companyName and password
+	 * 
 	 * @throws Exception
 	 * @return boolean
 	 */
 	@Override
 	public boolean login(String companyName, String password) throws Exception, LoginException {
-		con = DriverManager.getConnection(Database.getDBUrl());
-		
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		boolean logicSuccess = false;
-		
+
 		try {
 			String sql = "SELECT * FROM company WHERE COMPANYNAME=? AND PASSWORD=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
@@ -333,28 +367,31 @@ public class CompanyDBDAO implements CompanyDAO {
 			if (rs.next()) {
 				logicSuccess = true;
 			}
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			throw new LoginException("comapny failed to login");
-		}finally {
+		} finally {
 			con.close();
 		}
 		return logicSuccess;
 	}
-	
+
 	/**
-	 * @dropTable
-	 * this method delete all the table of companies.
-	 *  @throws Exception
+	 * @dropTable this method delete all the table of companies.
+	 * @throws Exception
 	 */
 	@Override
 	public void dropTable() throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		try {
 			String sql = "DROP TABLE Company";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
-//			System.out.println("drop Company Table success!! :D ");
+			// System.out.println("drop Company Table success!! :D ");
 
 		} catch (SQLException ex) {
 			System.err.println("MMMMMMM....dropCompanyTableEXCEPTION :( ");
@@ -367,5 +404,4 @@ public class CompanyDBDAO implements CompanyDAO {
 			}
 		}
 	}
-
 }

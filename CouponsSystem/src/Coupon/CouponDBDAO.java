@@ -12,6 +12,7 @@ import java.util.Set;
 
 import org.apache.derby.iapi.db.Factory;
 
+import Main.ConnectionPool;
 import Main.Database;
 
 /**
@@ -25,12 +26,19 @@ public class CouponDBDAO implements CouponDAO {
 	/**
 	 * Data Members
 	 */
-	Connection con;
+	private ConnectionPool connectionPool;
+	private Connection con;
 
 	/**
+	 * @throws Exception 
 	 * @Empty CTOR
 	 */
-	public CouponDBDAO() {
+	public CouponDBDAO() throws Exception {
+		try {
+			this.connectionPool = ConnectionPool.getInstance();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 	}
 	
 	/**
@@ -41,7 +49,11 @@ public class CouponDBDAO implements CouponDAO {
 	 */
 	@Override
 	public void insertCoupon(Coupon coupon) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		String sql = "INSERT INTO Coupon (title,startDate,endDate,amount,message,price,image,type)  VALUES(?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, coupon.getTitle());
@@ -71,7 +83,11 @@ public class CouponDBDAO implements CouponDAO {
 	 */
 	@Override
 	public void removeCoupon(Coupon coupon) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		String sql = "DELETE FROM Coupon WHERE id=?";
 		try (PreparedStatement pstm1 = con.prepareStatement(sql);) {
 			con.setAutoCommit(false);
@@ -99,7 +115,11 @@ public class CouponDBDAO implements CouponDAO {
 	 */
 	@Override
 	public void updateCoupon(Coupon coupon) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		try {
 			String sql ="UPDATE Coupon SET TITLE=?, STARTDATE=?, ENDDATE=?, AMOUNT=?, MESSAGE=?, PRICE=?, IMAGE=?, TYPE=? WHERE ID=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
@@ -133,8 +153,12 @@ public class CouponDBDAO implements CouponDAO {
 	@Override
 	public Coupon getCoupon(long id) throws Exception {
 		Coupon coupon = new Coupon();
-		con = DriverManager.getConnection(Database.getDBUrl());
-//		java.sql.Statement stm = null;
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
+		//		java.sql.Statement stm = null;
 
 		try (Statement stm = con.createStatement()){
 			String sql = "SELECT * FROM Coupon WHERE ID=" + id;
@@ -170,7 +194,11 @@ public class CouponDBDAO implements CouponDAO {
 	public Set<Coupon> getAllCoupons() throws Exception {
 		Coupon coupon;
 		Set<Coupon> coupons = new HashSet<Coupon>();
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		java.sql.Statement stm = null;
 		try {
 			stm = con.createStatement();
@@ -207,7 +235,11 @@ public class CouponDBDAO implements CouponDAO {
 	 */
 	@Override
 	public Set<Coupon> getAllCouponsByType(CouponType couponType) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		Set<Coupon> CouponByType = new HashSet<Coupon>();
 		
 			try {
@@ -247,7 +279,11 @@ public class CouponDBDAO implements CouponDAO {
 	 */
 	@Override
 	public void dropTable() throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		try {
 			String sql = "DROP TABLE Coupon";
 			PreparedStatement pstmt = con.prepareStatement(sql);

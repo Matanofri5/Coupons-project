@@ -12,38 +12,51 @@ import java.util.Set;
 import Coupon.Coupon;
 import Coupon.CouponDBDAO;
 import CustomerCoupon.CustomerCoupon;
+import Main.ConnectionPool;
 import Main.Database;
 import MyExceptions.LoginException;
 import MyExceptions.RemoveCouponException;
 
 /**
  * @Author - Linoy & Matan
- * @Description: In this class we have to implement all the method in CustomerDAO
- * every method getting connection to DB and close when finished, and run an SQL
- * Query by prepareStatement
+ * @Description: In this class we have to implement all the method in
+ *               CustomerDAO every method getting connection to DB and close
+ *               when finished, and run an SQL Query by prepareStatement
  */
 public class CustomerDBDAO implements CustomerDAO {
-	
+
 	/**
 	 * Data Members
 	 */
-	Connection con;
+	private ConnectionPool connectionPool;
+	private Connection con;
 
 	/**
+	 * @throws Exception
 	 * @Empty CTOR
 	 */
-	public CustomerDBDAO() {
+	public CustomerDBDAO() throws Exception {
+		try {
+			this.connectionPool = ConnectionPool.getInstance();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 	}
-	
+
 	/**
-	 * @insert
-	 * this method Receives data about a new Customer, And creates it in a table of Customers.
-	 *  @param Customer object
-	 *  @throws Exception
+	 * @insert this method Receives data about a new Customer, And creates it in a
+	 *         table of Customers.
+	 * @param Customer
+	 *            object
+	 * @throws Exception
 	 */
 	@Override
 	public void insertCustomer(Customer customer) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		String sql = "INSERT INTO Customer (customerName,password)  VALUES(?,?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 
@@ -51,7 +64,7 @@ public class CustomerDBDAO implements CustomerDAO {
 			pstmt.setString(2, customer.getPassword());
 
 			pstmt.executeUpdate();
-//			System.out.println("Customer insert success :D  " + customer.toString());
+			// System.out.println("Customer insert success :D " + customer.toString());
 		} catch (SQLException e) {
 			System.err.println("Customer insert failed :( ");
 			throw new Exception(e.getMessage());
@@ -61,14 +74,19 @@ public class CustomerDBDAO implements CustomerDAO {
 	}
 
 	/**
-	 * @remove
-	 * this method delete 1 object of Customer by Customer id, from Customers table.
-	 *  @param long id
-	 *  @throws Exception
+	 * @remove this method delete 1 object of Customer by Customer id, from
+	 *         Customers table.
+	 * @param long
+	 *            id
+	 * @throws Exception
 	 */
 	@Override
 	public void removeCustomer(Customer customer) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 
 		try {
 			String sql = "DELETE FROM Customer WHERE id= ?";
@@ -76,7 +94,7 @@ public class CustomerDBDAO implements CustomerDAO {
 			pstmt.setLong(1, customer.getId());
 			pstmt.executeUpdate();
 			pstmt.close();
-//			System.out.println("Customer " + customer.getId() + " remove success :D ");
+			// System.out.println("Customer " + customer.getId() + " remove success :D ");
 		} catch (SQLException e) {
 			try {
 				con.rollback();
@@ -91,48 +109,54 @@ public class CustomerDBDAO implements CustomerDAO {
 			con.close();
 		}
 	}
-	
-	public void removeCouponFromCustomerCoupon(long couponId) throws Exception{
-		con = DriverManager.getConnection(Database.getDBUrl());
 
+	public void removeCouponFromCustomerCoupon(long couponId) throws Exception {
 		try {
-			
-			//query to delete coupon from customerCoupon table
-				String sql2 = "DELETE FROM CustomerCoupon WHERE couponId=?";
-				PreparedStatement pstmt2 = con.prepareStatement(sql2);
-				pstmt2.setLong(1, couponId);
-				pstmt2.executeUpdate();
-				pstmt2.close();
-					
-//					System.out.println("you deleted coupon from customer successfully");
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
 		}
-		catch (Exception e) {
+		try {
+
+			// query to delete coupon from customerCoupon table
+			String sql2 = "DELETE FROM CustomerCoupon WHERE couponId=?";
+			PreparedStatement pstmt2 = con.prepareStatement(sql2);
+			pstmt2.setLong(1, couponId);
+			pstmt2.executeUpdate();
+			pstmt2.close();
+
+			// System.out.println("you deleted coupon from customer successfully");
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RemoveCouponException("failed to remove coupon from customer");
-		}
-		finally {
+		} finally {
 			con.close();
 		}
 	}
 
 	/**
-	 * @update
-	 * this method update 1 object of Customer, from Customers table.
-	 *  @param Customer object
-	 *  @throws Exception
+	 * @update this method update 1 object of Customer, from Customers table.
+	 * @param Customer
+	 *            object
+	 * @throws Exception
 	 */
 	@Override
 	public void updateCustomer(Customer customer) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		try {
 			String sql = "UPDATE Customer SET password=? WHERE customerName=?";
 			PreparedStatement pstm = con.prepareStatement(sql);
-			
+
 			pstm.setString(1, customer.getPassword());
 			pstm.setString(2, customer.getCustomerName());
 			pstm.executeUpdate();
 			pstm.close();
-//			System.out.println("updated customer id " + customer.getId() + " successfully");
+			// System.out.println("updated customer id " + customer.getId() + "
+			// successfully");
 
 		} catch (SQLException e) {
 			System.err.println("update Customer failed :( ");
@@ -141,15 +165,20 @@ public class CustomerDBDAO implements CustomerDAO {
 	}
 
 	/**
-	 * @get1
-	 * this method get and print 1 object of Customer by Customer id, from Customers table.
-	 *  @param long id
-	 *  @return Customer object
-	 *  @throws Exception
+	 * @get1 this method get and print 1 object of Customer by Customer id, from
+	 *       Customers table.
+	 * @param long
+	 *            id
+	 * @return Customer object
+	 * @throws Exception
 	 */
 	@Override
 	public Customer getCustomer(long id) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		Customer customer = new Customer();
 		try (Statement stm = con.createStatement()) {
 			String sql = "SELECT * FROM Customer WHERE ID=" + id;
@@ -158,7 +187,7 @@ public class CustomerDBDAO implements CustomerDAO {
 				customer.setId(rs.getLong(1));
 				customer.setCustomerName(rs.getString(2));
 				customer.setPassword(rs.getString(3));
-//				System.out.println("Get customer success :D ");
+				// System.out.println("Get customer success :D ");
 			}
 		} catch (SQLException e) {
 			System.err.println("Get customer failed :(");
@@ -170,14 +199,18 @@ public class CustomerDBDAO implements CustomerDAO {
 	}
 
 	/**
-	 * @getAll
-	 * this method get all and print objects of Customers, from Customer table.
-	 *  @return Customer list object
-	 *  @throws Exception
+	 * @getAll this method get all and print objects of Customers, from Customer
+	 *         table.
+	 * @return Customer list object
+	 * @throws Exception
 	 */
 	@Override
 	public Set<Customer> getAllCustomer() throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		Set<Customer> set = new HashSet<>();
 		String sql = "SELECT * FROM Customer";
 		try (Statement stm = con.createStatement(); ResultSet rs = stm.executeQuery(sql)) {
@@ -195,11 +228,15 @@ public class CustomerDBDAO implements CustomerDAO {
 		}
 		return set;
 	}
-	
+
 	@Override
-	public void customerPurchaseCoupon (Coupon coupon, Customer customer) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
-		try  {
+	public void customerPurchaseCoupon(Coupon coupon, Customer customer) throws Exception {
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
+		try {
 			String sql = "INSERT INTO CustomerCoupon (customerId,couponId)  VALUES(?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, customer.getId());
@@ -208,7 +245,7 @@ public class CustomerDBDAO implements CustomerDAO {
 			pstmt.executeUpdate();
 			pstmt.close();
 
-//			System.out.println("Customer purchase coupon :D  ");
+			// System.out.println("Customer purchase coupon :D ");
 		} catch (SQLException e) {
 			System.err.println("customer failed to purchase coupon :( ");
 			System.err.println(e.getMessage());
@@ -216,23 +253,27 @@ public class CustomerDBDAO implements CustomerDAO {
 			con.close();
 		}
 	}
-	
+
 	@Override
 	public Set<Coupon> getAllCustomerCoupons(long customerId) throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		Set<Coupon> coupons = new HashSet<Coupon>();
 		CouponDBDAO coupon = new CouponDBDAO();
 
 		try {
 			String sql = "SELECT COUPONID FROM CustomerCoupon WHERE CUSTOMERID=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setLong(1,customerId) ;
+			pstmt.setLong(1, customerId);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				
+
 				coupons.add(coupon.getCoupon(rs.getLong("COUPONID")));
 
-//				System.out.println("Get coupons by customer success :D ");
+				// System.out.println("Get coupons by customer success :D ");
 			}
 		} catch (SQLException e) {
 			System.err.println("Get coupons by customer failed :( ");
@@ -242,13 +283,17 @@ public class CustomerDBDAO implements CustomerDAO {
 		}
 		return coupons;
 	}
-	
+
 	@Override
 	public boolean login(String customerName, String password) throws Exception, LoginException {
-		con = DriverManager.getConnection(Database.getDBUrl());
-		
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
+
 		boolean logicSuccess = false;
-		
+
 		try {
 			String sql = "SELECT * FROM customer WHERE CUSTOMERNAME=? AND PASSWORD=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
@@ -258,10 +303,10 @@ public class CustomerDBDAO implements CustomerDAO {
 			if (rs.next()) {
 				logicSuccess = true;
 			}
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			throw new LoginException("customer failed to login");
-		}finally {
+		} finally {
 			con.close();
 		}
 		return logicSuccess;
@@ -269,12 +314,16 @@ public class CustomerDBDAO implements CustomerDAO {
 
 	@Override
 	public void dropTable() throws Exception {
-		con = DriverManager.getConnection(Database.getDBUrl());
+		try {
+			con = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
 		try {
 			String sql = "DROP TABLE Customer";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
-//			System.out.println("drop Customer Table success!! :D ");
+			// System.out.println("drop Customer Table success!! :D ");
 
 		} catch (SQLException ex) {
 			System.err.println("MMMMMMM....dropCustomerTableEXCEPTION");
