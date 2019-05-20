@@ -11,21 +11,25 @@ import Customer.CustomerFacade;
 import Company.CompanyDAO;
 import Company.CompanyDBDAO;
 import Company.CompanyFacade;
+import Main.DailyTask;
 
 public class CouponSystem {
 
 	private static CouponSystem instance;
-	private DailyTask dailyTask;
+	public DailyTask dailyTask;
 	public Thread thread;
 	public Connection connection;
 	private CompanyDAO companyDAO = new CompanyDBDAO();
 	private CustomerDAO customerDAO = new CustomerDBDAO();
 	private ConnectionPool connectionPool;
+	
+	private static final int DAY = 1000 * 3600 * 24;
+	private static final int SLEEPTIME = 1 * DAY;
 
 	private CouponSystem() throws Exception {
 		// Activate the daily Coupons Deletion Demon (Thread)
 		dailyTask = new DailyTask();
-		thread = new Thread();
+		thread = new Thread(dailyTask);
 		thread.start();
 		System.out.println("Welcome to CouponSystem");
 		try {

@@ -21,19 +21,19 @@ public class DailyTask implements Runnable {
 	private Date localDate;
 	private long id;
 	private boolean running = true;
-	private CouponDAO couponDAO;
+	private CouponDAO couponDAO = new CouponDBDAO();
 	private CompanyDAO companyDAO;
 	private CompanyCouponDAO companyCouponDAO;
 	private CustomerCouponDAO customerCouponDAO;
 	
 
 	
-	public DailyTask(CouponDAO couponDAO,CompanyDAO companyDAO, CompanyCouponDAO companyCouponDAO, CustomerCouponDAO customerCouponDAO) throws Exception {
-		this.couponDAO = new CouponDBDAO();
-		this.companyDAO = new CompanyDBDAO();
-		this.companyCouponDAO = new CompanyCouponDBDAO();
-		this.customerCouponDAO = new CustomerCouponDBDAO();
-	}
+//	public DailyTask(CouponDAO couponDAO,CompanyDAO companyDAO, CompanyCouponDAO companyCouponDAO, CustomerCouponDAO customerCouponDAO) throws Exception {
+//		this.couponDAO = new CouponDBDAO();
+//		this.companyDAO = new CompanyDBDAO();
+//		this.companyCouponDAO = new CompanyCouponDBDAO();
+//		this.customerCouponDAO = new CustomerCouponDBDAO();
+//	}
 
 	
 	public void run () {
