@@ -4,29 +4,30 @@ import java.util.Set;
 
 public class CompanyCouponFacade {
 	
-	private CompanyCouponDBDAO companyCouponDBDAO = new CompanyCouponDBDAO();
+	private CompanyCouponDAO companyCouponDAO;
 	private CompanyCoupon companyCoupon;
 
-	public CompanyCouponFacade(CompanyCoupon companyCoupon) {
+	public CompanyCouponFacade(CompanyCoupon companyCoupon, CompanyCouponDAO companyCouponDAO) throws Exception {
 		this.companyCoupon = companyCoupon;
+		this.companyCouponDAO = new CompanyCouponDBDAO();
 	}
 
 	public CompanyCouponFacade() {
 	}
 
 	public void insertCompanyCoupon(CompanyCoupon companyCoupon) throws Exception {
-		companyCouponDBDAO.insertCompanyCoupon(companyCoupon);
+		companyCouponDAO.insertCompanyCoupon(companyCoupon);
 	}
 
 	public void removeCompanyCoupon(long companyId, long couponId) throws Exception {
-		companyCouponDBDAO.removeCompanyCoupon(companyId, couponId);
+		companyCouponDAO.removeCompanyCoupon(companyId, couponId);
 	}
 
 	public void updateCompanyCoupon(CompanyCoupon companyCoupon, long newcompanyId, long newcouponId) throws Exception {
 		companyCoupon.setCompanyId(newcompanyId);
 		companyCoupon.setCouponId(newcouponId);
 
-		companyCouponDBDAO.updateCompanyCoupon(companyCoupon);
+		companyCouponDAO.updateCompanyCoupon(companyCoupon);
 	}
 
 	public CompanyCoupon getCompanyCoupon() throws Exception {
@@ -34,11 +35,10 @@ public class CompanyCouponFacade {
 	}
 
 	public Set<CompanyCoupon> getAllCompanyCoupon() throws Exception {
-		// CompanyCouponDBDAO companyCouponDAO=new CompanyCouponDBDAO();
-		return companyCouponDBDAO.getAllCompanyCoupon();
+		return companyCouponDAO.getAllCompanyCoupon();
 	}
 
 	public void dropTable() throws Exception {
-		companyCouponDBDAO.dropTable();
+		companyCouponDAO.dropTable();
 	}
 }
