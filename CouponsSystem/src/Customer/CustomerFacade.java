@@ -23,17 +23,18 @@ import MyExceptions.CouponNotAvailableException;
  * @Description: Customer Facade- login for customers
  */
 public class CustomerFacade implements CouponClientFacade {
-	private CustomerDAO customerDAO = new CustomerDBDAO();
-//	private Customer customer = new Customer();
-	private CouponDAO couponDAO = new CouponDBDAO();
+	private CustomerDAO customerDAO ;
+	private CouponDAO couponDAO ;
+	private CustomerCouponDAO customerCouponDAO ;
 	private Coupon coupon;
-	private CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
 	private Customer customer;
 	/**
 	 * @partial CTOR 
 	 */
-	public CustomerFacade(Customer customer) {
-		this.customer = customer;
+	public CustomerFacade(CustomerDAO customerDAO, CouponDAO couponDAO, CustomerCouponDAO customerCouponDAO) throws Exception {
+		this.customerDAO = new CustomerDBDAO();
+		this.couponDAO = new CouponDBDAO();
+		this.customerCouponDAO = new CustomerCouponDBDAO();
 	}
 	
 	/**

@@ -31,9 +31,9 @@ import Main.Database;
  * @Description: Company Facade- login for Company
  */
 public class CompanyFacade implements CouponClientFacade{
-	private CompanyDAO companyDAO = new CompanyDBDAO();
-	private CouponDAO couponDAO = new CouponDBDAO();
-	private CompanyCouponDAO companyCouponDAO = new CompanyCouponDBDAO();
+	private CompanyDAO companyDAO ;
+	private CouponDAO couponDAO ;
+	private CompanyCouponDAO companyCouponDAO ;
 	private Company company;
 	private long companyId;
 	private CompanyCoupon companyCoupon;
@@ -41,12 +41,14 @@ public class CompanyFacade implements CouponClientFacade{
 
 	
 	/**
+	 * @throws Exception 
 	 * @partial CTOR 
 	 */
-	public CompanyFacade(Company company) {
-		this.company = company;
-//		this.companyId = companyCoupon.getCompanyId();
-	}
+	public CompanyFacade(CompanyDAO companyDAO, CouponDAO couponDAO, CompanyCouponDAO companyCouponDAO) throws Exception {
+		this.companyDAO = new CompanyDBDAO();
+		this.couponDAO = new CouponDBDAO();
+		this.companyCouponDAO = new CompanyCouponDBDAO();
+		}
 
 	/**
 	 * @Empty CTOR

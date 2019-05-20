@@ -31,28 +31,27 @@ public class AdminFacade implements CouponClientFacade {
 	private static final String adminName = "admin";
 	private static final String adminPassword = "1234";
 	
-	private CouponDAO couponDAO = new CouponDBDAO();;
-	private CompanyDAO companyDAO = new CompanyDBDAO();
-	private CustomerDAO customerDAO = new CustomerDBDAO();
+	private CouponDAO couponDAO;
+	private CompanyDAO companyDAO;
+	private CustomerDAO customerDAO;
 	private boolean successLogin = true;
 	
 
+	/**
+	 * @throws Exception 
+	 * @Full CTOR
+	 */
+	public AdminFacade(CompanyDAO companyDAO, CustomerDAO customerDAO, CouponDAO couponDAO) throws Exception {
+		this.companyDAO = new CompanyDBDAO();
+		this.customerDAO = new CustomerDBDAO();
+		this.couponDAO = new CouponDBDAO();
 
-
+	}
+	
 	/**
 	 * @Empty CTOR
 	 */
 	public AdminFacade() {
-	}
-
-	/**
-	 * @Full CTOR
-	 */
-	public AdminFacade(CompanyDAO companyDAO, CustomerDAO customerDAO, CouponDAO couponDAO) {
-		this.companyDAO = companyDAO;
-		this.customerDAO = customerDAO;
-		this.couponDAO = couponDAO;
-
 	}
 
 	/**
