@@ -27,7 +27,7 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 	 * Data Members
 	 */
 	private ConnectionPool connectionPool;
-	private Connection con;
+//	private Connection con;
 
 	/**
 	 * @throws Exception
@@ -50,13 +50,14 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 	 */
 	@Override
 	public void insertCompanyCoupon(CompanyCoupon companyCoupon) throws Exception {
+		Connection connection = null;
 		try {
-			con = ConnectionPool.getInstance().getConnection();
+			connection = ConnectionPool.getInstance().getConnection();
 		} catch (Exception e) {
 			throw new Exception("connection pool faild :(");
 		}
 		String sql = "INSERT INTO CompanyCoupon (companyId,couponId)  VALUES(?,?)";
-		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+		try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
 			pstmt.setLong(1, companyCoupon.getCompanyId());
 			pstmt.setLong(2, companyCoupon.getCouponId());
@@ -68,7 +69,16 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 			System.err.println("CompanyCoupon insert failed :( ");
 			System.err.println(e.getMessage());
 		} finally {
-			con.close();
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				 System.out.println(e2.getMessage());
+			}
+			try {
+				connectionPool.returnConnection(connection);
+			} catch (SQLException e3) {
+				System.out.println(e3.getMessage());
+			}
 		}
 	}
 
@@ -81,40 +91,51 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 	 */
 	@Override
 	public void removeCompanyCoupon(long companyId, long couponId) throws Exception {
+		Connection connection = null;
 		try {
-			con = ConnectionPool.getInstance().getConnection();
+			connection = ConnectionPool.getInstance().getConnection();
 		} catch (Exception e) {
 			throw new Exception("connection pool faild :(");
 		}
 		String sql = "DELETE FROM CompanyCoupon WHERE companyId=? and couponId=?";
 
-		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
-			con.setAutoCommit(false);
+		try (PreparedStatement pstmt = connection.prepareStatement(sql);) {
+			connection.setAutoCommit(false);
 			pstmt.setLong(1, companyId);
 			pstmt.setLong(2, couponId);
 			pstmt.executeUpdate();
-			con.commit();
+			connection.commit();
 			// System.out.println("remove CompanyCoupon success :D ");
 		} catch (SQLException e) {
 			try {
-				con.rollback();
+				connection.rollback();
 			} catch (SQLException e1) {
 				throw new Exception("Database error");
 			}
 			System.err.println("remove CompanyCoupon failed :( ");
 		} finally {
-			con.close();
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				 System.out.println(e2.getMessage());
+			}
+			try {
+				connectionPool.returnConnection(connection);
+			} catch (SQLException e3) {
+				System.out.println(e3.getMessage());
+			}
 		}
 	}
 
 	@Override
 	public void updateCompanyCoupon(CompanyCoupon companyCoupon) throws Exception {
+		Connection connection = null;
 		try {
-			con = ConnectionPool.getInstance().getConnection();
+			connection = ConnectionPool.getInstance().getConnection();
 		} catch (Exception e) {
 			throw new Exception("connection pool faild :(");
 		}
-		try (Statement stm = con.createStatement()) {
+		try (Statement stm = connection.createStatement()) {
 			String sql = "UPDATE CompanyCoupon " + " SET companyId='" + companyCoupon.getCompanyId() + "', couponId='"
 					+ companyCoupon.getCouponId() + "' WHERE Id=" + companyCoupon.getCompanyId() + "AND" + "' WHERE Id="
 					+ companyCoupon.getCouponId();
@@ -123,18 +144,30 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new Exception("update CompanyCoupon failed :( ");
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				 System.out.println(e2.getMessage());
+			}
+			try {
+				connectionPool.returnConnection(connection);
+			} catch (SQLException e3) {
+				System.out.println(e3.getMessage());
+			}
 		}
 	}
 
 	@Override
 	public CompanyCoupon getCompanyCoupon(long id) throws Exception {
+		Connection connection = null;
 		try {
-			con = ConnectionPool.getInstance().getConnection();
+			connection = ConnectionPool.getInstance().getConnection();
 		} catch (Exception e) {
 			throw new Exception("connection pool faild :(");
 		}
 		CompanyCoupon companyCoupon = new CompanyCoupon();
-		try (Statement stmt = con.createStatement()) {
+		try (Statement stmt = connection.createStatement()) {
 			String sql = "SELECT * FROM CompanyCoupon WHERE ID=" + id;
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
@@ -146,22 +179,31 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 		} catch (SQLException e) {
 			System.err.println("Get CompanyCoupon failed :(");
 		} finally {
-			con.close();
-
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				 System.out.println(e2.getMessage());
+			}
+			try {
+				connectionPool.returnConnection(connection);
+			} catch (SQLException e3) {
+				System.out.println(e3.getMessage());
+			}
 		}
 		return companyCoupon;
 	}
 
 	@Override
 	public Set<CompanyCoupon> getAllCompanyCoupon() throws Exception {
+		Connection connection = null;
 		try {
-			con = ConnectionPool.getInstance().getConnection();
+			connection = ConnectionPool.getInstance().getConnection();
 		} catch (Exception e) {
 			throw new Exception("connection pool faild :(");
 		}
 		Set<CompanyCoupon> set = new HashSet<>();
 		try {
-			Statement stmt = con.createStatement();
+			Statement stmt = connection.createStatement();
 			String sql = "SELECT * FROM CompanyCoupon";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
@@ -176,21 +218,31 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 			System.out.println(e.getMessage());
 			System.err.println("Get all CompanyCoupon failed :( ");
 		} finally {
-			con.close();
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				 System.out.println(e2.getMessage());
+			}
+			try {
+				connectionPool.returnConnection(connection);
+			} catch (SQLException e3) {
+				System.out.println(e3.getMessage());
+			}
 		}
 		return set;
 	}
 
 	@Override
 	public void dropTable() throws Exception {
+		Connection connection = null;
 		try {
-			con = ConnectionPool.getInstance().getConnection();
+			connection = ConnectionPool.getInstance().getConnection();
 		} catch (Exception e) {
 			throw new Exception("connection pool faild :(");
 		}
 		try {
 			String sql = "DROP TABLE CompanyCoupon";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.executeUpdate();
 			// System.out.println("drop Table CompanyCoupon success!! :D ");
 
@@ -199,9 +251,14 @@ public class CompanyCouponDBDAO implements CompanyCouponDAO {
 			throw new Exception(ex.getMessage());
 		} finally {
 			try {
-				con.close();
-			} catch (SQLException ex) {
-				System.err.println("the connection cannot closed :( " + ex.getMessage());
+				connection.close();
+			} catch (SQLException e2) {
+				 System.out.println(e2.getMessage());
+			}
+			try {
+				connectionPool.returnConnection(connection);
+			} catch (SQLException e3) {
+				System.out.println(e3.getMessage());
 			}
 		}
 	}

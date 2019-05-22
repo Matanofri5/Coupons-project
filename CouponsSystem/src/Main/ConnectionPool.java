@@ -9,6 +9,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import Coupon.DateUtils;
 import MyExceptions.ErrorConnectingDriverException;
 
+
 /**
  * @author Linoy & Matan
  * Singleton class Connection-Pool
@@ -29,7 +30,7 @@ public class ConnectionPool {
 		try {
 			Class.forName(DateUtils.getDriverData());
 		} catch (Exception e) {
-			throw new ErrorConnectingDriverException("Something faulty with the connection to Driver");
+			throw new ErrorConnectingDriverException("Something faulty with the connection to Driver" + e.getMessage());
 		}
 		Connection connection;
 		try {

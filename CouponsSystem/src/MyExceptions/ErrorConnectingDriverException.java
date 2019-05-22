@@ -1,6 +1,5 @@
 package MyExceptions;
 
-import Company.Company;
 
 public class ErrorConnectingDriverException extends Exception {
 	
