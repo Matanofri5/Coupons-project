@@ -42,6 +42,7 @@ public class Test {
 		 */
 		CouponSystem couponSystem = CouponSystem.getInstance();
 		
+
 		Class.forName("org.apache.derby.jdbc.ClientDriver");
 		Connection con = DriverManager.getConnection(Database.getDBUrl());
 
@@ -81,8 +82,7 @@ public class Test {
 		couponFacade.dropTable();
 		
 		/*********************************** creating tables *************************/
-		
-		Database.createTables(con);
+		Database.createTables();
 		
 		/*************************************** Company ****************************/
 
