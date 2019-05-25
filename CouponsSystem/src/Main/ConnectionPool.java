@@ -28,13 +28,13 @@ public class ConnectionPool {
 	 */
 	private ConnectionPool() throws Exception {
 		try {
-			Class.forName(DateUtils.getDriverData());
+			Class.forName(Database.getDriverData());
 		} catch (Exception e) {
 			throw new ErrorConnectingDriverException("Something faulty with the connection to Driver" + e.getMessage());
 		}
 		Connection connection;
 		try {
-			connection = DriverManager.getConnection(DateUtils.getDBUrl());
+			connection = DriverManager.getConnection(Database.getDBUrl());
 		} catch (SQLException e) {
 			throw new ErrorConnectingDriverException("Something faulty with the connection to DB URL");
 		}
@@ -68,7 +68,7 @@ public class ConnectionPool {
 	 */
 	public synchronized Connection getConnection() throws Exception {
 		try {
-			while (connections.size() == 0) {
+			while (connections.isEmpty()) {
 				wait();
 				System.out.println("connection pool is empty");
 			}
