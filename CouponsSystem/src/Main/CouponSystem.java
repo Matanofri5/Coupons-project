@@ -59,7 +59,6 @@ public class CouponSystem {
 		default:
 			couponClientFacade = null;
 		}
-
 		if (couponClientFacade != null) {
 			return couponClientFacade;
 		} else {
@@ -71,7 +70,11 @@ public class CouponSystem {
 
 		try {
 			ConnectionPool connectionPool = ConnectionPool.getInstance();
+			try {
 			connectionPool.closeAllConnections(connection);
+			}catch (Exception e) {
+				System.out.println("Failed to get connection");
+			}
 		} catch (Exception e) {
 			throw new Exception("ERROR! Properly Shut Down Application Failed!");
 		}

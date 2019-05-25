@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Date;
 import java.util.FormatterClosedException;
+import java.util.HashSet;
+import java.util.Set;
 
 import Clients.AdminFacade;
 import Clients.ClientType;
@@ -40,11 +42,27 @@ public class Test {
 		/**
 		 * getInstance to create the DB tables & start the daily task
 		 */
-		CouponSystem couponSystem = CouponSystem.getInstance();
 		
-
-		Class.forName("org.apache.derby.jdbc.ClientDriver");
-		Connection con = DriverManager.getConnection(Database.getDBUrl());
+		Set<Company> companies = new HashSet<Company>();
+		Set<Customer> customers = new HashSet<Customer>();
+		Set<Coupon> coupons = new HashSet<Coupon>();
+		
+		CouponClientFacade facade;
+		
+		CouponSystem couponSystem = CouponSystem.getInstance();
+		ConnectionPool.getInstance().getConnection();
+		
+		
+		facade = couponSystem.login("admin", "1234", ClientType.ADMIN);
+		if (facade instanceof AdminFacade) {
+			System.out.println("success");
+		}else {
+			System.out.println("gala");
+		}
+		
+		
+//		Class.forName("org.apache.derby.jdbc.ClientDriver");
+//		Connection con = DriverManager.getConnection(Database.getDBUrl());
 
 		/**
 		 * initialization facade objects.
@@ -75,14 +93,14 @@ public class Test {
 		CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
 		
 		/*********************************** dropping tables **************************/
-		customerCouponFacade.dropTable();
-		companyCouponFacade.dropTable();
-		companyFacade.dropTable();
-		customerFacade.dropTable();
-		couponFacade.dropTable();
+//		customerCouponFacade.dropTable();
+//		companyCouponFacade.dropTable();
+//		companyFacade.dropTable();
+//		customerFacade.dropTable();
+//		couponFacade.dropTable();
 		
 		/*********************************** creating tables *************************/
-		Database.createTables();
+//		Database.createTables();
 		
 		/*************************************** Company ****************************/
 
@@ -130,9 +148,7 @@ public class Test {
 		CompanyCoupon b6 = new CompanyCoupon(5, 1);
 		CompanyCoupon b7 = new CompanyCoupon(2, 1);
 		
-		
-		
-		
+				
 		adminFacade.addCompany(p1);
 		adminFacade.addCompany(p2);
 		adminFacade.addCompany(p3);
@@ -146,7 +162,6 @@ public class Test {
 		adminFacade.addCustomer(c4);
 		adminFacade.addCustomer(c5);
 
-		
 		 couponFacade.insertCoupon(u1);
 		 couponFacade.insertCoupon(u2);
 		 couponFacade.insertCoupon(u3);
