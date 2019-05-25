@@ -93,14 +93,14 @@ public class Test {
 		CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
 		
 		/*********************************** dropping tables **************************/
-//		customerCouponFacade.dropTable();
-//		companyCouponFacade.dropTable();
-//		companyFacade.dropTable();
-//		customerFacade.dropTable();
-//		couponFacade.dropTable();
+		customerCouponFacade.dropTable();
+		companyCouponFacade.dropTable();
+		companyFacade.dropTable();
+		customerFacade.dropTable();
+		couponFacade.dropTable();
 		
 		/*********************************** creating tables *************************/
-//		Database.createTables();
+		Database.createTables();
 		
 		/*************************************** Company ****************************/
 
