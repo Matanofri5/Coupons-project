@@ -51,9 +51,13 @@ public class CompanyFacade implements CouponClientFacade{
 		}
 
 	/**
+	 * @throws Exception 
 	 * @Empty CTOR
 	 */
-	public CompanyFacade() {
+	public CompanyFacade() throws Exception {
+		this.companyDAO = new CompanyDBDAO();
+		this.couponDAO = new CouponDBDAO();
+		this.companyCouponDAO = new CompanyCouponDBDAO();
 	}
 
 //	public void insertCompany(Company company) throws Exception {

@@ -13,6 +13,8 @@ public class CouponFacade {
 	}
 
 	public CouponFacade() {
+		this.coupon = coupon;
+		this.couponDAO = new CouponDBDAO();
 	}
 
 	public void insertCoupon(Coupon coupon) throws Exception {

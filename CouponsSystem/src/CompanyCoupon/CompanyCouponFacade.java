@@ -12,7 +12,9 @@ public class CompanyCouponFacade {
 		this.companyCouponDAO = new CompanyCouponDBDAO();
 	}
 
-	public CompanyCouponFacade() {
+	public CompanyCouponFacade() throws Exception {
+		this.companyCoupon = companyCoupon;
+		this.companyCouponDAO = new CompanyCouponDBDAO();
 	}
 
 	public void insertCompanyCoupon(CompanyCoupon companyCoupon) throws Exception {

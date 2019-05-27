@@ -38,9 +38,13 @@ public class CustomerFacade implements CouponClientFacade {
 	}
 	
 	/**
+	 * @throws Exception 
 	 * @Empty CTOR
 	 */
-	public CustomerFacade() {
+	public CustomerFacade() throws Exception {
+		this.customerDAO = new CustomerDBDAO();
+		this.couponDAO = new CouponDBDAO();
+		this.customerCouponDAO = new CustomerCouponDBDAO();
 	}
 	
 
