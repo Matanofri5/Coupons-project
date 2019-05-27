@@ -11,8 +11,8 @@ public class Test2 {
 	public static void main(String[] args) throws Exception {
 		
 		
-//		Class.forName("org.apache.derby.jdbc.ClientDriver");
-//		Connection con = DriverManager.getConnection(Database.getDBUrl());
+		Class.forName("org.apache.derby.jdbc.ClientDriver");
+		Connection con = DriverManager.getConnection(Database.getDBUrl());
 		Database.createTables();
 		
 		

@@ -48,12 +48,15 @@ public class DailyTask implements Runnable {
 			
 			try {
 				System.out.println("Daily task starting now.....");
+				Thread.sleep(5000);
+				
 				Set<Coupon> allCoupons = couponDAO.getAllCoupons();
 				for (Coupon coupon : allCoupons) {
+					
 					if (coupon.getEndDate().before(DateUtils.getCurrentDate())) {
-//						companyDAO.removeCouponFromCompany(coupon.getId());
+						companyDAO.removeCouponFromCompany(coupon.getId());
 						couponDAO.removeCoupon(coupon);
-				//		companyCouponDAO.removeCompanyCoupon(companyId, couponId);
+//					companyCouponDAO.removeCompanyCoupon(companyId, couponId);
 					}
 				}
 			} catch (Exception e) {

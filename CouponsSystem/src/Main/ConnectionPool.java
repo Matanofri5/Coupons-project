@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-
-import Coupon.DateUtils;
 import MyExceptions.ErrorConnectingDriverException;
 
 
@@ -45,7 +43,7 @@ public class ConnectionPool {
 		}
 		while (this.connections.size() < maxConnections) {
 			try {
-				connection = DriverManager.getConnection(DateUtils.getDBUrl());
+				connection = DriverManager.getConnection(Database.getDBUrl());
 			} catch (SQLException e) {
 				throw new ErrorConnectingDriverException("Something faulty with the connection to Driver");
 			}
@@ -85,10 +83,12 @@ public class ConnectionPool {
 	 */
 	public synchronized void returnConnection(Connection con) throws Exception {
 		try {
-			Connection connection = DriverManager.getConnection(DateUtils.getDBUrl());
+			Connection connection = DriverManager.getConnection(Database.getDBUrl());
 			connections.offer(connection);
 			notifyAll();
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
 			throw new Exception("mmm.. return connection faild :(");
 		}
 	}

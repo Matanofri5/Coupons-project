@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.derby.iapi.db.Factory;
+import org.omg.CORBA.PRIVATE_MEMBER;
 
 import Main.ConnectionPool;
 import Main.Database;
@@ -54,6 +55,7 @@ public class CouponDBDAO implements CouponDAO {
 		Connection connection = null;
 		try {
 			connection = ConnectionPool.getInstance().getConnection();
+		
 		} catch (Exception e) {
 			throw new Exception("connection pool faild :(");
 		}
@@ -81,6 +83,7 @@ public class CouponDBDAO implements CouponDAO {
 			}
 			try {
 				connectionPool.returnConnection(connection);
+				
 			} catch (SQLException e3) {
 				System.out.println(e3.getMessage());
 			}
@@ -264,19 +267,11 @@ public class CouponDBDAO implements CouponDAO {
 				coupons.add(coupon);
 			}
 		} catch (SQLException e) {
-			System.err.println("Get all coupon failed :( ");
-			throw new Exception(e.getMessage());
+			
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e2) {
-				 System.out.println(e2.getMessage());
-			}
-			try {
+			
 				connectionPool.returnConnection(connection);
-			} catch (SQLException e3) {
-				System.out.println(e3.getMessage());
-			}
+			
 		}
 		return coupons;
 	}

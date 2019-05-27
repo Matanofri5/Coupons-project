@@ -48,8 +48,8 @@ public class Test {
 		Set<Coupon> coupons = new HashSet<Coupon>();
 		
 		CouponClientFacade facade;
-		Database.dropTables();
-		Database.createTables();
+//		Database.dropTables();
+//		Database.createTables();
 
 
 		CouponSystem couponSystem = CouponSystem.getInstance();
@@ -57,8 +57,10 @@ public class Test {
 		
 		
 		facade = couponSystem.login("admin", "1234", ClientType.ADMIN);
+		
 		if (facade instanceof AdminFacade) {
 			System.out.println("success");
+
 		}else {
 			System.out.println("gala");
 		}
@@ -104,7 +106,7 @@ public class Test {
 //		Database.dropTables();
 		
 		/*********************************** creating tables *************************/
-//		Database.createTables();
+	//	Database.createTables();
 		
 		/*************************************** Company ****************************/
 
@@ -153,52 +155,53 @@ public class Test {
 		CompanyCoupon b7 = new CompanyCoupon(2, 1);
 		
 				
-		adminFacade.addCompany(p1);
-		adminFacade.addCompany(p2);
-		adminFacade.addCompany(p3);
-		adminFacade.addCompany(p4);
-		adminFacade.addCompany(p5);
+//    	adminFacade.addCompany(p1);
+//		adminFacade.addCompany(p2);
+//		adminFacade.addCompany(p3);
+//		adminFacade.addCompany(p4);
+//		adminFacade.addCompany(p5);
 
 		
-		adminFacade.addCustomer(c1);
-		adminFacade.addCustomer(c2);
-		adminFacade.addCustomer(c3);
-		adminFacade.addCustomer(c4);
-		adminFacade.addCustomer(c5);
+//		adminFacade.addCustomer(c1);
+//		adminFacade.addCustomer(c2);
+//		adminFacade.addCustomer(c3);
+//		adminFacade.addCustomer(c4);
+//		adminFacade.addCustomer(c5);
 
-		 couponFacade.insertCoupon(u1);
-		 couponFacade.insertCoupon(u2);
-		 couponFacade.insertCoupon(u3);
-		 couponFacade.insertCoupon(u4);
-		 couponFacade.insertCoupon(u5);
-		 couponFacade.insertCoupon(u6);
-		 couponFacade.insertCoupon(u7);
+//		 couponFacade.insertCoupon(u1);
+//		 couponFacade.insertCoupon(u2);
+//		 couponFacade.insertCoupon(u3);
+//		 couponFacade.insertCoupon(u4);
+//		 couponFacade.insertCoupon(u5);
+//		 couponFacade.insertCoupon(u6);
+//		 couponFacade.insertCoupon(u7);
 
 
-		 customerCouponFacade.insertCustomerCoupon(a1);
-		 customerCouponFacade.insertCustomerCoupon(a2);
-		 customerCouponFacade.insertCustomerCoupon(a3);
-		 customerCouponFacade.insertCustomerCoupon(a4);
-		 customerCouponFacade.insertCustomerCoupon(a5);
-		 customerCouponFacade.insertCustomerCoupon(a6);
-		 customerCouponFacade.insertCustomerCoupon(a7);
+//		 customerCouponFacade.insertCustomerCoupon(a1);
+//		 customerCouponFacade.insertCustomerCoupon(a2);
+//		 customerCouponFacade.insertCustomerCoupon(a3);
+//		 customerCouponFacade.insertCustomerCoupon(a4);
+//		 customerCouponFacade.insertCustomerCoupon(a5);
+//		 customerCouponFacade.insertCustomerCoupon(a6);
+//		 customerCouponFacade.insertCustomerCoupon(a7);
 
 		
-		companyCouponFacade.insertCompanyCoupon(b1);
-		companyCouponFacade.insertCompanyCoupon(b2);
-		companyCouponFacade.insertCompanyCoupon(b3);
-		companyCouponFacade.insertCompanyCoupon(b4);
-		companyCouponFacade.insertCompanyCoupon(b5);
-		companyCouponFacade.insertCompanyCoupon(b6);
-		companyCouponFacade.insertCompanyCoupon(b7);
+//		companyCouponFacade.insertCompanyCoupon(b1);
+//		companyCouponFacade.insertCompanyCoupon(b2);
+//		companyCouponFacade.insertCompanyCoupon(b3);
+//		companyCouponFacade.insertCompanyCoupon(b4);
+//		companyCouponFacade.insertCompanyCoupon(b5);
+//		companyCouponFacade.insertCompanyCoupon(b6);
+//		companyCouponFacade.insertCompanyCoupon(b7);
 
+		System.out.println(adminFacade.getAllCompanys());
 		
 //		System.out.println(companyFacade.getAllCouponsByType(CouponType.HEALTH));
 		
-//		System.out.println(companyFacade.getAllCouponsByType(CouponType.HEALTH));
 
-		adminFacade.updateCompany(p5, "ddd", "sds");
+//		adminFacade.updateCompany(p5, "ddd", "sds");
 		
+		//System.out.println(adminFacade.getCompany(1));
 		
 		
 		}

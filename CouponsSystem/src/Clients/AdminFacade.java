@@ -49,9 +49,14 @@ public class AdminFacade implements CouponClientFacade {
 	}
 	
 	/**
+	 * @throws Exception 
 	 * @Empty CTOR
 	 */
-	public AdminFacade() {
+	public AdminFacade() throws Exception {
+		this.companyDAO = new CompanyDBDAO();
+		this.customerDAO = new CustomerDBDAO();
+		this.couponDAO = new CouponDBDAO();
+
 	}
 
 	/**
@@ -143,7 +148,7 @@ public class AdminFacade implements CouponClientFacade {
 	 * @throws Exception
 	 */
 	public Set<Company> getAllCompanys() throws Exception {
-		System.out.println(companyDAO.getAllCompanys());
+	//	System.out.println(companyDAO.getAllCompanys());
 		return companyDAO.getAllCompanys();
 	}
 	
