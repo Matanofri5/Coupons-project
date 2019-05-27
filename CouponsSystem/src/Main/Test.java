@@ -48,7 +48,10 @@ public class Test {
 		Set<Coupon> coupons = new HashSet<Coupon>();
 		
 		CouponClientFacade facade;
-		
+		Database.dropTables();
+		Database.createTables();
+
+
 		CouponSystem couponSystem = CouponSystem.getInstance();
 		ConnectionPool.getInstance().getConnection();
 		
@@ -93,14 +96,15 @@ public class Test {
 		CustomerCouponDAO customerCouponDAO = new CustomerCouponDBDAO();
 		
 		/*********************************** dropping tables **************************/
-		customerCouponFacade.dropTable();
-		companyCouponFacade.dropTable();
-		companyFacade.dropTable();
-		customerFacade.dropTable();
-		couponFacade.dropTable();
+//		customerCouponFacade.dropTable();
+//		companyCouponFacade.dropTable();
+//		companyFacade.dropTable();
+//		customerFacade.dropTable();
+//		couponFacade.dropTable();
+//		Database.dropTables();
 		
 		/*********************************** creating tables *************************/
-		Database.createTables();
+//		Database.createTables();
 		
 		/*************************************** Company ****************************/
 

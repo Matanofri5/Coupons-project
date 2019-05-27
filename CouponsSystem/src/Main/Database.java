@@ -28,6 +28,84 @@ public class Database {
 		pool = ConnectionPool.getInstance();
 	}	
 	
+	
+	public static void dropTables() throws Exception{
+		String sql;
+		
+		try {
+			pool = ConnectionPool.getInstance();
+		} catch (Exception e) {
+			System.out.println("connection failed");
+		}
+		Connection connection = null;
+		try {
+			connection = pool.getConnection();
+		} catch (Exception e) {
+			System.out.println("connection failed");
+		}
+		
+		
+		sql = "DROP TABLE CUSTOMERCOUPON";
+		try {
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			pstmt.executeUpdate();
+			System.out.println("Droped CustomerCoupon table");
+		} catch (Exception e) {
+			System.out.println("Failed to drop CustomerCoupon table + " + e.getMessage());
+		}
+		
+		
+		sql = "DROP TABLE COMPANYCOUPON";
+		try {
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			pstmt.executeUpdate();
+			System.out.println("Droped CompanyCoupon table");
+		} catch (Exception e) {
+			System.out.println("Failed to drop CompanyCoupon table + " + e.getMessage());
+		}
+		
+		
+		sql = "DROP TABLE COMPANY";
+		try {
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			pstmt.executeUpdate();
+			System.out.println("Droped Company table");
+		} catch (Exception e) {
+			System.out.println("Failed to drop Company table + " + e.getMessage());
+		}
+		
+		
+		sql = "DROP TABLE CUSTOMER";
+		try {
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			pstmt.executeUpdate();
+			System.out.println("Droped Customer table");
+		} catch (Exception e) {
+			System.out.println("Failed to drop Customer table + " + e.getMessage());
+		}
+		
+		
+		sql = "DROP TABLE COUPON";
+		try {
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			pstmt.executeUpdate();
+			System.out.println("Droped Coupon table");
+		} catch (Exception e) {
+			System.out.println("Failed to drop Coupon table + " + e.getMessage());
+		}
+		finally {
+			connection.close();
+			try {
+				pool.returnConnection(connection);
+			} catch (Exception e2) {
+				System.out.println("connection failed");
+			}
+		}
+		
+		
+		
+	}
+	
 	public static void createTables() throws SQLException {
 		String sql;
 		
@@ -53,7 +131,7 @@ public class Database {
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("success: " + sql);
+			System.out.println("create Company table success");
 		} catch (Exception e3) {
 			System.out.println("create company didn't succeed" + e3.getMessage());
 		}
@@ -66,7 +144,7 @@ public class Database {
 			try {
 				PreparedStatement pstmt = connection.prepareStatement(sql);
 				pstmt.executeUpdate();
-				System.out.println("success: " + sql);
+				System.out.println("create Customer table success");
 			} catch (Exception e4) {
 				System.out.println("create customer didn't succeed" + e4.getMessage());
 			}
@@ -81,7 +159,7 @@ public class Database {
 			try {
 				PreparedStatement pstmt = connection.prepareStatement(sql);
 				pstmt.executeUpdate();
-				System.out.println("success: " + sql);
+				System.out.println("create Coupon table success");
 			} catch (Exception e4) {
 				System.out.println("create coupon didn't succeed" + e4.getMessage());
 			}
@@ -93,7 +171,7 @@ public class Database {
 			try {
 				PreparedStatement pstmt = connection.prepareStatement(sql);
 				pstmt.executeUpdate();
-				System.out.println("success: " + sql);
+				System.out.println("create CustomerCoupon table success");
 			} catch (Exception e5) {
 				System.out.println("create customercoupon didn't succeed" + e5.getMessage());
 			}
@@ -105,9 +183,17 @@ public class Database {
 			try {
 				PreparedStatement pstmt = connection.prepareStatement(sql);
 				pstmt.executeUpdate();
-				System.out.println("success: " + sql);
+				System.out.println("create CompanyCoupon table success");
 			} catch (Exception e6) {
 				System.out.println("create companycoupon didn't succeed" + e6.getMessage());
+			}
+			finally {
+				connection.close();
+				try {
+					pool.returnConnection(connection);
+				} catch (Exception e) {
+					System.out.println("connection failed");
+				}
 			}
 	}
 }
