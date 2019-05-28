@@ -12,6 +12,7 @@ import java.util.Set;
 import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import Coupon.CouponType;
+import Coupon.DateUtils;
 import Customer.CustomerDAO;
 import Company.CompanyDAO;
 import CompanyCoupon.CompanyCoupon;
@@ -185,6 +186,20 @@ public class CompanyFacade implements CouponClientFacade{
 			System.out.println(e);
 		}
 		return couponByPrice;
+	}
+	
+	public List<Coupon> getCouponByDate (Company company, Date endDate) throws Exception{
+		List<Coupon> coupons = getAllCompanyCoupon(company);
+		List<Coupon> couponByDate = new ArrayList<Coupon>();
+		try {
+			for (Coupon coupon : coupons) {
+				if (coupon.getEndDate().getTime() <= DateUtils.getCurrentDate().getTime()) {
+					couponByDate.add(coupon);
+				}}}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		return couponByDate;
 	}
 
 	
