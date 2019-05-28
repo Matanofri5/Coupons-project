@@ -144,17 +144,45 @@ public class CompanyFacade implements CouponClientFacade{
 		return companyCouponDAO.getAllCompanyCoupon();
 	}
 	
+	
+	public List<Coupon> getAllCompanyCoupon(Company company) throws Exception {
+		long companyId= company.getId();
+		List<Long> coupons = companyDAO.getAllCompanyCoupons(companyId);
+		List<Coupon> allcoupons = new ArrayList<Coupon>();
+		for (Long id : coupons) {
+			allcoupons.add(couponDAO.getCoupon(id));
+		}
+		return allcoupons;
+		
+
+	}
+	
+	
+	
+	public List<Coupon> getCouponbyType(Company company, CouponType type) throws Exception{
+		List<Coupon> coupons = getAllCompanyCoupon(company);
+		List<Coupon> couponByType = new ArrayList<Coupon>();
+		try {
+			for (Coupon coupon : coupons) {
+				if (coupon.getType().equals(type)) {
+					couponByType.add(coupon);
+				}}}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		return couponByType;
+	}
+	
 //	public Set<Coupon> getAllCouponsByType (CouponType couponType) throws Exception{
 ////		company = companyDAO.getCompany(company.getId())
 //		Set<Coupon> allCoupons = new HashSet<Coupon>();
 //		Set<Coupon> coupons = companyDAO.getAllCompanyCoupons(companyId);
+////		Set<Coupon> coupons = companyCouponDAO.getAllCompanyCoupon(companyId);
 //		for (Coupon coupon : coupons) {
 //			if (coupon.getType().equals(couponType)) {
 //					allCoupons.add(coupon);
 //			}
-//		}
-//		
-//		
+//		}	
 //		return allCoupons;
 //}
 

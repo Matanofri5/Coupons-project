@@ -324,24 +324,24 @@ public class CompanyDBDAO implements CompanyDAO {
 	 * @throws Exception
 	 */
 	@Override
-	public Set<Coupon> getAllCompanyCoupons(long companyId) throws Exception {
+	public List<Long> getAllCompanyCoupons(long companyId) throws Exception {
 		Connection connection = null;
 		try {
 			connection = ConnectionPool.getInstance().getConnection();
 		} catch (Exception e) {
 			throw new Exception("connection pool faild :(");
 		}
-		Set<Coupon> coupons = new HashSet<Coupon>();
-		CouponDBDAO coupon = new CouponDBDAO();
-
+//		PreparedStatement pstmt = null;
+//		pstmt = connection.prepareStatement(sql);
+		List<Long> coupons = new ArrayList<Long>();
+		String sql = "SELECT * FROM CompanyCoupon WHERE COMPANYID=" + companyId;
 		try {
-			String sql = "SELECT COUPONID FROM CompanyCoupon WHERE COMPANYID=?";
-			PreparedStatement pstmt = connection.prepareStatement(sql);
-			pstmt.setLong(1, companyId);
-			ResultSet rs = pstmt.executeQuery();
+			Statement stm = connection.createStatement();
+			ResultSet rs = stm.executeQuery(sql);
 			while (rs.next()) {
+				long couponId = rs.getLong(2);
 
-				coupons.add(coupon.getCoupon(rs.getLong("COUPONID")));
+				coupons.add(couponId);
 
 			}
 		} catch (SQLException e) {

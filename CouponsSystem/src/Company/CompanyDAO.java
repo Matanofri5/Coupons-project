@@ -23,7 +23,7 @@ public interface CompanyDAO {
 
 	public Set<Company> getAllCompanys() throws Exception;
 	
-	public Set<Coupon> getAllCompanyCoupons(long companyId) throws Exception;
+	public List<Long> getAllCompanyCoupons(long companyId) throws Exception;
 	
 	public boolean login (String companyName, String password) throws Exception;
 	
