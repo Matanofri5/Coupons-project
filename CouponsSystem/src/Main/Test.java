@@ -196,14 +196,11 @@ public class Test {
 		companyCouponFacade.insertCompanyCoupon(b7);
 		companyCouponFacade.insertCompanyCoupon(b8);
 
-//		System.out.println(adminFacade.getAllCompanys());
 		
-		System.out.println(companyFacade.getCouponbyType(p1, CouponType.HEALTH));
+//		System.out.println(companyFacade.getCouponbyType(p1, CouponType.HEALTH));
 		
-
-//		adminFacade.updateCompany(p5, "ddd", "sds");
+//		System.out.println(companyFacade.getCouponByPrice(p1, 40.2));
 		
-		//System.out.println(adminFacade.getCompany(1));
 		
 		
 		}

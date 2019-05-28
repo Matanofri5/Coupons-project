@@ -158,7 +158,6 @@ public class CompanyFacade implements CouponClientFacade{
 	}
 	
 	
-	
 	public List<Coupon> getCouponbyType(Company company, CouponType type) throws Exception{
 		List<Coupon> coupons = getAllCompanyCoupon(company);
 		List<Coupon> couponByType = new ArrayList<Coupon>();
@@ -172,6 +171,23 @@ public class CompanyFacade implements CouponClientFacade{
 		}
 		return couponByType;
 	}
+	
+	
+	public List<Coupon> getCouponByPrice (Company company, double price) throws Exception{
+		List<Coupon> coupons = getAllCompanyCoupon(company);
+		List<Coupon> couponByPrice = new ArrayList<Coupon>();
+		try {
+			for (Coupon coupon : coupons) {
+				if (coupon.getPrice() <= price) {
+					couponByPrice.add(coupon);
+				}}}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		return couponByPrice;
+	}
+
+	
 	
 //	public Set<Coupon> getAllCouponsByType (CouponType couponType) throws Exception{
 ////		company = companyDAO.getCompany(company.getId())
@@ -227,5 +243,5 @@ public class CompanyFacade implements CouponClientFacade{
 //		return allCoupons;
 //	}
 	
-	
+
 }
