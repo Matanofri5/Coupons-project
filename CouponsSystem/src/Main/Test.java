@@ -200,7 +200,7 @@ public class Test {
 //		System.out.println(companyFacade.getCouponbyType(p1, CouponType.HEALTH));
 		
 //		System.out.println(companyFacade.getCouponByPrice(p1, 40.2));
-		
+		System.out.println(companyFacade.getAllCompanyCoupons(2));
 //		System.out.println(companyFacade.getCouponByDate(p1, Date));
 		
 		}

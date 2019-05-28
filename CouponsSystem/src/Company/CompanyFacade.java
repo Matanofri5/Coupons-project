@@ -141,8 +141,8 @@ public class CompanyFacade implements CouponClientFacade{
 		return companyDAO.getCompany(couponId);
 	}
 	
-	public Set <CompanyCoupon> getAllCompanyCoupons() throws Exception{
-		return companyCouponDAO.getAllCompanyCoupon();
+	public List<Long> getAllCompanyCoupons(long companyId) throws Exception{
+		return companyDAO.getAllCompanyCoupons(companyId);
 	}
 	
 	
