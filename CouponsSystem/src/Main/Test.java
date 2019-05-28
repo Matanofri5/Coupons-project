@@ -201,7 +201,7 @@ public class Test {
 		
 //		System.out.println(companyFacade.getCouponByPrice(p1, 40.2));
 		
-		System.out.println(companyFacade.getCouponByDate(p1, DateUtils.getExpiredDate()));
+//		System.out.println(companyFacade.getCouponByDate(p1, Date));
 		
 		}
 }
