@@ -554,39 +554,4 @@ public class CompanyDBDAO implements CompanyDAO {
 		}
 		return loginSuccess;
 	}
-
-	/**
-	 * @dropTable this method delete all the table of companies.
-	 * @throws Exception
-	 */
-	@Override
-	public void dropTable() throws Exception {
-		Connection connection = null;
-		try {
-			connection = ConnectionPool.getInstance().getConnection();
-		} catch (Exception e) {
-			throw new Exception("connection pool faild :(");
-		}
-		try {
-			String sql = "DROP TABLE Company";
-			PreparedStatement pstmt = connection.prepareStatement(sql);
-			pstmt.executeUpdate();
-			// System.out.println("drop Company Table success!! :D ");
-
-		} catch (SQLException ex) {
-			System.err.println("MMMMMMM....dropCompanyTableEXCEPTION :( ");
-			throw new Exception(ex.getMessage());
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e2) {
-				 System.out.println(e2.getMessage());
-			}
-			try {
-				connectionPool.returnConnection(connection);
-			} catch (SQLException e3) {
-				System.out.println(e3.getMessage());
-			}
-		}
-	}
 }

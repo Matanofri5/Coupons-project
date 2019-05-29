@@ -301,35 +301,4 @@ public class CustomerCouponDBDAO implements CustomerCouponDAO {
 		}
 		return couponsId;
 	}
-
-	@Override
-	public void dropTable() throws Exception {
-		Connection connection = null;
-		try {
-			connection = ConnectionPool.getInstance().getConnection();
-		} catch (Exception e) {
-			throw new Exception("connection pool faild :(");
-		}
-		try {
-			String sql = "DROP TABLE CustomerCoupon";
-			PreparedStatement pstmt = connection.prepareStatement(sql);
-			pstmt.executeUpdate();
-			// System.out.println("drop Table CustomerCoupon success!! :D ");
-
-		} catch (SQLException ex) {
-			System.err.println("MMMMMMM....dropCustomerCouponTableEXCEPTION");
-			throw new Exception(ex.getMessage());
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e2) {
-				 System.out.println(e2.getMessage());
-			}
-			try {
-				connectionPool.returnConnection(connection);
-			} catch (SQLException e3) {
-				System.out.println(e3.getMessage());
-			}
-		}
-	}
 }

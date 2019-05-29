@@ -37,10 +37,4 @@ public interface CompanyDAO {
 	
 	public boolean login (String companyName, String password) throws Exception;
 
-	public void dropTable() throws Exception;
-
-
-
-
-	
 }

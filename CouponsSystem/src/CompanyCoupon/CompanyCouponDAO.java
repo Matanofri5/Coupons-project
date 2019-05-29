@@ -18,6 +18,4 @@ public interface CompanyCouponDAO {
 	public CompanyCoupon getCompanyCoupon(long id) throws Exception;
 
 	public Set<CompanyCoupon> getAllCompanyCoupon() throws Exception;
-
-	public void dropTable() throws Exception;
 }
