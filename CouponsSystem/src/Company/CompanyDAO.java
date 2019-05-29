@@ -25,15 +25,19 @@ public interface CompanyDAO {
 	
 	public List<Long> getAllCompanyCoupons(long companyId) throws Exception;
 	
-	public boolean login (String companyName, String password) throws Exception;
+	public Set<Coupon> getCompanyCoupons(long companyId) throws Exception;
 	
 	public void removeCouponFromCompany(long couponId) throws Exception;
 	
 	public Set<CompanyCoupon> getAllCompanyCoupon() throws Exception;
 	
 	public List<Long> getCouponId (long companyId) throws Exception;
+	
+	public boolean login (String companyName, String password) throws Exception;
 
 	public void dropTable() throws Exception;
+
+
 
 	
 }

@@ -331,8 +331,6 @@ public class CompanyDBDAO implements CompanyDAO {
 		} catch (Exception e) {
 			throw new Exception("connection pool faild :(");
 		}
-//		PreparedStatement pstmt = null;
-//		pstmt = connection.prepareStatement(sql);
 		List<Long> coupons = new ArrayList<Long>();
 		String sql = "SELECT * FROM CompanyCoupon WHERE COMPANYID=" + companyId;
 		try {
@@ -430,6 +428,46 @@ public class CompanyDBDAO implements CompanyDAO {
 			}
 		}
 		return set;
+	}
+	
+	
+	@Override
+	public Set<Coupon> getCompanyCoupons(long companyId) throws Exception {
+		Connection connection = null;
+		try {
+			connection = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
+		Set<Coupon> coupons = new HashSet<Coupon>();
+		CouponDBDAO coupon = new CouponDBDAO();
+
+		try {
+			String sql = "SELECT COUPONID FROM CompanyCoupon WHERE COMPANYID=?";
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			pstmt.setLong(1, companyId);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+
+				coupons.add(coupon.getCoupon(rs.getLong("COUPONID")));
+
+			}
+		} catch (SQLException e) {
+			System.err.println("Get coupons by company failed :( ");
+			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				 System.out.println(e2.getMessage());
+			}
+			try {
+				connectionPool.returnConnection(connection);
+			} catch (SQLException e3) {
+				System.out.println(e3.getMessage());
+			}
+		}
+		return coupons;
 	}
 
 	/**
