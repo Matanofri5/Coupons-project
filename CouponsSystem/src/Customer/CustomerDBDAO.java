@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import Coupon.Coupon;
@@ -346,6 +348,44 @@ public class CustomerDBDAO implements CustomerDAO {
 				coupons.add(coupon.getCoupon(rs.getLong("COUPONID")));
 
 				// System.out.println("Get coupons by customer success :D ");
+			}
+		} catch (SQLException e) {
+			System.err.println("Get coupons by customer failed :( ");
+			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				 System.out.println(e2.getMessage());
+			}
+			try {
+				connectionPool.returnConnection(connection);
+			} catch (SQLException e3) {
+				System.out.println(e3.getMessage());
+			}
+		}
+		return coupons;
+	}
+	
+	
+	@Override
+	public List<Long> getCustomerCoupons(long customerId) throws Exception {
+		Connection connection = null;
+		try {
+			connection = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
+		List<Long> coupons = new ArrayList<Long>();
+		String sql = "SELECT * FROM CustomerCoupon WHERE CUSTOMERID=" + customerId;
+		try {
+			Statement stm = connection.createStatement();
+			ResultSet rs = stm.executeQuery(sql);
+			while (rs.next()) {
+				long couponId = rs.getLong(2);
+
+				coupons.add(couponId);
+
 			}
 		} catch (SQLException e) {
 			System.err.println("Get coupons by customer failed :( ");

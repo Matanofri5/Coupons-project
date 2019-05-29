@@ -1,8 +1,10 @@
 package Customer;
 import java.awt.Window.Type;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import Clients.ClientType;
@@ -130,12 +132,49 @@ public class CustomerFacade implements CouponClientFacade {
 	}
 	
 	
-	public Collection<Coupon> getAllpurchasedCoupons(long customerId) throws Exception{
+	public Set<Coupon> getAllpurchasedCoupons(long customerId) throws Exception{
 		return customerDAO.getAllCustomerCoupons(customerId);
 	}
 	
-	public Set<Coupon> getAllCouponsByType (CouponType couponType) throws Exception{
-		return couponDAO.getAllCouponsByType(couponType);
+	
+	public List<Coupon> getAllCustomerCoupon(Customer customer) throws Exception {
+		long customerId= customer.getId();
+		List<Long> coupons = customerDAO.getCustomerCoupons(customerId);
+		List<Coupon> allcoupons = new ArrayList<Coupon>();
+		for (Long id : coupons) {
+			allcoupons.add(couponDAO.getCoupon(id));
+		}
+		return allcoupons;
+	}
+	
+	
+	public List<Coupon> getCouponbyType(Customer customer, CouponType type) throws Exception{
+		List<Coupon> coupons = getAllCustomerCoupon(customer);
+		List<Coupon> couponByType = new ArrayList<Coupon>();
+		try {
+			for (Coupon coupon : coupons) {
+				if (coupon.getType().equals(type)) {
+					couponByType.add(coupon);
+				}}}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		return couponByType;
+	}
+	
+	
+	public List<Coupon> getCouponByPrice (Customer customer, double price) throws Exception{
+		List<Coupon> coupons = getAllCustomerCoupon(customer);
+		List<Coupon> couponByPrice = new ArrayList<Coupon>();
+		try {
+			for (Coupon coupon : coupons) {
+				if (coupon.getPrice() <= price) {
+					couponByPrice.add(coupon);
+				}}}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		return couponByPrice;
 	}
 	
 

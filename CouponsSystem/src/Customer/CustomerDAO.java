@@ -1,5 +1,6 @@
 package Customer;
 
+import java.util.List;
 import java.util.Set;
 
 import Coupon.Coupon;
@@ -24,6 +25,8 @@ public interface CustomerDAO {
 	public Set<Customer> getAllCustomer() throws Exception;
 	
 	public Set<Coupon> getAllCustomerCoupons(long customerId) throws Exception;
+	
+	public List<Long> getCustomerCoupons(long customerId) throws Exception;
 		
 	public void customerPurchaseCoupon (Coupon coupon, Customer customer) throws Exception;
 	

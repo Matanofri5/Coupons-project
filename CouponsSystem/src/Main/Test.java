@@ -142,7 +142,7 @@ public class Test {
 		CustomerCoupon a4 = new CustomerCoupon(2, 2);
 		CustomerCoupon a5 = new CustomerCoupon(2, 4);
 		CustomerCoupon a6 = new CustomerCoupon(4, 1);
-		CustomerCoupon a7 = new CustomerCoupon(4, 2);
+		CustomerCoupon a7 = new CustomerCoupon(1, 6);
 		
 		/*****************************************CompanyCoupon******************************/
 		
@@ -156,52 +156,50 @@ public class Test {
 		CompanyCoupon b8 = new CompanyCoupon(1, 6);
 		
 				
-    	adminFacade.addCompany(p1);
-		adminFacade.addCompany(p2);
-		adminFacade.addCompany(p3);
-		adminFacade.addCompany(p4);
-		adminFacade.addCompany(p5);
+//    	adminFacade.addCompany(p1);
+//		adminFacade.addCompany(p2);
+//		adminFacade.addCompany(p3);
+//		adminFacade.addCompany(p4);
+//		adminFacade.addCompany(p5);
+//
+//		
+//		adminFacade.addCustomer(c1);
+//		adminFacade.addCustomer(c2);
+//		adminFacade.addCustomer(c3);
+//		adminFacade.addCustomer(c4);
+//		adminFacade.addCustomer(c5);
+//
+//		 couponFacade.insertCoupon(u1);
+//		 couponFacade.insertCoupon(u2);
+//		 couponFacade.insertCoupon(u3);
+//		 couponFacade.insertCoupon(u4);
+//		 couponFacade.insertCoupon(u5);
+//		 couponFacade.insertCoupon(u6);
+//		 couponFacade.insertCoupon(u7);
+
+
+//		 customerCouponFacade.insertCustomerCoupon(a1);
+//		 customerCouponFacade.insertCustomerCoupon(a2);
+//		 customerCouponFacade.insertCustomerCoupon(a3);
+//		 customerCouponFacade.insertCustomerCoupon(a4);
+//		 customerCouponFacade.insertCustomerCoupon(a5);
+//		 customerCouponFacade.insertCustomerCoupon(a7);
+		 
 
 		
-		adminFacade.addCustomer(c1);
-		adminFacade.addCustomer(c2);
-		adminFacade.addCustomer(c3);
-		adminFacade.addCustomer(c4);
-		adminFacade.addCustomer(c5);
-
-		 couponFacade.insertCoupon(u1);
-		 couponFacade.insertCoupon(u2);
-		 couponFacade.insertCoupon(u3);
-		 couponFacade.insertCoupon(u4);
-		 couponFacade.insertCoupon(u5);
-		 couponFacade.insertCoupon(u6);
-		 couponFacade.insertCoupon(u7);
-
-
-		 customerCouponFacade.insertCustomerCoupon(a1);
-		 customerCouponFacade.insertCustomerCoupon(a2);
-		 customerCouponFacade.insertCustomerCoupon(a3);
-		 customerCouponFacade.insertCustomerCoupon(a4);
-		 customerCouponFacade.insertCustomerCoupon(a5);
-		 customerCouponFacade.insertCustomerCoupon(a6);
-		 customerCouponFacade.insertCustomerCoupon(a7);
+//		companyCouponFacade.insertCompanyCoupon(b1);
+//		companyCouponFacade.insertCompanyCoupon(b2);
+//		companyCouponFacade.insertCompanyCoupon(b3);
+//		companyCouponFacade.insertCompanyCoupon(b4);
+//		companyCouponFacade.insertCompanyCoupon(b5);
+//		companyCouponFacade.insertCompanyCoupon(b6);
+//		companyCouponFacade.insertCompanyCoupon(b7);
+//		companyCouponFacade.insertCompanyCoupon(b8);
 
 		
-		companyCouponFacade.insertCompanyCoupon(b1);
-		companyCouponFacade.insertCompanyCoupon(b2);
-		companyCouponFacade.insertCompanyCoupon(b3);
-		companyCouponFacade.insertCompanyCoupon(b4);
-		companyCouponFacade.insertCompanyCoupon(b5);
-		companyCouponFacade.insertCompanyCoupon(b6);
-		companyCouponFacade.insertCompanyCoupon(b7);
-		companyCouponFacade.insertCompanyCoupon(b8);
 
-		
-//		System.out.println(companyFacade.getCouponbyType(p1, CouponType.HEALTH));
-		
-//		System.out.println(companyFacade.getCouponByPrice(p1, 40.2));
-//		System.out.println(companyFacade.getAllCompanyCoupons(2));
 //		System.out.println(companyFacade.getCouponByDate(p1, Date));
 		
-		}
+		
+	}
 }
