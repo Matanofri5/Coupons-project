@@ -176,17 +176,17 @@ public class Test {
 //		 couponFacade.insertCoupon(u5);
 //		 couponFacade.insertCoupon(u6);
 //		 couponFacade.insertCoupon(u7);
-
-
+//
+//
 //		 customerCouponFacade.insertCustomerCoupon(a1);
 //		 customerCouponFacade.insertCustomerCoupon(a2);
 //		 customerCouponFacade.insertCustomerCoupon(a3);
 //		 customerCouponFacade.insertCustomerCoupon(a4);
 //		 customerCouponFacade.insertCustomerCoupon(a5);
 //		 customerCouponFacade.insertCustomerCoupon(a7);
-		 
-
-		
+//		 
+//
+//		
 //		companyCouponFacade.insertCompanyCoupon(b1);
 //		companyCouponFacade.insertCompanyCoupon(b2);
 //		companyCouponFacade.insertCompanyCoupon(b3);
@@ -199,6 +199,11 @@ public class Test {
 		
 
 //		System.out.println(companyFacade.getCouponByDate(p1, Date));
+	
+		
+		adminFacade.addCompany(p1);
+		companyFacade.createCoupon(p1, u1);
+
 		
 		
 	}

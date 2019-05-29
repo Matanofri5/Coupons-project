@@ -14,6 +14,8 @@ import Coupon.Coupon;
 public interface CompanyDAO {
 
 	public void insertCompany(Company company) throws Exception;
+	
+	public void companyCreateCoupon(Company company, Coupon coupon) throws Exception;
 
 	public void removeCompany(Company company) throws Exception;
 
@@ -36,6 +38,7 @@ public interface CompanyDAO {
 	public boolean login (String companyName, String password) throws Exception;
 
 	public void dropTable() throws Exception;
+
 
 
 

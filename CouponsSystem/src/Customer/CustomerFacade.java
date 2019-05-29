@@ -1,23 +1,15 @@
 package Customer;
-import java.awt.Window.Type;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
 import Clients.ClientType;
 import Clients.CouponClientFacade;
-import Company.Company;
 import Coupon.Coupon;
 import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import Coupon.CouponType;
 import Coupon.DateUtils;
-import CustomerCoupon.CustomerCouponDAO;
-import CustomerCoupon.CustomerCouponDBDAO;
-import MyExceptions.CompanyAlreadyExistsException;
 import MyExceptions.CouponNotAvailableException;
 
 /**
@@ -27,16 +19,13 @@ import MyExceptions.CouponNotAvailableException;
 public class CustomerFacade implements CouponClientFacade {
 	private CustomerDAO customerDAO ;
 	private CouponDAO couponDAO ;
-	private CustomerCouponDAO customerCouponDAO ;
-	private Coupon coupon;
-	private Customer customer;
+	
 	/**
 	 * @partial CTOR 
 	 */
-	public CustomerFacade(CustomerDAO customerDAO, CouponDAO couponDAO, CustomerCouponDAO customerCouponDAO) throws Exception {
+	public CustomerFacade(CustomerDAO customerDAO, CouponDAO couponDAO) throws Exception {
 		this.customerDAO = new CustomerDBDAO();
 		this.couponDAO = new CouponDBDAO();
-		this.customerCouponDAO = new CustomerCouponDBDAO();
 	}
 	
 	/**
@@ -46,38 +35,7 @@ public class CustomerFacade implements CouponClientFacade {
 	public CustomerFacade() throws Exception {
 		this.customerDAO = new CustomerDBDAO();
 		this.couponDAO = new CouponDBDAO();
-		this.customerCouponDAO = new CustomerCouponDBDAO();
 	}
-	
-
-//	public void insertCustomer(Customer customer) throws Exception {
-//		custDAO.insertCustomer(customer);
-//	}
-//
-	public void removeCustomer(Customer customer) throws Exception {
-		customerDAO.removeCustomer(customer);
-	}
-//
-//	public void updateCustomer(Customer customer, long newid, String newcustomerName, String newpassword) throws Exception {
-//		customer.setId(newid);
-//		customer.setCustomerName(newcustomerName);
-//		customer.setPassword(newpassword);
-//		custDAO.updateCustomer(customer);
-//	}
-//
-//	public Customer getCustomer(long id) throws Exception {
-//		return custDAO.getCustomer(id);
-//	}
-//
-//	public Set<Customer> getAllCustomer() throws Exception {
-//		System.out.println(custDAO.getAllCustomer());
-//		return custDAO.getAllCustomer();
-//	}
-//
-	public void dropTable () throws Exception{
-		customerDAO.dropTable();
-	}
-// 
 	
 	/**
 	 * this method check password and name of Customer, if true return Customer login.

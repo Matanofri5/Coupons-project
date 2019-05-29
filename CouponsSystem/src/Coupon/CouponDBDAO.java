@@ -196,7 +196,6 @@ public class CouponDBDAO implements CouponDAO {
 		} catch (Exception e) {
 			throw new Exception("connection pool faild :(");
 		}
-		//		java.sql.Statement stm = null;
 
 		try (Statement stm = connection.createStatement()){
 			String sql = "SELECT * FROM Coupon WHERE ID=" + id;

@@ -17,6 +17,7 @@ import Coupon.Coupon;
 import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import Coupon.CouponType;
+import Customer.Customer;
 import Main.ConnectionPool;
 import Main.Database;
 import MyExceptions.LoginException;
@@ -76,6 +77,42 @@ public class CompanyDBDAO implements CompanyDAO {
 		} catch (SQLException e1) {
 			System.out.println(e1.getMessage());
 			System.err.println("Company insert failed :(");
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				 System.out.println(e2.getMessage());
+			}
+			try {
+				connectionPool.returnConnection(connection);
+			} catch (SQLException e3) {
+				System.out.println(e3.getMessage());
+			}
+		}
+	}
+	
+	
+	@Override
+	public void companyCreateCoupon(Company company, Coupon coupon) throws Exception {
+		Connection connection = null;
+		try {
+			connection = ConnectionPool.getInstance().getConnection();
+		} catch (Exception e) {
+			throw new Exception("connection pool faild :(");
+		}
+		try {
+			String sql = "INSERT INTO CompanyCoupon (companyId,couponId)  VALUES(?,?)";
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			pstmt.setLong(1, company.getId());
+			pstmt.setLong(2, coupon.getId());
+
+			pstmt.executeUpdate();
+			pstmt.close();
+
+			// System.out.println("Company create new coupon :D ");
+		} catch (SQLException e) {
+			System.err.println("company failed to create coupon :( ");
+			System.err.println(e.getMessage());
 		} finally {
 			try {
 				connection.close();
@@ -160,12 +197,19 @@ public class CompanyDBDAO implements CompanyDAO {
 			pstmt.executeUpdate();
 			pstmt.close();
 
-			// query to delete coupon from customerCoupon table
-			String sql2 = "DELETE FROM CustomerCoupon WHERE couponId=?";
-			PreparedStatement pstmt2 = connection.prepareStatement(sql2);
-			pstmt2.setLong(1, couponId);
-			pstmt2.executeUpdate();
-			pstmt2.close();
+				// query to delete coupon from customerCoupon table
+				String sql2 = "DELETE FROM CustomerCoupon WHERE couponId=?";
+				PreparedStatement pstmt2 = connection.prepareStatement(sql2);
+				pstmt2.setLong(1, couponId);
+				pstmt2.executeUpdate();
+				pstmt2.close();
+			
+					// query to delete coupon from Coupon table
+					String sql3 = "DELETE FROM Coupon WHERE id=?";
+					PreparedStatement pstmt3 = connection.prepareStatement(sql3);
+					pstmt3.setLong(1, couponId);
+					pstmt3.executeUpdate();
+					pstmt3.close();
 
 			// System.out.println("you deleted coupon from company successfully");
 		} catch (Exception e) {

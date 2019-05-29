@@ -6,15 +6,12 @@ import java.util.Set;
 import Company.Company;
 import Company.CompanyDAO;
 import Company.CompanyDBDAO;
-import CompanyCoupon.CompanyCouponDAO;
-import CompanyCoupon.CompanyCouponDBDAO;
 import Customer.Customer;
 import Customer.CustomerDAO;
 import Customer.CustomerDBDAO;
 import Coupon.Coupon;
 import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
-import CustomerCoupon.CustomerCouponDBDAO;
 import MyExceptions.CompanyAlreadyExistsException;
 import MyExceptions.CustomerAlreadyExistsException;
 
@@ -30,8 +27,6 @@ public class AdminFacade implements CouponClientFacade {
 	 */
 	private static final String adminName = "admin";
 	private static final String adminPassword = "1234";
-	
-	private CouponDAO couponDAO;
 	private CompanyDAO companyDAO;
 	private CustomerDAO customerDAO;
 	private boolean successLogin = true;
@@ -41,11 +36,9 @@ public class AdminFacade implements CouponClientFacade {
 	 * @throws Exception 
 	 * @Full CTOR
 	 */
-	public AdminFacade(CompanyDAO companyDAO, CustomerDAO customerDAO, CouponDAO couponDAO) throws Exception {
+	public AdminFacade(CompanyDAO companyDAO, CustomerDAO customerDAO) throws Exception {
 		this.companyDAO = new CompanyDBDAO();
 		this.customerDAO = new CustomerDBDAO();
-		this.couponDAO = new CouponDBDAO();
-
 	}
 	
 	/**
@@ -55,8 +48,6 @@ public class AdminFacade implements CouponClientFacade {
 	public AdminFacade() throws Exception {
 		this.companyDAO = new CompanyDBDAO();
 		this.customerDAO = new CustomerDBDAO();
-		this.couponDAO = new CouponDBDAO();
-
 	}
 
 	/**
@@ -138,7 +129,6 @@ public class AdminFacade implements CouponClientFacade {
 	 * @throws Exception
 	 */
 	public Company getCompany(long id) throws Exception {
-		System.out.println(companyDAO.getCompany(id));
 		return companyDAO.getCompany(id);
 	}
 	
@@ -148,7 +138,6 @@ public class AdminFacade implements CouponClientFacade {
 	 * @throws Exception
 	 */
 	public Set<Company> getAllCompanys() throws Exception {
-	//	System.out.println(companyDAO.getAllCompanys());
 		return companyDAO.getAllCompanys();
 	}
 	
@@ -201,9 +190,6 @@ public class AdminFacade implements CouponClientFacade {
 	 * @param customer
 	 * @throws Exception
 	 */
-//	public void updateCustomer(Customer customer) throws Exception {
-//		customerDAO.updateCustomer(customer);
-//	}
 	public void updateCustomer(Customer customer, String newPassword) throws Exception {
 		customer.setPassword(newPassword);
 		customerDAO.updateCustomer(customer);
