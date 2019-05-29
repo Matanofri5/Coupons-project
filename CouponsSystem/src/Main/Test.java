@@ -1,12 +1,8 @@
 package Main;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.util.Date;
-import java.util.FormatterClosedException;
+
 import java.util.HashSet;
 import java.util.Set;
-
 import Clients.AdminFacade;
 import Clients.ClientType;
 import Clients.CouponClientFacade;
@@ -29,7 +25,6 @@ import Customer.CustomerDBDAO;
 import Customer.CustomerFacade;
 import CustomerCoupon.CustomerCoupon;
 import Coupon.DateUtils;
-import CustomerCoupon.CustomerCoupon;
 import CustomerCoupon.CustomerCouponDAO;
 import CustomerCoupon.CustomerCouponDBDAO;
 import CustomerCoupon.CustomerCouponFacade;
@@ -197,12 +192,14 @@ public class Test {
 //		companyCouponFacade.insertCompanyCoupon(b8);
 
 		
-
-//		System.out.println(companyFacade.getCouponByDate(p1, Date));
+//		companyFacade.createCoupon(p1, u7);
+//		System.out.println(companyFacade.getCouponByDate(p1, DateUtils.getCurrentDate()));
 	
 		
-		adminFacade.addCompany(p1);
-		companyFacade.createCoupon(p1, u1);
+		
+
+
+
 
 		
 		

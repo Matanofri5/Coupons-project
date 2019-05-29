@@ -54,7 +54,7 @@ public class CompanyFacade implements CouponClientFacade{
 			while (i.hasNext()) {
 				Coupon current = i.next();
 				if (coupon.getTitle().equals(current.getTitle())) {
-					throw new Exception("this coupon already exists");	
+					throw new Exception("This coupon already exists");	
 				}
 			}
 			if (!i.hasNext()) {

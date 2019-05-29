@@ -73,7 +73,7 @@ public class CompanyDBDAO implements CompanyDAO {
 			pstmt.setString(3, company.getEmail());
 
 			pstmt.executeUpdate();
-			// System.out.println("Company insert success :D " + company.toString());
+//			 System.out.println("Company insert success :D " + company.toString());
 		} catch (SQLException e1) {
 			System.out.println(e1.getMessage());
 			System.err.println("Company insert failed :(");
@@ -111,8 +111,6 @@ public class CompanyDBDAO implements CompanyDAO {
 
 			// System.out.println("Company create new coupon :D ");
 		} catch (SQLException e) {
-			System.err.println("company failed to create coupon :( ");
-			System.err.println(e.getMessage());
 		} finally {
 			try {
 				connection.close();
