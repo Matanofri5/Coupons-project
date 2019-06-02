@@ -127,7 +127,6 @@ public class Database {
 					+ "id bigint not null primary key generated always as identity(start with 1, increment by 1), "
 					+ "companyName varchar(50) not null, " + "password varchar(50) not null, "
 					+ "email varchar(50) not null)";
-			System.out.println("create Company table success :D  ");
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.executeUpdate();
