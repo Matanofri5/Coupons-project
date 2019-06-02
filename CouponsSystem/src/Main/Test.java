@@ -1,9 +1,5 @@
 package Main;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.temporal.WeekFields;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import Clients.AdminFacade;
@@ -72,7 +68,7 @@ public class Test {
 		
 		
 		/******* dropping tables *******/
-//		Database.dropTables();
+		Database.dropTables();
 		/******* creating tables *******/
 		Database.createTables();
 		/*************************************** Company ****************************/
@@ -102,7 +98,6 @@ public class Test {
 		Coupon c7 = new Coupon(7, "test6", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 34, "fd", 11.2, "fd", CouponType.HEALTH);
 		Coupon c8 = new Coupon(8, "test10", DateUtils.getCurrentDate(), DateUtils.getByTwoMountsAgo(), 55, "fsf", 55/5, "Dasd", CouponType.FOOD);
 	
-
 		adminFacade.addCompany(a1);
 		adminFacade.addCompany(a2);
 		adminFacade.addCompany(a3);
