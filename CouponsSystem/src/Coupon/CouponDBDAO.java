@@ -259,14 +259,21 @@ public class CouponDBDAO implements CouponDAO {
 				coupon.setType(type);
 				coupons.add(coupon);
 			}
-		} catch (SQLException e) {
-			
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
 		} finally {
-			
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				 System.out.println(e2.getMessage());
+			}
+			try {
 				connectionPool.returnConnection(connection);
-			
+			} catch (SQLException e3) {
+				System.out.println(e3.getMessage());
+			}
 		}
-		return coupons;
+	return coupons;
 	}
 	
 	/**
