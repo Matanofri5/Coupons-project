@@ -63,15 +63,15 @@ public class Test {
 		CustomerFacade customerFacade = new CustomerFacade();
 		
 		
-		/**
-		 * initialization dao objects to dbdao.
-		 * @param coupondao
-		 * @param companydao
-		 * @param customerdao
-		 */
-		CouponDAO couponDAO = new CouponDBDAO();
-		CompanyDAO companyDAO = new CompanyDBDAO();
-		CustomerDAO customerDAO = new CustomerDBDAO();
+//		/**
+//		 * initialization dao objects to dbdao.
+//		 * @param coupondao
+//		 * @param companydao
+//		 * @param customerdao
+//		 */
+//		CouponDAO couponDAO = new CouponDBDAO();
+//		CompanyDAO companyDAO = new CompanyDBDAO();
+//		CustomerDAO customerDAO = new CustomerDBDAO();
 		
 		
 		/******* dropping tables *******/
@@ -107,8 +107,6 @@ public class Test {
 	
 
 		
-//		companyFacade.createCoupon(p1, u7);
-//		System.out.println(companyFacade.getCouponByDate(p1, DateUtils.getCurrentDate()));
 	
 		
 		

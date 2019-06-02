@@ -42,8 +42,4 @@ public class CouponFacade {
 	public Set<Coupon> getAllCoupon() throws Exception {
 		return couponDAO.getAllCoupons();
 	}
-
-	public void dropTable() throws Exception {
-		couponDAO.dropTable();
-	}
 }
