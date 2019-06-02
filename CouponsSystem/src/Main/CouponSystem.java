@@ -29,11 +29,7 @@ public class CouponSystem {
 		thread = new Thread(dailyTask);
 		thread.start();
 		System.out.println("Welcome to CouponSystem");
-//		try {
-//			Database.createTables(connection);
-//		} catch (Exception e) {
-//			throw new Exception("tables already exists :(");
-//		}
+
 	}
 
 	public static CouponSystem getInstance() throws Exception {

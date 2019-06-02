@@ -1,25 +1,18 @@
 package Company;
 
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import CompanyCoupon.CompanyCoupon;
 import Coupon.Coupon;
-import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
-import Coupon.CouponType;
-import Customer.Customer;
 import Main.ConnectionPool;
-import Main.Database;
 import MyExceptions.LoginException;
 import MyExceptions.RemoveCouponException;
 

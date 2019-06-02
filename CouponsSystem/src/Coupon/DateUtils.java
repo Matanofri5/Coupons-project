@@ -33,6 +33,14 @@ public class DateUtils {
 
 		return date;
 	}
+	
+	public static Date getByTwoMountsAgo() {
+		LocalDate localDate = LocalDate.now();
+		localDate = localDate.minusMonths(2);
+		Date date = java.sql.Date.valueOf(localDate);
+		
+		return date;
+	}
 
 	/**
 	 * This method return the driver of the derby JDBC

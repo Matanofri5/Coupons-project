@@ -54,7 +54,7 @@ public class CompanyFacade implements CouponClientFacade{
 			while (i.hasNext()) {
 				Coupon current = i.next();
 				if (coupon.getTitle().equals(current.getTitle())) {
-					throw new Exception("This coupon already exists");	
+					throw new Exception("This coupon with this title already exists");	
 				}
 			}
 			if (!i.hasNext()) {
@@ -142,7 +142,7 @@ public class CompanyFacade implements CouponClientFacade{
 		List<Coupon> couponByDate = new ArrayList<Coupon>();
 		try {
 			for (Coupon coupon : coupons) {
-				if (coupon.getEndDate().getTime() <= DateUtils.getCurrentDate().getTime()) {
+				if (coupon.getEndDate().equals(endDate)|| coupon.getEndDate().before(endDate)) {
 					couponByDate.add(coupon);
 				}}}
 		catch (Exception e) {

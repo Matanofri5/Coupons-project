@@ -2,19 +2,13 @@ package Coupon;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.apache.derby.iapi.db.Factory;
-import org.omg.CORBA.PRIVATE_MEMBER;
-
 import Main.ConnectionPool;
-import Main.Database;
 
 /**
  * @Author - Linoy & Matan

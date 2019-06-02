@@ -61,7 +61,7 @@ public class CustomerFacade implements CouponClientFacade {
 	 * @param couponId
 	 * @throws Exception
 	 */
-	public void purchaseCoupon(Customer customer, long couponId) throws Exception {
+	public void purchaseCoupon(Customer customer, long couponId) throws Exception, CouponNotAvailableException {
 		Coupon custcoupon = couponDAO.getCoupon(couponId);
 		customer = customerDAO.getCustomer(customer.getId());
 		

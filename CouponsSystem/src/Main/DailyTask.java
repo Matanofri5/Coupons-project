@@ -11,6 +11,8 @@ import Coupon.Coupon;
 import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import Coupon.DateUtils;
+import Customer.CustomerDAO;
+import Customer.CustomerDBDAO;
 import CustomerCoupon.CustomerCouponDAO;
 import CustomerCoupon.CustomerCouponDBDAO;
 
@@ -53,8 +55,8 @@ public class DailyTask implements Runnable {
 				Set<Coupon> allCoupons = couponDAO.getAllCoupons();
 				for (Coupon coupon : allCoupons) {
 					
-					if (coupon.getEndDate().before(DateUtils.getCurrentDate())) {
-						companyDAO.removeCouponFromCompany(coupon.getId());
+					if (coupon.getEndDate().equals(DateUtils.getCurrentDate()) || coupon.getEndDate().before(DateUtils.getCurrentDate())) {
+//						companyDAO.removeCouponFromCompany(coupon.getId());
 						couponDAO.removeCoupon(coupon);
 //					companyCouponDAO.removeCompanyCoupon(companyId, couponId);
 					}

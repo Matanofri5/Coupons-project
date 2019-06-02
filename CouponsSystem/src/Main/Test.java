@@ -1,23 +1,20 @@
 package Main;
 
-
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import Clients.AdminFacade;
 import Clients.ClientType;
 import Clients.CouponClientFacade;
 import Company.Company;
-import Company.CompanyDAO;
-import Company.CompanyDBDAO;
 import Company.CompanyFacade;
 import Coupon.Coupon;
-import Coupon.CouponDAO;
-import Coupon.CouponDBDAO;
 import Coupon.CouponFacade;
 import Coupon.CouponType;
 import Customer.Customer;
-import Customer.CustomerDAO;
-import Customer.CustomerDBDAO;
 import Customer.CustomerFacade;
 import Coupon.DateUtils;
 
@@ -75,7 +72,7 @@ public class Test {
 		
 		
 		/******* dropping tables *******/
-		Database.dropTables();
+//		Database.dropTables();
 		/******* creating tables *******/
 		Database.createTables();
 		/*************************************** Company ****************************/
@@ -103,18 +100,19 @@ public class Test {
 		Coupon c5 = new Coupon(5, "test4", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 44, "ff", 4444.7, "gg", CouponType.ELECTRICITY);
 		Coupon c6 = new Coupon(6, "test5", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 52, "bbb", 66.1, "dd", CouponType.HEALTH);
 		Coupon c7 = new Coupon(7, "test6", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 34, "fd", 11.2, "fd", CouponType.HEALTH);
-		
+		Coupon c8 = new Coupon(8, "test10", DateUtils.getCurrentDate(), DateUtils.getByTwoMountsAgo(), 55, "fsf", 55/5, "Dasd", CouponType.FOOD);
 	
 
+		adminFacade.addCompany(a1);
+		adminFacade.addCompany(a2);
+		adminFacade.addCompany(a3);
+		companyFacade.createCoupon(a1, c1);
+		companyFacade.createCoupon(a1, c2);
+		companyFacade.createCoupon(a1, c8);
+
 		
+
 	
-		
-		
-
-
-
-
-		
 		
 	}
 }
