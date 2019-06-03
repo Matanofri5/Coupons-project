@@ -92,6 +92,6 @@ public class Company {
 	 */
 	@Override
 	public String toString() {
-		return "Company---> id:" + id + ", company name:" + companyName + ", password=" + password + ", email:" + email;
+		return "Company---> id:" + id + ", company name:" + companyName + ", password:" + password + ", email:" + email;
 	}
 }

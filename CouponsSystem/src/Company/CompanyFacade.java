@@ -23,6 +23,7 @@ public class CompanyFacade implements CouponClientFacade{
 	private CompanyDAO companyDAO ;
 	private CouponDAO couponDAO ;
 
+
 	/**
 	 * @throws Exception 
 	 * @partial CTOR 
