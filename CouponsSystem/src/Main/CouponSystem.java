@@ -2,6 +2,8 @@ package Main;
 
 import java.sql.Connection;
 
+import javax.security.auth.login.LoginException;
+
 import Clients.AdminFacade;
 import Clients.ClientType;
 import Clients.CouponClientFacade;
@@ -38,7 +40,7 @@ public class CouponSystem {
 		return instance;
 	}
 
-	public CouponClientFacade login(String user, String pass, ClientType clientType) throws Exception {
+	public CouponClientFacade login(String name, String password, ClientType clientType) throws Exception, LoginException {
 
 		CouponClientFacade couponClientFacade = null;
 
@@ -55,10 +57,11 @@ public class CouponSystem {
 		default:
 			couponClientFacade = null;
 		}
+		couponClientFacade = couponClientFacade.login(name, password, clientType);
 		if (couponClientFacade != null) {
 			return couponClientFacade;
 		} else {
-			throw new Exception("Login Falied! Invalid User or Password!");
+			throw new LoginException("Login Falied! Invalid User or Password!");
 		}
 	}
 

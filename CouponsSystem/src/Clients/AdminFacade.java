@@ -59,9 +59,8 @@ public class AdminFacade implements CouponClientFacade {
 		if (name.equals(adminName) && password.equals(adminPassword)) {
 			this.successLogin = true;
 			return this;
-		} else {
-			return null;
 		}
+			return null;
 	}
 
 	/**

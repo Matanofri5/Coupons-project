@@ -2,6 +2,9 @@ package Main;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.security.auth.login.LoginException;
+
 import Clients.AdminFacade;
 import Clients.ClientType;
 import Clients.CouponClientFacade;
@@ -31,16 +34,28 @@ public class Test {
 		
 		CouponSystem couponSystem = CouponSystem.getInstance();
 		ConnectionPool.getInstance().getConnection();
-		
-		
-		facade = couponSystem.login("admin", "12345", ClientType.ADMIN);
-		
-		if (facade instanceof AdminFacade) {
-			System.out.println("success");
+		 //****Admin Test****//
 
-		}else {
-			System.out.println("gala");
+        //(1) bad login//
+		try {
+			facade = couponSystem.login("admin", "12354", ClientType.ADMIN);
+		} catch (LoginException e) {
+			throw new LoginException("failed to login");
 		}
+
+		try {
+			facade = couponSystem.login("admin", "1234", ClientType.ADMIN);
+		} catch (LoginException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+//		if (facade instanceof AdminFacade) {
+//			System.out.println("success");
+//
+//		}else {
+//			System.out.println("gala");
+//		}
 		
 		/**
 		 * initialization facade objects.
