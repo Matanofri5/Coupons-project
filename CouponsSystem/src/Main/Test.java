@@ -109,6 +109,7 @@ public class Test {
 		adminFacade.addCustomer(b3);
 		customerFacade.purchaseCoupon(b1, 1);
 		customerFacade.purchaseCoupon(b1, 1);
+
 		
 
 		

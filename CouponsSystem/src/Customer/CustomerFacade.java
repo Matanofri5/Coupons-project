@@ -88,6 +88,7 @@ public class CustomerFacade implements CouponClientFacade {
 			customerDAO.customerPurchaseCoupon(custcoupon, customer);
 			custcoupon.setAmount(custcoupon.getAmount()-1);
 			couponDAO.updateCoupon(custcoupon);
+			System.out.println("customer " + customer.getCustomerName() + " purchase coupon " + couponId);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
