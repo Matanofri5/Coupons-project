@@ -33,7 +33,7 @@ public class Test {
 		ConnectionPool.getInstance().getConnection();
 		
 		
-		facade = couponSystem.login("admin", "1234", ClientType.ADMIN);
+		facade = couponSystem.login("admin", "12345", ClientType.ADMIN);
 		
 		if (facade instanceof AdminFacade) {
 			System.out.println("success");
@@ -89,13 +89,13 @@ public class Test {
 		
 		/*************************************** Coupon ****************************/
 
-		Coupon c1 = new Coupon(1, "test", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 55, "sick", 33.5, "image", CouponType.HEALTH);
-		Coupon c2 = new Coupon(2, "test1", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 66, "camp", 36.7, "picture", CouponType.CAMPING);
-		Coupon c3 = new Coupon(3, "test2", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 77, "food", 41.2, "photo", CouponType.FOOD);
-		Coupon c4 = new Coupon(4, "test3", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 99, "bla", 32.4, "uy", CouponType.TRAVELING);
-		Coupon c5 = new Coupon(5, "test4", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 44, "ff", 4444.7, "gg", CouponType.ELECTRICITY);
-		Coupon c6 = new Coupon(6, "test5", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 52, "bbb", 66.1, "dd", CouponType.HEALTH);
-		Coupon c7 = new Coupon(7, "test6", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 34, "fd", 11.2, "fd", CouponType.HEALTH);
+		Coupon c1 = new Coupon(1, "test", DateUtils.getCurrentDate(), DateUtils.getByMounth(), 55, "sick", 33.5, "image", CouponType.HEALTH);
+		Coupon c2 = new Coupon(2, "test1", DateUtils.getCurrentDate(), DateUtils.getByTwoWeeks(), 66, "camp", 36.7, "picture", CouponType.CAMPING);
+		Coupon c3 = new Coupon(3, "test2", DateUtils.getCurrentDate(), DateUtils.getByWeek(), 77, "food", 41.2, "photo", CouponType.FOOD);
+		Coupon c4 = new Coupon(4, "test3", DateUtils.getCurrentDate(), DateUtils.getByWeek(), 99, "bla", 32.4, "uy", CouponType.TRAVELING);
+		Coupon c5 = new Coupon(5, "test4", DateUtils.getCurrentDate(), DateUtils.getByTwoWeeks(), 44, "ff", 4444.7, "gg", CouponType.ELECTRICITY);
+		Coupon c6 = new Coupon(6, "test5", DateUtils.getCurrentDate(), DateUtils.getByMounth(), 52, "bbb", 66.1, "dd", CouponType.HEALTH);
+		Coupon c7 = new Coupon(7, "test6", DateUtils.getCurrentDate(), DateUtils.getByMounth(), 34, "fd", 11.2, "fd", CouponType.HEALTH);
 		Coupon c8 = new Coupon(8, "test10", DateUtils.getCurrentDate(), DateUtils.getByTwoMountsAgo(), 55, "fsf", 55/5, "Dasd", CouponType.FOOD);
 	
 		adminFacade.addCompany(a1);
@@ -104,10 +104,10 @@ public class Test {
 		companyFacade.createCoupon(a1, c1);
 		companyFacade.createCoupon(a1, c2);
 		companyFacade.createCoupon(a1, c8);
+
 		adminFacade.addCustomer(b1);
 		adminFacade.addCustomer(b2);
 		adminFacade.addCustomer(b3);
-		customerFacade.purchaseCoupon(b1, 1);
 		customerFacade.purchaseCoupon(b1, 1);
 
 		

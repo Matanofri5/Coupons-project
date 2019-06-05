@@ -36,15 +36,6 @@ public class DailyTask implements Runnable {
 	}
 	
 
-	
-//	public DailyTask(CouponDAO couponDAO,CompanyDAO companyDAO, CompanyCouponDAO companyCouponDAO, CustomerCouponDAO customerCouponDAO) throws Exception {
-//		this.couponDAO = new CouponDBDAO();
-//		this.companyDAO = new CompanyDBDAO();
-//		this.companyCouponDAO = new CompanyCouponDBDAO();
-//		this.customerCouponDAO = new CustomerCouponDBDAO();
-//	}
-
-	
 	public void run () {
 		while (running) {
 			
