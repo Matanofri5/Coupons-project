@@ -62,31 +62,36 @@ public class CustomerFacade implements CouponClientFacade {
 	 * @throws Exception
 	 */
 	public void purchaseCoupon(Customer customer, long couponId) throws Exception, CouponNotAvailableException {
-		Coupon custcoupon = couponDAO.getCoupon(couponId);
-		customer = customerDAO.getCustomer(customer.getId());
-		
-		if (custcoupon == null) {
-			throw new CouponNotAvailableException("This coupon doesn't exist, customer failed purchase coupon");
-		}
-		if (custcoupon.getAmount() <= 0) {
-			throw new CouponNotAvailableException("cannot buy coupon with 0 amount");
-		}	
-		if (custcoupon.getEndDate().getTime() <= DateUtils.getCurrentDate().getTime()) {
-			throw new CouponNotAvailableException("This coupon is out of stock !");
-		}
-		
-		Set<Coupon> coupons = customerDAO.getAllCustomerCoupons(customer.getId());
-		Iterator<Coupon> iterator = coupons.iterator();
-		while (iterator.hasNext()) {
-			Coupon current = iterator.next();
-			if (current.getId()==couponId) {
-				throw new CouponNotAvailableException("This coupon cannot be purchased again");
+		try {
+			Coupon custcoupon = couponDAO.getCoupon(couponId);
+			customer = customerDAO.getCustomer(customer.getId());
+			
+			if (custcoupon == null) {
+				throw new CouponNotAvailableException("This coupon doesn't exist, customer failed purchase coupon");
 			}
+			if (custcoupon.getAmount() <= 0) {
+				throw new CouponNotAvailableException("cannot buy coupon with 0 amount");
+			}	
+			if (custcoupon.getEndDate().getTime() <= DateUtils.getCurrentDate().getTime()) {
+				throw new CouponNotAvailableException("This coupon is out of stock !");
+			}
+			
+			Set<Coupon> coupons = customerDAO.getAllCustomerCoupons(customer.getId());
+			Iterator<Coupon> iterator = coupons.iterator();
+			while (iterator.hasNext()) {
+				Coupon current = iterator.next();
+				if (current.getId()==couponId) {
+					throw new CouponNotAvailableException("This coupon cannot be purchased again");
+				}
+			}
+			
+			customerDAO.customerPurchaseCoupon(custcoupon, customer);
+			custcoupon.setAmount(custcoupon.getAmount()-1);
+			couponDAO.updateCoupon(custcoupon);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 		
-		customerDAO.customerPurchaseCoupon(custcoupon, customer);
-		custcoupon.setAmount(custcoupon.getAmount()-1);
-		couponDAO.updateCoupon(custcoupon);
 	}
 	
 	

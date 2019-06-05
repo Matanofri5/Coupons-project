@@ -98,12 +98,18 @@ public class Test {
 		Coupon c7 = new Coupon(7, "test6", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 34, "fd", 11.2, "fd", CouponType.HEALTH);
 		Coupon c8 = new Coupon(8, "test10", DateUtils.getCurrentDate(), DateUtils.getByTwoMountsAgo(), 55, "fsf", 55/5, "Dasd", CouponType.FOOD);
 	
-//		adminFacade.addCompany(a1);
-//		adminFacade.addCompany(a2);
-//		adminFacade.addCompany(a3);
-//		companyFacade.createCoupon(a1, c1);
-//		companyFacade.createCoupon(a1, c2);
-//		companyFacade.createCoupon(a1, c8);
+		adminFacade.addCompany(a1);
+		adminFacade.addCompany(a2);
+		adminFacade.addCompany(a3);
+		companyFacade.createCoupon(a1, c1);
+		companyFacade.createCoupon(a1, c2);
+		companyFacade.createCoupon(a1, c8);
+		adminFacade.addCustomer(b1);
+		adminFacade.addCustomer(b2);
+		adminFacade.addCustomer(b3);
+		customerFacade.purchaseCoupon(b1, 1);
+		customerFacade.purchaseCoupon(b1, 1);
+		
 
 		
 
