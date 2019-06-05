@@ -50,13 +50,6 @@ public class Test {
 		}
 		
 		
-//		if (facade instanceof AdminFacade) {
-//			System.out.println("success");
-//
-//		}else {
-//			System.out.println("gala");
-//		}
-		
 		/**
 		 * initialization facade objects.
 		 * @param admin
