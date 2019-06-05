@@ -67,19 +67,19 @@ public class Test3 {
 		Coupon c1 = new Coupon();
 		c1.setTitle("test");
 		c1.setStartDate(DateUtils.getCurrentDate());
-		c1.setEndDate(DateUtils.getExpiredDate());
+		c1.setEndDate(DateUtils.getByMounth());
 		c1.setAmount(50);
 		c1.setMessage("hello");
 		c1.setPrice(33.2);
 		c1.setImage("photo");
 		c1.setType(CouponType.FOOD);
 		//System.out.println(c1);
-		Coupon c2 = new Coupon(2, "test1", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 66, "camp", 36.7, "picture", CouponType.CAMPING);
-		Coupon c3 = new Coupon(3, "test2", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 77, "food", 41.2, "photo", CouponType.FOOD);
-		Coupon c4 = new Coupon(4, "test3", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 99, "bla", 32.4, "uy", CouponType.TRAVELING);
-		Coupon c5 = new Coupon(5, "test4", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 44, "ff", 4444.7, "gg", CouponType.ELECTRICITY);
-		Coupon c6 = new Coupon(6, "test5", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 52, "bbb", 66.1, "dd", CouponType.HEALTH);
-		Coupon c7 = new Coupon(7, "test6", DateUtils.getCurrentDate(), DateUtils.getExpiredDate(), 34, "fd", 11.2, "fd", CouponType.HEALTH);
+		Coupon c2 = new Coupon(2, "test1", DateUtils.getCurrentDate(), DateUtils.getByMounth(), 66, "camp", 36.7, "picture", CouponType.CAMPING);
+		Coupon c3 = new Coupon(3, "test2", DateUtils.getCurrentDate(), DateUtils.getByTwoWeeks(), 77, "food", 41.2, "photo", CouponType.FOOD);
+		Coupon c4 = new Coupon(4, "test3", DateUtils.getCurrentDate(), DateUtils.getByWeek(), 99, "bla", 32.4, "uy", CouponType.TRAVELING);
+		Coupon c5 = new Coupon(5, "test4", DateUtils.getCurrentDate(), DateUtils.getByMounth(), 44, "ff", 4444.7, "gg", CouponType.ELECTRICITY);
+		Coupon c6 = new Coupon(6, "test5", DateUtils.getCurrentDate(), DateUtils.getByTwoWeeks(), 52, "bbb", 66.1, "dd", CouponType.HEALTH);
+		Coupon c7 = new Coupon(7, "test6", DateUtils.getCurrentDate(), DateUtils.getByWeek(), 34, "fd", 11.2, "fd", CouponType.HEALTH);
 		Coupon c8 = new Coupon(8, "test10", DateUtils.getCurrentDate(), DateUtils.getByTwoMountsAgo(), 55, "fsf", 55/5, "Dasd", CouponType.FOOD);
 
 		try {
