@@ -90,9 +90,7 @@ public class AdminFacade implements CouponClientFacade {
 	/**
 	 * This method remove company by companyId from company table, and remove the
 	 * same company that Related to coupon and customer, In all tables.
-	 * @param companyId
-	 * @param couponId
-	 * @param customerId
+	 * @param company
 	 * @throws Exception
 	 */
 	public void removeCompany(Company company) throws Exception {
@@ -111,6 +109,8 @@ public class AdminFacade implements CouponClientFacade {
 	/**
 	 * This method update Company exist in company table, without the company Name.
 	 * @param Company
+	 * @param password
+	 * @param email
 	 * @throws Exception
 	 */	
 	public void updateCompany (Company company, String newPassword, String newEmail) throws Exception {
