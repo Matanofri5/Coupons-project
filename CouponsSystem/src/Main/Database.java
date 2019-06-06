@@ -49,7 +49,7 @@ public class Database {
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("Droped CustomerCoupon table");
+//			System.out.println("Droped CustomerCoupon table");
 		} catch (Exception e) {
 			System.out.println("Failed to drop CustomerCoupon table + " + e.getMessage());
 		}
@@ -59,7 +59,7 @@ public class Database {
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("Droped CompanyCoupon table");
+//			System.out.println("Droped CompanyCoupon table");
 		} catch (Exception e) {
 			System.out.println("Failed to drop CompanyCoupon table + " + e.getMessage());
 		}
@@ -69,7 +69,7 @@ public class Database {
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("Droped Company table");
+//			System.out.println("Droped Company table");
 		} catch (Exception e) {
 			System.out.println("Failed to drop Company table + " + e.getMessage());
 		}
@@ -79,7 +79,7 @@ public class Database {
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("Droped Customer table");
+//			System.out.println("Droped Customer table");
 		} catch (Exception e) {
 			System.out.println("Failed to drop Customer table + " + e.getMessage());
 		}
@@ -89,7 +89,7 @@ public class Database {
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("Droped Coupon table");
+//			System.out.println("Droped Coupon table");
 		} catch (Exception e) {
 			System.out.println("Failed to drop Coupon table + " + e.getMessage());
 		}
@@ -130,7 +130,7 @@ public class Database {
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("create Company table success");
+//			System.out.println("create Company table success");
 		} catch (Exception e3) {
 			System.out.println("create company didn't succeed" + e3.getMessage());
 		}
@@ -143,7 +143,7 @@ public class Database {
 			try {
 				PreparedStatement pstmt = connection.prepareStatement(sql);
 				pstmt.executeUpdate();
-				System.out.println("create Customer table success");
+//				System.out.println("create Customer table success");
 			} catch (Exception e4) {
 				System.out.println("create customer didn't succeed" + e4.getMessage());
 			}
@@ -158,7 +158,7 @@ public class Database {
 			try {
 				PreparedStatement pstmt = connection.prepareStatement(sql);
 				pstmt.executeUpdate();
-				System.out.println("create Coupon table success");
+//				System.out.println("create Coupon table success");
 			} catch (Exception e4) {
 				System.out.println("create coupon didn't succeed" + e4.getMessage());
 			}
@@ -170,7 +170,7 @@ public class Database {
 			try {
 				PreparedStatement pstmt = connection.prepareStatement(sql);
 				pstmt.executeUpdate();
-				System.out.println("create CustomerCoupon table success");
+//				System.out.println("create CustomerCoupon table success");
 			} catch (Exception e5) {
 				System.out.println("create customercoupon didn't succeed" + e5.getMessage());
 			}
@@ -182,7 +182,7 @@ public class Database {
 			try {
 				PreparedStatement pstmt = connection.prepareStatement(sql);
 				pstmt.executeUpdate();
-				System.out.println("create CompanyCoupon table success");
+//				System.out.println("create CompanyCoupon table success");
 			} catch (Exception e6) {
 				System.out.println("create companycoupon didn't succeed" + e6.getMessage());
 			}

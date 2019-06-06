@@ -101,13 +101,13 @@ public class Test3 {
 
 		 //(3) add a costumer
 		System.err.println("----add a costumer----");
-		adminFacade.addCustomer(b1);
+		adminFacade.createCustomer(b1);
 		System.out.println(b1);
-		adminFacade.addCustomer(b2);
+		adminFacade.createCustomer(b2);
 		System.out.println(b2);
 		
 		//same name- failed
-		adminFacade.addCustomer(b1);
+		adminFacade.createCustomer(b1);
 		
 		 //(4) get a costumer by id
 		System.err.println("----get a costumer by id----");
@@ -128,13 +128,13 @@ public class Test3 {
 
 		 //(8) add a company
 		System.err.println("----add a company----");
-		adminFacade.addCompany(a1);
+		adminFacade.createCompany(a1);
 		System.out.println(a1);
-		adminFacade.addCompany(a2);
+		adminFacade.createCompany(a2);
 		System.out.println(a2);
 		
 		//same name- failed
-		adminFacade.addCompany(a1);
+		adminFacade.createCompany(a1);
 		
 		 //(9) get a company by id
 		System.err.println("----get a company by id----");

@@ -30,7 +30,6 @@ public class CouponSystem {
 		dailyTask = new DailyTask(SLEEPTIME);
 		thread = new Thread(dailyTask);
 		thread.start();
-		System.out.println("Welcome to CouponSystem");
 
 	}
 

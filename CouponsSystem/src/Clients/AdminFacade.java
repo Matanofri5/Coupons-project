@@ -68,7 +68,7 @@ public class AdminFacade implements CouponClientFacade {
 	 * @param company
 	 * @throws Exception
 	 */
-	public void addCompany(Company company) throws Exception {
+	public void createCompany(Company company) throws Exception {
 		try {
 			Set<Company> companies = companyDAO.getAllCompanys();
 			Iterator<Company> i = companies.iterator();
@@ -143,7 +143,7 @@ public class AdminFacade implements CouponClientFacade {
 	 * @param customer
 	 * @throws Exception
 	 */
-	public void addCustomer(Customer customer) throws Exception {
+	public void createCustomer(Customer customer) throws Exception {
 		try {
 			Set<Customer> customers = customerDAO.getAllCustomer();
 			Iterator<Customer> i = customers.iterator();

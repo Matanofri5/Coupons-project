@@ -40,7 +40,6 @@ public class DailyTask implements Runnable {
 		while (running) {
 			
 			try {
-				System.out.println("Daily task starting now.....");
 				Thread.sleep(5000);
 				
 				Set<Coupon> allCoupons = couponDAO.getAllCoupons();

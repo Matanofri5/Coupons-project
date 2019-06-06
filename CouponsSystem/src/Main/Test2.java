@@ -24,7 +24,7 @@ public class Test2 {
 		Company p5 = new Company(5, "Samsung", "333", "ff");
 		
 		AdminFacade adminFacade = new AdminFacade();
-		adminFacade.addCompany(p1);
+		adminFacade.createCompany(p1);
 
 	}
 
