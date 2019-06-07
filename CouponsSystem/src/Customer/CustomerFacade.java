@@ -45,7 +45,6 @@ public class CustomerFacade implements CouponClientFacade {
 	 */
 	@Override
 	public CouponClientFacade login(String name, String password, ClientType clientType) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

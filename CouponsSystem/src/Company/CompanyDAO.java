@@ -35,6 +35,6 @@ public interface CompanyDAO {
 	
 	public List<Long> getCouponId (long companyId) throws Exception;
 	
-	public boolean login (String companyName, String password) throws Exception;
+	public boolean login (String name, String password) throws Exception;
 
 }

@@ -48,10 +48,22 @@ public class CouponSystem {
 			couponClientFacade = new AdminFacade();
 			break;
 		case COMPANY:
-			couponClientFacade = new CompanyFacade();
+			if (clientType == ClientType.COMPANY) {
+				CompanyDAO company = new CompanyDBDAO();
+				boolean loginSuccess=company.login(name, password);
+				if (loginSuccess) {
+					couponClientFacade = new CompanyFacade();
+				}
+			}
 			break;
 		case CUSTOMER:
-			couponClientFacade = new CustomerFacade();
+			if (clientType == ClientType.CUSTOMER) {
+				CustomerDAO customer = new CustomerDBDAO();
+				boolean loginsuccess=customer.login(name, password);
+				if (loginsuccess) {
+					couponClientFacade = new CustomerFacade();
+				}
+			}
 			break;
 		default:
 			couponClientFacade = null;

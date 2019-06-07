@@ -6,6 +6,7 @@ package Clients;
  */
 public interface CouponClientFacade {
 
+	ClientType clientType = null;
 	public CouponClientFacade login (String name, String password, ClientType clientType)throws Exception ;
 	
 }

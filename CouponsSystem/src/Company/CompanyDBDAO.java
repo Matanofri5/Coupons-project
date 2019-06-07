@@ -512,7 +512,7 @@ public class CompanyDBDAO implements CompanyDAO {
 	 * @return boolean
 	 */
 	@Override
-	public boolean login(String companyName, String password) throws Exception, LoginException {
+	public boolean login(String name, String password) throws Exception, LoginException {
 		Connection connection = null;
 		try {
 			connection = ConnectionPool.getInstance().getConnection();
@@ -524,7 +524,7 @@ public class CompanyDBDAO implements CompanyDAO {
 		try {
 			String sql = "SELECT * FROM company WHERE COMPANYNAME=? AND PASSWORD=?";
 			PreparedStatement pstmt = connection.prepareStatement(sql);
-			pstmt.setString(1, companyName);
+			pstmt.setString(1, name);
 			pstmt.setString(2, password);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {

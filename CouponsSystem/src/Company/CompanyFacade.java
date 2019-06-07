@@ -9,6 +9,7 @@ import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import Coupon.CouponType;
 import Coupon.DateUtils;
+import Main.CouponSystem;
 import Company.CompanyDAO;
 import Clients.ClientType;
 import Clients.CouponClientFacade;

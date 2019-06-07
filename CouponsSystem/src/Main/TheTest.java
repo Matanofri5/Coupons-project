@@ -22,9 +22,6 @@ public class TheTest {
 		ClientType clientType = ClientType.ADMIN;
 		Set<Company> companies = new HashSet<Company>();
 		Set<Customer> customers = new HashSet<Customer>();
-
-
-
 		
 		try {
 			System.out.println("You have "+ConnectionPool.getInstance().getConnection().getTransactionIsolation()+" available connections");
@@ -50,7 +47,7 @@ public class TheTest {
 		password = "1234";
 		try {
 			couponSystem.login(name, password, clientType);
-			System.out.println("*******************Logged ad Admin*******************\n");
+			System.out.println("*******************Logged as Admin*******************\n");
 			Database.dropTables();
 			Database.createTables();
 			
@@ -139,24 +136,25 @@ public class TheTest {
 		//***Company test***//
 //		name = null;
 //		password = null;
+//		clientType = null;
 		
 		// Bad login //
-//		name = "Hp";
-//		password = "aa12";
+//		name = "Sony";
+//		password = "cc33";
 //		System.out.println("Checking bad login as Company: ");
 //		try {
 //			couponSystem.login(name, password, clientType);
 //		} catch (Exception e) {
 //			throw new Exception("Failed to login as Company, name or password are wrong !");
 //		}
-		
+
 		// Good login //
-		name = "Hp";
-		password = "aa11";
+		name = "Sony";
+		password = "cc33";
 		clientType = ClientType.COMPANY;
 		try {
 			couponSystem.login(name, password, clientType);
-			System.out.println("*******************Logged ad Company*******************\n");
+			System.out.println("*******************Logged as Company*******************\n");
 			
 			
 			

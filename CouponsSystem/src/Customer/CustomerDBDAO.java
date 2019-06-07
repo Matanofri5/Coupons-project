@@ -406,7 +406,7 @@ public class CustomerDBDAO implements CustomerDAO {
 	}
 
 	@Override
-	public boolean login(String customerName, String password) throws Exception, LoginException {
+	public boolean login(String name, String password) throws Exception, LoginException {
 		Connection connection = null;
 		try {
 			connection = ConnectionPool.getInstance().getConnection();
@@ -419,7 +419,7 @@ public class CustomerDBDAO implements CustomerDAO {
 		try {
 			String sql = "SELECT * FROM customer WHERE CUSTOMERNAME=? AND PASSWORD=?";
 			PreparedStatement pstmt = connection.prepareStatement(sql);
-			pstmt.setString(1, customerName);
+			pstmt.setString(1, name);
 			pstmt.setString(2, password);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
