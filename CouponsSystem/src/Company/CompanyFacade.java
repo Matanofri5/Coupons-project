@@ -63,7 +63,6 @@ public class CompanyFacade implements CouponClientFacade{
 				couponDAO.insertCoupon(coupon);
 				companyDAO.companyCreateCoupon(company, coupon);
 
-				System.out.println("company " + company.getCompanyName() + " added new coupon: " + coupon.getId());
 			} 
 		} catch (Exception e) {
 				System.out.println(e.getMessage());
