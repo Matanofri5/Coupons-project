@@ -11,6 +11,7 @@ import Coupon.Coupon;
 import Coupon.CouponType;
 import Coupon.DateUtils;
 import Customer.Customer;
+import Customer.CustomerFacade;
 
 public class TheTest {
 
@@ -48,12 +49,13 @@ public class TheTest {
 		Customer b5 = new Customer(5, "Or", "658");
 		
 		// Coupons //
-		Coupon c1 = new Coupon(1, "50% discount", DateUtils.getCurrentDate(), DateUtils.getByMounth(), 55, "sick", 33.5, "image", CouponType.HEALTH);
-		Coupon c2 = new Coupon(2, "test1", DateUtils.getCurrentDate(), DateUtils.getByTwoWeeks(), 66, "camp", 36.7, "picture", CouponType.CAMPING);
-		Coupon c3 = new Coupon(3, "test2", DateUtils.getCurrentDate(), DateUtils.getByWeek(), 77, "food", 41.2, "photo", CouponType.FOOD);
-		Coupon c4 = new Coupon(4, "test3", DateUtils.getCurrentDate(), DateUtils.getByWeek(), 99, "bla", 32.4, "uy", CouponType.TRAVELING);
-		Coupon c5 = new Coupon(5, "50% discount", DateUtils.getCurrentDate(), DateUtils.getByTwoWeeks(), 44, "ff", 4444.7, "gg", CouponType.ELECTRICITY);
-		
+		Coupon c1 = new Coupon(1, "Teva pharm", DateUtils.getCurrentDate(), DateUtils.getByMounth(), 55, "Teva", 33.5, "website", CouponType.HEALTH);
+		Coupon c2 = new Coupon(2, "Chairs", DateUtils.getCurrentDate(), DateUtils.getByTwoWeeks(), 66, "Hagor", 12.5, "website", CouponType.CAMPING);
+		Coupon c3 = new Coupon(3, "Pizza", DateUtils.getCurrentDate(), DateUtils.getByWeek(), 77, "PizzaHut", 41.2, "website", CouponType.FOOD);
+		Coupon c4 = new Coupon(4, "Roller coaster", DateUtils.getCurrentDate(), DateUtils.getByWeek(), 99, "LunaPark", 32.4, "website", CouponType.TRAVELING);
+		Coupon c5 = new Coupon(5, "Teva pharm", DateUtils.getCurrentDate(), DateUtils.getByTwoWeeks(), 0, "Teva", 4444.7, "website", CouponType.HEALTH);
+		Coupon c6 = new Coupon(8, "Sushi", DateUtils.getCurrentDate(), DateUtils.getByTwoMountsAgo(), 55, "roll", 55/5, "website", CouponType.FOOD);
+
 		//***Admin test***//
 		
 		// Bad login //
@@ -85,15 +87,15 @@ public class TheTest {
 			adminFacade.createCompany(a4);
 			adminFacade.createCompany(a5);
 			
-			 System.err.println("**********Companies by Admin**********\n");
+			 System.out.println("**********Companies by Admin**********\n");
 
 			// Show all new companies //
-			System.err.println("Show all companies");
+			System.out.println("Show all companies");
 			companies = adminFacade.getAllCompanys();
 			System.out.println(companies + "\n");
 			
 			// Admin update company //
-			adminFacade.updateCompany(a1, "123abc", "newpassword");
+			adminFacade.updateCompany(a1, "123abc", "blabla");
 			System.out.println("Company " + a1.getCompanyName() + " updated !");
 			
 			// show company after update //
@@ -104,12 +106,12 @@ public class TheTest {
 //			adminFacade.removeCompany(a5);
 //			System.out.println("Admin removed company " + a5.getCompanyName() + "!");
 			
-			// Get all companies after update and delete //
-			System.err.println("Show all companies after update and delete");
+			// Get all companies after update //
+			System.out.println("Show all companies after update and delete");
 			companies = adminFacade.getAllCompanys();
 			System.out.println(companies + " \n\n");
 			
-			 System.err.println("**********Customers by Admin**********\n");
+			 System.out.println("**********Customers by Admin**********\n");
 	
 			
 			// Admin create customers //
@@ -120,7 +122,7 @@ public class TheTest {
 			adminFacade.createCustomer(b5);
 			
 			// Show all customers //
-			System.err.println("Show all customers");
+			System.out.println("Show all customers");
 			customers = adminFacade.getAllCustomers();
 			System.out.println(customers + "\n");
 			
@@ -137,7 +139,7 @@ public class TheTest {
 //			System.out.println("Admin removed customer " + b5.getCustomerName() + "!");
 			
 			// Get all customer after update and delete //
-			System.err.println("Show all customer after update and delete");
+			System.out.println("Show all customer after update and delete");
 			customers = adminFacade.getAllCustomers();
 			System.out.println(customers + "\n");
 		} catch (Exception e) {
@@ -145,7 +147,12 @@ public class TheTest {
 		}
 		
 		
+		
+		
+		
+		
 		//***Company test***//
+		
 //		name = null;
 //		password = null;
 //		clientType = null;
@@ -161,9 +168,9 @@ public class TheTest {
 //		}
 
 		// Good login //
-		name = "Sony";
-		password = "cc33";
-		clientType = ClientType.COMPANY;
+//		name = "Sony";
+//		password = "cc33";
+//		clientType = ClientType.COMPANY;
 //		try {
 //			couponSystem.login(name, password, clientType);
 			System.out.println("*******************Logged as Company*******************\n");
@@ -173,30 +180,124 @@ public class TheTest {
 
 			// Company creates coupon and
 			companyFacade.createCoupon(a1, c1);
+			companyFacade.createCoupon(a1, c2);
+			companyFacade.createCoupon(a2, c3);
+			companyFacade.createCoupon(a3, c4);
+			companyFacade.createCoupon(a5, c5);
 			System.out.println("Company " + a1.getCompanyName() + " added new coupon : " + c1.getTitle());
-			System.out.println(companyFacade.getAllCompanyCoupon(a1)+"\n");
+			System.out.println("Company " + a1.getCompanyName() + " added new coupon : " + c2.getTitle());
+			System.out.println("Company " + a2.getCompanyName() + " added new coupon : " + c3.getTitle());
+			System.out.println("Company " + a3.getCompanyName() + " added new coupon : " + c4.getTitle());
+			System.out.println("Company " + a5.getCompanyName() + " added new coupon : " + c5.getTitle() + "\n");
+
 			
 //			// Company delete coupon, also delete all coupons that customer purchase that relevant to this id //
 //			companyFacade.removeCouponById(1);
 //			System.out.println("Company delete coupon " + c1.getTitle());
 			
 			// Company trying to create coupon with the same title //
-			companyFacade.createCoupon(a1, c5);
+			System.out.println("Trying to purchase coupon who has the same Title");
+			companyFacade.createCoupon(a1, c5);System.out.println("\n");
 			
 			// Company update coupon by endDate and double price //
 			companyFacade.updateCoupon(c1, DateUtils.getByWeek(), 66.3);
 			System.out.println("company " +a1.getCompanyName() + " updated coupon " + c1.getId());
-			System.out.println(companyFacade.getAllCompanyCoupon(a1));
+			System.out.println(c1 + "\n");
 			
+			// Get specific company //
+			companyFacade.getCompany(1);
+			System.out.println("Get specific company");
+			System.out.println(a1 + "\n");
 			
+			// Show all coupons by specific company //
+			System.out.println("Get all purchesd coupons of company "+ a1.getCompanyName());
+			System.out.println(companyFacade.getAllCompanyCoupon(a1) + "\n");
+			
+			// Get coupons of company by couponType //
+			System.out.println("Get coupons of company " + a1.getCompanyName() + " by couponType");
+			System.out.println(companyFacade.getCouponbyType(a1, CouponType.HEALTH) + "\n");
+			
+			// Get coupons of company by specific date //
+			System.out.println("Get coupons of company " + a1.getCompanyName() + " by specific date");
+			System.out.println(companyFacade.getCouponByDate(a1, DateUtils.getByWeek()) + "\n");
+			
+			// Get coupons of company by specific price //
+			System.out.println("Get coupons of company " + a1.getCompanyName() + " by specific price");
+			System.out.println(companyFacade.getCouponByPrice(a1, 24.6) + "\n");
 			
 			
 //		} catch (Exception e) {
 //			System.out.println(e.getMessage());
 //		}
 		
+			
+			
+			
+			
 		
-		
+			//***Customer test***//
+			
+//			name = null;
+//			password = null;
+//			clientType = null;
+			
+			// Bad login //
+//			name = "Linoy";
+//			password = "45677";
+//			System.out.println("Checking bad login as Company: ");
+//			try {
+//				couponSystem.login(name, password, clientType);
+//			} catch (Exception e) {
+//				throw new Exception("Failed to login as Company, name or password are wrong !");
+//			}
+
+			// Good login //
+//			name = "Linoy";
+//			password = "456";
+//			clientType = ClientType.CUSTOMER;
+//			try {
+//				couponSystem.login(name, password, clientType);
+				System.out.println("*******************Logged as Customer*******************\n");
+			
+				CustomerFacade customerFacade = new CustomerFacade();
+				
+				// Customer purchase coupon //
+				customerFacade.purchaseCoupon(b1, 1);
+				customerFacade.purchaseCoupon(b1, 2);
+				customerFacade.purchaseCoupon(b2, 3);
+				customerFacade.purchaseCoupon(b3, 4);
+				System.out.println("Customer " + b1.getCustomerName() + " purchased new coupon : " + a1.getId());
+				System.out.println("Customer " + b1.getCustomerName() + " purchased new coupon : " + a2.getId());
+				System.out.println("Customer " + b2.getCustomerName() + " purchased new coupon : " + a3.getId());
+				System.out.println("Customer " + b3.getCustomerName() + " purchased new coupon : " + a4.getId() + "\n");
+
+				// Customer trying to purchase coupon who already purchased //
+				System.out.println("Trying to purchase coupon who already purchased");
+				customerFacade.purchaseCoupon(b1, 1);
+				
+				// Customer trying to purchase out of stock coupon //
+				System.out.println("\nTrying to purchase out of stock coupon");
+				customerFacade.purchaseCoupon(b1, 5);
+				
+				// Customer trying to purchase expiredDate coupon //
+				System.out.println("\nTrying to purchase expiredDate coupon");
+				customerFacade.purchaseCoupon(b5, 6);
+				
+				// Get specific customer //
+				System.out.println("\n" + customerFacade.getAllCustomerCoupon(b1) + "\n");
+				
+				// Get customer by couponType //
+				System.out.println("Check if customer " + b1.getCustomerName() + " has camping couponType :");
+				System.out.println(customerFacade.getCouponbyType(b1, CouponType.CAMPING) + "\n");
+
+				// Get customer by specific price //
+				System.out.println("Check if customer " + b2.getCustomerName() + " has coupon by specific price :");
+				System.out.println(customerFacade.getCouponByPrice(b2, 55.2));
+				
+//			} catch (Exception e) {
+//				System.out.println(e.getMessage());
+//			}
+			
 		
 		
 		
