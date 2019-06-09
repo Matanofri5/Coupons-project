@@ -1,33 +1,20 @@
 package Main;
 
-import java.util.Date;
 import java.util.Set;
-
 import Company.CompanyDAO;
 import Company.CompanyDBDAO;
-import CompanyCoupon.CompanyCouponDAO;
-import CompanyCoupon.CompanyCouponDBDAO;
 import Coupon.Coupon;
 import Coupon.CouponDAO;
 import Coupon.CouponDBDAO;
 import Coupon.DateUtils;
-import Customer.CustomerDAO;
-import Customer.CustomerDBDAO;
-import CustomerCoupon.CustomerCouponDAO;
-import CustomerCoupon.CustomerCouponDBDAO;
 
 public class DailyTask implements Runnable {
 
-	private Thread thread;
 	public boolean exit = false;
-	private Date localDate;
-	private long id;
 	private boolean running = true;
 	private static int SLEEPTIME = 24 * 1000 * 3600;
 	private CouponDAO couponDAO = new CouponDBDAO();
-	private CompanyDAO companyDAO;
-	private CompanyCouponDAO companyCouponDAO;
-	private CustomerCouponDAO customerCouponDAO;
+	private CompanyDAO companyDAO = new CompanyDBDAO();
 	private int sleepingTime = DailyTask.SLEEPTIME;
 	
 	public DailyTask (int sleepTime) {
@@ -46,9 +33,8 @@ public class DailyTask implements Runnable {
 				for (Coupon coupon : allCoupons) {
 					
 					if (coupon.getEndDate().equals(DateUtils.getCurrentDate()) || coupon.getEndDate().before(DateUtils.getCurrentDate())) {
-//						companyDAO.removeCouponFromCompany(coupon.getId());
-						couponDAO.removeCoupon(coupon);
-//					companyCouponDAO.removeCompanyCoupon(companyId, couponId);
+						companyDAO.removeCouponFromCompany(coupon.getId());
+//						couponDAO.removeCoupon(coupon);
 					}
 				}
 			} catch (Exception e) {

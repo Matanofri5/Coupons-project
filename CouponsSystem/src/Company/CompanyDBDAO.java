@@ -29,18 +29,17 @@ public class CompanyDBDAO implements CompanyDAO {
 	 * Data Members
 	 */
 	private ConnectionPool connectionPool;
-//	private Connection con;
 
 	/**
 	 * @throws Exception
 	 * @Empty CTOR
 	 */
-	public CompanyDBDAO() throws Exception {
-		try {
-			this.connectionPool = ConnectionPool.getInstance();
-		} catch (Exception e) {
-			throw new Exception("connection pool faild :(");
-		}
+	public CompanyDBDAO() {
+			try {
+				this.connectionPool = ConnectionPool.getInstance();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 
 	/**
