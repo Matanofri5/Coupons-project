@@ -89,7 +89,7 @@ public class TheTest {
 			
 			 System.out.println("**********Companies by Admin**********\n");
 
-			// Show all new companies //
+			// Get all new companies //
 			System.out.println("Show all companies");
 			companies = adminFacade.getAllCompanys();
 			System.out.println(companies + "\n");
@@ -98,13 +98,9 @@ public class TheTest {
 			adminFacade.updateCompany(a1, "123abc", "blabla");
 			System.out.println("Company " + a1.getCompanyName() + " updated !");
 			
-			// show company after update //
+			// Get company after update //
 			adminFacade.getCompany(1);
 			System.out.println("This company was updated --> " + a1 + " \n");
-			
-//			// Admin delete company //
-//			adminFacade.removeCompany(a5);
-//			System.out.println("Admin removed company " + a5.getCompanyName() + "!");
 			
 			// Get all companies after update //
 			System.out.println("Show all companies after update and delete");
@@ -121,7 +117,7 @@ public class TheTest {
 			adminFacade.createCustomer(b4);
 			adminFacade.createCustomer(b5);
 			
-			// Show all customers //
+			// Get all customers //
 			System.out.println("Show all customers");
 			customers = adminFacade.getAllCustomers();
 			System.out.println(customers + "\n");
@@ -130,7 +126,7 @@ public class TheTest {
 			adminFacade.updateCustomer(b1, "123456789");
 			System.out.println("Customer " + b1.getCustomerName() + " updated !");
 			
-			// Show customer after update //
+			// Get customer after update //
 			adminFacade.getCustomer(1);
 			System.out.println("This customer was updated --> " + b1 + " \n");	
 			
@@ -191,10 +187,6 @@ public class TheTest {
 			System.out.println("Company " + a5.getCompanyName() + " added new coupon : " + c5.getTitle() + "\n");
 
 			
-//			// Company delete coupon, also delete all coupons that customer purchase that relevant to this id //
-//			companyFacade.removeCouponById(1);
-//			System.out.println("Company delete coupon " + c1.getTitle());
-			
 			// Company trying to create coupon with the same title //
 			System.out.println("Trying to purchase coupon who has the same Title");
 			companyFacade.createCoupon(a1, c5);System.out.println("\n");
@@ -209,7 +201,7 @@ public class TheTest {
 			System.out.println("Get specific company");
 			System.out.println(a1 + "\n");
 			
-			// Show all coupons by specific company //
+			// Get all coupons by specific company //
 			System.out.println("Get all purchesd coupons of company "+ a1.getCompanyName());
 			System.out.println(companyFacade.getAllCompanyCoupon(a1) + "\n");
 			
@@ -293,15 +285,62 @@ public class TheTest {
 				// Get customer by specific price //
 				System.out.println("Check if customer " + b2.getCustomerName() + " has coupon by specific price :");
 				System.out.println(customerFacade.getCouponByPrice(b2, 55.2));
+				System.out.println("\n\n");
 				
 //			} catch (Exception e) {
 //				System.out.println(e.getMessage());
 //			}
-			
+				
+				
+				
+				//  Login as Admin to delete company and customer //
+				
+				
+				name = "admin";
+				password = "1234";
+				try {
+					couponSystem.login(name, password, clientType);
+					System.out.println("*******************Logged as Admin*******************\n");
+					
+					AdminFacade admin = new AdminFacade();
+					
+					// Admin delete company //
+					// When delete company, also delete all coupons related to this company, and all coupons that customer purchased //
+					admin.removeCompany(a1);
+					System.out.println("Admin removed company " + a1.getCompanyName() + "!");
+					System.out.println(admin.getAllCompanys() + "\n");
+					
+					// Admin delete customer //
+					// When delete customer, also delete all the coupons that this customer purchased //
+					admin.removeCustomer(b2);
+					System.out.println("Admin removed customer " + b2.getCustomerName() + "!");
+					System.out.println(admin.getAllCustomers() + "\n");
+
+				}catch (Exception e) {
+						System.out.println(e.getMessage());
+				}
 		
 		
-		
-		
+				//  Login as Company to delete coupon //
+				
+				
+//				name = "Sony";
+//				password = "cc33";
+//				clientType = ClientType.COMPANY;
+//				try {
+//					couponSystem.login(name, password, clientType);
+					System.out.println("*******************Logged as Company*******************\n");
+					
+					CompanyFacade company = new CompanyFacade();
+					
+					// Company delete coupon //
+					// Company delete coupon, also delete all coupons that customer purchase that related to this id //
+					company.removeCouponById(4);
+					System.out.println("Company delete coupon " + c4.getTitle());
+
+//				}catch (Exception e) {
+//					System.out.println(e.getMessage());
+//				}
 		
 	}
 }

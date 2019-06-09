@@ -94,6 +94,7 @@ public class AdminFacade implements CouponClientFacade {
 	 * @throws Exception
 	 */
 	public void removeCompany(Company company) throws Exception {
+		try {
 		Set<Coupon> coupons = new HashSet<Coupon>();
 		coupons = companyDAO.getCompanyCoupons(company.getId());
 		Iterator<Coupon> itreator = coupons.iterator();
@@ -104,6 +105,9 @@ public class AdminFacade implements CouponClientFacade {
 				companyDAO.removeCouponFromCompany(coupon.getId());
 		}
 		companyDAO.removeCompany(company);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**

@@ -37,17 +37,17 @@ public class Test {
 		 //****Admin Test****//
 
         //(1) bad login//
-		try {
-			facade = couponSystem.login("admin", "12354", ClientType.ADMIN);
-		} catch (LoginException e) {
-			throw new LoginException("failed to login");
-		}
+//		try {
+//			facade = couponSystem.login("admin", "12354", ClientType.ADMIN);
+//		} catch (LoginException e) {
+//			throw new LoginException("failed to login");
+//		}
 
-		try {
-			facade = couponSystem.login("admin", "1234", ClientType.ADMIN);
-		} catch (LoginException e) {
-			System.out.println(e.getMessage());
-		}
+//		try {
+//			facade = couponSystem.login("admin", "1234", ClientType.ADMIN);
+//		} catch (LoginException e) {
+//			System.out.println(e.getMessage());
+//		}
 		
 		
 		/**
@@ -117,6 +117,8 @@ public class Test {
 		adminFacade.createCustomer(b2);
 		adminFacade.createCustomer(b3);
 		customerFacade.purchaseCoupon(b1, 1);
+		
+		adminFacade.removeCompany(a1);
 
 		
 
