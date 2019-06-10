@@ -84,6 +84,12 @@ public class CompanyDBDAO implements CompanyDAO {
 	}
 	
 	
+	/**
+	 * this method adds a coupon to company table and to companyCoupon table,
+	 * but! - A different name. If the name exists - throws exception.
+	 * @param coupon
+	 * @throws Exception
+	 */
 	@Override
 	public void companyCreateCoupon(Company company, Coupon coupon) throws Exception {
 		Connection connection = null;
@@ -118,10 +124,9 @@ public class CompanyDBDAO implements CompanyDAO {
 	}
 
 	/**
-	 * @remove this method delete 1 object of company by company id, from companies
-	 *         table.
-	 * @param long
-	 *            id
+	 * This method remove company by companyId from company table, and remove the
+	 * same company that Related to coupon and customer, In all tables.
+	 * @param company
 	 * @throws Exception
 	 */
 	@Override
@@ -164,10 +169,8 @@ public class CompanyDBDAO implements CompanyDAO {
 	}
 
 	/**
-	 * @removeCouponFromCompany this method delete coupon of Company by DELETE query
-	 *                          from two tables.
-	 * @param long
-	 *            couponId
+	 * @removeCouponFromCompany this method delete coupon of Company by DELETE query from two tables.
+	 * @param long couponId
 	 * @throws Exception
 	 */
 	@Override
@@ -220,8 +223,7 @@ public class CompanyDBDAO implements CompanyDAO {
 
 	/**
 	 * @update this method update 1 object of company, from companies table.
-	 * @param company
-	 *            object
+	 * @param company object
 	 * @throws Exception
 	 */
 	@Override
@@ -260,10 +262,8 @@ public class CompanyDBDAO implements CompanyDAO {
 	}
 
 	/**
-	 * @get1 this method get and print 1 object of company by company id, from
-	 *       companies table.
-	 * @param long
-	 *            id
+	 * @get1 this method get and print 1 object of company by company id, from companies table.
+	 * @param long id
 	 * @return company object
 	 * @throws Exception
 	 */
@@ -304,9 +304,8 @@ public class CompanyDBDAO implements CompanyDAO {
 	}
 
 	/**
-	 * @getAll this method get all and print objects of company, from companies
-	 *         table.
-	 * @return company object
+	 * @getAll this method get all and print objects of company, from companies table.
+	 * @return list of company object
 	 * @throws Exception
 	 */
 	@Override
@@ -350,11 +349,10 @@ public class CompanyDBDAO implements CompanyDAO {
 	}
 
 	/**
-	 * @getAll coupons by company id this method get and print objects of coupons by
-	 *         company id, from CompanyCoupon table.
-	 * @param long
-	 *            id
-	 * @return coupon object
+	 * @getAll CompanyCoupon by company id this method get and print objects of coupons by
+	 * company id, from CompanyCoupon table.
+	 * @param long id
+	 * @return list of coupon id
 	 * @throws Exception
 	 */
 	@Override
@@ -394,6 +392,12 @@ public class CompanyDBDAO implements CompanyDAO {
 		return coupons;
 	}
 
+	/**
+	 * @getAll this method get and print list of coupons object by company id, from companyCoupon table.
+	 * @param long id
+	 * @return list of coupons id
+	 * @throws Exception
+	 */
 	public List<Long> getCouponId(long companyId) throws Exception {
 		Connection connection = null;
 		try {
@@ -425,6 +429,13 @@ public class CompanyDBDAO implements CompanyDAO {
 		return couponsId;
 	}
 
+	/**
+	 * @getAll companyCoupon, this method get and print all objects of companyCoupon
+	 * from CompanyCoupon table.
+	 * @param companyCoupon object
+	 * @return list of companyCoupon object
+	 * @throws Exception
+	 */
 	@Override
 	public Set<CompanyCoupon> getAllCompanyCoupon() throws Exception {
 		Connection connection = null;
@@ -464,7 +475,12 @@ public class CompanyDBDAO implements CompanyDAO {
 		return set;
 	}
 	
-	
+	/**
+	 * @get1 this method get and print list of coupons object by company id, from companyCoupon table by companyId.
+	 * @param long id
+	 * @return list of coupon object
+	 * @throws Exception
+	 */
 	@Override
 	public Set<Coupon> getCompanyCoupons(long companyId) throws Exception {
 		Connection connection = null;
@@ -506,7 +522,6 @@ public class CompanyDBDAO implements CompanyDAO {
 
 	/**
 	 * this method login by companyUser check companyName and password
-	 * 
 	 * @throws Exception
 	 * @return boolean
 	 */
