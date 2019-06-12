@@ -37,6 +37,9 @@ public class TheTest {
 			System.out.println(e.getMessage());
 		}
 		
+		Database.dropTables();
+		Database.createTables();
+		
 		// Companies //
 		Company a1 = new Company(1, "Hp", "aa11", "hp@gmail.com");
 		Company a2 = new Company(2, "Lg", "bb22", "lg@gmail.com");
@@ -77,10 +80,8 @@ public class TheTest {
 		password = "1234";
 
 		try {
-			couponClientFacade = couponSystem.getInstance().login(name, password, clientType);
+			couponClientFacade = CouponSystem.login(name, password, clientType);
 			System.out.println("*******************Logged as Admin*******************\n");
-			Database.dropTables();
-			Database.createTables();
 			
 			AdminFacade adminFacade = new AdminFacade();
 
@@ -151,14 +152,14 @@ public class TheTest {
 		//***Company test***//
 		
 		// Bad login //
-//		name = "Sony";
-//		password = "cc33";
-//		System.out.println("Checking bad login as Company: ");
-//		try {
-//			couponSystem.login(name, password, clientType);
-//		} catch (Exception e) {
-//			throw new Exception("Failed to login as Company, name or password are wrong !");
-//		}
+		name = "Sony";
+		password = "cc343";
+		System.out.println("Checking bad login as Company: ");
+		try {
+			couponClientFacade = CouponSystem.login(name, password, clientType);
+		} catch (Exception e) {
+			throw new Exception("Failed to login as Company, name or password are wrong !");
+		}
 
 		// Good login //
 		name = "Sony";
@@ -166,7 +167,7 @@ public class TheTest {
 		clientType = ClientType.COMPANY;
 
 		try {
-			couponClientFacade=couponSystem.getInstance().login(name, password, clientType);
+			couponClientFacade=CouponSystem.login(name, password, clientType);
 			System.out.println("*******************Logged as Company*******************\n");
 			
 			CompanyFacade companyFacade = new CompanyFacade();

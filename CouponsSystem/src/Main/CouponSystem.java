@@ -66,7 +66,7 @@ public class CouponSystem {
 			}
 			break;
 		default:
-			throw new LoginException("blabla");
+			throw new LoginException("Login Falied! Invalid User or Password!");
 //			couponClientFacade = null;
 //		}
 //		couponClientFacade = couponClientFacade.login(name, password, clientType);
