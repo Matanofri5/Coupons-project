@@ -76,16 +76,7 @@ public class CouponSystem {
 			return couponClientFacade;
 		}
 		}
-//			couponClientFacade = null;
-//		}
-//		couponClientFacade = couponClientFacade.login(name, password, clientType);
-//		if (couponClientFacade != null) {
-//			return couponClientFacade;
-//		} else {
-//			throw new LoginException("Login Falied! Invalid User or Password!");
-//		}
 	
-
 	public void shutdown() throws Exception {
 
 		try {
