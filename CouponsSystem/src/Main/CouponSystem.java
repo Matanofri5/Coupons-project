@@ -45,7 +45,9 @@ public class CouponSystem {
 
 		switch (clientType) {
 		case ADMIN:
+			if (name=="admin" && password=="1234") {
 			couponClientFacade = new AdminFacade();
+			}
 			break;
 		case COMPANY:
 			if (clientType == ClientType.COMPANY) {

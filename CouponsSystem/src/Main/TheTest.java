@@ -130,10 +130,6 @@ public class TheTest {
 			adminFacade.getCustomer(1);
 			System.out.println("This customer was updated --> " + b1 + " \n");	
 			
-//			// Admin delete customer //
-//			adminFacade.removeCustomer(b5);
-//			System.out.println("Admin removed customer " + b5.getCustomerName() + "!");
-			
 			// Get all customer after update and delete //
 			System.out.println("Show all customer after update and delete");
 			customers = adminFacade.getAllCustomers();
@@ -155,7 +151,7 @@ public class TheTest {
 		
 		// Bad login //
 //		name = "Sony";
-//		password = "cc33";
+//		password = "c2c33";
 //		System.out.println("Checking bad login as Company: ");
 //		try {
 //			CouponSystem.login(name, password, clientType);
@@ -167,8 +163,6 @@ public class TheTest {
 		name = "Sony";
 		password = "cc33";
 		clientType = ClientType.COMPANY;
-		CouponClientFacade couponClientFacade;
-		couponClientFacade=couponSystem.getInstance().login(name, password, clientType);
 
 		try {
 			CouponSystem.login(name, password, clientType);
@@ -239,11 +233,11 @@ public class TheTest {
 			// Bad login //
 //			name = "Linoy";
 //			password = "45677";
-//			System.out.println("Checking bad login as Company: ");
+//			System.out.println("Checking bad login as Customer: ");
 //			try {
 //			CouponSystem.login(name, password, clientType);
 //			} catch (Exception e) {
-//				throw new Exception("Failed to login as Company, name or password are wrong !");
+//				throw new Exception("Failed to login as Customer, name or password are wrong !");
 //			}
 
 			// Good login //
@@ -303,7 +297,7 @@ public class TheTest {
 				password = "1234";
 				clientType =ClientType.ADMIN;
 				try {
-					couponSystem.login(name, password, clientType);
+					CouponSystem.login(name, password, clientType);
 					System.out.println("*******************Logged as Admin*******************\n");
 					
 					AdminFacade admin = new AdminFacade();
@@ -328,11 +322,11 @@ public class TheTest {
 				//  Login as Company to delete coupon //
 				
 				
-//				name = "Sony";
-//				password = "cc33";
-//				clientType = ClientType.COMPANY;
-//				try {
-//					couponSystem.login(name, password, clientType);
+				name = "Sony";
+				password = "cc33";
+				clientType = ClientType.COMPANY;
+				try {
+					CouponSystem.login(name, password, clientType);
 					System.out.println("*******************Logged as Company*******************\n");
 					
 					CompanyFacade company = new CompanyFacade();
@@ -342,9 +336,9 @@ public class TheTest {
 					company.removeCouponById(4);
 					System.out.println("Company delete coupon " + c4.getTitle());
 
-//				}catch (Exception e) {
-//					throw new Exception("Failed to login as company, name or password are wrong !");
-//				}
+				}catch (Exception e) {
+					throw new Exception("Failed to login as company, name or password are wrong !");
+				}
 		
 	}
 }
