@@ -2,6 +2,9 @@ package MyExceptions;
 
 import Company.Company;
 
+/**
+ * @RemoveCompanyException If deleting a company failed :(
+ */
 public class RemoveCompanyException extends Exception {
 
 	private Company company;

@@ -34,6 +34,10 @@ public class DateUtils {
 		return date;
 	}
 	
+	/**
+	 * This method get the Local Date and return date before 2 months.
+	 * @return date
+	 */
 	public static Date getByTwoMountsAgo() {
 		LocalDate localDate = LocalDate.now();
 		localDate = localDate.minusMonths(2);
@@ -42,6 +46,10 @@ public class DateUtils {
 		return date;
 	}
 	
+	/**
+	 * This method get the Local Date and return date plus 2 weeks from today.
+	 * @return date
+	 */
 	public static Date getByTwoWeeks() {
 		LocalDate localDate = LocalDate.now();
 		localDate = localDate.plusWeeks(2);
@@ -50,6 +58,10 @@ public class DateUtils {
 		return date;
 	}
 	
+	/**
+	 * This method get the Local Date and return date plus one week from today.
+	 * @return date
+	 */
 	public static Date getByWeek() {
 		LocalDate localDate = LocalDate.now();
 		localDate = localDate.plusWeeks(1);

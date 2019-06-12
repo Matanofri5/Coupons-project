@@ -2,6 +2,9 @@ package MyExceptions;
 
 import Company.Company;
 
+/**
+ * @CompanyCreationException if The method Faild to create company
+ */
 public class CompanyCreationException extends Exception {
 
 	private Company company;
