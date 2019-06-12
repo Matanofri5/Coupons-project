@@ -93,7 +93,12 @@ public class CustomerFacade implements CouponClientFacade {
 		
 	}
 	
-	
+	/**
+	 * @getAllpurchasedCoupons this method get all objects of coupons that Bought by this customerId, from CustomerCoupon
+	 *         table.
+	 * @return coupon list object
+	 * @throws Exception
+	 */
 	public Set<Coupon> getAllpurchasedCoupons(long customerId) throws Exception{
 		return customerDAO.getAllCustomerCoupons(customerId);
 	}
@@ -109,7 +114,13 @@ public class CustomerFacade implements CouponClientFacade {
 		return allcoupons;
 	}
 	
-	
+	/**
+	 * @getCouponbyType this method get all and print objects of coupons, from coupon table, by
+	 *  Type that Bought by this customer
+	 *  @param CouponType, Customer
+	 *  @return coupon list object
+	 *  @throws Exception
+	 */
 	public List<Coupon> getCouponbyType(Customer customer, CouponType type) throws Exception{
 		List<Coupon> coupons = getAllCustomerCoupon(customer);
 		List<Coupon> couponByType = new ArrayList<Coupon>();
@@ -124,7 +135,13 @@ public class CustomerFacade implements CouponClientFacade {
 		return couponByType;
 	}
 	
-	
+	/**
+	 * @getCouponByPrice this method get all and print objects of coupons, from coupon table, by
+	 *  price that Bought by this customer
+	 *  @param price, Customer
+	 *  @return coupon list object
+	 *  @throws Exception
+	 */
 	public List<Coupon> getCouponByPrice (Customer customer, double price) throws Exception{
 		List<Coupon> coupons = getAllCustomerCoupon(customer);
 		List<Coupon> couponByPrice = new ArrayList<Coupon>();

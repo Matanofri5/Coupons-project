@@ -279,6 +279,7 @@ public class CouponDBDAO implements CouponDAO {
 	/**
 	 * @getAll
 	 * this method get all and print objects of coupons, from coupon table, only by Type
+	 * @param CouponType
 	 *  @return coupon list object
 	 *  @throws Exception
 	 */
