@@ -131,6 +131,11 @@ public class CustomerDBDAO implements CustomerDAO {
 		}
 	}
 
+	/**
+	 * This method remove CustomerCoupon by couponId from CustomerCoupon table
+	 * @param couponId
+	 * @throws Exception
+	 */
 	public void removeCouponFromCustomerCoupon(long couponId) throws Exception {
 		Connection connection = null;
 		try {
@@ -292,6 +297,10 @@ public class CustomerDBDAO implements CustomerDAO {
 		return set;
 	}
 
+	/**
+	 * @customerPurchaseCoupon this method purchase a coupon by specific customer.
+	 * @throws Exception
+	 */
 	@Override
 	public void customerPurchaseCoupon(Coupon coupon, Customer customer) throws Exception {
 		Connection connection = null;
@@ -327,6 +336,12 @@ public class CustomerDBDAO implements CustomerDAO {
 		}
 	}
 
+	/**
+	 * @getAllCustomerCoupons this method get all objects of coupon by customerId, from CustomerCoupon
+	 *         table.
+	 * @return coupon list object
+	 * @throws Exception
+	 */
 	@Override
 	public Set<Coupon> getAllCustomerCoupons(long customerId) throws Exception {
 		Connection connection = null;
@@ -367,7 +382,12 @@ public class CustomerDBDAO implements CustomerDAO {
 		return coupons;
 	}
 	
-	
+	/**
+	 * @getCustomerCoupons this method get all objects of CustomerCoupon by customerId, from CustomerCoupon
+	 *         table.
+	 * @return coupon list long
+	 * @throws Exception
+	 */
 	@Override
 	public List<Long> getCustomerCoupons(long customerId) throws Exception {
 		Connection connection = null;
@@ -405,6 +425,11 @@ public class CustomerDBDAO implements CustomerDAO {
 		return coupons;
 	}
 
+	/**
+	 * this method login by customerUser check customerName and password
+	 * @throws Exception, LoginException
+	 * @return boolean
+	 */
 	@Override
 	public boolean login(String name, String password) throws Exception, LoginException {
 		Connection connection = null;

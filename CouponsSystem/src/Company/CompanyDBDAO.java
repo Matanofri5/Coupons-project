@@ -523,7 +523,7 @@ public class CompanyDBDAO implements CompanyDAO {
 	/**
 	 * this method login by companyUser check companyName and password
 	 * @throws Exception
-	 * @return boolean
+	 * @return boolean, LoginException
 	 */
 	@Override
 	public boolean login(String name, String password) throws Exception, LoginException {

@@ -106,7 +106,7 @@ public class CompanyFacade implements CouponClientFacade{
 		return companyDAO.getCompany(id);
 	}
 	
-	
+	//
 	public Company getCouponById(long couponId) throws Exception {
 		return companyDAO.getCompany(couponId);
 	}
@@ -122,7 +122,12 @@ public class CompanyFacade implements CouponClientFacade{
 		return companyDAO.getAllCompanyCoupons(companyId);
 	}
 	
-	
+	/**
+	 * @getAllCompanyCoupon this method get coupons by specific company object
+	 * @param company
+	 * @return list of coupons
+	 * @throws Exception
+	 */
 	public List<Coupon> getAllCompanyCoupon(Company company) throws Exception {
 		long companyId= company.getId();
 		List<Long> coupons = companyDAO.getAllCompanyCoupons(companyId);
@@ -134,7 +139,12 @@ public class CompanyFacade implements CouponClientFacade{
 		
 	}
 	
-	
+	/**
+	 * @getCouponbyType this method get coupons by specific company object & by Type!
+	 * @param Company, CouponType
+	 * @return list of coupons
+	 * @throws Exception
+	 */
 	public List<Coupon> getCouponbyType(Company company, CouponType type) throws Exception{
 		List<Coupon> coupons = getAllCompanyCoupon(company);
 		List<Coupon> couponByType = new ArrayList<Coupon>();
@@ -149,7 +159,12 @@ public class CompanyFacade implements CouponClientFacade{
 		return couponByType;
 	}
 	
-	
+	/**
+	 * @getCouponbyType this method get coupons by specific company object & by price!
+	 * @param Company, Price
+	 * @return list of coupons
+	 * @throws Exception
+	 */
 	public List<Coupon> getCouponByPrice (Company company, double price) throws Exception{
 		List<Coupon> coupons = getAllCompanyCoupon(company);
 		List<Coupon> couponByPrice = new ArrayList<Coupon>();
@@ -164,6 +179,12 @@ public class CompanyFacade implements CouponClientFacade{
 		return couponByPrice;
 	}
 	
+	/**
+	 * @getCouponByDate this method get coupons by specific company object & by endDate!
+	 * @param Company, Date
+	 * @return list of coupons
+	 * @throws Exception
+	 */
 	public List<Coupon> getCouponByDate (Company company, Date endDate) throws Exception{
 		List<Coupon> coupons = getAllCompanyCoupon(company);
 		List<Coupon> couponByDate = new ArrayList<Coupon>();
