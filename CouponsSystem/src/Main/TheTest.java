@@ -1,6 +1,5 @@
 package Main;
 
-import java.awt.Window.Type;
 import java.util.HashSet;
 import java.util.Set;
 import Clients.AdminFacade;
@@ -26,8 +25,6 @@ public class TheTest {
 		String name;
 		String password;
 		ClientType clientType = ClientType.ADMIN;
-		CouponClientFacade couponClientFacade;
-
 		Set<Company> companies = new HashSet<Company>();
 		Set<Customer> customers = new HashSet<Customer>();
 		
@@ -37,16 +34,12 @@ public class TheTest {
 			System.out.println(e.getMessage());
 		}
 		
-		Database.dropTables();
-		Database.createTables();
-		
 		// Companies //
 		Company a1 = new Company(1, "Hp", "aa11", "hp@gmail.com");
 		Company a2 = new Company(2, "Lg", "bb22", "lg@gmail.com");
 		Company a3 = new Company(3, "Sony", "cc33", "sony@gmail.com");
 		Company a4 = new Company(4, "CocaCola", "dd44", "cocacola@gamil.com");
 		Company a5 = new Company(5, "Samsung", "ee55", "samsung@gamil.com");
-		Company a6 = new Company(6, "Intel", "ff66", "intel@gmail.com");
 		
 		// Customers //
 		Customer b1 = new Customer(1, "Matan", "123");
@@ -60,8 +53,8 @@ public class TheTest {
 		Coupon c2 = new Coupon(2, "Chairs", DateUtils.getCurrentDate(), DateUtils.getByTwoWeeks(), 66, "Hagor", 12.5, "website", CouponType.CAMPING);
 		Coupon c3 = new Coupon(3, "Pizza", DateUtils.getCurrentDate(), DateUtils.getByWeek(), 77, "PizzaHut", 41.2, "website", CouponType.FOOD);
 		Coupon c4 = new Coupon(4, "Roller coaster", DateUtils.getCurrentDate(), DateUtils.getByWeek(), 99, "LunaPark", 32.4, "website", CouponType.TRAVELING);
-		Coupon c5 = new Coupon(6, "Teva pharm", DateUtils.getCurrentDate(), DateUtils.getByTwoWeeks(), 0, "Teva", 4444.7, "website", CouponType.HEALTH);
-		Coupon c6 = new Coupon(7, "Sushi", DateUtils.getCurrentDate(), DateUtils.getByTwoMountsAgo(), 55, "roll", 55/5, "website", CouponType.FOOD);
+		Coupon c5 = new Coupon(5, "Teva pharm", DateUtils.getCurrentDate(), DateUtils.getByTwoWeeks(), 0, "Teva", 4444.7, "website", CouponType.HEALTH);
+		Coupon c6 = new Coupon(8, "Sushi", DateUtils.getCurrentDate(), DateUtils.getByTwoMountsAgo(), 55, "roll", 55/5, "website", CouponType.FOOD);
 
 		//***Admin test***//
 		
@@ -70,7 +63,7 @@ public class TheTest {
 //		password = "12354";
 //		System.out.println("Checking bad login as Admin: ");
 //		try {
-//			couponSystem.login(name, password, clientType);
+//		CouponSystem.login(name, password, clientType);
 //		} catch (Exception e) {
 //			throw new Exception("Failed to login as Admin, name or password are wrong !");
 //		}
@@ -78,10 +71,11 @@ public class TheTest {
 		// Good login //
 		name = "admin";
 		password = "1234";
-
 		try {
-			couponClientFacade = CouponSystem.login(name, password, clientType);
+			CouponSystem.login(name, password, clientType);
 			System.out.println("*******************Logged as Admin*******************\n");
+			Database.dropTables();
+			Database.createTables();
 			
 			AdminFacade adminFacade = new AdminFacade();
 
@@ -136,6 +130,10 @@ public class TheTest {
 			adminFacade.getCustomer(1);
 			System.out.println("This customer was updated --> " + b1 + " \n");	
 			
+//			// Admin delete customer //
+//			adminFacade.removeCustomer(b5);
+//			System.out.println("Admin removed customer " + b5.getCustomerName() + "!");
+			
 			// Get all customer after update and delete //
 			System.out.println("Show all customer after update and delete");
 			customers = adminFacade.getAllCustomers();
@@ -151,23 +149,29 @@ public class TheTest {
 		
 		//***Company test***//
 		
+//		name = null;
+//		password = null;
+//		clientType = null;
+		
 		// Bad login //
-		name = "Sony";
-		password = "cc343";
-		System.out.println("Checking bad login as Company: ");
-		try {
-			couponClientFacade = CouponSystem.login(name, password, clientType);
-		} catch (Exception e) {
-			throw new Exception("Failed to login as Company, name or password are wrong !");
-		}
+//		name = "Sony";
+//		password = "cc33";
+//		System.out.println("Checking bad login as Company: ");
+//		try {
+//			CouponSystem.login(name, password, clientType);
+//		} catch (Exception e) {
+//			throw new Exception("Failed to login as Company, name or password are wrong !");
+//		}
 
 		// Good login //
 		name = "Sony";
 		password = "cc33";
 		clientType = ClientType.COMPANY;
+		CouponClientFacade couponClientFacade;
+		couponClientFacade=couponSystem.getInstance().login(name, password, clientType);
 
 		try {
-			couponClientFacade=CouponSystem.login(name, password, clientType);
+			CouponSystem.login(name, password, clientType);
 			System.out.println("*******************Logged as Company*******************\n");
 			
 			CompanyFacade companyFacade = new CompanyFacade();
@@ -179,13 +183,11 @@ public class TheTest {
 			companyFacade.createCoupon(a2, c3);
 			companyFacade.createCoupon(a3, c4);
 			companyFacade.createCoupon(a5, c5);
-			companyFacade.createCoupon(a6, c6);
 			System.out.println("Company " + a1.getCompanyName() + " added new coupon : " + c1.getTitle());
 			System.out.println("Company " + a1.getCompanyName() + " added new coupon : " + c2.getTitle());
 			System.out.println("Company " + a2.getCompanyName() + " added new coupon : " + c3.getTitle());
 			System.out.println("Company " + a3.getCompanyName() + " added new coupon : " + c4.getTitle());
-			System.out.println("Company " + a5.getCompanyName() + " added new coupon : " + c5.getTitle());
-			System.out.println("Company " + a6.getCompanyName() + " added new coupon : " + c6.getTitle() + "\n");
+			System.out.println("Company " + a5.getCompanyName() + " added new coupon : " + c5.getTitle() + "\n");
 
 			
 			// Company trying to create coupon with the same title //
@@ -230,12 +232,16 @@ public class TheTest {
 		
 			//***Customer test***//
 			
+//			name = null;
+//			password = null;
+//			clientType = null;
+			
 			// Bad login //
 //			name = "Linoy";
 //			password = "45677";
 //			System.out.println("Checking bad login as Company: ");
 //			try {
-//				couponSystem.login(name, password, clientType);
+//			CouponSystem.login(name, password, clientType);
 //			} catch (Exception e) {
 //				throw new Exception("Failed to login as Company, name or password are wrong !");
 //			}
@@ -245,7 +251,7 @@ public class TheTest {
 			password = "456";
 			clientType = ClientType.CUSTOMER;
 			try {
-				couponClientFacade = couponSystem.getInstance().login(name, password, clientType);
+				CouponSystem.login(name, password, clientType);
 				System.out.println("*******************Logged as Customer*******************\n");
 			
 				CustomerFacade customerFacade = new CustomerFacade();
@@ -295,8 +301,9 @@ public class TheTest {
 				
 				name = "admin";
 				password = "1234";
+				clientType =ClientType.ADMIN;
 				try {
-					couponClientFacade = couponSystem.getInstance().login(name, password, clientType);
+					couponSystem.login(name, password, clientType);
 					System.out.println("*******************Logged as Admin*******************\n");
 					
 					AdminFacade admin = new AdminFacade();
@@ -321,11 +328,11 @@ public class TheTest {
 				//  Login as Company to delete coupon //
 				
 				
-				name = "Sony";
-				password = "cc33";
-				clientType = ClientType.COMPANY;
-				try {
-					couponClientFacade = couponSystem.getInstance().login(name, password, clientType);
+//				name = "Sony";
+//				password = "cc33";
+//				clientType = ClientType.COMPANY;
+//				try {
+//					couponSystem.login(name, password, clientType);
 					System.out.println("*******************Logged as Company*******************\n");
 					
 					CompanyFacade company = new CompanyFacade();
@@ -335,9 +342,9 @@ public class TheTest {
 					company.removeCouponById(4);
 					System.out.println("Company delete coupon " + c4.getTitle());
 
-				}catch (Exception e) {
-					throw new Exception("Failed to login as company, name or password are wrong !");
-				}
+//				}catch (Exception e) {
+//					throw new Exception("Failed to login as company, name or password are wrong !");
+//				}
 		
 	}
 }
