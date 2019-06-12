@@ -55,7 +55,7 @@ public class AdminFacade implements CouponClientFacade {
 	 * @param Type
 	 */
 	@Override
-	public CouponClientFacade login(String name, String password, ClientType clientType) throws Exception {
+	public CouponClientFacade login(String name, String password, ClientType clientType) {
 		if (name.equals(adminName) && password.equals(adminPassword)) {
 			this.successLogin = true;
 			return this;

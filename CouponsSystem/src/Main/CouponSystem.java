@@ -39,7 +39,7 @@ public class CouponSystem {
 		return instance;
 	}
 
-	public CouponClientFacade login(String name, String password, ClientType clientType) throws Exception, LoginException {
+	public static CouponClientFacade login(String name, String password, ClientType clientType) throws Exception, LoginException {
 
 		CouponClientFacade couponClientFacade = null;
 
@@ -66,15 +66,17 @@ public class CouponSystem {
 			}
 			break;
 		default:
-			couponClientFacade = null;
-		}
-		couponClientFacade = couponClientFacade.login(name, password, clientType);
-		if (couponClientFacade != null) {
-			return couponClientFacade;
-		} else {
-			throw new LoginException("Login Falied! Invalid User or Password!");
-		}
+			throw new LoginException("blabla");
+//			couponClientFacade = null;
+//		}
+//		couponClientFacade = couponClientFacade.login(name, password, clientType);
+//		if (couponClientFacade != null) {
+//			return couponClientFacade;
+//		} else {
+//			throw new LoginException("Login Falied! Invalid User or Password!");
+//		}
 	}
+		return couponClientFacade;}
 
 	public void shutdown() throws Exception {
 

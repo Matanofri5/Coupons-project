@@ -44,7 +44,7 @@ public class CompanyFacade implements CouponClientFacade{
 	}
 	
 	@Override
-	public CouponClientFacade login(String name, String password, ClientType clientType) throws Exception {
+	public CouponClientFacade login(String name, String password, ClientType clientType) {
 		return null;
 	}
 	
