@@ -29,6 +29,10 @@ public class Database {
 	}	
 	
 	
+	/**
+	 * @dropTables this method delete all the tables.
+	 * @throws Exception
+	 */
 	public static void dropTables() throws Exception{
 		String sql;
 		
@@ -106,6 +110,10 @@ public class Database {
 		
 	}
 	
+	/**
+	 * @createTables this method create all the tables.
+	 * @throws Exception
+	 */
 	public static void createTables() throws SQLException {
 		String sql;
 		
