@@ -17,12 +17,21 @@ public class DailyTask implements Runnable {
 	private CompanyDAO companyDAO = new CompanyDBDAO();
 	private int sleepingTime = DailyTask.SLEEPTIME;
 	
+	
+	/**
+	 * @partial ctor
+	 * @param sleepTime
+	 */
 	public DailyTask (int sleepTime) {
 		DailyTask.SLEEPTIME = sleepTime;
 		this.sleepingTime = sleepTime;
 	}
 	
-
+	/**
+	 * @run this method Call to thread to Run every 24 hours.
+	 * just for check- every 5 Seconds.
+	 * Checking the end date of the coupon, If Expired - remove this coupon.
+	 */
 	public void run () {
 		while (running) {
 			
@@ -87,6 +96,9 @@ public class DailyTask implements Runnable {
 //			}
 //	}
 
+	/**
+	 * this method Call to thread to stop running.
+	 */
 	public void stopTask() {
 		this.running = false;
 	}

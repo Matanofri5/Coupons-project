@@ -52,7 +52,8 @@ public class ConnectionPool {
 	}
 
 	/**
-	 * getInstance method - SINGLETON
+	 * @getInstance method - SINGLETON
+	 * @return instance
 	 */
 	public static ConnectionPool getInstance() throws Exception {
 		if (instance == null)
