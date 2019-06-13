@@ -20,7 +20,11 @@ public class TheTest {
 		System.out.println("Welcome to CouponSystem");
 
 		//Connecting to couponSystem singelton and start dailyTask to delete expired coupons !
-		CouponSystem couponSystem = CouponSystem.getInstance();
+		CouponSystem.getInstance();
+		
+		Database.dropTables();
+		Database.createTables();
+		
 		
 		String name;
 		String password;
@@ -54,7 +58,7 @@ public class TheTest {
 		Coupon c3 = new Coupon(3, "Pizza", DateUtils.getCurrentDate(), DateUtils.getByWeek(), 77, "PizzaHut", 41.2, "website", CouponType.FOOD);
 		Coupon c4 = new Coupon(4, "Roller coaster", DateUtils.getCurrentDate(), DateUtils.getByWeek(), 99, "LunaPark", 32.4, "website", CouponType.TRAVELING);
 		Coupon c5 = new Coupon(5, "Teva pharm", DateUtils.getCurrentDate(), DateUtils.getByTwoWeeks(), 0, "Teva", 4444.7, "website", CouponType.HEALTH);
-		Coupon c6 = new Coupon(8, "Sushi", DateUtils.getCurrentDate(), DateUtils.getByTwoMountsAgo(), 55, "roll", 55/5, "website", CouponType.FOOD);
+		Coupon c6 = new Coupon(6, "Sushi", DateUtils.getCurrentDate(), DateUtils.getByTwoMountsAgo(), 55, "roll", 55/5, "website", CouponType.FOOD);
 
 		//***Admin test***//
 		
@@ -74,8 +78,6 @@ public class TheTest {
 		try {
 			CouponSystem.login(name, password, clientType);
 			System.out.println("*******************Logged as Admin*******************\n");
-			Database.dropTables();
-			Database.createTables();
 			
 			AdminFacade adminFacade = new AdminFacade();
 
@@ -130,10 +132,6 @@ public class TheTest {
 			adminFacade.getCustomer(1);
 			System.out.println("This customer was updated --> " + b1 + " \n");	
 			
-//			// Admin delete customer //
-//			adminFacade.removeCustomer(b5);
-//			System.out.println("Admin removed customer " + b5.getCustomerName() + "!");
-			
 			// Get all customer after update and delete //
 			System.out.println("Show all customer after update and delete");
 			customers = adminFacade.getAllCustomers();
@@ -148,14 +146,10 @@ public class TheTest {
 		
 		
 		//***Company test***//
-		
-//		name = null;
-//		password = null;
-//		clientType = null;
-		
+
 		// Bad login //
 //		name = "Sony";
-//		password = "cc33";
+//		password = "c2c33";
 //		System.out.println("Checking bad login as Company: ");
 //		try {
 //			CouponSystem.login(name, password, clientType);
@@ -167,8 +161,6 @@ public class TheTest {
 		name = "Sony";
 		password = "cc33";
 		clientType = ClientType.COMPANY;
-		CouponClientFacade couponClientFacade;
-		couponClientFacade=couponSystem.getInstance().login(name, password, clientType);
 
 		try {
 			CouponSystem.login(name, password, clientType);
@@ -177,17 +169,19 @@ public class TheTest {
 			CompanyFacade companyFacade = new CompanyFacade();
 			
 
-			// Company creates coupon and
+			// Company creates coupon and add them to join table//
 			companyFacade.createCoupon(a1, c1);
 			companyFacade.createCoupon(a1, c2);
 			companyFacade.createCoupon(a2, c3);
 			companyFacade.createCoupon(a3, c4);
 			companyFacade.createCoupon(a5, c5);
+			companyFacade.createCoupon(a5, c6);
 			System.out.println("Company " + a1.getCompanyName() + " added new coupon : " + c1.getTitle());
 			System.out.println("Company " + a1.getCompanyName() + " added new coupon : " + c2.getTitle());
 			System.out.println("Company " + a2.getCompanyName() + " added new coupon : " + c3.getTitle());
 			System.out.println("Company " + a3.getCompanyName() + " added new coupon : " + c4.getTitle());
-			System.out.println("Company " + a5.getCompanyName() + " added new coupon : " + c5.getTitle() + "\n");
+			System.out.println("Company " + a5.getCompanyName() + " added new coupon : " + c5.getTitle());
+			System.out.println("Company " + a5.getCompanyName() + " added new coupon : " + c6.getTitle() + "\n");
 
 			
 			// Company trying to create coupon with the same title //
@@ -232,18 +226,14 @@ public class TheTest {
 		
 			//***Customer test***//
 			
-//			name = null;
-//			password = null;
-//			clientType = null;
-			
 			// Bad login //
 //			name = "Linoy";
 //			password = "45677";
-//			System.out.println("Checking bad login as Company: ");
+//			System.out.println("Checking bad login as Customer: ");
 //			try {
 //			CouponSystem.login(name, password, clientType);
 //			} catch (Exception e) {
-//				throw new Exception("Failed to login as Company, name or password are wrong !");
+//				throw new Exception("Failed to login as Customer, name or password are wrong !");
 //			}
 
 			// Good login //
@@ -256,7 +246,7 @@ public class TheTest {
 			
 				CustomerFacade customerFacade = new CustomerFacade();
 				
-				// Customer purchase coupon //
+				// Customer purchase coupon and add them to join table //
 				customerFacade.purchaseCoupon(b1, 1);
 				customerFacade.purchaseCoupon(b1, 2);
 				customerFacade.purchaseCoupon(b2, 3);
@@ -303,7 +293,7 @@ public class TheTest {
 				password = "1234";
 				clientType =ClientType.ADMIN;
 				try {
-					couponSystem.login(name, password, clientType);
+					CouponSystem.login(name, password, clientType);
 					System.out.println("*******************Logged as Admin*******************\n");
 					
 					AdminFacade admin = new AdminFacade();
@@ -328,11 +318,11 @@ public class TheTest {
 				//  Login as Company to delete coupon //
 				
 				
-//				name = "Sony";
-//				password = "cc33";
-//				clientType = ClientType.COMPANY;
-//				try {
-//					couponSystem.login(name, password, clientType);
+				name = "Sony";
+				password = "cc33";
+				clientType = ClientType.COMPANY;
+				try {
+					CouponSystem.login(name, password, clientType);
 					System.out.println("*******************Logged as Company*******************\n");
 					
 					CompanyFacade company = new CompanyFacade();
@@ -342,9 +332,9 @@ public class TheTest {
 					company.removeCouponById(4);
 					System.out.println("Company delete coupon " + c4.getTitle());
 
-//				}catch (Exception e) {
-//					throw new Exception("Failed to login as company, name or password are wrong !");
-//				}
+				}catch (Exception e) {
+					throw new Exception("Failed to login as company, name or password are wrong !");
+				}
 		
 	}
 }

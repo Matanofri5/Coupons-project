@@ -23,8 +23,6 @@ public class AdminFacade implements CouponClientFacade {
 	/**
 	 * Data Members
 	 */
-	private static final String adminName = "admin";
-	private static final String adminPassword = "1234";
 	private CompanyDAO companyDAO;
 	private CustomerDAO customerDAO;
 	private boolean successLogin = true;
@@ -56,10 +54,6 @@ public class AdminFacade implements CouponClientFacade {
 	 */
 	@Override
 	public CouponClientFacade login(String name, String password, ClientType clientType) {
-		if (name.equals(adminName) && password.equals(adminPassword)) {
-			this.successLogin = true;
-			return this;
-		}
 			return null;
 	}
 

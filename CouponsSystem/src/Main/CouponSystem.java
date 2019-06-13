@@ -66,7 +66,9 @@ public class CouponSystem {
 
 		switch (clientType) {
 		case ADMIN:
+			if (name=="admin" && password=="1234") {
 			couponClientFacade = new AdminFacade();
+			}
 			break;
 		case COMPANY:
 			if (clientType == ClientType.COMPANY) {
@@ -95,16 +97,7 @@ public class CouponSystem {
 			return couponClientFacade;
 		}
 		}
-//			couponClientFacade = null;
-//		}
-//		couponClientFacade = couponClientFacade.login(name, password, clientType);
-//		if (couponClientFacade != null) {
-//			return couponClientFacade;
-//		} else {
-//			throw new LoginException("Login Falied! Invalid User or Password!");
-//		}
 	
-
 	/**
 	 * Shutdown the system. close all the connectionPool and thread.
 	 **/
