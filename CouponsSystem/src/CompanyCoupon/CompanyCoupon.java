@@ -22,8 +22,8 @@ public class CompanyCoupon {
 	 * @Full CTOR
 	 */
 	public CompanyCoupon(long companyId, long couponId) {
-		this.companyId = companyId;
-		this.couponId = couponId;
+		setCompanyId(companyId);
+		setCouponId(couponId);
 	}
 
 	/**
