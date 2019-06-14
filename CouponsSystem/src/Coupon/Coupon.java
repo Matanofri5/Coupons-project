@@ -35,15 +35,15 @@ public class Coupon {
 	public Coupon(long id, String title, java.util.Date startDate, java.util.Date endDate, int amount, String message,
 			double price, String image, CouponType couponType) {
 		super();
-		this.id = id;
-		this.title = title;
-		this.startDate = (Date) startDate;
-		this.endDate = (Date) endDate;
-		this.amount = amount;
-		this.message = message;
-		this.price = price;
-		this.image = image;
-		this.type = couponType;
+		setId(id);
+		setTitle(title);
+		setStartDate(startDate);
+		setEndDate(endDate);
+		setAmount(amount);
+		setMessage(message);
+		setPrice(price);
+		setImage(image);
+		setType(couponType);
 	}
 
 	/**

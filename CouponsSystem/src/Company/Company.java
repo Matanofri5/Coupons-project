@@ -25,10 +25,11 @@ public class Company {
 	 * @Full CTOR
 	 */
 	public Company(long id, String companyName, String password, String email) {
-		this.id = id;
-		this.companyName = companyName;
-		this.password = password;
-		this.email = email;
+		setId(id);
+		setCompanyName(companyName);
+		setPassword(password);
+		setEmail(email);
+
 	}
 
 	/**

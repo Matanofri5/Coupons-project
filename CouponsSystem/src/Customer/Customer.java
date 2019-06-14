@@ -23,9 +23,9 @@ public class Customer {
 	 * @Full CTOR
 	 */
 	public Customer(long id, String customerName, String password) {
-		this.id = id;
-		this.customerName = customerName;
-		this.password = password;
+		setCustomerName(customerName);
+		setId(id);
+		setPassword(password);
 	}
 
 	/**
