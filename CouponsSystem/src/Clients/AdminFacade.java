@@ -10,7 +10,6 @@ import Customer.Customer;
 import Customer.CustomerDAO;
 import Customer.CustomerDBDAO;
 import Coupon.Coupon;
-import MyExceptions.CompanyAlreadyExistsException;
 import MyExceptions.CustomerAlreadyExistsException;
 
 /**
@@ -69,7 +68,7 @@ public class AdminFacade implements CouponClientFacade {
 			while (i.hasNext()) {
 				Company current = i.next();
 				if (company.getCompanyName().equals(current.getCompanyName())) {
-					throw new CompanyAlreadyExistsException("This Company already exist !");
+					throw new MyExceptions.CompanyAlreadyExistsException("This Company already exist !");
 				}
 			}
 			if (!i.hasNext()) {

@@ -58,7 +58,7 @@ public class CustomerFacade implements CouponClientFacade {
 	 * if the coupon not exists it create and update at the table and set amount by -1.
 	 * @param customer
 	 * @param couponId
-	 * @throws Exception
+	 * @throws Exception, CouponNotAvailableException
 	 */
 	public void purchaseCoupon(Customer customer, long couponId) throws Exception, CouponNotAvailableException {
 		try {

@@ -148,8 +148,9 @@ public class TheTest {
 		//***Company test***//
 
 		// Bad login //
-//		name = "Sony";
-//		password = "c2c33";
+//		name = "Souny";
+//		password = "cc33";
+//		clientType = ClientType.COMPANY;
 //		System.out.println("Checking bad login as Company: ");
 //		try {
 //			CouponSystem.login(name, password, clientType);
@@ -185,7 +186,7 @@ public class TheTest {
 
 			
 			// Company trying to create coupon with the same title //
-			System.out.println("Trying to purchase coupon who has the same Title");
+			System.out.println("Trying to create coupon who has the same Title");
 			companyFacade.createCoupon(a1, c5);System.out.println("\n");
 			
 			// Company update coupon by endDate and double price //
@@ -214,7 +215,7 @@ public class TheTest {
 			System.out.println("Get coupons of company " + a1.getCompanyName() + " by specific price");
 			System.out.println(companyFacade.getCouponByPrice(a1, 24.6) + "\n");
 			
-			
+
 		} catch (Exception e) {
 			throw new Exception("Failed to login as Company, name or password are wrong !");
 		}
@@ -229,6 +230,7 @@ public class TheTest {
 			// Bad login //
 //			name = "Linoy";
 //			password = "45677";
+//			clientType = ClientType.CUSTOMER;
 //			System.out.println("Checking bad login as Customer: ");
 //			try {
 //			CouponSystem.login(name, password, clientType);
@@ -331,6 +333,7 @@ public class TheTest {
 					// Company delete coupon, also delete all coupons that customer purchase that related to this id //
 					company.removeCouponById(4);
 					System.out.println("Company delete coupon " + c4.getTitle());
+				
 
 				}catch (Exception e) {
 					throw new Exception("Failed to login as company, name or password are wrong !");
