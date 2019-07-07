@@ -19,20 +19,21 @@ import MyExceptions.CouponNotAvailableException;
 public class CustomerFacade implements CouponClientFacade {
 	private CustomerDAO customerDAO ;
 	private CouponDAO couponDAO ;
-	
-	/**
-	 * @partial CTOR 
-	 */
-	public CustomerFacade(CustomerDAO customerDAO, CouponDAO couponDAO) throws Exception {
-		this.customerDAO = new CustomerDBDAO();
-		this.couponDAO = new CouponDBDAO();
-	}
+	private Customer customer;
 	
 	/**
 	 * @throws Exception 
 	 * @Empty CTOR
 	 */
-	public CustomerFacade() throws Exception {
+	public CustomerFacade() {
+		
+	}
+	
+	/**
+	 * @partial CTOR 
+	 */
+	public CustomerFacade(Customer customer) throws Exception {
+		this.customer = customer;
 		this.customerDAO = new CustomerDBDAO();
 		this.couponDAO = new CouponDBDAO();
 	}
@@ -60,10 +61,10 @@ public class CustomerFacade implements CouponClientFacade {
 	 * @param couponId
 	 * @throws Exception, CouponNotAvailableException
 	 */
-	public void purchaseCoupon(Customer customer, long couponId) throws Exception, CouponNotAvailableException {
+	public void purchaseCoupon(long couponId) throws Exception, CouponNotAvailableException {
 		try {
 			Coupon custcoupon = couponDAO.getCoupon(couponId);
-			customer = customerDAO.getCustomer(customer.getId());
+			this.customer = customerDAO.getCustomer(this.customer.getId());
 			
 			if (custcoupon == null) {
 				throw new CouponNotAvailableException("This coupon doesn't exist, customer failed purchase coupon");
@@ -75,7 +76,7 @@ public class CustomerFacade implements CouponClientFacade {
 				throw new CouponNotAvailableException("This coupon is out of stock !");
 			}
 			
-			Set<Coupon> coupons = customerDAO.getAllCustomerCoupons(customer.getId());
+			Set<Coupon> coupons = customerDAO.getAllCustomerCoupons(this.customer.getId());
 			Iterator<Coupon> iterator = coupons.iterator();
 			while (iterator.hasNext()) {
 				Coupon current = iterator.next();
@@ -84,7 +85,7 @@ public class CustomerFacade implements CouponClientFacade {
 				}
 			}
 			
-			customerDAO.customerPurchaseCoupon(custcoupon, customer);
+			customerDAO.customerPurchaseCoupon(custcoupon, this.customer);
 			custcoupon.setAmount(custcoupon.getAmount()-1);
 			couponDAO.updateCoupon(custcoupon);
 		} catch (Exception e) {
@@ -121,8 +122,8 @@ public class CustomerFacade implements CouponClientFacade {
 	 *  @return coupon list object
 	 *  @throws Exception
 	 */
-	public List<Coupon> getCouponbyType(Customer customer, CouponType type) throws Exception{
-		List<Coupon> coupons = getAllCustomerCoupon(customer);
+	public List<Coupon> getCouponbyType(CouponType type) throws Exception{
+		List<Coupon> coupons = getAllCustomerCoupon(this.customer);
 		List<Coupon> couponByType = new ArrayList<Coupon>();
 		try {
 			for (Coupon coupon : coupons) {
@@ -142,8 +143,8 @@ public class CustomerFacade implements CouponClientFacade {
 	 *  @return coupon list object
 	 *  @throws Exception
 	 */
-	public List<Coupon> getCouponByPrice (Customer customer, double price) throws Exception{
-		List<Coupon> coupons = getAllCustomerCoupon(customer);
+	public List<Coupon> getCouponByPrice (double price) throws Exception{
+		List<Coupon> coupons = getAllCustomerCoupon(this.customer);
 		List<Coupon> couponByPrice = new ArrayList<Coupon>();
 		try {
 			for (Coupon coupon : coupons) {
